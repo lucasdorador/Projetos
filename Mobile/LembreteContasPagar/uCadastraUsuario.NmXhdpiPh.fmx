@@ -1,0 +1,72 @@
+inherited FCadastraUsuario_NmXhdpiPh: TFCadastraUsuario_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 0
+  inherited LayoutCliente: TLayout
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 400.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Width = 400.000000000000000000
+      end
+    end
+    inherited GridPanelLayout1: TGridPanelLayout
+      Size.Width = 400.000000000000000000
+      Size.Height = 567.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Width = 400.000000000000000000
+        Size.Height = 206.181823730468800000
+        inherited Rectangle8: TRectangle
+          inherited Image1: TImage
+            MultiResBitmap.Height = 206
+            MultiResBitmap.Width = 206
+          end
+        end
+      end
+      inherited Rectangle4: TRectangle
+        Size.Width = 400.000000000000000000
+        Size.Height = 360.818176269531300000
+        inherited Label1: TLabel
+          Size.Width = 340.000000000000000000
+        end
+        inherited Rectangle5: TRectangle
+          Size.Width = 340.000000000000000000
+          inherited edtUsuario: TEdit
+            Size.Width = 338.000000000000000000
+            Size.Height = 32.000000000000000000
+          end
+        end
+        inherited Label2: TLabel
+          Size.Width = 340.000000000000000000
+        end
+        inherited Rectangle6: TRectangle
+          Size.Width = 340.000000000000000000
+          inherited edtSenha: TEdit
+            StyleLookup = 'passwordeditbutton'
+            Size.Width = 338.000000000000000000
+            Size.Height = 32.000000000000000000
+          end
+        end
+        inherited Label3: TLabel
+          Size.Width = 340.000000000000000000
+        end
+        inherited Rectangle7: TRectangle
+          Size.Width = 340.000000000000000000
+          inherited edtEmail: TEdit
+            Size.Width = 338.000000000000000000
+            Size.Height = 32.000000000000000000
+          end
+        end
+        inherited SpeedButton2: TSpeedButton
+          Size.Width = 340.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+      end
+    end
+    inherited lstPopup: TListBox
+      Viewport.Width = 250.000000000000000000
+      Viewport.Height = 116.000000000000000000
+    end
+  end
+end

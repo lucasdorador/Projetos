@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2B4556C0-BEE6-473A-A124-9A9FE6C6B0B9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="LembreteContasPagar.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="LembreteContasPagar">
+        <MSBuild Projects="LembreteContasPagar.dproj"/>
+    </Target>
+    <Target Name="LembreteContasPagar:Clean">
+        <MSBuild Projects="LembreteContasPagar.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LembreteContasPagar:Make">
+        <MSBuild Projects="LembreteContasPagar.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="LembreteContasPagar"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="LembreteContasPagar:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="LembreteContasPagar:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

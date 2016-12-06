@@ -1,0 +1,23 @@
+inherited FContas_GGlass: TFContas_GGlass
+  ClientHeight = 215
+  ClientWidth = 427
+  DesignerMasterStyle = 3
+  inherited VertScrollBox1: TVertScrollBox
+    Size.Width = 427.000000000000000000
+    Size.Height = 215.000000000000000000
+    Viewport.Width = 427.000000000000000000
+    Viewport.Height = 215.000000000000000000
+    inherited LayoutCliente: TLayout
+      inherited TabControl1: TTabControl
+        inherited TabContasReceber: TTabItem
+          inherited GridLayout: TGridPanelLayout
+            TabOrder = 8
+          end
+          inherited GridPanelLayout1: TGridPanelLayout
+            TabOrder = 4
+          end
+        end
+      end
+    end
+  end
+end

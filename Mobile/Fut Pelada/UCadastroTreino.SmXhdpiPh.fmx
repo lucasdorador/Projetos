@@ -1,0 +1,81 @@
+inherited FCadastroTreino_SmXhdpiPh: TFCadastroTreino_SmXhdpiPh
+  ClientHeight = 375
+  ClientWidth = 250
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Width = 250.000000000000000000
+    Size.Height = 375.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 250.000000000000000000
+      inherited Rectangle2: TRectangle
+        Size.Width = 250.000000000000000000
+        inherited spCancelar: TSpeedButton
+          Position.X = 202.000000000000000000
+        end
+        inherited spGravar: TSpeedButton
+          Position.X = 154.000000000000000000
+        end
+      end
+    end
+    inherited Rectangle1: TRectangle
+      Size.Width = 250.000000000000000000
+      Size.Height = 327.000000000000000000
+      inherited LayDescricao: TLayout
+        Size.Width = 250.000000000000000000
+        inherited edtDescricao: TEdit
+          Margins.Top = 2.000000000000000000
+          Size.Width = 240.000000000000000000
+        end
+        inherited Label1: TLabel
+          Position.Y = 6.000000000000000000
+          Size.Width = 245.000000000000000000
+        end
+      end
+      inherited LayEquipe: TLayout
+        Size.Width = 250.000000000000000000
+      end
+      inherited LayImagem: TLayout
+        Size.Width = 250.000000000000000000
+        inherited Image1: TImage
+          MultiResBitmap.Height = 192
+          MultiResBitmap.Width = 192
+        end
+        inherited btnImagem: TButton
+          Size.Width = 105.000000000000000000
+        end
+      end
+      inherited LayLocal: TLayout
+        Size.Width = 250.000000000000000000
+        inherited edtLocal: TEdit
+          Margins.Top = 2.000000000000000000
+          Size.Width = 240.000000000000000000
+        end
+        inherited Label2: TLabel
+          Position.Y = 2.000000000000000000
+          Size.Width = 245.000000000000000000
+        end
+      end
+      inherited LayModalidade: TLayout
+        Size.Width = 250.000000000000000000
+        inherited cbModalidade: TComboBox
+          Size.Width = 240.000000000000000000
+        end
+        inherited Label3: TLabel
+          Size.Width = 245.000000000000000000
+        end
+      end
+    end
+  end
+  inherited lstPopUp: TListBox
+    Viewport.Width = 254.000000000000000000
+    Viewport.Height = 146.000000000000000000
+  end
+  inherited ActionList1: TActionList
+    inherited actSelFotoDaBiblioteca: TTakePhotoFromLibraryAction
+      OnDidFinishTaking = nil
+    end
+    inherited actSelFotoDaCamera: TTakePhotoFromCameraAction
+      OnDidFinishTaking = nil
+    end
+  end
+end

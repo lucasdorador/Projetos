@@ -1,0 +1,59 @@
+inherited FContas_iPhone4in: TFContas_iPhone4in
+  ClientHeight = 548
+  DesignerMasterStyle = 3
+  inherited FramedScrollBox1: TFramedScrollBox
+    Size.Height = 548.000000000000000000
+    Viewport.Width = 320.000000000000000000
+    Viewport.Height = 548.000000000000000000
+    inherited LayoutCliente: TLayout
+      inherited TabControl1: TTabControl
+        inherited TabContasReceber: TTabItem
+          StyledSettings = [Family, Size, FontColor]
+          inherited GridLayout: TGridPanelLayout
+            TabOrder = 6
+            inherited Rectangle1: TRectangle
+              inherited RecDescricaoContaRecebe: TRectangle
+                inherited edtDescricaoContasRec: TEdit
+                  Size.Height = 30.000000000000000000
+                end
+              end
+            end
+          end
+          inherited GridPanelLayout1: TGridPanelLayout
+            TabOrder = 3
+            inherited Rectangle2: TRectangle
+              inherited Rectangle4: TRectangle
+                inherited edtDataVencimentoRec: TDateEdit
+                  Size.Height = 30.000000000000000000
+                end
+              end
+            end
+            inherited Rectangle3: TRectangle
+              inherited Rectangle5: TRectangle
+                inherited edtValorContaRec: TNumberBox
+                  Size.Height = 30.000000000000000000
+                end
+              end
+            end
+          end
+          inherited GridPanelLayout2: TGridPanelLayout
+            inherited Rectangle6: TRectangle
+              inherited Rectangle7: TRectangle
+                inherited edtDataAgendamento: TDateEdit
+                  Size.Height = 30.000000000000000000
+                end
+              end
+            end
+            inherited Rectangle8: TRectangle
+              inherited Rectangle9: TRectangle
+                inherited edtHoraAgendamento: TTimeEdit
+                  Size.Height = 30.000000000000000000
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

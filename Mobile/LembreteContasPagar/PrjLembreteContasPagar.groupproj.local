@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+<<<<<<< .mine
+	<Transactions/>
+	<Default.Personality>
+		<Projects ActiveProject="F:\Metas TDP\trunk\Mobile\LembreteContasPagar\LembreteContasPagar.dproj"/>
+	</Default.Personality>
+||||||| .r17
+  <Transactions/>
+  <Default.Personality>
+    <Projects ActiveProject="F:\Programação\Delphi\XE8\Android\LembreteContasPagar\LembreteContasPagar.dproj"/>
+  </Default.Personality>
+=======
+	<Transactions/>
+	<Default.Personality>
+		<Projects ActiveProject="D:\Lucas\Metas TDP\trunk\Mobile\LembreteContasPagar\LembreteContasPagar.dproj"/>
+	</Default.Personality>
+>>>>>>> .r19
+</BorlandProject>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/07/05 21:26:48.000.629,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uPrincipal.fmx=C:\Users\Lucas Dorador\Documents\Embarcadero\Studio\Projects\Unit2.fmx</Transaction>
+    <Transaction>2016/07/05 21:27:02.000.979,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\LembreteContasPagar.dproj=C:\Users\Lucas Dorador\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2016/07/12 20:16:13.000.357,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.fmx=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uContas.fmx</Transaction>
+    <Transaction>2016/07/12 20:16:13.000.357,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uContas.pas</Transaction>
+    <Transaction>2016/07/12 23:46:59.000.582,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uDMPrincipal.dfm=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.dfm</Transaction>
+    <Transaction>2016/07/13 21:21:28.000.238,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uLogin.fmx=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.fmx</Transaction>
+    <Transaction>2016/07/18 18:50:50.000.523,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/18 18:51:12.000.595,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.dfm=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uDMPrincipal.dfm</Transaction>
+    <Transaction>2016/07/18 18:51:12.000.595,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uDMPrincipal.pas</Transaction>
+    <Transaction>2016/07/18 22:20:20.000.724,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/18 22:20:51.000.717,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uCadastraUsuario.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/18 22:20:51.000.717,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uCadastraUsuario.fmx=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.fmx</Transaction>
+    <Transaction>2016/07/19 18:36:05.000.539,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/20 18:42:47.000.946,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/20 18:55:40.000.723,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Classes\uCRUDUsuario.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/20 22:26:22.000.450,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/20 22:32:44.000.502,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Classes\uAtualizacao.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/28 22:19:46.000.661,=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+    <Transaction>2016/07/28 22:20:01.000.794,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uSplash.fmx=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.fmx</Transaction>
+    <Transaction>2016/07/28 22:20:01.000.794,F:\Programação\Delphi\XE8\Android\LembreteContasPagar\uSplash.pas=F:\Programação\Delphi\XE8\Android\LembreteContasPagar\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

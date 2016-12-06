@@ -1,0 +1,43 @@
+inherited Fprincipal_iPhone4in: TFprincipal_iPhone4in
+  ClientHeight = 548
+  DesignerMasterStyle = 3
+  inherited LayoutPai: TLayout
+    Size.Height = 548.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Height = 44.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 44.000000000000000000
+        inherited SpeedButton1: TSpeedButton
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+      end
+    end
+    inherited LayoutFilho: TLayout
+      Size.Height = 504.000000000000000000
+    end
+  end
+  inherited MultiView1: TMultiView
+    Size.Height = 548.000000000000000000
+    inherited RecMenuPrincipal: TRectangle
+      Size.Height = 548.000000000000000000
+      inherited VertScrollBox1: TVertScrollBox
+        Size.Height = 395.000000000000000000
+        Viewport.Width = 311.000000000000000000
+        Viewport.Height = 395.000000000000000000
+        inherited Rectangle1: TRectangle
+          inherited Image1: TImage
+            MultiResBitmap.Height = 27
+            MultiResBitmap.Width = 27
+          end
+        end
+        inherited Rectangle2: TRectangle
+          inherited Image2: TImage
+            MultiResBitmap.Height = 27
+            MultiResBitmap.Width = 27
+          end
+        end
+      end
+    end
+  end
+end

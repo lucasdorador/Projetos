@@ -1,0 +1,77 @@
+inherited Fprincipal_LgXhdpiPh: TFprincipal_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 0
+  inherited L_Principal: TLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited Rectangle1: TRectangle
+      Size.Width = 444.000000000000000000
+      inherited Image1: TImage
+        MultiResBitmap.Height = 450
+        MultiResBitmap.Width = 450
+        MultiResBitmap.LoadSize = 1
+        Size.Width = 444.000000000000000000
+      end
+    end
+    inherited GridPanelLayout1: TGridPanelLayout
+      Size.Width = 444.000000000000000000
+      Size.Height = 505.000000000000000000
+      inherited GridPanelLayout2: TGridPanelLayout
+        Size.Width = 444.000000000000000000
+        Size.Height = 178.791793823242200000
+        inherited Image2: TImage
+          MultiResBitmap.Height = 49
+          MultiResBitmap.Width = 49
+          MultiResBitmap.TransparentColor = -16777201
+          Size.Width = 69.999282836914060000
+          Size.Height = 85.395896911621090000
+        end
+        inherited Image4: TImage
+          MultiResBitmap.Height = 49
+          MultiResBitmap.Width = 49
+          Size.Width = 69.999282836914060000
+          Size.Height = 85.395896911621090000
+        end
+        inherited Rectangle2: TRectangle
+          Size.Width = 370.000732421875000000
+          Size.Height = 89.395896911621090000
+          inherited edtAlcool: TNumberBox
+            Value = 2321.000000000000000000
+            Position.Y = 49.395896911621090000
+            Size.Width = 360.000732421875000000
+            Size.Height = 32.000000000000000000
+          end
+          inherited Label1: TLabel
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 360.000732421875000000
+          end
+        end
+        inherited Rectangle3: TRectangle
+          Size.Width = 370.000732421875000000
+          Size.Height = 89.395896911621090000
+          inherited edtGasolina: TNumberBox
+            Position.Y = 49.395896911621090000
+            Size.Width = 360.000732421875000000
+            Size.Height = 32.000000000000000000
+          end
+          inherited Label2: TLabel
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 360.000732421875000000
+          end
+        end
+      end
+      inherited Layout1: TLayout
+        Size.Width = 444.000000000000000000
+        Size.Height = 326.208190917968800000
+        inherited Button1: TButton
+          Size.Width = 394.000000000000000000
+        end
+        inherited Button2: TButton
+          Enabled = False
+          Size.Width = 394.000000000000000000
+        end
+      end
+    end
+  end
+end

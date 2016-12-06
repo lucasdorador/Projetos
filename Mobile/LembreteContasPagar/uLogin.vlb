@@ -1,0 +1,16 @@
+﻿[Rectangle1]
+Coordinates=157,56,80,36
+
+[ToolBar1]
+Coordinates=10,56,67,36
+
+[Rectangle2]
+Coordinates=138,10,80,36
+
+[]
+Coordinates=10,10,118,36
+Visible=True
+
+[LayoutCliente]
+Coordinates=87,56,60,36
+

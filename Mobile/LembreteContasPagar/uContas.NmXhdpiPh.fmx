@@ -1,0 +1,110 @@
+inherited FContas_NmXhdpiPh: TFContas_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 3
+  inherited LayoutCliente: TLayout
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    inherited TabControl1: TTabControl
+      Size.Width = 400.000000000000000000
+      Size.Height = 567.000000000000000000
+      inherited TabContasReceber: TTabItem
+        Size.Width = 200.000000000000000000
+        inherited Label1: TLabel
+          Size.Width = 390.000000000000000000
+        end
+        inherited GridLayout: TGridPanelLayout
+          Size.Width = 400.000000000000000000
+          TabOrder = 15
+          inherited Rectangle1: TRectangle
+            Size.Width = 400.000000000000000000
+            inherited Label2: TLabel
+              Size.Width = 390.000000000000000000
+            end
+            inherited RecDescricaoContaRecebe: TRectangle
+              Size.Width = 390.000000000000000000
+              inherited edtDescricaoContasRec: TEdit
+                Size.Width = 390.000000000000000000
+              end
+            end
+          end
+        end
+        inherited GridPanelLayout1: TGridPanelLayout
+          Size.Width = 400.000000000000000000
+          TabOrder = 11
+          inherited Rectangle2: TRectangle
+            Size.Width = 200.000000000000000000
+            inherited Label3: TLabel
+              Size.Width = 190.000000000000000000
+            end
+            inherited Rectangle4: TRectangle
+              Size.Width = 190.000000000000000000
+              inherited edtDataVencimentoRec: TDateEdit
+                Size.Width = 190.000000000000000000
+              end
+            end
+          end
+          inherited Rectangle3: TRectangle
+            Size.Width = 200.000000000000000000
+            inherited Label6: TLabel
+              Size.Width = 190.000000000000000000
+            end
+            inherited Rectangle5: TRectangle
+              Size.Width = 190.000000000000000000
+              inherited edtValorContaRec: TNumberBox
+                Size.Width = 190.000000000000000000
+              end
+            end
+          end
+        end
+        inherited Label4: TLabel
+          Size.Width = 390.000000000000000000
+        end
+        inherited GridPanelLayout2: TGridPanelLayout
+          Size.Width = 400.000000000000000000
+          inherited Rectangle6: TRectangle
+            Size.Width = 200.000000000000000000
+            inherited Label5: TLabel
+              Size.Width = 190.000000000000000000
+            end
+            inherited Rectangle7: TRectangle
+              Size.Width = 190.000000000000000000
+              inherited edtDataAgendamento: TDateEdit
+                Size.Width = 190.000000000000000000
+              end
+            end
+          end
+          inherited Rectangle8: TRectangle
+            Size.Width = 200.000000000000000000
+            inherited Label7: TLabel
+              Size.Width = 190.000000000000000000
+            end
+            inherited Rectangle9: TRectangle
+              Size.Width = 190.000000000000000000
+              inherited edtHoraAgendamento: TTimeEdit
+                Size.Width = 190.000000000000000000
+              end
+            end
+          end
+        end
+        inherited Button1: TButton
+          Size.Width = 390.000000000000000000
+        end
+      end
+      inherited TabContasPagar: TTabItem
+        Size.Width = 200.000000000000000000
+      end
+    end
+    inherited ToolBar1: TToolBar
+      Size.Width = 400.000000000000000000
+      inherited Rectangle10: TRectangle
+        Size.Width = 400.000000000000000000
+        inherited Rectangle11: TRectangle
+          inherited btnAdicionarUsuario: TSpeedButton
+            OnClick = nil
+          end
+        end
+      end
+    end
+  end
+end

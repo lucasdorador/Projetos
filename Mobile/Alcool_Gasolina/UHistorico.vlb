@@ -1,0 +1,17 @@
+﻿[FDHistorico]
+Coordinates=322,20,72,33
+Visible=False
+
+[]
+Coordinates=10,10,89,141
+Visible=True
+
+[ListView1]
+Coordinates=0,0,89,159
+
+[BindSourceDB1]
+Coordinates=322,20,92,159
+
+[BindingsList1]
+Coordinates=108,1,82,33
+

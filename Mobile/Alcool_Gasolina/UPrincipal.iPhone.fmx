@@ -1,0 +1,58 @@
+inherited Fprincipal_iPhone: TFprincipal_iPhone
+  ClientHeight = 460
+  DesignerMasterStyle = 0
+  inherited L_Principal: TLayout
+    Size.Height = 460.000000000000000000
+    inherited Rectangle1: TRectangle
+      inherited Image1: TImage
+        MultiResBitmap.Height = 450
+        MultiResBitmap.Width = 450
+        MultiResBitmap.LoadSize = 1
+      end
+    end
+    inherited GridPanelLayout1: TGridPanelLayout
+      Size.Height = 270.000000000000000000
+      inherited GridPanelLayout2: TGridPanelLayout
+        Size.Height = 95.591651916503910000
+        inherited Image2: TImage
+          MultiResBitmap.Height = 49
+          MultiResBitmap.Width = 49
+          MultiResBitmap.TransparentColor = -16777201
+          Size.Height = 43.795825958251950000
+        end
+        inherited Image4: TImage
+          MultiResBitmap.Height = 49
+          MultiResBitmap.Width = 49
+          Size.Height = 43.795825958251950000
+        end
+        inherited Rectangle2: TRectangle
+          Size.Height = 47.795825958251950000
+          inherited edtAlcool: TNumberBox
+            Value = 2321.000000000000000000
+            Position.Y = 9.795825958251953000
+            Size.Height = 30.000000000000000000
+          end
+          inherited Label1: TLabel
+            Margins.Bottom = 5.000000000000000000
+          end
+        end
+        inherited Rectangle3: TRectangle
+          Size.Height = 47.795825958251950000
+          inherited edtGasolina: TNumberBox
+            Position.Y = 9.795825958251953000
+            Size.Height = 30.000000000000000000
+          end
+          inherited Label2: TLabel
+            Margins.Bottom = 5.000000000000000000
+          end
+        end
+      end
+      inherited Layout1: TLayout
+        Size.Height = 174.408355712890600000
+        inherited Button2: TButton
+          Enabled = False
+        end
+      end
+    end
+  end
+end

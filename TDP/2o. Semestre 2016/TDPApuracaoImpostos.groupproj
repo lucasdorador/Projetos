@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FB5D05CF-D504-4B20-B69D-3F71BA3DB019}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="View\TDPApuraImpostos.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TDPApuraImpostos">
+        <MSBuild Projects="View\TDPApuraImpostos.dproj"/>
+    </Target>
+    <Target Name="TDPApuraImpostos:Clean">
+        <MSBuild Projects="View\TDPApuraImpostos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TDPApuraImpostos:Make">
+        <MSBuild Projects="View\TDPApuraImpostos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TDPApuraImpostos"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TDPApuraImpostos:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TDPApuraImpostos:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

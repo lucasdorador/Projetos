@@ -1,0 +1,23 @@
+inherited FContas_SmXhdpiPh: TFContas_SmXhdpiPh
+  ClientHeight = 375
+  ClientWidth = 250
+  DesignerMasterStyle = 3
+  inherited FramedScrollBox1: TFramedScrollBox
+    Size.Width = 250.000000000000000000
+    Size.Height = 375.000000000000000000
+    Viewport.Width = 250.000000000000000000
+    Viewport.Height = 375.000000000000000000
+    inherited LayoutCliente: TLayout
+      inherited TabControl1: TTabControl
+        inherited TabContasReceber: TTabItem
+          inherited GridLayout: TGridPanelLayout
+            TabOrder = 6
+          end
+          inherited GridPanelLayout1: TGridPanelLayout
+            TabOrder = 3
+          end
+        end
+      end
+    end
+  end
+end

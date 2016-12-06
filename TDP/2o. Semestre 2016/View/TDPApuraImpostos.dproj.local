@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/11/30 22:02:01.000.592,=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.pas</Transaction>
+    <Transaction>2016/11/30 22:02:13.000.815,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.pas=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.pas</Transaction>
+    <Transaction>2016/11/30 22:02:13.000.815,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.dfm=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.dfm</Transaction>
+    <Transaction>2016/11/30 22:03:20.000.287,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.pas=</Transaction>
+    <Transaction>2016/11/30 22:03:28.000.069,=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.pas</Transaction>
+  </Transactions>
+</BorlandProject>

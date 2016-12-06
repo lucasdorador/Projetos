@@ -1,0 +1,56 @@
+inherited FCadastraUsuario_iPhone4in: TFCadastraUsuario_iPhone4in
+  ClientHeight = 548
+  DesignerMasterStyle = 0
+  inherited LayoutCliente: TLayout
+    Size.Height = 548.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Height = 44.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Height = 44.000000000000000000
+        inherited Rectangle2: TRectangle
+          Size.Height = 44.000000000000000000
+          inherited SpeedButton1: TSpeedButton
+            Size.Width = 44.000000000000000000
+            Size.Height = 44.000000000000000000
+          end
+        end
+      end
+    end
+    inherited GridPanelLayout1: TGridPanelLayout
+      Size.Height = 504.000000000000000000
+      inherited Rectangle3: TRectangle
+        Size.Height = 183.272735595703100000
+        inherited Rectangle8: TRectangle
+          inherited Image1: TImage
+            MultiResBitmap.Height = 206
+            MultiResBitmap.Width = 206
+          end
+        end
+      end
+      inherited Rectangle4: TRectangle
+        Size.Height = 320.727264404296900000
+        inherited Rectangle5: TRectangle
+          Margins.Top = 5.000000000000000000
+          Position.Y = 50.000000000000000000
+        end
+        inherited Label2: TLabel
+          Position.Y = 87.000000000000000000
+        end
+        inherited Rectangle6: TRectangle
+          Margins.Top = 5.000000000000000000
+          Position.Y = 117.000000000000000000
+        end
+        inherited Label3: TLabel
+          Position.Y = 154.000000000000000000
+        end
+        inherited Rectangle7: TRectangle
+          Position.Y = 179.000000000000000000
+        end
+        inherited SpeedButton2: TSpeedButton
+          Position.Y = 231.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+      end
+    end
+  end
+end
