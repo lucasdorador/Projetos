@@ -4,7 +4,7 @@ object FImpostos: TFImpostos
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = '[XXXX] FACILITE - Apura'#231#227'o de Impostos'
-  ClientHeight = 491
+  ClientHeight = 512
   ClientWidth = 762
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,7 +23,7 @@ object FImpostos: TFImpostos
   object PBotoes: TPanel
     AlignWithMargins = True
     Left = 3
-    Top = 436
+    Top = 438
     Width = 756
     Height = 52
     Align = alBottom
@@ -31,6 +31,8 @@ object FImpostos: TFImpostos
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = -2
+    ExplicitTop = 375
     object btnsair: TBitBtn
       AlignWithMargins = True
       Left = 548
@@ -825,7 +827,7 @@ object FImpostos: TFImpostos
     Left = 3
     Top = 3
     Width = 756
-    Height = 427
+    Height = 429
     ActivePage = tsConfiguracao
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -835,10 +837,10 @@ object FImpostos: TFImpostos
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    ExplicitHeight = 427
     object tsConfiguracao: TTabSheet
       Caption = 'Configura'#231#245'es'
-      ExplicitLeft = 0
-      ExplicitTop = 28
+      ExplicitHeight = 399
       object Label1: TLabel
         AlignWithMargins = True
         Left = 3
@@ -848,7 +850,7 @@ object FImpostos: TFImpostos
         Margins.Bottom = 1
         Align = alTop
         Caption = 'Tipos de Documentos Fiscais para contabilizar nos impostos'
-        ExplicitTop = 0
+        ExplicitWidth = 337
       end
       object chkTipoNF: TCheckListBox
         AlignWithMargins = True
@@ -867,7 +869,6 @@ object FImpostos: TFImpostos
           'Teste5')
         Style = lbOwnerDrawFixed
         TabOrder = 0
-        ExplicitTop = 3
       end
       object BitBtn1: TBitBtn
         AlignWithMargins = True
@@ -1393,7 +1394,6 @@ object FImpostos: TFImpostos
         Align = alTop
         Caption = 'Al'#237'quota COFINS'
         TabOrder = 2
-        ExplicitTop = 110
         object Label4: TLabel
           Left = 12
           Top = 22
@@ -1478,10 +1478,25 @@ object FImpostos: TFImpostos
     object tsImpostos: TTabSheet
       Caption = 'Apura'#231#227'o de Impostos'
       ImageIndex = 1
+      ExplicitHeight = 399
     end
     object tsRelatorios: TTabSheet
       Caption = 'Relat'#243'rios'
       ImageIndex = 2
+      ExplicitHeight = 399
     end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 493
+    Width = 762
+    Height = 19
+    Panels = <
+      item
+        Width = 200
+      end>
+    ExplicitLeft = 384
+    ExplicitTop = 256
+    ExplicitWidth = 0
   end
 end

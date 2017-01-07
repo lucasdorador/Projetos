@@ -34,6 +34,7 @@ type
       destructor Destroy; override;
       function fncRetornaTipoNF(psEmpresa: String) : TFDQuery;
       procedure pcdGravaConfiguracao;
+      function fncCarregaDadosExistentes(psEmpresa: String) : TFDQuery;
 
    published
       property CONFAI_EMPRESA    : String read FCONFAI_EMPRESA write SetCONFAI_EMPRESA;
@@ -65,6 +66,21 @@ if Assigned(vloFuncoes) then
    FreeAndNil(vloFuncoes);
 
   inherited;
+end;
+
+function TConfiguracao.fncCarregaDadosExistentes(psEmpresa: String) : TFDQuery;
+var
+   FDConsulta : TFDQuery;
+begin
+vloFuncoes.pcdCriaFDQueryExecucao(FDConsulta, FConexao);
+Result := nil;
+FDConsulta.SQL.Clear;
+FDConsulta.SQL.Add('SELECT * FROM APURAIMPOSTOCONFIG WHERE CONFAI_EMPRESA = :EMPRESA');
+FDConsulta.ParamByName('EMPRESA').AsString := psEmpresa;
+FDConsulta.Open;
+
+if not FDConsulta.IsEmpty then
+   Result := FDConsulta;
 end;
 
 function TConfiguracao.fncRetornaTipoNF(psEmpresa: String) : TFDQuery;

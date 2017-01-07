@@ -39,6 +39,7 @@ type
     Label7: TLabel;
     edtPresuncaoIRPJ: TDPTNumberEditXE8;
     edtAliquotaIRPJ: TDPTNumberEditXE8;
+    StatusBar1: TStatusBar;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -56,11 +57,13 @@ type
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
+    vgEmpresa : String;
     vloFuncoes : TFuncoesGerais;
     procedure HabilitaPaletas(vPaleta: TTabSheet);
     procedure HabilitaBotoes(vBotao: TBitBtn);
     procedure pcdCarregaTIPONF(psEmpresa: String);
     procedure pcdValidaValorMaximoEdit(poEdit : TDPTNumberEditXE8; piValorMaximo: Integer);
+    procedure pcdCarregaDadosExistentes(psEmpresa : String);
     procedure Paletas(vPaleta: TTabSheet);
     { Private declarations }
   public
@@ -74,7 +77,7 @@ implementation
 
 {$R *.dfm}
 
-uses UConfiguracao;
+uses UConfiguracao, uConsultas;
 
 procedure TFImpostos.BitBtn1Click(Sender: TObject);
 var
@@ -98,7 +101,7 @@ for I := 0 to chkTipoNF.Items.Count - 1 do
 if Trim(vlsTipo) <> '' then
    vlsTipo := Copy(vlsTipo, 1, Length(vlsTipo) - 2);
 
-vloConfiguracao.CONFAI_EMPRESA    := '01';
+vloConfiguracao.CONFAI_EMPRESA    := vgEmpresa;
 vloConfiguracao.CONFAI_TIPOSNF    := vlsTipo;
 vloConfiguracao.CONFAI_ALIQPIS    := edtAliquotaPIS.Value;
 vloConfiguracao.CONFAI_ALIQCOFINS := edtAliquotaCOFINS.Value;
@@ -119,7 +122,8 @@ begin
 Paletas(tsConfiguracao);
 //HabilitaPaletas(tsConfiguracao);
 //HabilitaBotoes(btnConfigurar);
-pcdCarregaTIPONF('01');
+pcdCarregaTIPONF(vgEmpresa);
+pcdCarregaDadosExistentes(vgEmpresa);
 chkTipoNF.SetFocus;
 end;
 
@@ -210,6 +214,8 @@ begin
 vloConexao := TConexaoXE8.Create;
 vgConexao  := vloConexao.getConnection;
 vloFuncoes := TFuncoesGerais.Create(vgConexao);
+vgEmpresa  := '01';
+StatusBar1.Panels[0].Text := 'Empresa: ' + vgEmpresa + ' - ' + TConsultas.fncConsultaDescricaoEmpresa(vgEmpresa, vgConexao);
 tsConfiguracao.TabVisible := False;
 tsImpostos.TabVisible     := False;
 tsRelatorios.TabVisible   := False;
@@ -233,6 +239,42 @@ else if vPaleta = tsRelatorios then
    HabilitaBotoes(btnRelatorios);
 
 HabilitaPaletas(vPaleta);
+end;
+
+procedure TFImpostos.pcdCarregaDadosExistentes(psEmpresa: String);
+var
+   vloConfiguracao : TConfiguracao;
+   FDConfig : TFDQuery;
+begin
+vloConfiguracao := TConfiguracao.Create(vgConexao);
+vloFuncoes.pcdCriaFDQueryExecucao(FDConfig, vgConexao);
+try
+FDConfig := vloConfiguracao.fncCarregaDadosExistentes(vgEmpresa);
+
+if not FDConfig.IsEmpty then
+   begin
+   edtAliquotaPIS.Value    := FDConfig.FieldByName('CONFAI_ALIQPIS').AsFloat;
+   edtAliquotaCOFINS.Value := FDConfig.FieldByName('CONFAI_ALIQCOFINS').AsFloat;
+   edtAliquotaCSLL.Value   := FDConfig.FieldByName('CONFAI_ALIQCSLL').AsFloat;
+   edtAliquotaIRPJ.Value   := FDConfig.FieldByName('CONFAI_ALIQIRPJ').AsFloat;
+   edtPresuncaoCSLL.Value  := FDConfig.FieldByName('CONFAI_PRESCSLL').AsFloat;
+   edtPresuncaoIRPJ.Value  := FDConfig.FieldByName('CONFAI_PRESIRPJ').AsFloat;
+   end
+else
+   begin
+   edtAliquotaPIS.Value    := 0;
+   edtAliquotaCOFINS.Value := 0;
+   edtAliquotaCSLL.Value   := 0;
+   edtAliquotaIRPJ.Value   := 0;
+   edtPresuncaoCSLL.Value  := 0;
+   edtPresuncaoIRPJ.Value  := 0;
+   end;
+
+
+finally
+   FreeAndNil(FDConfig);
+   FreeAndNil(vloConfiguracao);
+   end;
 end;
 
 procedure TFImpostos.pcdCarregaTIPONF(psEmpresa: String);

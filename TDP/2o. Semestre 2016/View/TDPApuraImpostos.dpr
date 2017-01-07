@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   uImpostos in 'uImpostos.pas' {FImpostos},
   UConfiguracao in '..\Class\UConfiguracao.pas',
-  uConstantes in '..\Class\uConstantes.pas';
+  uConstantes in '..\Class\uConstantes.pas',
+  uConsultas in 'uConsultas.pas';
 
 {$R *.res}
 
