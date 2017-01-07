@@ -2,7 +2,9 @@ program TDPApuraImpostos;
 
 uses
   Vcl.Forms,
-  uImpostos in 'uImpostos.pas' {FImpostos};
+  uImpostos in 'uImpostos.pas' {FImpostos},
+  UConfiguracao in '..\Class\UConfiguracao.pas',
+  uConstantes in '..\Class\uConstantes.pas';
 
 {$R *.res}
 

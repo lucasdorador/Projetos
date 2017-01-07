@@ -85,6 +85,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <DCC_ExeOutput>C:\Sinco\Atualizacoes\Fonte Padrao - Comercio</DCC_ExeOutput>
+        <DCC_DcuOutput>C:\Sinco\Atualizacoes\Fonte Padrao - Comercio\DCU\ApuracaoImposto</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -107,6 +109,8 @@
             <Form>FImpostos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Class\UConfiguracao.pas"/>
+        <DCCReference Include="..\Class\uConstantes.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -135,7 +139,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="1">
-                <DeployFile LocalName="Win32\Debug\TDPApuraImpostos.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Sinco\Atualizacoes\Fonte Padrao - Comercio\TDPApuraImpostos.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>TDPApuraImpostos.exe</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -517,12 +521,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
