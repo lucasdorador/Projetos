@@ -31,8 +31,6 @@ object FImpostos: TFImpostos
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -2
-    ExplicitTop = 375
     object btnsair: TBitBtn
       AlignWithMargins = True
       Left = 548
@@ -837,10 +835,8 @@ object FImpostos: TFImpostos
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
-    ExplicitHeight = 427
     object tsConfiguracao: TTabSheet
       Caption = 'Configura'#231#245'es'
-      ExplicitHeight = 399
       object Label1: TLabel
         AlignWithMargins = True
         Left = 3
@@ -1478,12 +1474,10 @@ object FImpostos: TFImpostos
     object tsImpostos: TTabSheet
       Caption = 'Apura'#231#227'o de Impostos'
       ImageIndex = 1
-      ExplicitHeight = 399
     end
     object tsRelatorios: TTabSheet
       Caption = 'Relat'#243'rios'
       ImageIndex = 2
-      ExplicitHeight = 399
     end
   end
   object StatusBar1: TStatusBar
@@ -1495,8 +1489,5 @@ object FImpostos: TFImpostos
       item
         Width = 200
       end>
-    ExplicitLeft = 384
-    ExplicitTop = 256
-    ExplicitWidth = 0
   end
 end

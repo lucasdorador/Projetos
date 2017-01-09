@@ -9,6 +9,8 @@ uses
   UFuncoesFaciliteXE8, uTDPNumberEditXE8;
 
 type
+  TArrayTipo = Array of String;
+
   TFImpostos = class(TForm)
     PBotoes: TPanel;
     btnsair: TBitBtn;
@@ -65,6 +67,8 @@ type
     procedure pcdValidaValorMaximoEdit(poEdit : TDPTNumberEditXE8; piValorMaximo: Integer);
     procedure pcdCarregaDadosExistentes(psEmpresa : String);
     procedure Paletas(vPaleta: TTabSheet);
+    function fncRetornaArrayTipo(psTipo: String): TArrayTipo;
+    function fncRemoveVirgulaEspacao(psTexto: String): String;
     { Private declarations }
   public
     { Public declarations }
@@ -245,6 +249,8 @@ procedure TFImpostos.pcdCarregaDadosExistentes(psEmpresa: String);
 var
    vloConfiguracao : TConfiguracao;
    FDConfig : TFDQuery;
+   vlsTipo : String;
+   vlsTipoSelecionados : TArrayTipo;
 begin
 vloConfiguracao := TConfiguracao.Create(vgConexao);
 vloFuncoes.pcdCriaFDQueryExecucao(FDConfig, vgConexao);
@@ -253,6 +259,8 @@ FDConfig := vloConfiguracao.fncCarregaDadosExistentes(vgEmpresa);
 
 if not FDConfig.IsEmpty then
    begin
+   vlsTipoSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
+
    edtAliquotaPIS.Value    := FDConfig.FieldByName('CONFAI_ALIQPIS').AsFloat;
    edtAliquotaCOFINS.Value := FDConfig.FieldByName('CONFAI_ALIQCOFINS').AsFloat;
    edtAliquotaCSLL.Value   := FDConfig.FieldByName('CONFAI_ALIQCSLL').AsFloat;
@@ -327,6 +335,39 @@ if vBotao = btnImpostos then
 
 if vBotao = btnRelatorios then
    vBotao.Enabled := False;
+end;
+
+function TFImpostos.fncRetornaArrayTipo(psTipo : String) : TArrayTipo;
+var
+   vloArray : TArrayTipo;
+   vlTexto  : String;
+   vlTestes : Double;
+   vli      : Integer;
+begin
+if Trim(psTipo) <> '' then
+   begin
+   vlTexto  := fncRemoveVirgulaEspacao(psTipo);
+   vlTestes := Length(vlTexto)/2;
+   SetLength(vloArray, Trunc(Length(vlTexto)/2));
+
+   for vli := Low(vloArray) to High(vloArray) -1 do
+      begin
+      vloArray[vli] := Copy(vlTexto, vli * 2, 2);
+      end;
+   end;
+end;
+
+function TFImpostos.fncRemoveVirgulaEspacao(psTexto: String) : String;
+var
+  vli: Integer;
+  vlTexto : String;
+begin
+for vli := 0 to Length(psTexto) - 1 do
+   begin
+   if ((Copy(psTexto, vli, 1) <> ',') or
+       (Copy(psTexto, vli, 1) <> '')) then
+      vlTexto := Trim(vlTexto) + Copy(psTexto, vli, 1);
+   end;
 end;
 end.
 
