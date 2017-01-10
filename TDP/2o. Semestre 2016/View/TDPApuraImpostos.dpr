@@ -5,7 +5,7 @@ uses
   uImpostos in 'uImpostos.pas' {FImpostos},
   UConfiguracao in '..\Class\UConfiguracao.pas',
   uConstantes in '..\Class\uConstantes.pas',
-  uConsultas in 'uConsultas.pas';
+  uConsultas in '..\Class\uConsultas.pas';
 
 {$R *.res}
 

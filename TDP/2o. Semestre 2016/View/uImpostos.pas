@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ComCtrls, UConexaoXE8, FireDAc.Comp.Client, Vcl.CheckLst,
-  UFuncoesFaciliteXE8, uTDPNumberEditXE8;
+  Vcl.Buttons, Vcl.ComCtrls, Data.DB, Vcl.Mask, Vcl.Samples.Spin, Vcl.Grids,
+  Vcl.DBGrids, uTDPNumberEditXE8, Vcl.CheckLst, uFuncoesFaciliteXE8,
+  FireDAc.Comp.Client, UConexaoXE8;
 
 type
-  TArrayTipo = Array of String;
+  TVetorString = Array of String;
 
   TFImpostos = class(TForm)
     PBotoes: TPanel;
@@ -42,6 +43,13 @@ type
     edtPresuncaoIRPJ: TDPTNumberEditXE8;
     edtAliquotaIRPJ: TDPTNumberEditXE8;
     StatusBar1: TStatusBar;
+    dbImpostos: TDBGrid;
+    GroupBox5: TGroupBox;
+    Label8: TLabel;
+    edtTrimestre: TSpinEdit;
+    Label9: TLabel;
+    edtAno: TMaskEdit;
+    btnProcessar: TBitBtn;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -67,7 +75,7 @@ type
     procedure pcdValidaValorMaximoEdit(poEdit : TDPTNumberEditXE8; piValorMaximo: Integer);
     procedure pcdCarregaDadosExistentes(psEmpresa : String);
     procedure Paletas(vPaleta: TTabSheet);
-    function fncRetornaArrayTipo(psTipo: String): TArrayTipo;
+    function fncRetornaArrayTipo(psTipo: String): TVetorString;
     function fncRemoveVirgulaEspacao(psTexto: String): String;
     { Private declarations }
   public
@@ -114,7 +122,7 @@ vloConfiguracao.CONFAI_ALIQCSLL   := edtAliquotaCSLL.Value;
 vloConfiguracao.CONFAI_PRESIRPJ   := edtPresuncaoIRPJ.Value;
 vloConfiguracao.CONFAI_PRESCSLL   := edtPresuncaoCSLL.Value;
 vloConfiguracao.pcdGravaConfiguracao;
-Paletas(tsImpostos);
+btnImpostosClick(Sender);
 
 finally
    FreeAndNil(vloConfiguracao);
@@ -134,6 +142,7 @@ end;
 procedure TFImpostos.btnImpostosClick(Sender: TObject);
 begin
 Paletas(tsImpostos);
+edtTrimestre.SetFocus;
 //HabilitaPaletas(tsImpostos);
 //HabilitaBotoes(btnImpostos);
 end;
@@ -250,7 +259,8 @@ var
    vloConfiguracao : TConfiguracao;
    FDConfig : TFDQuery;
    vlsTipo : String;
-   vlsTipoSelecionados : TArrayTipo;
+   vlsTipoSelecionados : TVetorString;
+  I: Integer;
 begin
 vloConfiguracao := TConfiguracao.Create(vgConexao);
 vloFuncoes.pcdCriaFDQueryExecucao(FDConfig, vgConexao);
@@ -260,6 +270,9 @@ FDConfig := vloConfiguracao.fncCarregaDadosExistentes(vgEmpresa);
 if not FDConfig.IsEmpty then
    begin
    vlsTipoSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
+
+   for I := Low(vlsTipoSelecionados) to High(vlsTipoSelecionados) do
+      ShowMessage(vlsTipoSelecionados[I]);
 
    edtAliquotaPIS.Value    := FDConfig.FieldByName('CONFAI_ALIQPIS').AsFloat;
    edtAliquotaCOFINS.Value := FDConfig.FieldByName('CONFAI_ALIQCOFINS').AsFloat;
@@ -337,9 +350,9 @@ if vBotao = btnRelatorios then
    vBotao.Enabled := False;
 end;
 
-function TFImpostos.fncRetornaArrayTipo(psTipo : String) : TArrayTipo;
+function TFImpostos.fncRetornaArrayTipo(psTipo : String) : TVetorString;
 var
-   vloArray : TArrayTipo;
+   vloArray : TVetorString;
    vlTexto  : String;
    vlTestes : Double;
    vli      : Integer;
@@ -369,5 +382,6 @@ for vli := 0 to Length(psTexto) - 1 do
       vlTexto := Trim(vlTexto) + Copy(psTexto, vli, 1);
    end;
 end;
+
 end.
 

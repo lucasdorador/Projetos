@@ -1474,6 +1474,172 @@ object FImpostos: TFImpostos
     object tsImpostos: TTabSheet
       Caption = 'Apura'#231#227'o de Impostos'
       ImageIndex = 1
+      object dbImpostos: TDBGrid
+        AlignWithMargins = True
+        Left = 5
+        Top = 93
+        Width = 738
+        Height = 116
+        Margins.Left = 5
+        Margins.Top = 5
+        Margins.Right = 5
+        Margins.Bottom = 5
+        Align = alTop
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = [fsBold]
+        Columns = <
+          item
+            Expanded = False
+            Title.Caption = 'M'#234's'
+            Width = 70
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Valor Apurado'
+            Width = 105
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Base de Calculo'
+            Width = 105
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'PIS (R$)'
+            Width = 105
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Cofins (R$)'
+            Width = 105
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'IRPJ (R$)'
+            Width = 105
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            Title.Alignment = taRightJustify
+            Title.Caption = 'CSLL (R$)'
+            Width = 105
+            Visible = True
+          end>
+      end
+      object GroupBox5: TGroupBox
+        AlignWithMargins = True
+        Left = 5
+        Top = 5
+        Width = 738
+        Height = 78
+        Margins.Left = 5
+        Margins.Top = 5
+        Margins.Right = 5
+        Margins.Bottom = 5
+        Align = alTop
+        Caption = 'Par'#226'metros da Apura'#231#227'o'
+        TabOrder = 1
+        object Label8: TLabel
+          Left = 9
+          Top = 20
+          Width = 56
+          Height = 13
+          Caption = 'Trimestre'
+        end
+        object Label9: TLabel
+          Left = 72
+          Top = 20
+          Width = 22
+          Height = 13
+          Caption = 'Ano'
+        end
+        object edtTrimestre: TSpinEdit
+          Left = 9
+          Top = 39
+          Width = 56
+          Height = 22
+          MaxValue = 4
+          MinValue = 1
+          TabOrder = 0
+          Value = 1
+        end
+        object edtAno: TMaskEdit
+          Left = 72
+          Top = 39
+          Width = 49
+          Height = 21
+          EditMask = '9999;1;_'
+          MaxLength = 4
+          TabOrder = 1
+          Text = '    '
+        end
+        object btnProcessar: TBitBtn
+          Left = 127
+          Top = 37
+          Width = 106
+          Height = 25
+          Caption = 'Processar'
+          Glyph.Data = {
+            42040000424D4204000000000000420000002800000020000000100000000100
+            10000300000000040000120B0000120B00000000000000000000007C0000E003
+            00001F000000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7F9C737366D6667B6F7B73BD77DE7BDE7BFF7F
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7F9C73F75E39677B6F9C73BD77DE7BDE7BFF7F
+            FF7FFF7FFF7FFF7FFF7FFF7FDE7F105E08514A55D66ABD77DE7BDE7BFF7FFF7F
+            FF7FFF7FFF7FFF7FFF7FFF7FDE7BD65A524A734E3967BD77DE7BDE7BFF7FFF7F
+            FF7FFF7FFF7FFF7FFF7FBD7B3162295129514A55AD5DBD7BFF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FFF7FDE7BD65A524A524A734EB556DE7BFF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FDE7F106229516B5531626B554A555266FF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FDE7BD65A524A734EF75E734E734EF75EFF7FFF7FFF7FFF7F
+            FF7FFF7FFF7FDE7F106229556B551062D66EEF5D4A554A551873FF7FFF7FFF7F
+            FF7FFF7FFF7FFF7FD65A734E734EF75E5A6BD65A734E734E7B6FFF7FFF7FFF7F
+            FF7FFF7FFF7F31624A556B59EF5D736A7B775266AD5D6B59AD59BD7BFF7FFF7F
+            FF7FFF7FFF7FD65A734E9452D65A18639C73F75EB556734EB556DE7BFF7FFF7F
+            FF7FFF7FFF7F3162AD5910627366DE7FFF7FBD7B5266AD5D4A555266FF7FFF7F
+            FF7FFF7FFF7FF75EB556D65A1863FF7FFF7FDE7BF75EB556734E1863FF7FFF7F
+            FF7FFF7FFF7FDE7B946AD66EDE7BFF7FFF7FFF7FBD7B5266AD594A551873FF7F
+            FF7FFF7FFF7FDE7B39675A6BDE7BFF7FFF7FFF7FDE7BF75E9452734E7B6FFF7F
+            FF7FFF7FFF7FFF7FDE7FDE7BFF7FFF7FFF7FFF7FFF7FBD7B31668C59AD5DBD7B
+            FF7FFF7FFF7FFF7FDE7BDE7BFF7FFF7FFF7FFF7FFF7FDE7BF75E9452B556DE7B
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FBD7B52666B597366
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FDE7BF75E94521863
+            FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FBD7B31628C59
+            3973FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FDE7BF75E9452
+            9C73FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FBD7B3162
+            CE5DBD7BFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FDE7BF75E
+            B556DE7BFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FBD7B
+            10625266FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FDE7B
+            D65A1863FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            BD7B10621873FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            DE7BD65A7B6FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            FF7FBD7B7366DE7BFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F
+            FF7FDE7B1863}
+          NumGlyphs = 2
+          TabOrder = 2
+        end
+      end
     end
     object tsRelatorios: TTabSheet
       Caption = 'Relat'#243'rios'
