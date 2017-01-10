@@ -272,7 +272,11 @@ if not FDConfig.IsEmpty then
    vlsTipoSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
 
    for I := Low(vlsTipoSelecionados) to High(vlsTipoSelecionados) do
+      begin
+//      chkTipoNF.Items.
+
       ShowMessage(vlsTipoSelecionados[I]);
+      end;
 
    edtAliquotaPIS.Value    := FDConfig.FieldByName('CONFAI_ALIQPIS').AsFloat;
    edtAliquotaCOFINS.Value := FDConfig.FieldByName('CONFAI_ALIQCOFINS').AsFloat;
@@ -363,11 +367,13 @@ if Trim(psTipo) <> '' then
    vlTestes := Length(vlTexto)/2;
    SetLength(vloArray, Trunc(Length(vlTexto)/2));
 
-   for vli := Low(vloArray) to High(vloArray) -1 do
+   for vli := Low(vloArray) to High(vloArray) do
       begin
-      vloArray[vli] := Copy(vlTexto, vli * 2, 2);
+      vloArray[vli] := Copy(vlTexto, (vli * 2) + 1, 2);
       end;
    end;
+
+Result := vloArray;
 end;
 
 function TFImpostos.fncRemoveVirgulaEspacao(psTexto: String) : String;
@@ -375,12 +381,14 @@ var
   vli: Integer;
   vlTexto : String;
 begin
-for vli := 0 to Length(psTexto) - 1 do
+for vli := 1 to Length(psTexto) do
    begin
-   if ((Copy(psTexto, vli, 1) <> ',') or
+   if ((Copy(psTexto, vli, 1) <> ',') AND
        (Copy(psTexto, vli, 1) <> '')) then
       vlTexto := Trim(vlTexto) + Copy(psTexto, vli, 1);
    end;
+
+Result := vlTexto;
 end;
 
 end.
