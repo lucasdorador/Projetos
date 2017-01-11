@@ -1485,8 +1485,6 @@ object FImpostos: TFImpostos
         TabOrder = 0
         object tsApuraMensal: TTabSheet
           Caption = 'Apura'#231#227'o Mensal'
-          ExplicitWidth = 281
-          ExplicitHeight = 165
           object GroupBox5: TGroupBox
             AlignWithMargins = True
             Left = 5
@@ -1500,7 +1498,6 @@ object FImpostos: TFImpostos
             Align = alTop
             Caption = 'Par'#226'metros da Apura'#231#227'o Mensal'
             TabOrder = 0
-            ExplicitWidth = 738
             object Label8: TLabel
               Left = 9
               Top = 20
@@ -1924,7 +1921,6 @@ object FImpostos: TFImpostos
         object tsApuraTrimestral: TTabSheet
           Caption = 'Apura'#231#227'o Trimestral'
           ImageIndex = 1
-          ExplicitLeft = 0
           object GroupBox6: TGroupBox
             AlignWithMargins = True
             Left = 5
@@ -1938,8 +1934,6 @@ object FImpostos: TFImpostos
             Align = alTop
             Caption = 'Par'#226'metros da Apura'#231#227'o Trimestral'
             TabOrder = 0
-            ExplicitLeft = 10
-            ExplicitTop = 13
             object Label10: TLabel
               Left = 9
               Top = 20
@@ -2140,6 +2134,7 @@ object FImpostos: TFImpostos
     Top = 256
   end
   object FDApuracaoMensal: TFDMemTable
+    BeforeScroll = FDApuracaoMensalBeforeScroll
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]

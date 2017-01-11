@@ -92,6 +92,7 @@ type
     procedure btnProcessaMensalClick(Sender: TObject);
     procedure btnProcessaTrimestralClick(Sender: TObject);
     procedure btnRecalculaClick(Sender: TObject);
+    procedure FDApuracaoMensalBeforeScroll(DataSet: TDataSet);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
@@ -107,6 +108,7 @@ type
     function fncRetornaArrayTipo(psTipo: String): TVetorString;
     function fncRemoveVirgulaEspacao(psTexto: String): String;
     procedure pcdCarregaVetorTipos(psEmpresa: String);
+    procedure pcdAtualizaValorBaseCalculo(piLinha: Integer; pdValor: Double);
     { Private declarations }
   public
     { Public declarations }
@@ -272,6 +274,11 @@ end;
 procedure TFImpostos.edtPresuncaoIRPJExit(Sender: TObject);
 begin
 pcdValidaValorMaximoEdit(edtPresuncaoIRPJ, 100);
+end;
+
+procedure TFImpostos.FDApuracaoMensalBeforeScroll(DataSet: TDataSet);
+begin
+pcdAtualizaValorBaseCalculo(FDApuracaoMensal.RecNo, FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat);
 end;
 
 procedure TFImpostos.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -495,6 +502,18 @@ for vli := 1 to Length(psTexto) do
    end;
 
 Result := vlTexto;
+end;
+
+procedure TFImpostos.pcdAtualizaValorBaseCalculo(piLinha: Integer; pdValor: Double);
+begin
+if piLinha = 1 then
+   FDApuracaoMensal.RecNo := 2
+else
+   FDApuracaoMensal.RecNo := 1;
+
+FDApuracaoMensal.Edit;
+FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat := pdValor;
+FDApuracaoMensal.Post;
 end;
 
 end.
