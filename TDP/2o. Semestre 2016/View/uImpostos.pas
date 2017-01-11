@@ -7,7 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.StdCtrls,
   Vcl.Buttons, Vcl.ComCtrls, Data.DB, Vcl.Mask, Vcl.Samples.Spin, Vcl.Grids,
   Vcl.DBGrids, uTDPNumberEditXE8, Vcl.CheckLst, uFuncoesFaciliteXE8,
-  FireDAc.Comp.Client, UConexaoXE8;
+  FireDAc.Comp.Client, UConexaoXE8, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet;
 
 type
   TVetorString = Array of String;
@@ -43,13 +45,36 @@ type
     edtPresuncaoIRPJ: TDPTNumberEditXE8;
     edtAliquotaIRPJ: TDPTNumberEditXE8;
     StatusBar1: TStatusBar;
-    dbImpostos: TDBGrid;
+    FDApuracaoTrimestral: TFDMemTable;
+    dsApuracaoTrimestral: TDataSource;
+    PageControl2: TPageControl;
+    tsApuraMensal: TTabSheet;
     GroupBox5: TGroupBox;
     Label8: TLabel;
-    edtTrimestre: TSpinEdit;
     Label9: TLabel;
-    edtAno: TMaskEdit;
-    btnProcessar: TBitBtn;
+    edtMes: TSpinEdit;
+    edtAnoMensal: TMaskEdit;
+    btnProcessaMensal: TBitBtn;
+    dbImpostosMensal: TDBGrid;
+    FDApuracaoMensal: TFDMemTable;
+    dsApuracaoMensal: TDataSource;
+    FDApuracaoMensalImposto: TStringField;
+    FDApuracaoMensalValorApurado: TFloatField;
+    FDApuracaoMensalBaseCalculo: TFloatField;
+    FDApuracaoTrimestralImposto: TStringField;
+    FDApuracaoTrimestralValorApurado: TFloatField;
+    FDApuracaoTrimestralBaseCalculo: TFloatField;
+    tsApuraTrimestral: TTabSheet;
+    GroupBox6: TGroupBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    edtTrimestre: TSpinEdit;
+    edtAnoTrimestre: TMaskEdit;
+    btnProcessaTrimestral: TBitBtn;
+    dbImpostosTrimestral: TDBGrid;
+    FDApuracaoMensalAliquota: TFloatField;
+    FDApuracaoMensalValorImposto: TFloatField;
+    btnRecalcula: TBitBtn;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -64,11 +89,15 @@ type
     procedure edtPresuncaoCSLLExit(Sender: TObject);
     procedure edtAliquotaCSLLExit(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure btnProcessaMensalClick(Sender: TObject);
+    procedure btnProcessaTrimestralClick(Sender: TObject);
+    procedure btnRecalculaClick(Sender: TObject);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
     vgEmpresa : String;
     vloFuncoes : TFuncoesGerais;
+    vgsTiposSelecionados : TVetorString;
     procedure HabilitaPaletas(vPaleta: TTabSheet);
     procedure HabilitaBotoes(vBotao: TBitBtn);
     procedure pcdCarregaTIPONF(psEmpresa: String);
@@ -77,6 +106,7 @@ type
     procedure Paletas(vPaleta: TTabSheet);
     function fncRetornaArrayTipo(psTipo: String): TVetorString;
     function fncRemoveVirgulaEspacao(psTexto: String): String;
+    procedure pcdCarregaVetorTipos(psEmpresa: String);
     { Private declarations }
   public
     { Public declarations }
@@ -89,7 +119,7 @@ implementation
 
 {$R *.dfm}
 
-uses UConfiguracao, uConsultas;
+uses UConfiguracao, uConsultas, uProcessamento;
 
 procedure TFImpostos.BitBtn1Click(Sender: TObject);
 var
@@ -132,8 +162,6 @@ end;
 procedure TFImpostos.btnConfigurarClick(Sender: TObject);
 begin
 Paletas(tsConfiguracao);
-//HabilitaPaletas(tsConfiguracao);
-//HabilitaBotoes(btnConfigurar);
 pcdCarregaTIPONF(vgEmpresa);
 pcdCarregaDadosExistentes(vgEmpresa);
 chkTipoNF.SetFocus;
@@ -142,16 +170,73 @@ end;
 procedure TFImpostos.btnImpostosClick(Sender: TObject);
 begin
 Paletas(tsImpostos);
-edtTrimestre.SetFocus;
-//HabilitaPaletas(tsImpostos);
-//HabilitaBotoes(btnImpostos);
+PageControl2.ActivePage := tsApuraMensal;
+
+if edtMes.CanFocus then
+   edtMes.SetFocus;
+end;
+
+procedure TFImpostos.btnProcessaMensalClick(Sender: TObject);
+var
+   vlTipos : String;
+   I: Integer;
+begin
+if not FDApuracaoMensal.Active then
+   FDApuracaoMensal.Active := True;
+
+vlTipos := '';
+
+for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
+   begin
+   if Trim(vlTipos) = '' then
+      vlTipos := QuotedStr(vgsTiposSelecionados[I])
+   else
+      vlTipos := vlTipos + ',' + QuotedStr(vgsTiposSelecionados[I]);
+   end;
+
+TProcessamento.vgTipoSelecionados := vlTipos;
+TProcessamento.fncProcessaMes(vgEmpresa, edtMes.Value, edtAnoMensal.Text, FDApuracaoMensal, vgConexao);
+
+TFloatField(FDApuracaoMensal.FieldByName('VALORAPURADO')).DisplayFormat := ',0.00';
+FDApuracaoMensal.FieldByName('VALORAPURADO').EditMask := ',0.00';
+TFloatField(FDApuracaoMensal.FieldByName('BASECALCULO')).DisplayFormat := ',0.00';
+TFloatField(FDApuracaoMensal.FieldByName('VALORIMPOSTO')).DisplayFormat := ',0.00';
+FDApuracaoMensal.FieldByName('VALORIMPOSTO').EditMask := ',0.00';
+TFloatField(FDApuracaoMensal.FieldByName('ALIQUOTA')).DisplayFormat := ',0.00';
+FDApuracaoMensal.FieldByName('ALIQUOTA').EditMask := ',0.00';
+end;
+
+procedure TFImpostos.btnProcessaTrimestralClick(Sender: TObject);
+begin
+if not FDApuracaoTrimestral.Active then
+   FDApuracaoTrimestral.Active := True;
+
+TProcessamento.fncProcessaTrimestre(edtTrimestre.Value, edtAnoTrimestre.Text, FDApuracaoTrimestral, vgConexao);
+end;
+
+procedure TFImpostos.btnRecalculaClick(Sender: TObject);
+var
+   Recno : integer;
+begin
+Recno := FDApuracaoMensal.RecNo;
+FDApuracaoMensal.First;
+while not FDApuracaoMensal.Eof do
+   begin
+   if FDApuracaoMensal.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat then
+      begin
+      FDApuracaoMensal.Edit;
+      FDApuracaoMensal.FieldByName('VALORIMPOSTO').AsFloat := FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat *
+                                                             (FDApuracaoMensal.FieldByName('ALIQUOTA').AsFloat / 100);
+      FDApuracaoMensal.Post;
+      end;
+   FDApuracaoMensal.Next;
+   end;
+FDApuracaoMensal.RecNo := Recno;
 end;
 
 procedure TFImpostos.btnRelatoriosClick(Sender: TObject);
 begin
 Paletas(tsRelatorios);
-//HabilitaPaletas(tsRelatorios);
-//HabilitaBotoes(btnRelatorios);
 end;
 
 procedure TFImpostos.btnsairClick(Sender: TObject);
@@ -228,6 +313,7 @@ vloConexao := TConexaoXE8.Create;
 vgConexao  := vloConexao.getConnection;
 vloFuncoes := TFuncoesGerais.Create(vgConexao);
 vgEmpresa  := '01';
+pcdCarregaVetorTipos(vgEmpresa);
 StatusBar1.Panels[0].Text := 'Empresa: ' + vgEmpresa + ' - ' + TConsultas.fncConsultaDescricaoEmpresa(vgEmpresa, vgConexao);
 tsConfiguracao.TabVisible := False;
 tsImpostos.TabVisible     := False;
@@ -254,13 +340,12 @@ else if vPaleta = tsRelatorios then
 HabilitaPaletas(vPaleta);
 end;
 
-procedure TFImpostos.pcdCarregaDadosExistentes(psEmpresa: String);
+procedure TFImpostos.pcdCarregaVetorTipos(psEmpresa: String);
 var
    vloConfiguracao : TConfiguracao;
    FDConfig : TFDQuery;
    vlsTipo : String;
-   vlsTipoSelecionados : TVetorString;
-  I: Integer;
+   I: Integer;
 begin
 vloConfiguracao := TConfiguracao.Create(vgConexao);
 vloFuncoes.pcdCriaFDQueryExecucao(FDConfig, vgConexao);
@@ -269,13 +354,34 @@ FDConfig := vloConfiguracao.fncCarregaDadosExistentes(vgEmpresa);
 
 if not FDConfig.IsEmpty then
    begin
-   vlsTipoSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
+   vgsTiposSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
+   end;
+finally
+   FreeAndNil(FDConfig);
+   FreeAndNil(vloConfiguracao);
+   end;
+end;
 
-   for I := Low(vlsTipoSelecionados) to High(vlsTipoSelecionados) do
+procedure TFImpostos.pcdCarregaDadosExistentes(psEmpresa: String);
+var
+   vloConfiguracao : TConfiguracao;
+   FDConfig : TFDQuery;
+   vlsTipo : String;
+   I: Integer;
+begin
+vloConfiguracao := TConfiguracao.Create(vgConexao);
+vloFuncoes.pcdCriaFDQueryExecucao(FDConfig, vgConexao);
+try
+FDConfig := vloConfiguracao.fncCarregaDadosExistentes(vgEmpresa);
+
+if not FDConfig.IsEmpty then
+   begin
+   if vgsTiposSelecionados = nil then
+      vgsTiposSelecionados     := fncRetornaArrayTipo(FDConfig.FieldByName('CONFAI_TIPOSNF').AsString);
+
+   for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
       begin
-//      chkTipoNF.Items.
-
-      ShowMessage(vlsTipoSelecionados[I]);
+      chkTipoNF.Checked[chkTipoNF.Items.IndexOf(vgsTiposSelecionados[I])] := True;
       end;
 
    edtAliquotaPIS.Value    := FDConfig.FieldByName('CONFAI_ALIQPIS').AsFloat;
