@@ -26,8 +26,8 @@ type
     tsRelatorios: TTabSheet;
     chkTipoNF: TCheckListBox;
     Label1: TLabel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnGravarConf: TBitBtn;
+    btnVoltarConf: TBitBtn;
     GroupBox1: TGroupBox;
     Label2: TLabel;
     edtPresuncaoCSLL: TDPTNumberEditXE8;
@@ -88,17 +88,20 @@ type
     procedure edtAliquotaIRPJExit(Sender: TObject);
     procedure edtPresuncaoCSLLExit(Sender: TObject);
     procedure edtAliquotaCSLLExit(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnGravarConfClick(Sender: TObject);
     procedure btnProcessaMensalClick(Sender: TObject);
     procedure btnProcessaTrimestralClick(Sender: TObject);
     procedure btnRecalculaClick(Sender: TObject);
-    procedure FDApuracaoMensalBeforeScroll(DataSet: TDataSet);
+    procedure FDApuracaoMensalAfterInsert(DataSet: TDataSet);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
     vgEmpresa : String;
     vloFuncoes : TFuncoesGerais;
     vgsTiposSelecionados : TVetorString;
+    vgdBaseCalculo : Double;
+    vgbInserir : Boolean;
     procedure HabilitaPaletas(vPaleta: TTabSheet);
     procedure HabilitaBotoes(vBotao: TBitBtn);
     procedure pcdCarregaTIPONF(psEmpresa: String);
@@ -108,7 +111,7 @@ type
     function fncRetornaArrayTipo(psTipo: String): TVetorString;
     function fncRemoveVirgulaEspacao(psTexto: String): String;
     procedure pcdCarregaVetorTipos(psEmpresa: String);
-    procedure pcdAtualizaValorBaseCalculo(piLinha: Integer; pdValor: Double);
+    procedure pcdAtualizaValorBaseCalculo;
     { Private declarations }
   public
     { Public declarations }
@@ -123,7 +126,7 @@ implementation
 
 uses UConfiguracao, uConsultas, uProcessamento;
 
-procedure TFImpostos.BitBtn1Click(Sender: TObject);
+procedure TFImpostos.btnGravarConfClick(Sender: TObject);
 var
    vloConfiguracao : TConfiguracao;
    I: Integer;
@@ -183,9 +186,24 @@ var
    vlTipos : String;
    I: Integer;
 begin
+if (edtMes.Text = '') then
+   begin
+   vloFuncoes.fncMensagemSistema('O valor do Mês é inválido, verifique!');
+   edtMes.SetFocus;
+   Abort;
+   end;
+
+if Trim(edtAnoMensal.Text) = '' then
+   begin
+   vloFuncoes.fncMensagemSistema('O valor do Ano é inválido, verifique!');
+   edtAnoMensal.SetFocus;
+   Abort;
+   end;
+
 if not FDApuracaoMensal.Active then
    FDApuracaoMensal.Active := True;
 
+vgbInserir := True;
 vlTipos := '';
 
 for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
@@ -206,6 +224,12 @@ TFloatField(FDApuracaoMensal.FieldByName('VALORIMPOSTO')).DisplayFormat := ',0.0
 FDApuracaoMensal.FieldByName('VALORIMPOSTO').EditMask := ',0.00';
 TFloatField(FDApuracaoMensal.FieldByName('ALIQUOTA')).DisplayFormat := ',0.00';
 FDApuracaoMensal.FieldByName('ALIQUOTA').EditMask := ',0.00';
+
+FDApuracaoMensal.First;
+vgdBaseCalculo := FDApuracaoMensalBaseCalculo.AsFloat;
+vgbInserir     := False;
+dbImpostosMensal.SelectedIndex := 2;
+dbImpostosMensal.SetFocus;
 end;
 
 procedure TFImpostos.btnProcessaTrimestralClick(Sender: TObject);
@@ -220,10 +244,14 @@ procedure TFImpostos.btnRecalculaClick(Sender: TObject);
 var
    Recno : integer;
 begin
+try
 Recno := FDApuracaoMensal.RecNo;
+FDApuracaoMensal.DisableControls;
 FDApuracaoMensal.First;
 while not FDApuracaoMensal.Eof do
    begin
+   pcdAtualizaValorBaseCalculo;
+
    if FDApuracaoMensal.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat then
       begin
       FDApuracaoMensal.Edit;
@@ -234,6 +262,9 @@ while not FDApuracaoMensal.Eof do
    FDApuracaoMensal.Next;
    end;
 FDApuracaoMensal.RecNo := Recno;
+finally
+   FDApuracaoMensal.EnableControls;
+   end;
 end;
 
 procedure TFImpostos.btnRelatoriosClick(Sender: TObject);
@@ -276,9 +307,13 @@ begin
 pcdValidaValorMaximoEdit(edtPresuncaoIRPJ, 100);
 end;
 
-procedure TFImpostos.FDApuracaoMensalBeforeScroll(DataSet: TDataSet);
+procedure TFImpostos.FDApuracaoMensalAfterInsert(DataSet: TDataSet);
 begin
-pcdAtualizaValorBaseCalculo(FDApuracaoMensal.RecNo, FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat);
+if not vgbInserir then
+   begin
+   DataSet.Cancel;
+   abort;
+   end;
 end;
 
 procedure TFImpostos.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -290,6 +325,19 @@ if Assigned(vloFuncoes) then
    FreeAndNil(vloFuncoes);
 end;
 
+procedure TFImpostos.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if ((Key = VK_F2) and (PageControl1.ActivePage = tsConfiguracao)) then
+   btnGravarConfClick(Sender);
+if ((Key = VK_F3) and (btnConfigurar.Enabled)) then
+   btnConfigurarClick(Sender);
+if ((Key = VK_F4) and (btnImpostos.Enabled)) then
+   btnImpostosClick(Sender);
+if ((Key = VK_F5) and (btnRelatorios.Enabled)) then
+   btnRelatoriosClick(Sender);
+end;
+
 procedure TFImpostos.FormKeyPress(Sender: TObject; var Key: Char);
 begin
 if Key = #13 then
@@ -299,17 +347,20 @@ if Key = #13 then
    end
 else if Key = #27 then {ESC}
    begin
-//   if (pgcPrincipal.ActivePage = tsAbreCaixa) and (btnAbre_Sair.Visible) then
-//      begin
-//      btnSairClick(Sender);
-//      end
+   if (PageControl1.ActivePage = tsConfiguracao) and (btnVoltarConf.Enabled) then
+      begin
+      tsConfiguracao.TabVisible := False;
+      tsImpostos.TabVisible     := False;
+      tsRelatorios.TabVisible   := False;
+      btnConfigurar.Enabled     := True;
+      end
 //   else if pgcPrincipal.ActivePage <> tsDados then
 //      begin
 //      vgbFecharTela := True;
 //      HabilitaPaletas(tsDados);
 //      Abort;
 //      end
-//   else
+   else
       btnSairClick(Sender);
    end;
 end;
@@ -504,16 +555,33 @@ for vli := 1 to Length(psTexto) do
 Result := vlTexto;
 end;
 
-procedure TFImpostos.pcdAtualizaValorBaseCalculo(piLinha: Integer; pdValor: Double);
+procedure TFImpostos.pcdAtualizaValorBaseCalculo;
+var
+   vldValorAtual: Double;
+   vliValorAlterar : Integer;
 begin
-if piLinha = 1 then
-   FDApuracaoMensal.RecNo := 2
-else
-   FDApuracaoMensal.RecNo := 1;
+FDApuracaoMensal.First;
+vldValorAtual := 0;
 
-FDApuracaoMensal.Edit;
-FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat := pdValor;
-FDApuracaoMensal.Post;
+while not FDApuracaoMensal.Eof do
+   begin
+   if FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat = vgdBaseCalculo then
+      vliValorAlterar := FDApuracaoMensal.RecNo
+   else
+      vldValorAtual      := FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat;
+
+   FDApuracaoMensal.Next;
+   end;
+
+if vldValorAtual <> 0 then
+   begin
+   FDApuracaoMensal.RecNo := vliValorAlterar;
+   FDApuracaoMensal.Edit;
+   FDApuracaoMensal.FieldByName('BaseCalculo').AsFloat := vldValorAtual;
+   FDApuracaoMensal.Post;
+
+   vgdBaseCalculo := vldValorAtual;
+   end;
 end;
 
 end.

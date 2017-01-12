@@ -16,6 +16,7 @@ object FImpostos: TFImpostos
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -38,7 +39,7 @@ object FImpostos: TFImpostos
       Width = 160
       Height = 42
       Align = alLeft
-      Caption = 'Sair'
+      Caption = 'Sair (Esc)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -187,7 +188,7 @@ object FImpostos: TFImpostos
       Height = 42
       Margins.Left = 48
       Align = alLeft
-      Caption = 'Configura'#231#245'es'
+      Caption = 'Configura'#231#245'es (F3)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -400,7 +401,7 @@ object FImpostos: TFImpostos
       Width = 160
       Height = 42
       Align = alLeft
-      Caption = 'Impostos'
+      Caption = 'Impostos (F4)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -613,7 +614,7 @@ object FImpostos: TFImpostos
       Width = 160
       Height = 42
       Align = alLeft
-      Caption = 'Relat'#243'rios'
+      Caption = 'Relat'#243'rios (F5)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -866,14 +867,14 @@ object FImpostos: TFImpostos
         Style = lbOwnerDrawFixed
         TabOrder = 0
       end
-      object BitBtn1: TBitBtn
+      object btnGravarConf: TBitBtn
         AlignWithMargins = True
         Left = 210
         Top = 354
         Width = 160
         Height = 42
         Margins.Left = 48
-        Caption = 'Gravar'
+        Caption = 'Gravar (F2)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -1077,16 +1078,16 @@ object FImpostos: TFImpostos
         NumGlyphs = 2
         ParentFont = False
         TabOrder = 5
-        OnClick = BitBtn1Click
+        OnClick = btnGravarConfClick
       end
-      object BitBtn2: TBitBtn
+      object btnVoltarConf: TBitBtn
         AlignWithMargins = True
         Left = 378
         Top = 354
         Width = 160
         Height = 42
         Margins.Left = 48
-        Caption = 'Voltar'
+        Caption = 'Voltar (Esc)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -2134,7 +2135,7 @@ object FImpostos: TFImpostos
     Top = 256
   end
   object FDApuracaoMensal: TFDMemTable
-    BeforeScroll = FDApuracaoMensalBeforeScroll
+    AfterInsert = FDApuracaoMensalAfterInsert
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]
