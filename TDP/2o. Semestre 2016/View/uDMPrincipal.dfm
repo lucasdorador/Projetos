@@ -10,14 +10,15 @@ object DMPrincipal: TDMPrincipal
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42747.002689675920000000
-    ReportOptions.LastChange = 42747.002689675920000000
+    ReportOptions.CreateDate = 42748.010800567130000000
+    ReportOptions.LastChange = 42748.010800567130000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
+    OnGetValue = frxReport1GetValue
     Left = 208
     Top = 32
     Datasets = <>

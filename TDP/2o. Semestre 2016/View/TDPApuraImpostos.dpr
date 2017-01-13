@@ -7,7 +7,9 @@ uses
   uConstantes in '..\Class\uConstantes.pas',
   uConsultas in '..\Class\uConsultas.pas',
   uProcessamento in '..\Class\uProcessamento.pas',
-  uDMPrincipal in 'uDMPrincipal.pas' {DMPrincipal: TDataModule};
+  uDMPrincipal in 'uDMPrincipal.pas' {DMPrincipal: TDataModule},
+  uCRUDApuracao in '..\Class\uCRUDApuracao.pas',
+  uRelatorios in '..\Class\uRelatorios.pas';
 
 {$R *.res}
 
