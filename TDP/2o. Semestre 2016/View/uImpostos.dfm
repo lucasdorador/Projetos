@@ -827,7 +827,7 @@ object FImpostos: TFImpostos
     Top = 3
     Width = 756
     Height = 429
-    ActivePage = tsImpostos
+    ActivePage = tsPrincipal
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -855,12 +855,88 @@ object FImpostos: TFImpostos
           Width = 732
           Height = 176
           Align = alClient
+          DataSource = dsTrimestral
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          PopupMenu = PopupTrimestral
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = [fsBold]
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'Trimestre'
+              Title.Caption = 'Trim.'
+              Width = 35
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Ano'
+              Width = 38
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Imposto'
+              Width = 60
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ReceitaBruta'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Rec. Bruta (R$)'
+              Width = 120
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ReceitaAlterada'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Rec. Alterada (R$)'
+              Width = 120
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'AdicionalIRPJ'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Adicional (R$)'
+              Width = 120
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Retencoes'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Reten'#231#245'es (R$)'
+              Width = 120
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'AliqImposto'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Al'#237'q. (%)'
+              Width = 60
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ValorImposto'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Vlr Imposto (R$)'
+              Width = 120
+              Visible = True
+            end>
         end
       end
       object GroupBox10: TGroupBox
@@ -879,12 +955,65 @@ object FImpostos: TFImpostos
           Width = 732
           Height = 167
           Align = alClient
+          DataSource = dsMensal
+          PopupMenu = PopupMensal
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = [fsBold]
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'Mes'
+              Width = 35
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Ano'
+              Width = 45
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Imposto'
+              Width = 92
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ReceitaBruta'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Receita Bruta (R$)'
+              Width = 130
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ReceitaAlterada'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Receita Alterada (R$)'
+              Width = 130
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'AliqImposto'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Al'#237'quota Imposto (%)'
+              Width = 130
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ValorImposto'
+              Title.Alignment = taRightJustify
+              Title.Caption = 'Valor Imposto  (R$)'
+              Width = 130
+              Visible = True
+            end>
         end
       end
     end
@@ -2277,30 +2406,33 @@ object FImpostos: TFImpostos
     UpdateOptions.CheckRequired = False
     Left = 392
     Top = 288
-    object StringField1: TStringField
+    object FDMensalEmpresa: TStringField
+      FieldName = 'Empresa'
+      Size = 2
+    end
+    object FDMensalImposto: TStringField
       FieldName = 'Imposto'
       Size = 10
     end
-    object FloatField1: TFloatField
-      FieldName = 'BaseCalculo'
+    object FDMensalMes: TStringField
+      FieldName = 'Mes'
+      Size = 2
     end
-    object FloatField2: TFloatField
-      FieldName = 'ReceitaFinac'
+    object FDMensalAno: TStringField
+      FieldName = 'Ano'
+      Size = 4
     end
-    object FloatField3: TFloatField
-      FieldName = 'AdicionalIRPJ'
+    object FDMensalReceitaBruta: TFloatField
+      FieldName = 'ReceitaBruta'
     end
-    object FloatField4: TFloatField
-      FieldName = 'DeducoesImposto'
+    object FDMensalReceitaAlterada: TFloatField
+      FieldName = 'ReceitaAlterada'
     end
-    object FloatField5: TFloatField
+    object FDMensalAliqImposto: TFloatField
+      FieldName = 'AliqImposto'
+    end
+    object FDMensalValorImposto: TFloatField
       FieldName = 'ValorImposto'
-    end
-    object FloatField6: TFloatField
-      FieldName = 'BaseImposto'
-    end
-    object FloatField7: TFloatField
-      FieldName = 'ValorApurado'
     end
   end
   object dsMensal: TDataSource
@@ -2323,5 +2455,67 @@ object FImpostos: TFImpostos
     UpdateOptions.CheckRequired = False
     Left = 504
     Top = 288
+    object FDTrimestralEmpresa: TStringField
+      FieldName = 'Empresa'
+      Size = 2
+    end
+    object FDTrimestralTrimestre: TIntegerField
+      FieldName = 'Trimestre'
+    end
+    object FDTrimestralAno: TStringField
+      FieldName = 'Ano'
+      Size = 4
+    end
+    object FDTrimestralImposto: TStringField
+      FieldName = 'Imposto'
+      Size = 15
+    end
+    object FDTrimestralReceitaBruta: TFloatField
+      FieldName = 'ReceitaBruta'
+    end
+    object FDTrimestralReceitaAlterada: TFloatField
+      FieldName = 'ReceitaAlterada'
+    end
+    object FDTrimestralALIQCSLL: TFloatField
+      FieldName = 'AliqImposto'
+    end
+    object FDTrimestralPresCSLL: TFloatField
+      FieldName = 'Presuncao'
+    end
+    object FDTrimestralAdicionalIRPJ: TFloatField
+      FieldName = 'AdicionalIRPJ'
+    end
+    object FDTrimestralRetencaoIRPJ: TFloatField
+      FieldName = 'Retencoes'
+    end
+    object FDTrimestralValorIRPJ: TFloatField
+      FieldName = 'ValorImposto'
+    end
+  end
+  object PopupMensal: TPopupMenu
+    Left = 394
+    Top = 110
+    object ImpressoDARF1: TMenuItem
+      Caption = 'Impress'#227'o DARF'
+      object PIS1: TMenuItem
+        Caption = 'PIS'
+      end
+      object COFINS1: TMenuItem
+        Caption = 'COFINS'
+      end
+    end
+  end
+  object PopupTrimestral: TPopupMenu
+    Left = 506
+    Top = 110
+    object ImpressodoDARF1: TMenuItem
+      Caption = 'Impress'#227'o DARF'
+      object IRPJ1: TMenuItem
+        Caption = 'IRPJ'
+      end
+      object CSLL1: TMenuItem
+        Caption = 'CSLL'
+      end
+    end
   end
 end
