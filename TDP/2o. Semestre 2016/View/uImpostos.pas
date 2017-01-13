@@ -71,7 +71,6 @@ type
     dbImpostosTrimestral: TDBGrid;
     FDApuracaoMensalAliquota: TFloatField;
     FDApuracaoMensalValorImposto: TFloatField;
-    btnRecalcula: TBitBtn;
     FDApuracaoTrimestralImposto: TStringField;
     FDApuracaoTrimestralValorApurado: TFloatField;
     FDApuracaoTrimestralBaseCalculo: TFloatField;
@@ -80,7 +79,6 @@ type
     FDApuracaoTrimestralAdicionalIRPJ: TFloatField;
     FDApuracaoTrimestralDeducoesImposto: TFloatField;
     FDApuracaoTrimestralValorImposto: TFloatField;
-    btnRecalcularTrimestre: TBitBtn;
     GroupBox7: TGroupBox;
     Label12: TLabel;
     edtReceitaFinanc: TDPTNumberEditXE8;
@@ -91,6 +89,22 @@ type
     edtDeducaoCSLL: TDPTNumberEditXE8;
     tsPrincipal: TTabSheet;
     btnGravarMensal: TBitBtn;
+    GroupBox9: TGroupBox;
+    DBGrid1: TDBGrid;
+    GroupBox10: TGroupBox;
+    DBGrid2: TDBGrid;
+    FDMensal: TFDMemTable;
+    StringField1: TStringField;
+    FloatField1: TFloatField;
+    FloatField2: TFloatField;
+    FloatField3: TFloatField;
+    FloatField4: TFloatField;
+    FloatField5: TFloatField;
+    FloatField6: TFloatField;
+    FloatField7: TFloatField;
+    dsMensal: TDataSource;
+    dsTrimestral: TDataSource;
+    FDTrimestral: TFDMemTable;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -115,6 +129,7 @@ type
     procedure FDApuracaoTrimestralAfterInsert(DataSet: TDataSet);
     procedure btnGravarMensalClick(Sender: TObject);
     procedure dbImpostosMensalExit(Sender: TObject);
+    procedure dbImpostosTrimestralExit(Sender: TObject);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
@@ -135,12 +150,11 @@ type
     procedure pcdAtualizaValorBaseCalculoMensal;
     procedure pcdAtualizaValorBaseCalculoTrimestral;
     procedure pcdEditaFormatoTabelaTrimestral;
+    procedure RecalculaImpostoMensal;
+    procedure RecalculaImpostoTrimestral;
     { Private declarations }
   public
     { Emissao de Guias }
-    vgsPeriodoApuracao, vgsCPFCNPJ, vgsReferencia, vgsVencimento,
-    vgsNomeImposto, vgsCodReceita, vgsNome : String;
-    vgdValorPrincipal, vgdMulta, vgdJuros, vgdTotal : Double;
 
   end;
 
@@ -151,7 +165,8 @@ implementation
 
 {$R *.dfm}
 
-uses UConfiguracao, uConsultas, uProcessamento, uCRUDApuracao, uDMPrincipal;
+uses UConfiguracao, uConsultas, uProcessamento, uCRUDApuracao, uDMPrincipal,
+  uVariaveisRelatorio, uRelatorios;
 
 procedure TFImpostos.btnGravarConfClick(Sender: TObject);
 var
@@ -194,7 +209,8 @@ end;
 procedure TFImpostos.btnGravarMensalClick(Sender: TObject);
 var
    vloCRUDMensal : TCRUDApuracaoMensal;
-   FDEmpresa : TFDQuery;
+   FDEmpresa     : TFDQuery;
+   poVariaveis   : TVariaveisRelatorioImposto;
 begin
 vloCRUDMensal := TCRUDApuracaoMensal.Create(vgConexao);
 vloFuncoes.pcdCriaFDQueryExecucao(FDEmpresa, vgConexao);
@@ -230,30 +246,33 @@ if vloFuncoes.fncMessageDlgDefult('Apuração gravada com sucesso, Deseja Emitir o
    while not FDApuracaoMensal.Eof do
       begin
       FDEmpresa          := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
-      vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(edtMes.Value, StrToInt(edtAnoMensal.Text));
-      vgsCPFCNPJ         := FDEmpresa.FieldByName('EMP_CGC').AsString;
-      vgsReferencia      := '';
-      vgsVencimento      := FormatDateTime('dd/mm/yyyy', StrToDate(vgsPeriodoApuracao) + 10);
-      vgsNomeImposto     := FDApuracaoMensalImposto.AsString;
-      if Trim(vgsNomeImposto) = 'PIS' then
-         vgsCodReceita   := '8109'
+      poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(edtMes.Value, StrToInt(edtAnoMensal.Text));
+      poVariaveis.vgsCPFCNPJ	       := FDEmpresa.FieldByName('EMP_CGC').AsString;
+      poVariaveis.vgsReferencia      := '';
+      poVariaveis.vgsVencimento      := FormatDateTime('dd/mm/yyyy', StrToDate(poVariaveis.vgsPeriodoApuracao) + 10);
+      poVariaveis.vgsNomeImposto     := FDApuracaoMensalImposto.AsString;
+      if Trim(poVariaveis.vgsNomeImposto) = 'PIS' then
+         poVariaveis.vgsCodReceita   := '8109'
       else
-         vgsCodReceita   := '2172';
-      vgsNome            := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
-      vgdValorPrincipal  := FDApuracaoMensalValorImposto.AsFloat;
-      vgdMulta           := 0;
-      vgdJuros           := 0;
-      vgdTotal           := vgdValorPrincipal + (vgdMulta + vgdJuros);
+         poVariaveis.vgsCodReceita   := '2172';
 
-      if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaPis.fr3') then
+      poVariaveis.vgsNome	           := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
+      poVariaveis.vgdValorPrincipal  := FDApuracaoMensalValorImposto.AsFloat;
+      poVariaveis.vgdMulta	         := 0;
+      poVariaveis.vgdJuros	         := 0;
+      poVariaveis.vgdTotal	         := poVariaveis.vgdValorPrincipal + (poVariaveis.vgdMulta + poVariaveis.vgdJuros);
+      poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894';
+
+      if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3') then
          begin
-         DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaPis.fr3');
+         TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
+         DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
          DMPrincipal.frxReport1.ShowReport(True);
          end
       else
          begin
          vloFuncoes.fncMensagemSistema('O DARF não foi localizado em: ' + ExtractFilePath(Application.ExeName) + 'Relatorios\'+
-                                       ', copie o arquivo GuiaPis.fr3 para o local indicado');
+                                       ', copie o arquivo GuiaImposto.fr3 para o local indicado');
          Abort;
          end;
 
@@ -334,7 +353,6 @@ FDApuracaoMensal.FieldByName('ALIQUOTA').EditMask := ',0.00';
 FDApuracaoMensal.First;
 vgdBaseCalculo       := FDApuracaoMensalBaseCalculo.AsFloat;
 vgbInserir           := False;
-btnRecalcula.Enabled := True;
 dbImpostosMensal.SelectedIndex := 2;
 dbImpostosMensal.SetFocus;
 end;
@@ -372,6 +390,7 @@ for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
       vlTipos := vlTipos + ',' + QuotedStr(vgsTiposSelecionados[I]);
    end;
 
+TProcessamento.vgbRecalcula               := False;
 TProcessamento.vgTipoSelecionados         := vlTipos;
 TProcessamento.vgdValorDigitadoTrimestral := 0;
 TProcessamento.fncProcessaTrimestre(vgEmpresa, edtTrimestre.Value, edtAnoTrimestre.Text, FDApuracaoTrimestral, edtDeducaoCSLL.Value, edtDeducaoIRPJ.Value, edtReceitaFinanc.Value, vgConexao);
@@ -385,30 +404,8 @@ dbImpostosTrimestral.SetFocus;
 end;
 
 procedure TFImpostos.btnRecalculaClick(Sender: TObject);
-var
-   Recno : integer;
 begin
-try
-Recno := FDApuracaoMensal.RecNo;
-FDApuracaoMensal.DisableControls;
-FDApuracaoMensal.First;
-while not FDApuracaoMensal.Eof do
-   begin
-   pcdAtualizaValorBaseCalculoMensal;
-
-   if FDApuracaoMensal.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat then
-      begin
-      FDApuracaoMensal.Edit;
-      FDApuracaoMensal.FieldByName('VALORIMPOSTO').AsFloat := FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat *
-                                                             (FDApuracaoMensal.FieldByName('ALIQUOTA').AsFloat / 100);
-      FDApuracaoMensal.Post;
-      end;
-   FDApuracaoMensal.Next;
-   end;
-FDApuracaoMensal.RecNo := Recno;
-finally
-   FDApuracaoMensal.EnableControls;
-   end;
+RecalculaImpostoMensal;
 end;
 
 procedure TFImpostos.btnRecalcularTrimestreClick(Sender: TObject);
@@ -459,8 +456,12 @@ end;
 
 procedure TFImpostos.dbImpostosMensalExit(Sender: TObject);
 begin
-if btnRecalcula.CanFocus then
-   btnRecalcula.SetFocus;
+RecalculaImpostoMensal;
+end;
+
+procedure TFImpostos.dbImpostosTrimestralExit(Sender: TObject);
+begin
+RecalculaImpostoTrimestral;
 end;
 
 procedure TFImpostos.edtAliquotaCOFINSExit(Sender: TObject);
@@ -827,6 +828,65 @@ TFloatField(FDApuracaoTrimestral.FieldByName('BaseImposto')).DisplayFormat := ',
 FDApuracaoTrimestral.FieldByName('BaseImposto').EditMask := ',0.00';
 TFloatField(FDApuracaoTrimestral.FieldByName('ValorApurado')).DisplayFormat := ',0.00';
 FDApuracaoTrimestral.FieldByName('ValorApurado').EditMask := ',0.00';
+end;
+
+procedure TFImpostos.RecalculaImpostoMensal;
+var
+   Recno : integer;
+begin
+try
+Recno := FDApuracaoMensal.RecNo;
+FDApuracaoMensal.DisableControls;
+FDApuracaoMensal.First;
+while not FDApuracaoMensal.Eof do
+   begin
+   pcdAtualizaValorBaseCalculoMensal;
+
+   if FDApuracaoMensal.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat then
+      begin
+      FDApuracaoMensal.Edit;
+      FDApuracaoMensal.FieldByName('VALORIMPOSTO').AsFloat := FDApuracaoMensal.FieldByName('BASECALCULO').AsFloat *
+                                                             (FDApuracaoMensal.FieldByName('ALIQUOTA').AsFloat / 100);
+      FDApuracaoMensal.Post;
+      end;
+   FDApuracaoMensal.Next;
+   end;
+FDApuracaoMensal.RecNo := Recno;
+finally
+   FDApuracaoMensal.EnableControls;
+   end;
+end;
+
+procedure TFImpostos.RecalculaImpostoTrimestral;
+var
+   Recno, I : integer;
+begin
+try
+Recno := FDApuracaoTrimestral.RecNo;
+FDApuracaoTrimestral.DisableControls;
+FDApuracaoTrimestral.First;
+pcdAtualizaValorBaseCalculoTrimestral;
+
+if FDApuracaoTrimestral.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoTrimestral.FieldByName('BASECALCULO').AsFloat then
+   begin
+   vgbInserir := True;
+   TProcessamento.vgbRecalcula               := True;
+   TProcessamento.vgTipoSelecionados         := '';
+   TProcessamento.vgdValorDigitadoTrimestral := FDApuracaoTrimestral.FieldByName('BaseCalculo').AsFloat;
+   TProcessamento.fncProcessaTrimestre(vgEmpresa, edtTrimestre.Value, edtAnoTrimestre.Text, FDApuracaoTrimestral, edtDeducaoCSLL.Value, edtDeducaoIRPJ.Value, edtReceitaFinanc.Value, vgConexao);
+   pcdEditaFormatoTabelaTrimestral;
+
+   FDApuracaoTrimestral.First;
+   vgdBaseCalculo := FDApuracaoMensalBaseCalculo.AsFloat;
+   vgbInserir     := False;
+   dbImpostosTrimestral.SelectedIndex := 2;
+   dbImpostosTrimestral.SetFocus;
+   end;
+
+FDApuracaoTrimestral.RecNo := Recno;
+finally
+   FDApuracaoTrimestral.EnableControls;
+   end;
 end;
 
 end.

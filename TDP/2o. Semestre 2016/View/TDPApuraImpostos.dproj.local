@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2016/11/30 22:02:13.000.815,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.dfm=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.dfm</Transaction>
-    <Transaction>2017/01/10 21:35:47.000.922,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uProcessamento.pas=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\Class\uProcessamento.pas</Transaction>
-    <Transaction>2017/01/11 22:58:21.000.190,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uDMPrincipal.dfm=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.dfm</Transaction>
-    <Transaction>2017/01/12 23:45:51.492,=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.pas</Transaction>
+    <Transaction>2016/11/30 22:02:13.000.815,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.dfm=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.dfm</Transaction>
+    <Transaction>2017/01/11 22:58:21.000.190,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.dfm=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uDMPrincipal.dfm</Transaction>
+    <Transaction>2017/01/12 23:45:51.000.492,=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.pas</Transaction>
+    <Transaction>2017/01/13 10:51:53.000.674,=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

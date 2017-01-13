@@ -21,6 +21,7 @@ type TProcessamento = class
    public
       class var vgTipoSelecionados : String;
       class var vgdValorDigitadoTrimestral : Double;
+      class var vgbRecalcula : Boolean;
       class function fncRetornaDataFinal(piMes, piAno: Integer): String;
       class function fncProcessaTrimestre(psEmpresa: String; piTrimestre: Integer; psAno: String; var poMemTable : TFDMemTable; pdDedecaoCSLL, pdDeducaoIRPJ, pdReceitaFinanc : Double; const poConexao: TFDConnection) : Boolean;
       class function fncProcessaMes(psEmpresa: String; piMes: Integer; psAno: String; var poMemTable : TFDMemTable; const poConexao: TFDConnection) : Boolean;

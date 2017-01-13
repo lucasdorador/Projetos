@@ -10,8 +10,8 @@ object DMPrincipal: TDMPrincipal
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42748.010800567130000000
-    ReportOptions.LastChange = 42748.010800567130000000
+    ReportOptions.CreateDate = 42748.481076041660000000
+    ReportOptions.LastChange = 42748.481076041660000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -19,7 +19,7 @@ object DMPrincipal: TDMPrincipal
       ''
       'end.')
     OnGetValue = frxReport1GetValue
-    Left = 208
+    Left = 80
     Top = 32
     Datasets = <>
     Variables = <>
@@ -65,5 +65,143 @@ object DMPrincipal: TDMPrincipal
           '[Page#]')
       end
     end
+  end
+  object FDDARF: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'PeriodoApuracao'
+        DataType = ftString
+        Size = 11
+      end
+      item
+        Name = 'CPFCNPJ'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Referencia'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'Vencimento'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'NomeImposto'
+        DataType = ftString
+        Size = 15
+      end
+      item
+        Name = 'CodReceita'
+        DataType = ftString
+        Size = 6
+      end
+      item
+        Name = 'NomeRazao'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'ValorPrincipal'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Multa'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Juros'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Total'
+        DataType = ftFloat
+      end
+      item
+        Name = 'CodigoBarras'
+        DataType = ftString
+        Size = 50
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    StoreDefs = True
+    Left = 152
+    Top = 32
+    object FDDARFPeriodoApuracao: TStringField
+      FieldName = 'PeriodoApuracao'
+      Size = 11
+    end
+    object FDDARFCPFCNPJ: TStringField
+      FieldName = 'CPFCNPJ'
+    end
+    object FDDARFReferencia: TStringField
+      FieldName = 'Referencia'
+      Size = 30
+    end
+    object FDDARFVencimento: TStringField
+      FieldName = 'Vencimento'
+      Size = 10
+    end
+    object FDDARFNomeImposto: TStringField
+      FieldName = 'NomeImposto'
+      Size = 15
+    end
+    object FDDARFCodReceita: TStringField
+      FieldName = 'CodReceita'
+      Size = 6
+    end
+    object FDDARFNomeRazao: TStringField
+      FieldName = 'NomeRazao'
+      Size = 100
+    end
+    object FDDARFValorPrincipal: TFloatField
+      FieldName = 'ValorPrincipal'
+    end
+    object FDDARFMulta: TFloatField
+      FieldName = 'Multa'
+    end
+    object FDDARFJuros: TFloatField
+      FieldName = 'Juros'
+    end
+    object FDDARFTotal: TFloatField
+      FieldName = 'Total'
+    end
+    object FDDARFCodigoBarras: TStringField
+      FieldName = 'CodigoBarras'
+      Size = 50
+    end
+  end
+  object frxDBDARF: TfrxDBDataset
+    UserName = 'frxDBDARF'
+    CloseDataSource = False
+    FieldAliases.Strings = (
+      'PeriodoApuracao=PeriodoApuracao'
+      'CPFCNPJ=CPFCNPJ'
+      'Referencia=Referencia'
+      'Vencimento=Vencimento'
+      'NomeImposto=NomeImposto'
+      'CodReceita=CodReceita'
+      'NomeRazao=NomeRazao'
+      'ValorPrincipal=ValorPrincipal'
+      'Multa=Multa'
+      'Juros=Juros'
+      'Total=Total'
+      'CodigoBarras=CodigoBarras')
+    DataSet = FDDARF
+    BCDToCurrency = False
+    Left = 216
+    Top = 32
+  end
+  object frxBarCodeObject1: TfrxBarCodeObject
+    Left = 296
+    Top = 32
   end
 end

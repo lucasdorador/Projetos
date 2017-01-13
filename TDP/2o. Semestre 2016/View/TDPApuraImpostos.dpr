@@ -9,7 +9,8 @@ uses
   uProcessamento in '..\Class\uProcessamento.pas',
   uDMPrincipal in 'uDMPrincipal.pas' {DMPrincipal: TDataModule},
   uCRUDApuracao in '..\Class\uCRUDApuracao.pas',
-  uRelatorios in '..\Class\uRelatorios.pas';
+  uRelatorios in '..\Class\uRelatorios.pas',
+  uVariaveisRelatorio in '..\Class\uVariaveisRelatorio.pas';
 
 {$R *.res}
 
