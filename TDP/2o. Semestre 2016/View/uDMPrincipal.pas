@@ -26,6 +26,7 @@ type
     frxDBDARF: TfrxDBDataset;
     FDDARFCodigoBarras: TStringField;
     frxBarCodeObject1: TfrxBarCodeObject;
+    FDDARFDomicioTrib: TStringField;
     procedure frxReport1GetValue(const VarName: string; var Value: Variant);
   private
     { Private declarations }

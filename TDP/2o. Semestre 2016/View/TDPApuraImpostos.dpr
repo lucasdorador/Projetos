@@ -10,7 +10,8 @@ uses
   uDMPrincipal in 'uDMPrincipal.pas' {DMPrincipal: TDataModule},
   uCRUDApuracao in '..\Class\uCRUDApuracao.pas',
   uRelatorios in '..\Class\uRelatorios.pas',
-  uVariaveisRelatorio in '..\Class\uVariaveisRelatorio.pas';
+  uVariaveisRelatorio in '..\Class\uVariaveisRelatorio.pas',
+  uComplementos in 'uComplementos.pas' {FComplementos};
 
 {$R *.res}
 
@@ -19,5 +20,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFImpostos, FImpostos);
   Application.CreateForm(TDMPrincipal, DMPrincipal);
+  Application.CreateForm(TFComplementos, FComplementos);
   Application.Run;
 end.

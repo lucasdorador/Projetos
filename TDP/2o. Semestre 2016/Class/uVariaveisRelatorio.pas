@@ -15,6 +15,7 @@ type TVariaveisRelatorioImposto = Record
      vgdMulta           : Double;
      vgdJuros           : Double;
      vgdTotal           : Double;
+     vgsDomicioTrib     : String;
    End;
 
 implementation

@@ -53,6 +53,78 @@ type
 
    end;
 
+type
+   TCRUDApuracaoTrimestral = class(TObject)
+      private
+         FConexao : TFDConnection;
+         vloFuncoes : TFuncoesGerais;
+    FClasseExcept: String;
+    FAITRIMES_IMPOSTO: String;
+    FAITRIMES_PRESCSLL: Double;
+    FMensagemExcept: String;
+    FAITRIMES_TRIMESTRE: Integer;
+    FAITRIMES_PRESIRPJ: Double;
+    FAITRIMES_RECEITABRUTA: Double;
+    FAITRIMES_ADICIONALIRPJ: Double;
+    FAITRIMES_VALORCSLL: Double;
+    FAITRIMES_ANO: String;
+    FAITRIMES_RETENCAOCSLL: Double;
+    FAITRIMES_EMPRESA: String;
+    FAITRIMES_ALIQCSLL: Double;
+    FAITRIMES_VALORIRPJ: Double;
+    FAITRIMES_RECEITAALTERADA: Double;
+    FAITRIMES_RETENCAOIRPJ: Double;
+    FAITRIMES_ALIQIRPJ: Double;
+    FAITRIMES_RECEITAFINANC: Double;
+    procedure SetAITRIMES_ADICIONALIRPJ(const Value: Double);
+    procedure SetAITRIMES_ALIQCSLL(const Value: Double);
+    procedure SetAITRIMES_ALIQIRPJ(const Value: Double);
+    procedure SetAITRIMES_ANO(const Value: String);
+    procedure SetAITRIMES_EMPRESA(const Value: String);
+    procedure SetAITRIMES_IMPOSTO(const Value: String);
+    procedure SetAITRIMES_PRESCSLL(const Value: Double);
+    procedure SetAITRIMES_PRESIRPJ(const Value: Double);
+    procedure SetAITRIMES_RECEITAALTERADA(const Value: Double);
+    procedure SetAITRIMES_RECEITABRUTA(const Value: Double);
+    procedure SetAITRIMES_RETENCAOCSLL(const Value: Double);
+    procedure SetAITRIMES_RETENCAOIRPJ(const Value: Double);
+    procedure SetAITRIMES_TRIMESTRE(const Value: Integer);
+    procedure SetAITRIMES_VALORCSLL(const Value: Double);
+    procedure SetAITRIMES_VALORIRPJ(const Value: Double);
+    procedure SetClasseExcept(const Value: String);
+    procedure SetMensagemExcept(const Value: String);
+    procedure SetAITRIMES_RECEITAFINANC(const Value: Double);
+
+      public
+         Constructor Create(poConexao : TFDConnection);
+         Destructor Destroy; override;
+         function fncGravarApuracaoTrimestral: Boolean;
+         function fncExcluiApuracaoTrimestral: Boolean;
+
+      protected
+
+      published
+         property AITRIMES_EMPRESA         :String read FAITRIMES_EMPRESA write SetAITRIMES_EMPRESA;
+         property AITRIMES_TRIMESTRE       :Integer read FAITRIMES_TRIMESTRE write SetAITRIMES_TRIMESTRE;
+         property AITRIMES_ANO             :String read FAITRIMES_ANO write SetAITRIMES_ANO;
+         property AITRIMES_IMPOSTO         :String read FAITRIMES_IMPOSTO write SetAITRIMES_IMPOSTO;
+         property AITRIMES_RECEITABRUTA    :Double read FAITRIMES_RECEITABRUTA write SetAITRIMES_RECEITABRUTA;
+         property AITRIMES_RECEITAALTERADA :Double read FAITRIMES_RECEITAALTERADA write SetAITRIMES_RECEITAALTERADA;
+         property AITRIMES_ALIQIRPJ        :Double read FAITRIMES_ALIQIRPJ write SetAITRIMES_ALIQIRPJ;
+         property AITRIMES_ALIQCSLL        :Double read FAITRIMES_ALIQCSLL write SetAITRIMES_ALIQCSLL;
+         property AITRIMES_PRESIRPJ        :Double read FAITRIMES_PRESIRPJ write SetAITRIMES_PRESIRPJ;
+         property AITRIMES_PRESCSLL        :Double read FAITRIMES_PRESCSLL write SetAITRIMES_PRESCSLL;
+         property AITRIMES_ADICIONALIRPJ   :Double read FAITRIMES_ADICIONALIRPJ write SetAITRIMES_ADICIONALIRPJ;
+         property AITRIMES_RETENCAOIRPJ    :Double read FAITRIMES_RETENCAOIRPJ write SetAITRIMES_RETENCAOIRPJ;
+         property AITRIMES_RETENCAOCSLL    :Double read FAITRIMES_RETENCAOCSLL write SetAITRIMES_RETENCAOCSLL;
+         property AITRIMES_VALORIRPJ       :Double read FAITRIMES_VALORIRPJ write SetAITRIMES_VALORIRPJ;
+         property AITRIMES_VALORCSLL       :Double read FAITRIMES_VALORCSLL write SetAITRIMES_VALORCSLL;
+         property AITRIMES_RECEITAFINANC   :Double read FAITRIMES_RECEITAFINANC write SetAITRIMES_RECEITAFINANC;
+         property MensagemExcept           :String read FMensagemExcept write SetMensagemExcept;
+         property ClasseExcept             :String read FClasseExcept write SetClasseExcept;
+
+   end;
+
 implementation
 
 { TCRUDApuracaoMensal }
@@ -91,7 +163,7 @@ FDApuracao.Open;
 if FDApuracao.RowsAffected > 0 then
    begin
    vloFuncoes.fncLogOperacao(FAIMES_EMPRESA, '', '', 'Apuração do período: ' + FAIMES_MES + ' - ' + FAIMES_ANO +
-                                                     ' para imposto ' + FAIMES_IMPOSTO + ', gravado com sucesso',
+                                                     ' para imposto ' + FAIMES_IMPOSTO + ', excluida com sucesso',
                                                      '',
                                                      OrigemLOG_ApuraImposta);
    end;
@@ -238,6 +310,265 @@ begin
 end;
 
 procedure TCRUDApuracaoMensal.SetMensagemExcept(const Value: String);
+begin
+  FMensagemExcept := Value;
+end;
+
+{ TCRUDApuracaoTrimestral }
+
+constructor TCRUDApuracaoTrimestral.Create(poConexao: TFDConnection);
+begin
+inherited Create;
+
+FConexao   := poConexao;
+vloFuncoes := TFuncoesGerais.Create(FConexao);
+end;
+
+destructor TCRUDApuracaoTrimestral.Destroy;
+begin
+if Assigned(vloFuncoes) then
+   FreeAndNil(vloFuncoes);
+
+  inherited;
+end;
+
+function TCRUDApuracaoTrimestral.fncExcluiApuracaoTrimestral: Boolean;
+var
+   FDApuracao : TFDQuery;
+begin
+vloFuncoes.pcdCriaFDQueryExecucao(FDApuracao, FConexao);
+try
+FDApuracao.SQL.Clear;
+FDApuracao.SQL.Add('DELETE FROM APURAIMPOSTOTRIMESTRAL WHERE AITRIMES_EMPRESA = :EMPRESA AND '+
+                   '                                         AITRIMES_TRIMESTRE = :TRIMESTRE AND '+
+                   '                                         AITRIMES_ANO= :ANO AND '+
+                   '                                         AITRIMES_IMPOSTO = :IMPOSTO');
+FDApuracao.ParamByName('EMPRESA').AsString    := FAITRIMES_EMPRESA;
+FDApuracao.ParamByName('TRIMESTRE').AsInteger := FAITRIMES_TRIMESTRE;
+FDApuracao.ParamByName('ANO').AsString        := FAITRIMES_ANO;
+FDApuracao.ParamByName('IMPOSTO').AsString    := FAITRIMES_IMPOSTO;
+FDApuracao.Open;
+
+if FDApuracao.RowsAffected > 0 then
+   begin
+   vloFuncoes.fncLogOperacao(FAITRIMES_EMPRESA, '', '', 'Apuração do trimestre: ' + IntToStr(FAITRIMES_TRIMESTRE) + ' - ' + FAITRIMES_ANO +
+                                                        ' para imposto ' + FAITRIMES_IMPOSTO + ', exclída com sucesso',
+                                                        '',
+                                                        OrigemLOG_ApuraImposta);
+   end;
+
+finally
+   FreeAndNil(FDApuracao);
+   end;
+end;
+
+function TCRUDApuracaoTrimestral.fncGravarApuracaoTrimestral: Boolean;
+var
+   FDApuracao : TFDQuery;
+begin
+Result := True;
+vloFuncoes.pcdCriaFDQueryExecucao(FDApuracao, FConexao);
+try
+FDApuracao.SQL.Clear;
+FDApuracao.SQL.Add('SELECT * FROM APURAIMPOSTOTRIMESTRAL WHERE AITRIMES_EMPRESA = :EMPRESA AND '+
+                   '                                           AITRIMES_TRIMESTRE = :TRIMESTRE AND '+
+                   '                                           AITRIMES_ANO= :ANO AND '+
+                   '                                           AITRIMES_IMPOSTO = :IMPOSTO');
+FDApuracao.ParamByName('EMPRESA').AsString    := FAITRIMES_EMPRESA;
+FDApuracao.ParamByName('TRIMESTRE').AsInteger := FAITRIMES_TRIMESTRE;
+FDApuracao.ParamByName('ANO').AsString        := FAITRIMES_ANO;
+FDApuracao.ParamByName('IMPOSTO').AsString    := FAITRIMES_IMPOSTO;
+FDApuracao.Open;
+
+if FDApuracao.IsEmpty then
+   begin
+   FDApuracao.SQL.Clear;
+   FDApuracao.SQL.Add('INSERT INTO APURAIMPOSTOTRIMESTRAL (AITRIMES_EMPRESA, AITRIMES_TRIMESTRE, AITRIMES_ANO, AITRIMES_IMPOSTO,');
+   FDApuracao.SQL.Add('                                    AITRIMES_RECEITABRUTA, AITRIMES_RECEITAALTERADA, AITRIMES_ALIQIRPJ,');
+   FDApuracao.SQL.Add('                                    AITRIMES_ALIQCSLL, AITRIMES_PRESIRPJ, AITRIMES_PRESCSLL, AITRIMES_ADICIONALIRPJ,');
+   FDApuracao.SQL.Add('                                    AITRIMES_RETENCAOIRPJ, AITRIMES_RETENCAOCSLL, AITRIMES_VALORIRPJ, AITRIMES_VALORCSLL,');
+   FDApuracao.SQL.Add('                                    AITRIMES_RECEITAFINANC)');
+   FDApuracao.SQL.Add('VALUES (:AITRIMES_EMPRESA, :AITRIMES_TRIMESTRE, :AITRIMES_ANO, :AITRIMES_IMPOSTO,');
+   FDApuracao.SQL.Add('        :AITRIMES_RECEITABRUTA, :AITRIMES_RECEITAALTERADA, :AITRIMES_ALIQIRPJ,');
+   FDApuracao.SQL.Add('        :AITRIMES_ALIQCSLL, :AITRIMES_PRESIRPJ, :AITRIMES_PRESCSLL, :AITRIMES_ADICIONALIRPJ,');
+   FDApuracao.SQL.Add('        :AITRIMES_RETENCAOIRPJ, :AITRIMES_RETENCAOCSLL, :AITRIMES_VALORIRPJ, :AITRIMES_VALORCSLL, :AITRIMES_RECEITAFINANC); ');
+   FDApuracao.ParamByName('AITRIMES_EMPRESA').AsString        := FAITRIMES_EMPRESA;
+   FDApuracao.ParamByName('AITRIMES_TRIMESTRE').AsInteger     := FAITRIMES_TRIMESTRE;
+   FDApuracao.ParamByName('AITRIMES_ANO').AsString            := FAITRIMES_ANO;
+   FDApuracao.ParamByName('AITRIMES_IMPOSTO').AsString        := FAITRIMES_IMPOSTO;
+   FDApuracao.ParamByName('AITRIMES_RECEITABRUTA').AsFloat    := FAITRIMES_RECEITABRUTA;
+   FDApuracao.ParamByName('AITRIMES_RECEITAALTERADA').AsFloat := FAITRIMES_RECEITAALTERADA;
+   FDApuracao.ParamByName('AITRIMES_ALIQIRPJ').AsFloat        := FAITRIMES_ALIQIRPJ;
+   FDApuracao.ParamByName('AITRIMES_ALIQCSLL').AsFloat        := FAITRIMES_ALIQCSLL;
+   FDApuracao.ParamByName('AITRIMES_PRESIRPJ').AsFloat        := FAITRIMES_PRESIRPJ;
+   FDApuracao.ParamByName('AITRIMES_PRESCSLL').AsFloat        := FAITRIMES_PRESCSLL;
+   FDApuracao.ParamByName('AITRIMES_ADICIONALIRPJ').AsFloat   := FAITRIMES_ADICIONALIRPJ;
+   FDApuracao.ParamByName('AITRIMES_RETENCAOIRPJ').AsFloat    := FAITRIMES_RETENCAOIRPJ;
+   FDApuracao.ParamByName('AITRIMES_RETENCAOCSLL').AsFloat    := FAITRIMES_RETENCAOCSLL;
+   FDApuracao.ParamByName('AITRIMES_VALORIRPJ').AsFloat       := FAITRIMES_VALORIRPJ;
+   FDApuracao.ParamByName('AITRIMES_VALORCSLL').AsFloat       := FAITRIMES_VALORCSLL;
+   FDApuracao.ParamByName('AITRIMES_RECEITAFINANC').AsFloat   := FAITRIMES_RECEITAFINANC;
+
+   try
+   FDApuracao.ExecSQL;
+   except
+      on E:Exception do
+         begin
+         Result          := False;
+         FMensagemExcept := e.Message;
+         FClasseExcept   := e.ClassName;
+         end;
+      end;
+
+   vloFuncoes.fncLogOperacao(FAITRIMES_EMPRESA, '', '', 'Apuração do trimestre: ' + IntToStr(FAITRIMES_TRIMESTRE) + ' - ' + FAITRIMES_ANO +
+                                                     ' para imposto ' + FAITRIMES_IMPOSTO + ', gravado com sucesso',
+                                                     '',
+                                                     OrigemLOG_ApuraImposta);
+   end
+else
+   begin
+   FDApuracao.SQL.Clear;
+   FDApuracao.SQL.Add('UPDATE APURAIMPOSTOTRIMESTRAL');
+   FDApuracao.SQL.Add('SET AITRIMES_RECEITABRUTA = :AITRIMES_RECEITABRUTA,');
+   FDApuracao.SQL.Add('    AITRIMES_RECEITAALTERADA = :AITRIMES_RECEITAALTERADA,');
+   FDApuracao.SQL.Add('    AITRIMES_ALIQIRPJ = :AITRIMES_ALIQIRPJ,');
+   FDApuracao.SQL.Add('    AITRIMES_ALIQCSLL = :AITRIMES_ALIQCSLL,');
+   FDApuracao.SQL.Add('    AITRIMES_PRESIRPJ = :AITRIMES_PRESIRPJ,');
+   FDApuracao.SQL.Add('    AITRIMES_PRESCSLL = :AITRIMES_PRESCSLL,');
+   FDApuracao.SQL.Add('    AITRIMES_ADICIONALIRPJ = :AITRIMES_ADICIONALIRPJ,');
+   FDApuracao.SQL.Add('    AITRIMES_RETENCAOIRPJ = :AITRIMES_RETENCAOIRPJ,');
+   FDApuracao.SQL.Add('    AITRIMES_RETENCAOCSLL = :AITRIMES_RETENCAOCSLL,');
+   FDApuracao.SQL.Add('    AITRIMES_VALORIRPJ = :AITRIMES_VALORIRPJ,');
+   FDApuracao.SQL.Add('    AITRIMES_VALORCSLL = :AITRIMES_VALORCSLL,');
+   FDApuracao.SQL.Add('    AITRIMES_RECEITAFINANC = :AITRIMES_RECEITAFINANC');
+   FDApuracao.SQL.Add('WHERE (AITRIMES_EMPRESA = :AITRIMES_EMPRESA) AND (AITRIMES_TRIMESTRE = :AITRIMES_TRIMESTRE) AND');
+   FDApuracao.SQL.Add('      (AITRIMES_ANO = :AITRIMES_ANO) AND (AITRIMES_IMPOSTO = :AITRIMES_IMPOSTO)');
+   FDApuracao.ParamByName('AITRIMES_EMPRESA').AsString        := FAITRIMES_EMPRESA;
+   FDApuracao.ParamByName('AITRIMES_TRIMESTRE').AsInteger     := FAITRIMES_TRIMESTRE;
+   FDApuracao.ParamByName('AITRIMES_ANO').AsString            := FAITRIMES_ANO;
+   FDApuracao.ParamByName('AITRIMES_IMPOSTO').AsString        := FAITRIMES_IMPOSTO;
+   FDApuracao.ParamByName('AITRIMES_RECEITABRUTA').AsFloat    := FAITRIMES_RECEITABRUTA;
+   FDApuracao.ParamByName('AITRIMES_RECEITAALTERADA').AsFloat := FAITRIMES_RECEITAALTERADA;
+   FDApuracao.ParamByName('AITRIMES_ALIQIRPJ').AsFloat        := FAITRIMES_ALIQIRPJ;
+   FDApuracao.ParamByName('AITRIMES_ALIQCSLL').AsFloat        := FAITRIMES_ALIQCSLL;
+   FDApuracao.ParamByName('AITRIMES_PRESIRPJ').AsFloat        := FAITRIMES_PRESIRPJ;
+   FDApuracao.ParamByName('AITRIMES_PRESCSLL').AsFloat        := FAITRIMES_PRESCSLL;
+   FDApuracao.ParamByName('AITRIMES_ADICIONALIRPJ').AsFloat   := FAITRIMES_ADICIONALIRPJ;
+   FDApuracao.ParamByName('AITRIMES_RETENCAOIRPJ').AsFloat    := FAITRIMES_RETENCAOIRPJ;
+   FDApuracao.ParamByName('AITRIMES_RETENCAOCSLL').AsFloat    := FAITRIMES_RETENCAOCSLL;
+   FDApuracao.ParamByName('AITRIMES_VALORIRPJ').AsFloat       := FAITRIMES_VALORIRPJ;
+   FDApuracao.ParamByName('AITRIMES_VALORCSLL').AsFloat       := FAITRIMES_VALORCSLL;
+   FDApuracao.ParamByName('AITRIMES_RECEITAFINANC').AsFloat   := FAITRIMES_RECEITAFINANC;
+   try
+   FDApuracao.ExecSQL;
+   except
+      on E:Exception do
+         begin
+         Result          := False;
+         FMensagemExcept := e.Message;
+         FClasseExcept   := e.ClassName;
+         end;
+      end;
+
+   vloFuncoes.fncLogOperacao(FAITRIMES_EMPRESA, '', '', 'Apuração do trimestre: ' + IntToStr(FAITRIMES_TRIMESTRE) + ' - ' + FAITRIMES_ANO +
+                                                     ' para imposto ' + FAITRIMES_IMPOSTO + ', alterada com sucesso',
+                                                     '',
+                                                     OrigemLOG_ApuraImposta);
+   end;
+
+finally
+   FreeAndNil(FDApuracao);
+   end;
+end;
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_ADICIONALIRPJ(
+  const Value: Double);
+begin
+  FAITRIMES_ADICIONALIRPJ := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_ALIQCSLL(const Value: Double);
+begin
+  FAITRIMES_ALIQCSLL := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_ALIQIRPJ(const Value: Double);
+begin
+  FAITRIMES_ALIQIRPJ := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_ANO(const Value: String);
+begin
+  FAITRIMES_ANO := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_EMPRESA(const Value: String);
+begin
+  FAITRIMES_EMPRESA := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_IMPOSTO(const Value: String);
+begin
+  FAITRIMES_IMPOSTO := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_PRESCSLL(const Value: Double);
+begin
+  FAITRIMES_PRESCSLL := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_PRESIRPJ(const Value: Double);
+begin
+  FAITRIMES_PRESIRPJ := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_RECEITAALTERADA(
+  const Value: Double);
+begin
+  FAITRIMES_RECEITAALTERADA := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_RECEITABRUTA(const Value: Double);
+begin
+  FAITRIMES_RECEITABRUTA := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_RECEITAFINANC(
+  const Value: Double);
+begin
+  FAITRIMES_RECEITAFINANC := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_RETENCAOCSLL(const Value: Double);
+begin
+  FAITRIMES_RETENCAOCSLL := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_RETENCAOIRPJ(const Value: Double);
+begin
+  FAITRIMES_RETENCAOIRPJ := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_TRIMESTRE(const Value: Integer);
+begin
+  FAITRIMES_TRIMESTRE := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_VALORCSLL(const Value: Double);
+begin
+  FAITRIMES_VALORCSLL := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetAITRIMES_VALORIRPJ(const Value: Double);
+begin
+  FAITRIMES_VALORIRPJ := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetClasseExcept(const Value: String);
+begin
+  FClasseExcept := Value;
+end;
+
+procedure TCRUDApuracaoTrimestral.SetMensagemExcept(const Value: String);
 begin
   FMensagemExcept := Value;
 end;

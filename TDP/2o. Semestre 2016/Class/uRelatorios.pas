@@ -32,6 +32,7 @@ poFDMemTable.FieldByName('ValorPrincipal').AsFloat   := poVariaveis.vgdValorPrin
 poFDMemTable.FieldByName('Multa').AsFloat            := poVariaveis.vgdMulta;
 poFDMemTable.FieldByName('Juros').AsFloat            := poVariaveis.vgdJuros;
 poFDMemTable.FieldByName('Total').AsFloat            := poVariaveis.vgdTotal;
+poFDMemTable.FieldByName('DomicioTrib').AsString     := poVariaveis.vgsDomicioTrib;
 poFDMemTable.Post;
 end;
 
