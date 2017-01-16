@@ -827,7 +827,7 @@ object FImpostos: TFImpostos
     Top = 3
     Width = 756
     Height = 488
-    ActivePage = tsPrincipal
+    ActivePage = tsImpostos
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -886,7 +886,7 @@ object FImpostos: TFImpostos
             item
               Expanded = False
               FieldName = 'Imposto'
-              Width = 60
+              Width = 55
               Visible = True
             end
             item
@@ -894,15 +894,15 @@ object FImpostos: TFImpostos
               FieldName = 'ReceitaBruta'
               Title.Alignment = taRightJustify
               Title.Caption = 'Rec. Bruta (R$)'
-              Width = 120
+              Width = 100
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'ReceitaAlterada'
               Title.Alignment = taRightJustify
-              Title.Caption = 'Rec. Alterada (R$)'
-              Width = 120
+              Title.Caption = 'Rec. Alter (R$)'
+              Width = 100
               Visible = True
             end
             item
@@ -910,7 +910,7 @@ object FImpostos: TFImpostos
               FieldName = 'AdicionalIRPJ'
               Title.Alignment = taRightJustify
               Title.Caption = 'Adicional (R$)'
-              Width = 120
+              Width = 100
               Visible = True
             end
             item
@@ -918,7 +918,7 @@ object FImpostos: TFImpostos
               FieldName = 'Retencoes'
               Title.Alignment = taRightJustify
               Title.Caption = 'Reten'#231#245'es (R$)'
-              Width = 120
+              Width = 100
               Visible = True
             end
             item
@@ -934,7 +934,7 @@ object FImpostos: TFImpostos
               FieldName = 'ValorImposto'
               Title.Alignment = taRightJustify
               Title.Caption = 'Vlr Imposto (R$)'
-              Width = 120
+              Width = 100
               Visible = True
             end>
         end
@@ -3394,19 +3394,19 @@ object FImpostos: TFImpostos
     object FDTrimestralReceitaAlterada: TFloatField
       FieldName = 'ReceitaAlterada'
     end
-    object FDTrimestralALIQCSLL: TFloatField
+    object FDTrimestralAliqImposto: TFloatField
       FieldName = 'AliqImposto'
     end
-    object FDTrimestralPresCSLL: TFloatField
+    object FDTrimestralPresuncao: TFloatField
       FieldName = 'Presuncao'
     end
     object FDTrimestralAdicionalIRPJ: TFloatField
       FieldName = 'AdicionalIRPJ'
     end
-    object FDTrimestralRetencaoIRPJ: TFloatField
+    object FDTrimestralRetencoes: TFloatField
       FieldName = 'Retencoes'
     end
-    object FDTrimestralValorIRPJ: TFloatField
+    object FDTrimestralValorImposto: TFloatField
       FieldName = 'ValorImposto'
     end
   end
@@ -3423,12 +3423,7 @@ object FImpostos: TFImpostos
     Top = 110
     object ImpressodoDARF1: TMenuItem
       Caption = 'Impress'#227'o DARF'
-      object IRPJ1: TMenuItem
-        Caption = 'IRPJ'
-      end
-      object CSLL1: TMenuItem
-        Caption = 'CSLL'
-      end
+      OnClick = ImpressodoDARF1Click
     end
   end
 end

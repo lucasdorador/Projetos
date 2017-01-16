@@ -3,6 +3,6 @@
 	<Transactions>
     <Transaction>2016/11/30 22:02:13.000.815,F:\Programação\Delphi\XE8\TDPApuraImpostos\View\Unit1.dfm=F:\Programação\Delphi\XE8\TDPApuraImpostos\View\uImpostos.dfm</Transaction>
     <Transaction>2017/01/11 22:58:21.000.190,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uDMPrincipal.dfm=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.dfm</Transaction>
-    <Transaction>2017/01/14 13:30:30.587,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uComplementos.dfm=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.dfm</Transaction>
+    <Transaction>2017/01/14 13:30:30.000.587,F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\uComplementos.dfm=F:\Lucas\Projetos\trunk\TDP\2o. Semestre 2016\View\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

@@ -6,8 +6,9 @@ unit uConstantes;
 
 interface
 
-const OrigemLOG_ApuraImposta    = 'APUIMPOSTO';
-const ValorMinimoPagamentoDARF  = 10;
+const OrigemLOG_ApuraImposta              = 'APUIMPOSTO';
+const ValorMinimoPagamentoDARFMensal      = 10;
+const ValorMinimoPagamentoDARFTrimestral  = 10;
 
 implementation
 

@@ -97,17 +97,6 @@ type
     dsMensal: TDataSource;
     dsTrimestral: TDataSource;
     FDTrimestral: TFDMemTable;
-    FDTrimestralEmpresa: TStringField;
-    FDTrimestralTrimestre: TIntegerField;
-    FDTrimestralAno: TStringField;
-    FDTrimestralImposto: TStringField;
-    FDTrimestralReceitaBruta: TFloatField;
-    FDTrimestralReceitaAlterada: TFloatField;
-    FDTrimestralALIQCSLL: TFloatField;
-    FDTrimestralPresCSLL: TFloatField;
-    FDTrimestralAdicionalIRPJ: TFloatField;
-    FDTrimestralRetencaoIRPJ: TFloatField;
-    FDTrimestralValorIRPJ: TFloatField;
     FDMensalEmpresa: TStringField;
     FDMensalImposto: TStringField;
     FDMensalMes: TStringField;
@@ -120,8 +109,6 @@ type
     PopupTrimestral: TPopupMenu;
     ImpressoDARF1: TMenuItem;
     ImpressodoDARF1: TMenuItem;
-    IRPJ1: TMenuItem;
-    CSLL1: TMenuItem;
     GroupBox11: TGroupBox;
     Label15: TLabel;
     edtConsultaMensal_Mes: TSpinEdit;
@@ -136,6 +123,17 @@ type
     BitBtn1: TBitBtn;
     btnImpostoTri_Gravar: TBitBtn;
     btnImpostoTri_Voltar: TBitBtn;
+    FDTrimestralEmpresa: TStringField;
+    FDTrimestralTrimestre: TIntegerField;
+    FDTrimestralAno: TStringField;
+    FDTrimestralImposto: TStringField;
+    FDTrimestralReceitaBruta: TFloatField;
+    FDTrimestralReceitaAlterada: TFloatField;
+    FDTrimestralAliqImposto: TFloatField;
+    FDTrimestralPresuncao: TFloatField;
+    FDTrimestralAdicionalIRPJ: TFloatField;
+    FDTrimestralRetencoes: TFloatField;
+    FDTrimestralValorImposto: TFloatField;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -172,6 +170,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure btnImpostoTri_GravarClick(Sender: TObject);
     procedure ImpressoDARF1Click(Sender: TObject);
+    procedure ImpressodoDARF1Click(Sender: TObject);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
@@ -199,6 +198,7 @@ type
     procedure pcdImpressaoDARFMensal;
     procedure pcdCarregaDadosTrimestral;
     procedure pcdCarregaDadosTelaInicial;
+    procedure pcdImpressaoDARFTrimestral;
     { Private declarations }
   public
     { Emissao de Guias }
@@ -287,54 +287,55 @@ while not FDApuracaoMensal.Eof do
    FDApuracaoMensal.Next;
    end;
 
-if vloFuncoes.fncMessageDlgDefult('Apuração gravada com sucesso, Deseja Emitir o DARF dos impostos?',
-                                  mtConfirmation, mbYesNo, 1, MB_DEFBUTTON2, True) = mrYes then
-   begin
-   FDApuracaoMensal.First;
-
-   while not FDApuracaoMensal.Eof do
-      begin
-      FDEmpresa          := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
-      poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(edtMes.Value, StrToInt(edtAnoMensal.Text));
-      poVariaveis.vgsCPFCNPJ	       := FDEmpresa.FieldByName('EMP_CGC').AsString;
-      poVariaveis.vgsReferencia      := '';
-      poVariaveis.vgsVencimento      := FormatDateTime('dd/mm/yyyy', StrToDate(poVariaveis.vgsPeriodoApuracao) + 10);
-      poVariaveis.vgsNomeImposto     := FDApuracaoMensalImposto.AsString;
-      if Trim(poVariaveis.vgsNomeImposto) = 'PIS' then
-         poVariaveis.vgsCodReceita   := '8109'
-      else
-         poVariaveis.vgsCodReceita   := '2172';
-
-      poVariaveis.vgsNome	           := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
-      poVariaveis.vgdValorPrincipal  := FDApuracaoMensalValorImposto.AsFloat;
-      poVariaveis.vgdMulta	         := 0;
-      poVariaveis.vgdJuros	         := 0;
-      poVariaveis.vgdTotal	         := poVariaveis.vgdValorPrincipal + (poVariaveis.vgdMulta + poVariaveis.vgdJuros);
-      poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894';
-
-      if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3') then
-         begin
-         TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
-         DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
-         DMPrincipal.frxReport1.ShowReport(True);
-         end
-      else
-         begin
-         vloFuncoes.fncMensagemSistema('O DARF não foi localizado em: ' + ExtractFilePath(Application.ExeName) + 'Relatorios\'+
-                                       ', copie o arquivo GuiaImposto.fr3 para o local indicado');
-         Abort;
-         end;
-
-      FDApuracaoMensal.Next;
-      end;
-
-   end;
+//if vloFuncoes.fncMessageDlgDefult('Apuração gravada com sucesso, Deseja Emitir o DARF dos impostos?',
+//                                  mtConfirmation, mbYesNo, 1, MB_DEFBUTTON2, True) = mrYes then
+//   begin
+//   FDApuracaoMensal.First;
+//
+//   while not FDApuracaoMensal.Eof do
+//      begin
+//      FDEmpresa          := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
+//      poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(edtMes.Value, StrToInt(edtAnoMensal.Text));
+//      poVariaveis.vgsCPFCNPJ	       := FDEmpresa.FieldByName('EMP_CGC').AsString;
+//      poVariaveis.vgsReferencia      := '';
+//      poVariaveis.vgsVencimento      := FormatDateTime('dd/mm/yyyy', StrToDate(poVariaveis.vgsPeriodoApuracao) + 10);
+//      poVariaveis.vgsNomeImposto     := FDApuracaoMensalImposto.AsString;
+//      if Trim(poVariaveis.vgsNomeImposto) = 'PIS' then
+//         poVariaveis.vgsCodReceita   := '8109'
+//      else
+//         poVariaveis.vgsCodReceita   := '2172';
+//
+//      poVariaveis.vgsNome	           := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
+//      poVariaveis.vgdValorPrincipal  := FDApuracaoMensalValorImposto.AsFloat;
+//      poVariaveis.vgdMulta	         := 0;
+//      poVariaveis.vgdJuros	         := 0;
+//      poVariaveis.vgdTotal	         := poVariaveis.vgdValorPrincipal + (poVariaveis.vgdMulta + poVariaveis.vgdJuros);
+//      poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894';
+//
+//      if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3') then
+//         begin
+//         TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
+//         DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
+//         DMPrincipal.frxReport1.ShowReport(True);
+//         end
+//      else
+//         begin
+//         vloFuncoes.fncMensagemSistema('O DARF não foi localizado em: ' + ExtractFilePath(Application.ExeName) + 'Relatorios\'+
+//                                       ', copie o arquivo GuiaImposto.fr3 para o local indicado');
+//         Abort;
+//         end;
+//
+//      FDApuracaoMensal.Next;
+//      end;
+//
+//   end;
 
 finally
    FreeAndNil(vloCRUDMensal);
    FreeAndNil(FDEmpresa);
    FDApuracaoMensal.EnableControls;
    FDApuracaoMensal.First;
+   pcdVoltar;
    end;
 end;
 
@@ -376,20 +377,24 @@ while not FDApuracaoTrimestral.Eof do
    vloCRUDTrimestral.AITRIMES_IMPOSTO         := FDApuracaoTrimestralImposto.AsString;
    vloCRUDTrimestral.AITRIMES_RECEITABRUTA    := FDApuracaoTrimestralValorApurado.AsFloat;
    vloCRUDTrimestral.AITRIMES_RECEITAALTERADA := FDApuracaoTrimestralBaseCalculo.AsFloat;
-   vloCRUDTrimestral.AITRIMES_ALIQIRPJ        := TConsultas.fncConsultaAliquotaIRPJ(vgEmpresa, vgConexao);
-   vloCRUDTrimestral.AITRIMES_ALIQCSLL        := TConsultas.fncConsultaAliquotaCSLL(vgEmpresa, vgConexao);
-   vloCRUDTrimestral.AITRIMES_PRESIRPJ        := TConsultas.fncConsultaPresuncaoIRPJ(vgEmpresa, vgConexao);
-   vloCRUDTrimestral.AITRIMES_PRESCSLL        := TConsultas.fncConsultaPresuncaoCSLL(vgEmpresa, vgConexao);
-   vloCRUDTrimestral.AITRIMES_ADICIONALIRPJ   := FDApuracaoTrimestralAdicionalIRPJ.AsFloat;
-   vloCRUDTrimestral.AITRIMES_RETENCAOIRPJ    := edtDeducaoIRPJ.Value;
-   vloCRUDTrimestral.AITRIMES_RETENCAOCSLL    := edtDeducaoCSLL.Value;
-   vloCRUDTrimestral.AITRIMES_RECEITAFINANC   := edtReceitaFinanc.Value;
 
-
-   if FDApuracaoTrimestralImposto.AsString = 'IRPJ' then
-      vloCRUDTrimestral.AITRIMES_VALORIRPJ    := FDApuracaoTrimestralValorImposto.AsFloat
+   if Trim(FDApuracaoTrimestralImposto.AsString) = 'IRPJ' then
+      begin
+      vloCRUDTrimestral.AITRIMES_ALIQIMPOSTO  := TConsultas.fncConsultaAliquotaIRPJ(vgEmpresa, vgConexao);
+      vloCRUDTrimestral.AITRIMES_PRESIMPOSTO  := TConsultas.fncConsultaPresuncaoIRPJ(vgEmpresa, vgConexao);
+      vloCRUDTrimestral.AITRIMES_ADICIONALIRPJ:= FDApuracaoTrimestralAdicionalIRPJ.AsFloat;
+      vloCRUDTrimestral.AITRIMES_RETENCAOIMPOSTO := edtDeducaoIRPJ.Value;
+      end
    else
-      vloCRUDTrimestral.AITRIMES_VALORCSLL    := FDApuracaoTrimestralValorImposto.AsFloat;
+      begin
+      vloCRUDTrimestral.AITRIMES_ALIQIMPOSTO  := TConsultas.fncConsultaAliquotaCSLL(vgEmpresa, vgConexao);
+      vloCRUDTrimestral.AITRIMES_PRESIMPOSTO  := TConsultas.fncConsultaPresuncaoCSLL(vgEmpresa, vgConexao);
+      vloCRUDTrimestral.AITRIMES_ADICIONALIRPJ:= 0;
+      vloCRUDTrimestral.AITRIMES_RETENCAOIMPOSTO := edtDeducaoCSLL.Value;
+      end;
+
+   vloCRUDTrimestral.AITRIMES_RECEITAFINANC   := edtReceitaFinanc.Value;
+   vloCRUDTrimestral.AITRIMES_VALORIMPOSTO    := FDApuracaoTrimestralValorImposto.AsFloat;
 
    if not vloCRUDTrimestral.fncGravarApuracaoTrimestral then
       begin
@@ -401,12 +406,11 @@ while not FDApuracaoTrimestral.Eof do
    FDApuracaoTrimestral.Next;
    end;
 
-//TODO
-
 finally
    FreeAndNil(vloCRUDTrimestral);
    FDApuracaoTrimestral.EnableControls;
    FDApuracaoTrimestral.First;
+   pcdVoltar;
    end;
 end;
 
@@ -613,6 +617,7 @@ end;
 procedure TFImpostos.edtConsultaMensal_MesEnter(Sender: TObject);
 begin
 FDMensal.Filtered := False;
+edtConsultaMensal_Ano.Clear;
 end;
 
 procedure TFImpostos.edtConsultaTrimestral_AnoExit(Sender: TObject);
@@ -621,7 +626,7 @@ if ((Trim(edtConsultaTrimestral_Trimestre.Text) <> '') and
     (Trim(edtConsultaTrimestral_Ano.Text) <> '')) then
    begin
    FDTrimestral.Filtered := False;
-   FDTrimestral.Filter   := 'Mes = ' + QuotedStr(FormatFloat('0', edtConsultaTrimestral_Trimestre.Value)) + ' and ' +
+   FDTrimestral.Filter   := 'Trimestre = ' + QuotedStr(FormatFloat('0', edtConsultaTrimestral_Trimestre.Value)) + ' and ' +
                             'Ano = ' + QuotedStr(edtConsultaTrimestral_Ano.Text);
    FDTrimestral.Filtered := True;
    end;
@@ -630,6 +635,7 @@ end;
 procedure TFImpostos.edtConsultaTrimestral_TrimestreEnter(Sender: TObject);
 begin
 FDTrimestral.Filtered := False;
+edtConsultaTrimestral_Ano.Clear;
 end;
 
 procedure TFImpostos.edtPresuncaoCSLLExit(Sender: TObject);
@@ -752,6 +758,11 @@ end;
 procedure TFImpostos.ImpressoDARF1Click(Sender: TObject);
 begin
 pcdImpressaoDARFMensal;
+end;
+
+procedure TFImpostos.ImpressodoDARF1Click(Sender: TObject);
+begin
+//Apuração Trimestral
 end;
 
 procedure TFImpostos.Paletas(vPaleta: TTabSheet);
@@ -1131,17 +1142,17 @@ while not FDConsTrimestral.Eof do
    FDTrimestralAno.AsString            := FDConsTrimestral.FieldByName('AITRIMES_ANO').AsString;
    FDTrimestralReceitaBruta.AsFloat    := FDConsTrimestral.FieldByName('AITRIMES_RECEITABRUTA').AsFloat;
    FDTrimestralReceitaAlterada.AsFloat := FDConsTrimestral.FieldByName('AITRIMES_RECEITAALTERADA').AsFloat;
-   FDTrimestralALIQCSLL.AsFloat        := FDConsTrimestral.FieldByName('AITRIMES_ALIQUOTAIMPOSTO').AsFloat;
-   FDTrimestralValorIRPJ.AsFloat       := FDConsTrimestral.FieldByName('AITRIMES_VALORIMPOSTO').AsFloat;
+   FDTrimestralAliqImposto.AsFloat     := FDConsTrimestral.FieldByName('AITRIMES_ALIQIMPOSTO').AsFloat;
+   FDTrimestralValorImposto.AsFloat    := FDConsTrimestral.FieldByName('AITRIMES_VALORIMPOSTO').AsFloat;
 
    if FDConsTrimestral.FieldByName('AITRIMES_IMPOSTO').AsString = 'IRPJ' then
       begin
-      FDTrimestralRetencaoIRPJ.AsFloat := FDConsTrimestral.FieldByName('AITRIMES_RETENCAOIRPJ').AsFloat;
+      FDTrimestralRetencoes.AsFloat := FDConsTrimestral.FieldByName('AITRIMES_RETENCAOIMPOSTO').AsFloat;
       FDTrimestralAdicionalIRPJ.AsFloat:= FDConsTrimestral.FieldByName('AITRIMES_ADICIONALIRPJ').AsFloat;
       end
    else
       begin
-      FDTrimestralRetencaoIRPJ.AsFloat := FDConsTrimestral.FieldByName('AITRIMES_RETENCAOCSLL').AsFloat;
+      FDTrimestralRetencoes.AsFloat := FDConsTrimestral.FieldByName('AITRIMES_RETENCAOIMPOSTO').AsFloat;
       FDTrimestralAdicionalIRPJ.AsFloat:= 0;
       end;
 
@@ -1160,6 +1171,12 @@ FDTrimestral.FieldByName('ALIQIMPOSTO').EditMask := ',0.00';
 
 TFloatField(FDTrimestral.FieldByName('VALORIMPOSTO')).DisplayFormat := ',0.00';
 FDTrimestral.FieldByName('VALORIMPOSTO').EditMask := ',0.00';
+
+TFloatField(FDTrimestral.FieldByName('RETENCOES')).DisplayFormat := ',0.00';
+FDTrimestral.FieldByName('RETENCOES').EditMask := ',0.00';
+
+TFloatField(FDTrimestral.FieldByName('ADICIONALIRPJ')).DisplayFormat := ',0.00';
+FDTrimestral.FieldByName('ADICIONALIRPJ').EditMask := ',0.00';
 
 finally
    FreeAndNil(FDConsTrimestral);
@@ -1180,7 +1197,7 @@ var
 begin
 vloFuncoes.pcdCriaFDQueryExecucao(FDEmpresa, vgConexao);
 try
-if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARF then
+if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARFMensal then
    begin
    FDEmpresa                      := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
    poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(FDMensalMes.AsInteger, StrToInt(FDMensalAno.AsString));
@@ -1225,7 +1242,69 @@ if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARF then
    end
 else
    begin
-   vloFuncoes.fncMensagemSistema('O valor mínimo para arrecadação do DARF é de R$:' + FormatFloat(',0.00', ValorMinimoPagamentoDARF) + '.' + #13 +
+   vloFuncoes.fncMensagemSistema('O valor mínimo para arrecadação do DARF é de R$:' + FormatFloat(',0.00', ValorMinimoPagamentoDARFMensal) + '.' + #13 +
+                                 'Acumule o valor na apuração do mês seguinte');
+   end;
+
+finally
+   FreeAndNil(FDEmpresa);
+   end;
+end;
+
+procedure TFImpostos.pcdImpressaoDARFTrimestral;
+var
+   FDEmpresa         : TFDQuery;
+   poVariaveis       : TVariaveisRelatorioImposto;
+begin
+vloFuncoes.pcdCriaFDQueryExecucao(FDEmpresa, vgConexao);
+try
+if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARFTrimestral then
+   begin
+   FDEmpresa                      := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
+//   TProcessamento.pcdApuraMesTrimestre(FDTrimestralTrimestre.AsInteger, FDTrimestralAno.AsString, vgConexao);
+   poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(FDMensalMes.AsInteger, StrToInt(FDMensalAno.AsString));
+   poVariaveis.vgsCPFCNPJ	        := FDEmpresa.FieldByName('EMP_CGC').AsString;
+   poVariaveis.vgsNomeImposto     := FDMensalImposto.AsString;
+   poVariaveis.vgsDomicioTrib     := FDEmpresa.FieldByName('EMP_CIDADE').AsString;
+
+   if Trim(poVariaveis.vgsNomeImposto) = 'PIS' then
+      poVariaveis.vgsCodReceita   := '8109'
+   else
+      poVariaveis.vgsCodReceita   := '2172';
+
+   poVariaveis.vgsNome	          := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
+   poVariaveis.vgdValorPrincipal  := FDMensalValorImposto.AsFloat;
+   poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894';
+
+   try
+   Application.CreateForm(TFComplementos, FComplementos);
+   FComplementos.ShowModal;
+   finally
+      FreeAndNil(FComplementos);
+      end;
+
+   poVariaveis.vgsReferencia      := vgsReferencia;
+   poVariaveis.vgsVencimento      := FormatDateTime('dd/mm/yyyy', StrToDate(vgsVencimentos));
+   poVariaveis.vgdMulta	          := vgdMulta;
+   poVariaveis.vgdJuros	          := vgdJuros;
+   poVariaveis.vgdTotal	          := poVariaveis.vgdValorPrincipal + (poVariaveis.vgdMulta + poVariaveis.vgdJuros);
+
+   if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3') then
+      begin
+      TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
+      DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
+      DMPrincipal.frxReport1.ShowReport(True);
+      end
+   else
+      begin
+      vloFuncoes.fncMensagemSistema('O DARF não foi localizado em: ' + ExtractFilePath(Application.ExeName) + 'Relatorios\'+
+                                    ', copie o arquivo GuiaImposto.fr3 para o local indicado');
+      Abort;
+      end;
+   end
+else
+   begin
+   vloFuncoes.fncMensagemSistema('O valor mínimo para arrecadação do DARF é de R$:' + FormatFloat(',0.00', ValorMinimoPagamentoDARFTrimestral) + '.' + #13 +
                                  'Acumule o valor na apuração do mês seguinte');
    end;
 

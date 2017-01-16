@@ -14,7 +14,6 @@ type TProcessamento = class
       class procedure pcdMesesTrimestre(piTrimestre: Integer; var poFDMemTable: TFDMemTable);
       class procedure pcdApuraImpostoTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable; poConexao: TFDConnection);
       class procedure pcdApuraImpostoMensal(piMes: Integer; psAno: String; var poFDMemTable: TFDMemTable; poConexao: TFDConnection);
-      class procedure pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable); static;
       class function fncCalculaIRPJ(var vldPresuncaoIR, vldAliqIRPJ, vldValorApurado, vldReceitaFinac, vldAdicionalIR, vldDeducaoIR, vldBaseImposto: Double): Double;
     class function fncCalculaCSLL(var vldPresuncaoIR, vldAliqCSLL,
       vldValorApurado, vldDeducaoCSLL, vldBaseImposto: Double): Double; static;
@@ -22,6 +21,7 @@ type TProcessamento = class
       class var vgTipoSelecionados : String;
       class var vgdValorDigitadoTrimestral : Double;
       class var vgbRecalcula : Boolean;
+      class procedure pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable); static;
       class function fncRetornaDataFinal(piMes, piAno: Integer): String;
       class function fncProcessaTrimestre(psEmpresa: String; piTrimestre: Integer; psAno: String; var poMemTable : TFDMemTable; pdDedecaoCSLL, pdDeducaoIRPJ, pdReceitaFinanc : Double; const poConexao: TFDConnection) : Boolean;
       class function fncProcessaMes(psEmpresa: String; piMes: Integer; psAno: String; var poMemTable : TFDMemTable; const poConexao: TFDConnection) : Boolean;
