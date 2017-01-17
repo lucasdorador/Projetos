@@ -120,7 +120,6 @@ type
     edtConsultaTrimestral_Trimestre: TSpinEdit;
     edtConsultaTrimestral_Ano: TMaskEdit;
     btnImposto_Voltar: TBitBtn;
-    BitBtn1: TBitBtn;
     btnImpostoTri_Gravar: TBitBtn;
     btnImpostoTri_Voltar: TBitBtn;
     FDTrimestralEmpresa: TStringField;
@@ -134,6 +133,9 @@ type
     FDTrimestralAdicionalIRPJ: TFloatField;
     FDTrimestralRetencoes: TFloatField;
     FDTrimestralValorImposto: TFloatField;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -171,6 +173,8 @@ type
     procedure btnImpostoTri_GravarClick(Sender: TObject);
     procedure ImpressoDARF1Click(Sender: TObject);
     procedure ImpressodoDARF1Click(Sender: TObject);
+    procedure edtMesEnter(Sender: TObject);
+    procedure edtDeducaoIRPJEnter(Sender: TObject);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
@@ -459,6 +463,7 @@ for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
 
 TProcessamento.vgTipoSelecionados := vlTipos;
 TProcessamento.fncProcessaMes(vgEmpresa, edtMes.Value, edtAnoMensal.Text, FDApuracaoMensal, vgConexao);
+dbImpostosMensal.DataSource := dsApuracaoMensal;
 
 TFloatField(FDApuracaoMensal.FieldByName('VALORAPURADO')).DisplayFormat := ',0.00';
 FDApuracaoMensal.FieldByName('VALORAPURADO').EditMask := ',0.00';
@@ -511,7 +516,9 @@ for I := Low(vgsTiposSelecionados) to High(vgsTiposSelecionados) do
 TProcessamento.vgbRecalcula               := False;
 TProcessamento.vgTipoSelecionados         := vlTipos;
 TProcessamento.vgdValorDigitadoTrimestral := 0;
+TProcessamento.vgdValorApurado            := 0;
 TProcessamento.fncProcessaTrimestre(vgEmpresa, edtTrimestre.Value, edtAnoTrimestre.Text, FDApuracaoTrimestral, edtDeducaoCSLL.Value, edtDeducaoIRPJ.Value, edtReceitaFinanc.Value, vgConexao);
+dbImpostosTrimestral.DataSource := dsApuracaoTrimestral;
 pcdEditaFormatoTabelaTrimestral;
 
 FDApuracaoTrimestral.First;
@@ -638,6 +645,23 @@ FDTrimestral.Filtered := False;
 edtConsultaTrimestral_Ano.Clear;
 end;
 
+procedure TFImpostos.edtDeducaoIRPJEnter(Sender: TObject);
+begin
+edtDeducaoIRPJ.Value   := 0;
+edtDeducaoCSLL.Value   := 0;
+edtReceitaFinanc.Value := 0;
+edtTrimestre.Value     := 1;
+edtAnoTrimestre.Clear;
+dbImpostosTrimestral.DataSource := nil;
+end;
+
+procedure TFImpostos.edtMesEnter(Sender: TObject);
+begin
+edtMes.Clear;
+edtAnoMensal.Clear;
+dbImpostosMensal.DataSource := nil;
+end;
+
 procedure TFImpostos.edtPresuncaoCSLLExit(Sender: TObject);
 begin
 pcdValidaValorMaximoEdit(edtPresuncaoCSLL, 100);
@@ -762,7 +786,7 @@ end;
 
 procedure TFImpostos.ImpressodoDARF1Click(Sender: TObject);
 begin
-//Apuração Trimestral
+pcdImpressaoDARFTrimestral;
 end;
 
 procedure TFImpostos.Paletas(vPaleta: TTabSheet);
@@ -1050,6 +1074,7 @@ Recno := FDApuracaoTrimestral.RecNo;
 FDApuracaoTrimestral.DisableControls;
 FDApuracaoTrimestral.First;
 pcdAtualizaValorBaseCalculoTrimestral;
+TProcessamento.vgdValorApurado := FDApuracaoTrimestral.FieldByName('VALORAPURADO').AsFloat;
 
 if FDApuracaoTrimestral.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoTrimestral.FieldByName('BASECALCULO').AsFloat then
    begin
@@ -1063,8 +1088,6 @@ if FDApuracaoTrimestral.FieldByName('VALORAPURADO').AsFloat <> FDApuracaoTrimest
    FDApuracaoTrimestral.First;
    vgdBaseCalculo := FDApuracaoMensalBaseCalculo.AsFloat;
    vgbInserir     := False;
-   dbImpostosTrimestral.SelectedIndex := 2;
-   dbImpostosTrimestral.SetFocus;
    end;
 
 FDApuracaoTrimestral.RecNo := Recno;
@@ -1258,22 +1281,22 @@ var
 begin
 vloFuncoes.pcdCriaFDQueryExecucao(FDEmpresa, vgConexao);
 try
-if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARFTrimestral then
+if FDTrimestralValorImposto.AsFloat > ValorMinimoPagamentoDARFTrimestral then
    begin
    FDEmpresa                      := TConsultas.fncConsultaDadosEmpresa(vgEmpresa, vgConexao);
-//   TProcessamento.pcdApuraMesTrimestre(FDTrimestralTrimestre.AsInteger, FDTrimestralAno.AsString, vgConexao);
-   poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(FDMensalMes.AsInteger, StrToInt(FDMensalAno.AsString));
-   poVariaveis.vgsCPFCNPJ	        := FDEmpresa.FieldByName('EMP_CGC').AsString;
-   poVariaveis.vgsNomeImposto     := FDMensalImposto.AsString;
+   TProcessamento.pcdApuraMesTrimestre(FDTrimestralTrimestre.AsInteger, FDTrimestralAno.AsString);
+   poVariaveis.vgsPeriodoApuracao := TProcessamento.vldPeriodoTrimestreFinal;
+   poVariaveis.vgsCPFCNPJ	        := vloFuncoes.fncFormata_CPFCNPJ(FDEmpresa.FieldByName('EMP_CGC').AsString, 'J');
+   poVariaveis.vgsNomeImposto     := FDTrimestralImposto.AsString;
    poVariaveis.vgsDomicioTrib     := FDEmpresa.FieldByName('EMP_CIDADE').AsString;
 
-   if Trim(poVariaveis.vgsNomeImposto) = 'PIS' then
-      poVariaveis.vgsCodReceita   := '8109'
+   if Trim(Copy(poVariaveis.vgsNomeImposto,1,4)) = 'IRPJ' then
+      poVariaveis.vgsCodReceita   := '2089'
    else
-      poVariaveis.vgsCodReceita   := '2172';
+      poVariaveis.vgsCodReceita   := '2372';
 
-   poVariaveis.vgsNome	          := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + FDEmpresa.FieldByName('EMP_TELEFONE').AsString;
-   poVariaveis.vgdValorPrincipal  := FDMensalValorImposto.AsFloat;
+   poVariaveis.vgsNome	          := FDEmpresa.FieldByName('EMP_DESCRICAO').AsString + #13 + vloFuncoes.fncFormataFONE(FDEmpresa.FieldByName('EMP_TELEFONE').AsString);
+   poVariaveis.vgdValorPrincipal  := FDTrimestralValorImposto.AsFloat;
    poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894';
 
    try
@@ -1293,6 +1316,7 @@ if FDMensalValorImposto.AsFloat > ValorMinimoPagamentoDARFTrimestral then
       begin
       TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
       DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
+//      DMPrincipal.frxReport1.PrintOptions.PrintMode := pmJoin;
       DMPrincipal.frxReport1.ShowReport(True);
       end
    else

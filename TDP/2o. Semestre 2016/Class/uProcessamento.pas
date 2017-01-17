@@ -9,8 +9,6 @@ uses
 type TProcessamento = class
    private
       class var vloFuncoes : TFuncoesGerais;
-      class var vldPeriodoTrimestreInicial : String;
-      class var vldPeriodoTrimestreFinal : String;
       class procedure pcdMesesTrimestre(piTrimestre: Integer; var poFDMemTable: TFDMemTable);
       class procedure pcdApuraImpostoTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable; poConexao: TFDConnection);
       class procedure pcdApuraImpostoMensal(piMes: Integer; psAno: String; var poFDMemTable: TFDMemTable; poConexao: TFDConnection);
@@ -18,10 +16,13 @@ type TProcessamento = class
     class function fncCalculaCSLL(var vldPresuncaoIR, vldAliqCSLL,
       vldValorApurado, vldDeducaoCSLL, vldBaseImposto: Double): Double; static;
    public
+      class var vldPeriodoTrimestreInicial : String;
+      class var vldPeriodoTrimestreFinal : String;
       class var vgTipoSelecionados : String;
       class var vgdValorDigitadoTrimestral : Double;
       class var vgbRecalcula : Boolean;
-      class procedure pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable); static;
+      class var vgdValorApurado : Double;
+      class procedure pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String);
       class function fncRetornaDataFinal(piMes, piAno: Integer): String;
       class function fncProcessaTrimestre(psEmpresa: String; piTrimestre: Integer; psAno: String; var poMemTable : TFDMemTable; pdDedecaoCSLL, pdDeducaoIRPJ, pdReceitaFinanc : Double; const poConexao: TFDConnection) : Boolean;
       class function fncProcessaMes(psEmpresa: String; piMes: Integer; psAno: String; var poMemTable : TFDMemTable; const poConexao: TFDConnection) : Boolean;
@@ -70,7 +71,7 @@ else
 Result := vlDataFinal;
 end;
 
-class procedure TProcessamento.pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String; var poFDMemTable: TFDMemTable);
+class procedure TProcessamento.pcdApuraMesTrimestre(piTrimestre: Integer; psAno: String);
 var
    vlDataIni, vlDataFim : String;
 begin
@@ -166,7 +167,7 @@ if not poMemTable.IsEmpty then
 vloFuncoes := TFuncoesGerais.Create(poConexao);
 vloFuncoes.pcdCriaFDQueryExecucao(FDConsultaNFFiscal, poConexao);
 try
-pcdApuraMesTrimestre(piTrimestre, psAno, poMemTable);
+pcdApuraMesTrimestre(piTrimestre, psAno);
 vldValorApurado      := 0;
 vldAliqIRPJ          := 0;
 vldAliqCSLL          := 0;
@@ -301,7 +302,10 @@ poMemTable.FieldByName('AdicionalIRPJ').AsFloat := vldAdicionalIR;
 poMemTable.FieldByName('DeducoesImposto').AsFloat := vldDeducaoIRPJ;
 poMemTable.FieldByName('ValorImposto').AsFloat := vldValorIRPJ;
 poMemTable.FieldByName('BaseImposto').AsFloat := vldBaseImpostoIRPJ;
-poMemTable.FieldByName('ValorApurado').AsFloat := vldValorApurado;
+if vgdValorApurado > 0 then
+   poMemTable.FieldByName('ValorApurado').AsFloat := vgdValorApurado
+else
+   poMemTable.FieldByName('ValorApurado').AsFloat := vldValorApurado;
 poMemTable.Post;
 
 
@@ -313,7 +317,10 @@ poMemTable.FieldByName('AdicionalIRPJ').AsFloat := 0;
 poMemTable.FieldByName('DeducoesImposto').AsFloat := vldDeducaoCSLL;
 poMemTable.FieldByName('ValorImposto').AsFloat := vldValorCSLL;
 poMemTable.FieldByName('BaseImposto').AsFloat := vldBaseImpostoCSLL;
-poMemTable.FieldByName('ValorApurado').AsFloat := vldValorApurado;
+if vgdValorApurado > 0 then
+   poMemTable.FieldByName('ValorApurado').AsFloat := vgdValorApurado
+else
+   poMemTable.FieldByName('ValorApurado').AsFloat := vldValorApurado;
 poMemTable.Post;
 end;
 
