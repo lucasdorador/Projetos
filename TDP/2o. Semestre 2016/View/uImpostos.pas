@@ -9,7 +9,7 @@ uses
   Vcl.DBGrids, uTDPNumberEditXE8, Vcl.CheckLst, uFuncoesFaciliteXE8,
   FireDAc.Comp.Client, UConexaoXE8, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
-  FireDAC.DApt.Intf, FireDAC.Comp.DataSet;
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, Vcl.Touch.Keyboard;
 
 type
   TVetorString = Array of String;
@@ -136,6 +136,44 @@ type
     Panel1: TPanel;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
+    tsAvulso: TTabSheet;
+    GroupBox13: TGroupBox;
+    GroupBox14: TGroupBox;
+    rbAvulso_Mensal: TRadioButton;
+    rbAvulso_Trimestral: TRadioButton;
+    Label19: TLabel;
+    Label20: TLabel;
+    GroupBox15: TGroupBox;
+    lblAvulso_TrimMes: TLabel;
+    Label22: TLabel;
+    edtAvulso_Ano: TMaskEdit;
+    edtAvulso_TrimMes: TSpinEdit;
+    Label23: TLabel;
+    Label24: TLabel;
+    edtAvulso_Referencia: TEdit;
+    edtAvulso_CodigoDARF: TEdit;
+    edtAvulso_Observacao: TEdit;
+    GroupBox16: TGroupBox;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    edtAvulso_RazaoNome: TEdit;
+    edtAvulso_Telefone: TEdit;
+    edtAvulso_CPFCNPJ: TEdit;
+    edtAvulso_DomicioBancario: TEdit;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    edtAvulso_ValorPrincipal: TDPTNumberEditXE8;
+    edtAvulso_Multa: TDPTNumberEditXE8;
+    edtAvulso_Juros: TDPTNumberEditXE8;
+    edtAvulso_ValorTotal: TDPTNumberEditXE8;
+    btnAvulso_Gerar: TBitBtn;
+    btnAvulso_Voltar: TBitBtn;
+    edtAvulso_Vencimento: TMaskEdit;
+    chkAvulso_CodigoBarra: TCheckBox;
     procedure btnsairClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConfigurarClick(Sender: TObject);
@@ -175,10 +213,24 @@ type
     procedure ImpressodoDARF1Click(Sender: TObject);
     procedure edtMesEnter(Sender: TObject);
     procedure edtDeducaoIRPJEnter(Sender: TObject);
+    procedure rbAvulso_MensalClick(Sender: TObject);
+    procedure rbAvulso_TrimestralClick(Sender: TObject);
+    procedure edtAvulso_TrimMesEnter(Sender: TObject);
+    procedure edtAvulso_CPFCNPJKeyPress(Sender: TObject; var Key: Char);
+    procedure tsAvulsoShow(Sender: TObject);
+    procedure edtAvulso_CPFCNPJExit(Sender: TObject);
+    procedure edtAvulso_CPFCNPJEnter(Sender: TObject);
+    procedure edtAvulso_ValorPrincipalExit(Sender: TObject);
+    procedure edtAvulso_MultaExit(Sender: TObject);
+    procedure edtAvulso_JurosExit(Sender: TObject);
+    procedure edtAvulso_TelefoneExit(Sender: TObject);
+    procedure edtAvulso_TelefoneEnter(Sender: TObject);
+    procedure tsAvulsoEnter(Sender: TObject);
+    procedure btnAvulso_GerarClick(Sender: TObject);
   private
     vloConexao : TConexaoXE8;
     vgConexao :  TFDConnection;
-    vgEmpresa : String;
+    vgEmpresa, vgsApuracao : String;
     vloFuncoes : TFuncoesGerais;
     vgsTiposSelecionados : TVetorString;
     vgdBaseCalculo : Double;
@@ -203,6 +255,8 @@ type
     procedure pcdCarregaDadosTrimestral;
     procedure pcdCarregaDadosTelaInicial;
     procedure pcdImpressaoDARFTrimestral;
+    procedure pcdLimpaDadosAvulso;
+    procedure pcdImpressaoDARFAvulso;
     { Private declarations }
   public
     { Emissao de Guias }
@@ -291,6 +345,8 @@ while not FDApuracaoMensal.Eof do
    FDApuracaoMensal.Next;
    end;
 
+vgsApuracao := 'Mensal';
+
 //if vloFuncoes.fncMessageDlgDefult('Apuração gravada com sucesso, Deseja Emitir o DARF dos impostos?',
 //                                  mtConfirmation, mbYesNo, 1, MB_DEFBUTTON2, True) = mrYes then
 //   begin
@@ -346,6 +402,25 @@ end;
 procedure TFImpostos.BitBtn1Click(Sender: TObject);
 begin
 pcdVoltar;
+end;
+
+procedure TFImpostos.btnAvulso_GerarClick(Sender: TObject);
+begin
+if edtAvulso_TrimMes.Text = '' then
+   begin
+   vloFuncoes.fncMensagemSistema('Digite um Mês/Trimestre para continuar.');
+   edtAvulso_TrimMes.SetFocus;
+   Abort;
+   end;
+
+if Trim(edtAvulso_Ano.Text) = '' then
+   begin
+   vloFuncoes.fncMensagemSistema('Digite um ano para continuar.');
+   edtAvulso_Ano.SetFocus;
+   Abort;
+   end;
+
+pcdImpressaoDARFAvulso;
 end;
 
 procedure TFImpostos.btnConfigurarClick(Sender: TObject);
@@ -409,6 +484,8 @@ while not FDApuracaoTrimestral.Eof do
 
    FDApuracaoTrimestral.Next;
    end;
+
+vgsApuracao := 'Trimestral';
 
 finally
    FreeAndNil(vloCRUDTrimestral);
@@ -609,6 +686,61 @@ begin
 pcdValidaValorMaximoEdit(edtAliquotaPIS, 100);
 end;
 
+procedure TFImpostos.edtAvulso_CPFCNPJEnter(Sender: TObject);
+begin
+edtAvulso_CPFCNPJ.Text := vloFuncoes.fncRemoveMascaraCPFCNPJ(edtAvulso_CPFCNPJ.Text);
+end;
+
+procedure TFImpostos.edtAvulso_CPFCNPJExit(Sender: TObject);
+begin
+if Length(edtAvulso_CPFCNPJ.Text) = 14 then
+   edtAvulso_CPFCNPJ.Text := vloFuncoes.fncFormata_CPFCNPJ(edtAvulso_CPFCNPJ.Text, 'J')
+else if Length(edtAvulso_CPFCNPJ.Text) = 11 then
+   edtAvulso_CPFCNPJ.Text := vloFuncoes.fncFormata_CPFCNPJ(edtAvulso_CPFCNPJ.Text, 'F')
+end;
+
+procedure TFImpostos.edtAvulso_CPFCNPJKeyPress(Sender: TObject; var Key: Char);
+begin
+Key := vloFuncoes.fncApenasNumeroKeyPress(Key);
+end;
+
+procedure TFImpostos.edtAvulso_JurosExit(Sender: TObject);
+begin
+edtAvulso_ValorTotal.Value := (edtAvulso_ValorPrincipal.Value + edtAvulso_Multa.Value + edtAvulso_Juros.Value);
+end;
+
+procedure TFImpostos.edtAvulso_MultaExit(Sender: TObject);
+begin
+edtAvulso_ValorTotal.Value := (edtAvulso_ValorPrincipal.Value + edtAvulso_Multa.Value + edtAvulso_Juros.Value);
+end;
+
+procedure TFImpostos.edtAvulso_TelefoneEnter(Sender: TObject);
+begin
+edtAvulso_Telefone.Text := vloFuncoes.fncRemoveMascaraFONE(edtAvulso_Telefone.Text);
+end;
+
+procedure TFImpostos.edtAvulso_TelefoneExit(Sender: TObject);
+begin
+edtAvulso_Telefone.Text := vloFuncoes.fncFormataFONE(edtAvulso_Telefone.Text);
+end;
+
+procedure TFImpostos.edtAvulso_TrimMesEnter(Sender: TObject);
+begin
+if Trim(edtAvulso_RazaoNome.Text) <> '' then
+   begin
+   if vloFuncoes.fncMessageDlgDefult('Deseja limpar os dados do ultimo imposto gerado?',
+                                     mtConfirmation, mbYesNo, 1, MB_DEFBUTTON2, True) = mrYes then
+      pcdLimpaDadosAvulso;
+   end
+else
+   pcdLimpaDadosAvulso;
+end;
+
+procedure TFImpostos.edtAvulso_ValorPrincipalExit(Sender: TObject);
+begin
+edtAvulso_ValorTotal.Value := (edtAvulso_ValorPrincipal.Value + edtAvulso_Multa.Value + edtAvulso_Juros.Value);
+end;
+
 procedure TFImpostos.edtConsultaMensal_AnoExit(Sender: TObject);
 begin
 if ((Trim(edtConsultaMensal_Mes.Text) <> '') and
@@ -730,8 +862,12 @@ if ((Key = VK_F4) and (PageControl1.ActivePage = tsPrincipal) and (btnImpostos.E
    btnImpostosClick(Sender)
 else if ((Key = VK_F4) and (PageControl1.ActivePage = tsImpostos)) then
    PageControl2.ActivePage := tsApuraTrimestral;
-if ((Key = VK_F5) and (btnRelatorios.Enabled)) then
-   btnRelatoriosClick(Sender);
+if ((Key = VK_F5) and (PageControl1.ActivePage = tsPrincipal)  and (btnRelatorios.Enabled)) then
+   btnRelatoriosClick(Sender)
+else if ((Key = VK_F5) and (PageControl1.ActivePage = tsImpostos)) then
+   begin
+   PageControl2.ActivePage := tsAvulso;
+   end;
 end;
 
 procedure TFImpostos.FormKeyPress(Sender: TObject; var Key: Char);
@@ -768,6 +904,7 @@ pcdCarregaVetorTipos(vgEmpresa);
 pcdCarregaDadosTelaInicial;
 StatusBar1.Panels[0].Text := 'Empresa: ' + vgEmpresa + ' - ' + TConsultas.fncConsultaDescricaoEmpresa(vgEmpresa, vgConexao);
 Paletas(tsPrincipal);
+pcdLimpaDadosAvulso;
 edtConsultaMensal_Mes.SetFocus;
 end;
 
@@ -1096,6 +1233,16 @@ finally
    end;
 end;
 
+procedure TFImpostos.tsAvulsoEnter(Sender: TObject);
+begin
+rbAvulso_MensalClick(sender);
+end;
+
+procedure TFImpostos.tsAvulsoShow(Sender: TObject);
+begin
+//rbAvulso_MensalClick(Sender);
+end;
+
 procedure TFImpostos.pcdCarregaDadosMensal;
 var
    FDConsMensal : TFDQuery;
@@ -1211,6 +1358,33 @@ procedure TFImpostos.pcdVoltar;
 begin
 Paletas(tsPrincipal);
 pcdCarregaDadosTelaInicial;
+
+if vgsApuracao = 'Trimestral' then
+   begin
+   if edtConsultaTrimestral_Trimestre.CanFocus then
+      edtConsultaTrimestral_Trimestre.SetFocus;
+   end
+else
+   if edtConsultaMensal_Mes.CanFocus then
+      edtConsultaMensal_Mes.SetFocus;
+end;
+
+procedure TFImpostos.rbAvulso_MensalClick(Sender: TObject);
+begin
+rbAvulso_Mensal.Checked    := True;
+lblAvulso_TrimMes.Caption  := 'Mês';
+edtAvulso_TrimMes.MaxValue := 12;
+edtAvulso_TrimMes.Value    := 1;
+edtAvulso_TrimMes.SetFocus;
+end;
+
+procedure TFImpostos.rbAvulso_TrimestralClick(Sender: TObject);
+begin
+rbAvulso_Trimestral.Checked:= True;
+lblAvulso_TrimMes.Caption  := 'Trimestre';
+edtAvulso_TrimMes.MaxValue := 4;
+edtAvulso_TrimMes.Value    := 1;
+edtAvulso_TrimMes.SetFocus;
 end;
 
 procedure TFImpostos.pcdImpressaoDARFMensal;
@@ -1337,10 +1511,82 @@ finally
    end;
 end;
 
+procedure TFImpostos.pcdImpressaoDARFAvulso;
+var
+   poVariaveis       : TVariaveisRelatorioImposto;
+begin
+if FDTrimestralValorImposto.AsFloat > ValorMinimoPagamentoDARFMensal then
+   begin
+   if rbAvulso_Mensal.Checked then
+      begin
+      poVariaveis.vgsPeriodoApuracao := TProcessamento.fncRetornaDataFinal(edtAvulso_TrimMes.Value, StrToInt(edtAvulso_Ano.Text));
+      end
+   else
+      begin
+      TProcessamento.pcdApuraMesTrimestre(edtAvulso_TrimMes.Value, edtAvulso_Ano.Text);
+      poVariaveis.vgsPeriodoApuracao := TProcessamento.vldPeriodoTrimestreFinal;
+      end;
+
+   poVariaveis.vgsCPFCNPJ	        := edtAvulso_CPFCNPJ.Text;
+   poVariaveis.vgsNomeImposto     := edtAvulso_Observacao.Text;
+   poVariaveis.vgsDomicioTrib     := edtAvulso_DomicioBancario.Text;
+   poVariaveis.vgsCodReceita      := edtAvulso_CodigoDARF.Text;
+   poVariaveis.vgsNome	          := edtAvulso_RazaoNome.Text + #13 + edtAvulso_Telefone.Text;
+   poVariaveis.vgdValorPrincipal  := edtAvulso_ValorPrincipal.Value;
+   if chkAvulso_CodigoBarra.Checked then
+      poVariaveis.vgsCodigoBarra     := '4561237894564561237894564561237894564561237894'
+   else
+      poVariaveis.vgsCodigoBarra     := '0';
+
+   poVariaveis.vgsReferencia      := edtAvulso_Referencia.Text;
+   poVariaveis.vgsVencimento      := edtAvulso_Vencimento.Text;
+   poVariaveis.vgdMulta	          := edtAvulso_Multa.Value;;
+   poVariaveis.vgdJuros	          := edtAvulso_Juros.Value;
+   poVariaveis.vgdTotal	          := edtAvulso_ValorTotal.Value;
+
+   if FileExists(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3') then
+      begin
+      TRelatorios.pcdGeraDadosImprimirImposto(poVariaveis, DMPrincipal.FDDARF);
+      DMPrincipal.frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) + 'Relatorios\GuiaImposto.fr3');
+//      DMPrincipal.frxReport1.PrintOptions.PrintMode := pmJoin;
+      DMPrincipal.frxReport1.ShowReport(True);
+      end
+   else
+      begin
+      vloFuncoes.fncMensagemSistema('O DARF não foi localizado em: ' + ExtractFilePath(Application.ExeName) + 'Relatorios\'+
+                                    ', copie o arquivo GuiaImposto.fr3 para o local indicado');
+      Abort;
+      end;
+   end
+else
+   begin
+   vloFuncoes.fncMensagemSistema('O valor mínimo para arrecadação do DARF é de R$:' + FormatFloat(',0.00', ValorMinimoPagamentoDARFTrimestral) + '.' + #13 +
+                                 'Acumule o valor na apuração do mês seguinte');
+   end;
+end;
+
 procedure TFImpostos.pcdCarregaDadosTelaInicial;
 begin
 pcdCarregaDadosMensal;
 pcdCarregaDadosTrimestral;
+end;
+
+procedure TFImpostos.pcdLimpaDadosAvulso;
+begin
+edtAvulso_Ano.Clear;
+edtAvulso_TrimMes.Value := 1;
+edtAvulso_Referencia.Clear;
+edtAvulso_CodigoDARF.Clear;
+edtAvulso_Observacao.Clear;
+edtAvulso_RazaoNome.Clear;
+edtAvulso_Telefone.Clear;
+edtAvulso_CPFCNPJ.Clear;
+edtAvulso_DomicioBancario.Clear;
+edtAvulso_ValorPrincipal.Value := 0;
+edtAvulso_Multa.Value := 0;
+edtAvulso_Juros.Value := 0;
+edtAvulso_ValorTotal.Value := 0;
+edtAvulso_Vencimento.Clear;
 end;
 
 end.

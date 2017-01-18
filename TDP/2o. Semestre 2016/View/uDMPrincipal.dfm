@@ -10,8 +10,8 @@ object DMPrincipal: TDMPrincipal
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Padr'#227'o'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 42751.929416180550000000
-    ReportOptions.LastChange = 42751.929416180550000000
+    ReportOptions.CreateDate = 42752.931638773150000000
+    ReportOptions.LastChange = 42752.931638773150000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -67,7 +67,69 @@ object DMPrincipal: TDMPrincipal
     end
   end
   object FDDARF: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'PeriodoApuracao'
+        DataType = ftString
+        Size = 11
+      end
+      item
+        Name = 'CPFCNPJ'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Referencia'
+        DataType = ftString
+        Size = 21
+      end
+      item
+        Name = 'Vencimento'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'NomeImposto'
+        DataType = ftString
+        Size = 52
+      end
+      item
+        Name = 'CodReceita'
+        DataType = ftString
+        Size = 6
+      end
+      item
+        Name = 'NomeRazao'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'ValorPrincipal'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Multa'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Juros'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Total'
+        DataType = ftFloat
+      end
+      item
+        Name = 'CodigoBarras'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'DomicioTrib'
+        DataType = ftString
+        Size = 100
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -86,16 +148,18 @@ object DMPrincipal: TDMPrincipal
       FieldName = 'CPFCNPJ'
     end
     object FDDARFReferencia: TStringField
+      DisplayWidth = 21
       FieldName = 'Referencia'
-      Size = 30
+      Size = 21
     end
     object FDDARFVencimento: TStringField
       FieldName = 'Vencimento'
       Size = 10
     end
     object FDDARFNomeImposto: TStringField
+      DisplayWidth = 52
       FieldName = 'NomeImposto'
-      Size = 15
+      Size = 52
     end
     object FDDARFCodReceita: TStringField
       FieldName = 'CodReceita'
