@@ -15,6 +15,7 @@ object FControleCheques: TFControleCheques
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -903,5 +904,15 @@ object FControleCheques: TFControleCheques
         Width = 130
         Visible = True
       end>
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 296
+    Top = 232
+  end
+  object FBScript: TIBScript
+    Terminator = ';'
+    Left = 296
+    Top = 280
   end
 end

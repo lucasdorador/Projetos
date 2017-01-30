@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2017/01/30 10:43:01.905,=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2017/01/30 10:44:51.497,F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\uControleCheques.pas=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2017/01/30 10:44:51.497,F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\uControleCheques.dfm=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2017/01/30 10:44:58.645,F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\ControleCheques.dproj=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>2017/01/30 10:43:01.000.905,=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/01/30 10:44:51.000.497,C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\uControleCheques.pas</Transaction>
+    <Transaction>2017/01/30 10:44:51.000.497,C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.dfm=F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\uControleCheques.dfm</Transaction>
+    <Transaction>2017/01/30 10:44:58.000.645,C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\Lucas\Projetos\trunk\Pessoal\ControleCheques\ControleCheques.dproj</Transaction>
   </Transactions>
 </BorlandProject>
