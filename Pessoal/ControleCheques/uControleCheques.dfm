@@ -142,6 +142,7 @@ object FControleCheques: TFControleCheques
       Top = 26
       Width = 586
       Height = 25
+      Alignment = taLeftJustify
       BevelWidth = 2
       TabOrder = 7
     end
@@ -150,7 +151,9 @@ object FControleCheques: TFControleCheques
       Top = 74
       Width = 81
       Height = 21
+      MaxLength = 15
       TabOrder = 1
+      OnExit = edtContaCorrenteExit
     end
     object btnContaCorrente: TBitBtn
       Left = 96
@@ -217,6 +220,7 @@ object FControleCheques: TFControleCheques
       Top = 71
       Width = 555
       Height = 25
+      Alignment = taLeftJustify
       BevelWidth = 2
       TabOrder = 9
     end
@@ -226,14 +230,17 @@ object FControleCheques: TFControleCheques
       Width = 50
       Height = 21
       CharCase = ecUpperCase
+      MaxLength = 10
       TabOrder = 0
       Text = ''
+      OnExit = edtBancoExit
     end
     object edtNumeroCheque: TEdit
       Left = 9
       Top = 116
       Width = 89
       Height = 21
+      MaxLength = 8
       TabOrder = 2
     end
     object edtValor: TDPTNumberEditXE8
@@ -904,15 +911,5 @@ object FControleCheques: TFControleCheques
         Width = 130
         Visible = True
       end>
-  end
-  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
-    Provider = 'Forms'
-    Left = 296
-    Top = 232
-  end
-  object FBScript: TIBScript
-    Terminator = ';'
-    Left = 296
-    Top = 280
   end
 end

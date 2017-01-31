@@ -91,6 +91,14 @@
             <Form>FControleCheques</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Class\uTabelas.pas"/>
+        <DCCReference Include="Class\uFuncoes.pas"/>
+        <DCCReference Include="Class\uVariaveis.pas"/>
+        <DCCReference Include="udmPrincipal.pas">
+            <Form>DMPrincipal</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -119,7 +127,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="1">
-                <DeployFile LocalName="Win32\Debug\ControleCheques.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Sinco\Atualizacoes\Fonte Padrao - Comercio\ControleCheques.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ControleCheques.exe</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -501,12 +509,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
