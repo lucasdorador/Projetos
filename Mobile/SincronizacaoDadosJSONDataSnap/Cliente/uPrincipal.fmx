@@ -1,0 +1,201 @@
+object FPrincipal: TFPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  DesignerMasterStyle = 0
+  object tabPrincipal: TTabControl
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = None
+    object tabListagem: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'tabListagem'
+      object ToolBar1: TToolBar
+        Size.Width = 640.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object btnDownload: TSpeedButton
+          Align = Left
+          Size.Width = 80.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'arrowdowntoolbutton'
+          Text = 'btnDownload'
+        end
+        object btnUpload: TSpeedButton
+          Align = Left
+          Position.X = 80.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'arrowuptoolbutton'
+          Text = 'btnUpload'
+        end
+        object btnIncluir: TSpeedButton
+          Align = Right
+          Position.X = 560.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'addtoolbutton'
+          Text = 'btnIncluir'
+          OnClick = btnIncluirClick
+        end
+      end
+      object lsvProdutos: TListView
+        ItemAppearanceClassName = 'TListItemRightDetailAppearance'
+        ItemEditAppearanceClassName = 'TListItemRightDetailDeleteAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 447.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnItemClick = lsvProdutosItemClick
+      end
+    end
+    object tabCadastro: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'tabCadastro'
+      object ToolBar2: TToolBar
+        Size.Width = 640.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object btnVoltar: TSpeedButton
+          Align = Left
+          Size.Width = 73.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'priortoolbutton'
+          OnClick = btnVoltarClick
+        end
+        object btnExcluir: TSpeedButton
+          Align = Right
+          Position.X = 480.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'deleteitembutton'
+          Text = 'btnExcluir'
+          OnClick = btnExcluirClick
+        end
+        object btnSalvar: TSpeedButton
+          Align = Right
+          Position.X = 560.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'playtoolbutton'
+          Text = 'btnSalvar'
+          OnClick = btnSalvarClick
+        end
+      end
+      object lblCodigo: TLabel
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Position.Y = 33.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.Style = [fsBold]
+        Text = 'C'#243'digo'
+      end
+      object edtCodigo: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Top
+        TabOrder = 2
+        Position.Y = 50.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblNome: TLabel
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Position.Y = 72.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Nome'
+      end
+      object edtNome: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Top
+        TabOrder = 4
+        Position.Y = 89.000000000000000000
+        Size.Width = 640.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = dmAcessoDados.qryProdutos
+    ScopeMappings = <>
+    Left = 304
+    Top = 224
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 228
+    Top = 221
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'nome'
+      Control = lsvProdutos
+      FillExpressions = <
+        item
+          SourceMemberName = 'codigo'
+          ControlMemberName = 'Detail'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'codigo'
+      Control = edtCodigo
+      Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'nome'
+      Control = edtNome
+      Track = False
+    end
+  end
+end

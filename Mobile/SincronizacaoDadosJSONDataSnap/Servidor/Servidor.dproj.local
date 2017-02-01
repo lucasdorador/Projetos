@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2017/01/31 22:19:33.687,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:19:36.289,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:19:42.469,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:20:33.905,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\FormUnit1.dfm=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\FormUnit1.dfm</Transaction>
+    <Transaction>2017/01/31 22:20:33.905,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\FormUnit1.pas=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:20:35.227,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\WebModuleUnit1.pas=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:20:35.228,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\WebModuleUnit1.dfm=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\WebModuleUnit1.dfm</Transaction>
+    <Transaction>2017/01/31 22:20:36.171,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\ServerMethodsUnit1.dfm=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.dfm</Transaction>
+    <Transaction>2017/01/31 22:20:36.171,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\ServerMethodsUnit1.pas=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/01/31 22:20:44.883,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Servidor\Servidor.dproj=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
