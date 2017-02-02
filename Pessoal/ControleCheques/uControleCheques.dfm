@@ -1,6 +1,7 @@
 object FControleCheques: TFControleCheques
   Left = 0
   Top = 0
+  ActiveControl = edtBanco
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Controle de Cheques'
@@ -15,6 +16,7 @@ object FControleCheques: TFControleCheques
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   OnShow = FormShow
@@ -136,6 +138,7 @@ object FControleCheques: TFControleCheques
       NumGlyphs = 2
       TabOrder = 6
       TabStop = False
+      OnClick = btnCons_BancosClick
     end
     object PBancos: TPanel
       Left = 104
@@ -154,8 +157,9 @@ object FControleCheques: TFControleCheques
       MaxLength = 15
       TabOrder = 1
       OnExit = edtContaCorrenteExit
+      OnKeyDown = edtContaCorrenteKeyDown
     end
-    object btnContaCorrente: TBitBtn
+    object btnCons_ContaCorrente: TBitBtn
       Left = 96
       Top = 72
       Width = 33
@@ -214,6 +218,7 @@ object FControleCheques: TFControleCheques
       NumGlyphs = 2
       TabOrder = 8
       TabStop = False
+      OnClick = btnCons_ContaCorrenteClick
     end
     object PContaCorrente: TPanel
       Left = 135
@@ -234,6 +239,7 @@ object FControleCheques: TFControleCheques
       TabOrder = 0
       Text = ''
       OnExit = edtBancoExit
+      OnKeyDown = edtBancoKeyDown
     end
     object edtNumeroCheque: TEdit
       Left = 9
@@ -269,6 +275,7 @@ object FControleCheques: TFControleCheques
       TabOrder = 4
       Text = '  /  /    '
       OnEnter = edtDataEnter
+      OnExit = edtDataExit
     end
     object edtCompensacao: TMaskEdit
       Left = 316
@@ -279,6 +286,7 @@ object FControleCheques: TFControleCheques
       MaxLength = 10
       TabOrder = 5
       Text = '  /  /    '
+      OnExit = edtCompensacaoExit
     end
     object btnGravar: TBitBtn
       Left = 7
@@ -286,6 +294,7 @@ object FControleCheques: TFControleCheques
       Width = 224
       Height = 41
       Caption = 'Gravar'
+      Enabled = False
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -483,6 +492,7 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
       TabOrder = 10
+      OnClick = btnGravarClick
     end
     object btnExcluir: TBitBtn
       Left = 237
@@ -490,6 +500,7 @@ object FControleCheques: TFControleCheques
       Width = 224
       Height = 41
       Caption = 'Excluir'
+      Enabled = False
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -687,6 +698,7 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
       TabOrder = 11
+      OnClick = btnExcluirClick
     end
     object btnSair: TBitBtn
       Left = 467
@@ -836,15 +848,18 @@ object FControleCheques: TFControleCheques
     Width = 698
     Height = 360
     Align = alClient
+    DataSource = dsCheques
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
+        FieldName = 'CH_BANCO'
         Title.Caption = 'Banco'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -856,6 +871,7 @@ object FControleCheques: TFControleCheques
       end
       item
         Expanded = False
+        FieldName = 'CH_CONTACORRENTE'
         Title.Caption = 'Conta Corrente'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -867,6 +883,7 @@ object FControleCheques: TFControleCheques
       end
       item
         Expanded = False
+        FieldName = 'CH_NUMEROCHEQUE'
         Title.Caption = 'No. Cheque'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -877,8 +894,8 @@ object FControleCheques: TFControleCheques
         Visible = True
       end
       item
-        Alignment = taRightJustify
         Expanded = False
+        FieldName = 'CH_VALOR'
         Title.Alignment = taRightJustify
         Title.Caption = 'Valor (R$)'
         Title.Font.Charset = DEFAULT_CHARSET
@@ -891,6 +908,7 @@ object FControleCheques: TFControleCheques
       end
       item
         Expanded = False
+        FieldName = 'CH_DATALANCAMENTO'
         Title.Caption = 'Data Lan'#231'amento'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -902,6 +920,7 @@ object FControleCheques: TFControleCheques
       end
       item
         Expanded = False
+        FieldName = 'CH_DATACOMPENSACAO'
         Title.Caption = 'Data Compensa'#231#227'o'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -911,5 +930,53 @@ object FControleCheques: TFControleCheques
         Width = 130
         Visible = True
       end>
+  end
+  object FDCheques: TFDQuery
+    SQL.Strings = (
+      'SELECT * FROM CHEQUES')
+    Left = 344
+    Top = 280
+    object FDChequesCH_CODIGO: TIntegerField
+      FieldName = 'CH_CODIGO'
+      Origin = 'CH_CODIGO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDChequesCH_BANCO: TStringField
+      FieldName = 'CH_BANCO'
+      Origin = 'CH_BANCO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 10
+    end
+    object FDChequesCH_CONTACORRENTE: TStringField
+      FieldName = 'CH_CONTACORRENTE'
+      Origin = 'CH_CONTACORRENTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 15
+    end
+    object FDChequesCH_NUMEROCHEQUE: TStringField
+      FieldName = 'CH_NUMEROCHEQUE'
+      Origin = 'CH_NUMEROCHEQUE'
+      Size = 8
+    end
+    object FDChequesCH_VALOR: TFloatField
+      FieldName = 'CH_VALOR'
+      Origin = 'CH_VALOR'
+    end
+    object FDChequesCH_DATALANCAMENTO: TDateField
+      FieldName = 'CH_DATALANCAMENTO'
+      Origin = 'CH_DATALANCAMENTO'
+    end
+    object FDChequesCH_DATACOMPENSACAO: TDateField
+      FieldName = 'CH_DATACOMPENSACAO'
+      Origin = 'CH_DATACOMPENSACAO'
+    end
+  end
+  object dsCheques: TDataSource
+    DataSet = FDCheques
+    Left = 424
+    Top = 280
   end
 end

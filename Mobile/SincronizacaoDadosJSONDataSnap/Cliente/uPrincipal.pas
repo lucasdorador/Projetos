@@ -40,6 +40,8 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure btnDownloadClick(Sender: TObject);
+    procedure btnUploadClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,6 +56,12 @@ implementation
 {$R *.fmx}
 
 uses udmAcessoDados;
+
+procedure TFPrincipal.btnDownloadClick(Sender: TObject);
+begin
+dmAcessoDados.AtualizaProdutosDoServidor;
+dmAcessoDados.qryProdutos.Refresh;
+end;
 
 procedure TFPrincipal.btnExcluirClick(Sender: TObject);
 begin
@@ -85,6 +93,11 @@ if dmAcessoDados.qryProdutos.State = dsEdit then
    dmAcessoDados.qryProdutos.Post;
 
 tabPrincipal.ActiveTab := tabListagem;
+end;
+
+procedure TFPrincipal.btnUploadClick(Sender: TObject);
+begin
+dmAcessoDados.EnviaProdutosParaServidor;
 end;
 
 procedure TFPrincipal.btnVoltarClick(Sender: TObject);

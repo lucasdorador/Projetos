@@ -9,7 +9,7 @@ uses System.SysUtils, System.Classes, System.Json,
      FireDAC.Phys, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
      FireDAC.DApt, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
      FireDAC.Stan.StorageBin, FireDAC.Stan.StorageJSON, FireDAC.Comp.Client,
-     Data.DB, FireDAC.Comp.DataSet, Data.FireDACJSONReflect;
+     Data.DB, FireDAC.Comp.DataSet, Data.FireDACJSONReflect, FireDAC.VCLUI.Wait;
 
 type
   TServerMethods1 = class(TDSServerModule)

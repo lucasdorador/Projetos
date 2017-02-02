@@ -6,7 +6,8 @@ uses
   uTabelas in 'Class\uTabelas.pas',
   uFuncoes in 'Class\uFuncoes.pas',
   uVariaveis in 'Class\uVariaveis.pas',
-  udmPrincipal in 'udmPrincipal.pas' {DMPrincipal: TDataModule};
+  udmPrincipal in 'udmPrincipal.pas' {DMPrincipal: TDataModule},
+  uConsultas in 'uConsultas.pas' {FConsultas};
 
 {$R *.res}
 
@@ -15,5 +16,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFControleCheques, FControleCheques);
   Application.CreateForm(TDMPrincipal, DMPrincipal);
+  Application.CreateForm(TFConsultas, FConsultas);
   Application.Run;
 end.

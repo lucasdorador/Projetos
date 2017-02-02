@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2017/01/31 21:25:45.000.609,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2017/01/31 21:28:11.000.777,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.fmx=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\uPrincipal.fmx</Transaction>
-    <Transaction>2017/01/31 21:28:11.000.777,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\uPrincipal.pas</Transaction>
     <Transaction>2017/01/31 21:28:26.000.732,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\ProdutoCliente.dproj</Transaction>
-    <Transaction>2017/01/31 21:32:26.000.515,=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\Unit1.pas</Transaction>
-    <Transaction>2017/01/31 21:32:56.000.138,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\Unit1.pas=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\udmAcessoDados.pas</Transaction>
     <Transaction>2017/01/31 21:32:56.000.138,F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\Unit1.dfm=F:\Projetos\trunk\Mobile\SincronizacaoDadosJSONDataSnap\Cliente\udmAcessoDados.dfm</Transaction>
   </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android="0427156621"/>
+	</ActiveMobileDevice>
 </BorlandProject>
