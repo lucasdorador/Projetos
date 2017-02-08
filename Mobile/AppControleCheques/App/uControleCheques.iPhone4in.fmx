@@ -1,0 +1,102 @@
+inherited FControleCheques_iPhone4in: TFControleCheques_iPhone4in
+  ClientHeight = 548
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Height = 548.000000000000000000
+    inherited tbTopo: TToolBar
+      Size.Height = 44.000000000000000000
+      inherited btnDownload: TSpeedButton
+        Size.Width = 44.000000000000000000
+        Size.Height = 44.000000000000000000
+      end
+      inherited btnAdicionar: TSpeedButton
+        Position.X = 276.000000000000000000
+        Size.Width = 44.000000000000000000
+        Size.Height = 44.000000000000000000
+      end
+      inherited btnPesquisar: TSpeedButton
+        Position.X = 254.000000000000000000
+        Position.Y = 9.000000000000000000
+        Size.Width = 22.000000000000000000
+        Size.Height = 26.000000000000000000
+      end
+      inherited btnVoltar: TSpeedButton
+        Size.Width = 44.000000000000000000
+        Size.Height = 44.000000000000000000
+      end
+    end
+    inherited TabControl1: TTabControl
+      Size.Height = 504.000000000000000000
+      inherited tabConsulta: TTabItem
+        inherited ListView1: TListView
+          Size.Height = 504.000000000000000000
+        end
+      end
+      inherited tabCadastra: TTabItem
+        inherited BarraRolagemVertical: TVertScrollBox
+          Size.Height = 504.000000000000000000
+          Viewport.Width = 320.000000000000000000
+          Viewport.Height = 504.000000000000000000
+          inherited Layout2: TLayout
+            inherited recBanco: TRectangle
+              inherited edtBanco: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recLancamento: TRectangle
+              inherited edtDataLancamento: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recValorCheque: TRectangle
+              inherited edtValor: TNumberBox
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recNumeroCheque: TRectangle
+              inherited edtNumeroCheque: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recContaCorrente: TRectangle
+              inherited edtContaCorrente: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recCompensacao: TRectangle
+              inherited edtDataCompensacao: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+            inherited recFornecedor: TRectangle
+              inherited edtFornecedor: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+                Size.Height = 30.000000000000000000
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

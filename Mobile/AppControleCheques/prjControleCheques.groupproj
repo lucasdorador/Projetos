@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{82B66064-5B8A-4127-A2C5-D1B5A2279DFA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="App\AppControleCheques.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AppControleCheques">
+        <MSBuild Projects="App\AppControleCheques.dproj"/>
+    </Target>
+    <Target Name="AppControleCheques:Clean">
+        <MSBuild Projects="App\AppControleCheques.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AppControleCheques:Make">
+        <MSBuild Projects="App\AppControleCheques.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AppControleCheques"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AppControleCheques:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AppControleCheques:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,91 @@
+inherited FControleCheques_LgXhdpiPh: TFControleCheques_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited tbTopo: TToolBar
+      Size.Width = 450.000000000000000000
+      inherited btnAdicionar: TSpeedButton
+        Position.X = 402.000000000000000000
+      end
+      inherited btnPesquisar: TSpeedButton
+        Position.X = 370.000000000000000000
+      end
+    end
+    inherited TabControl1: TTabControl
+      Size.Width = 450.000000000000000000
+      Size.Height = 647.000000000000000000
+      inherited tabConsulta: TTabItem
+        inherited ListView1: TListView
+          Size.Width = 450.000000000000000000
+          Size.Height = 647.000000000000000000
+          ItemAppearance.FooterHeight = 30
+          ItemAppearanceObjects.ItemObjects.Text.Align = Trailing
+          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.TextColor = claYellowgreen
+          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.Visible = False
+        end
+      end
+      inherited tabCadastra: TTabItem
+        inherited BarraRolagemVertical: TVertScrollBox
+          Size.Width = 450.000000000000000000
+          Size.Height = 647.000000000000000000
+          Viewport.Width = 450.000000000000000000
+          Viewport.Height = 647.000000000000000000
+          inherited Layout2: TLayout
+            inherited recBanco: TRectangle
+              inherited edtBanco: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recLancamento: TRectangle
+              inherited edtDataLancamento: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recValorCheque: TRectangle
+              inherited edtValor: TNumberBox
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recNumeroCheque: TRectangle
+              inherited edtNumeroCheque: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recContaCorrente: TRectangle
+              inherited edtContaCorrente: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recCompensacao: TRectangle
+              inherited edtDataCompensacao: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+            inherited recFornecedor: TRectangle
+              inherited edtFornecedor: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 306.000000000000000000
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

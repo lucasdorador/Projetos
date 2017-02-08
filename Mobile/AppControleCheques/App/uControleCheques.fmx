@@ -1,0 +1,473 @@
+object FControleCheques: TFControleCheques
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 320
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  OnCloseQuery = FormCloseQuery
+  OnKeyUp = FormKeyUp
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 320.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object tbTopo: TToolBar
+      Size.Width = 320.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object btnDownload: TSpeedButton
+        Align = Left
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'arrowdowntoolbutton'
+        Text = 'btnDownload'
+        OnClick = btnDownloadClick
+      end
+      object btnAdicionar: TSpeedButton
+        Align = Right
+        Position.X = 272.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'addtoolbutton'
+        OnClick = btnAdicionarClick
+      end
+      object btnPesquisar: TSpeedButton
+        Align = Right
+        Position.X = 240.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 32.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'searcheditbutton'
+      end
+      object btnVoltar: TSpeedButton
+        Align = Left
+        Position.X = 55.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'arrowlefttoolbutton'
+        Text = 'btnVoltar'
+        Visible = False
+        OnClick = btnVoltarClick
+      end
+    end
+    object TabControl1: TTabControl
+      Align = Client
+      FullSize = True
+      Size.Width = 320.000000000000000000
+      Size.Height = 432.000000000000000000
+      Size.PlatformDefault = False
+      TabHeight = 49.000000000000000000
+      TabIndex = 0
+      TabOrder = 1
+      TabPosition = None
+      object tabConsulta: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'tabConsulta'
+        object ListView1: TListView
+          ItemAppearanceClassName = 'TMultiDetailItemAppearance'
+          ItemEditAppearanceClassName = 'TMultiDetailDeleteAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          AlternatingColors = True
+          Align = Client
+          Size.Width = 320.000000000000000000
+          Size.Height = 432.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ItemAppearanceObjects.ItemObjects.Text.Font.Style = [fsBold]
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Font.Style = [fsBold]
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.TextColor = claBlue
+          ItemAppearanceObjects.ItemObjects.MultiDetail2.Font.Style = [fsBold]
+          ItemAppearanceObjects.ItemObjects.MultiDetail2.TextColor = claRed
+          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
+          OnItemClick = ListView1ItemClick
+        end
+      end
+      object tabCadastra: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'tabCadastra'
+        object BarraRolagemVertical: TVertScrollBox
+          Align = Client
+          Size.Width = 320.000000000000000000
+          Size.Height = 432.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 320.000000000000000000
+          Viewport.Height = 432.000000000000000000
+          object Layout2: TLayout
+            Align = Client
+            Size.Width = 320.000000000000000000
+            Size.Height = 432.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object Label1: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 2.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Banco'
+            end
+            object Label2: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 61.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Conta Corrente'
+            end
+            object Label3: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 120.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'N'#250'mero do Cheque'
+            end
+            object Label4: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 179.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Valor do Cheque'
+            end
+            object Label5: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 238.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Data do Lan'#231'amento'
+            end
+            object Label6: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 297.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Data da Compensa'#231#227'o'
+            end
+            object recBanco: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 27.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtBanco: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object recLancamento: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 263.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtDataLancamento: TDateEdit
+                Date = 42774.000000000000000000
+                WeekNumbers = True
+                Format = 'dd/mm/yyyy'
+                TodayDefault = True
+                Align = Client
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+            object recValorCheque: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 204.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtValor: TNumberBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Cursor = crIBeam
+                Max = 99999997952.000000000000000000
+                Value = 100.000000000000000000
+                ValueType = Float
+                TextSettings.HorzAlign = Trailing
+                HorzIncrement = 0.000000000000000000
+                VertIncrement = 0.000000000000000000
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object recNumeroCheque: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 145.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtNumeroCheque: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object recContaCorrente: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 86.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtContaCorrente: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+            object recCompensacao: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 322.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtDataCompensacao: TDateEdit
+                Date = 42774.000000000000000000
+                WeekNumbers = True
+                TodayDefault = True
+                Align = Client
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+              end
+            end
+            object Label7: TLabel
+              Align = Top
+              StyledSettings = [Family, Size, FontColor]
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 2.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 2.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 356.000000000000000000
+              Size.Width = 314.000000000000000000
+              Size.Height = 23.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              Text = 'Fornecedor'
+            end
+            object recFornecedor: TRectangle
+              Align = Top
+              Fill.Color = claLightgray
+              Margins.Left = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 381.000000000000000000
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object edtFornecedor: TEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                Align = Client
+                TabOrder = 0
+                Size.Width = 312.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = dmPrincipal.FDConsulta
+    ScopeMappings = <>
+    Left = 608
+    Top = 312
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 516
+    Top = 309
+    object LinkControlToField8: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_BANCO'
+      Control = edtBanco
+      Track = False
+    end
+    object LinkControlToField9: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_CONTACORRENTE'
+      Control = edtContaCorrente
+      Track = False
+    end
+    object LinkControlToField10: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_NUMEROCHEQUE'
+      Control = edtNumeroCheque
+      Track = False
+    end
+    object LinkControlToField12: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_DATALANCAMENTO'
+      Control = edtDataLancamento
+      Track = False
+    end
+    object LinkControlToField13: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_DATACOMPENSACAO'
+      Control = edtDataCompensacao
+      Track = False
+    end
+    object LinkControlToField14: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_FORNECEDOR'
+      Control = edtFornecedor
+      Track = False
+    end
+    object LinkPropertyToFieldText: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_VALOR'
+      Component = edtValor
+      ComponentProperty = 'Text'
+    end
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_FORNECEDOR'
+      Control = ListView1
+      FillExpressions = <
+        item
+          SourceMemberName = 'CH_NUMEROCHEQUE'
+          ControlMemberName = 'Detail1'
+        end
+        item
+          SourceMemberName = 'CH_VALOR'
+          ControlMemberName = 'Detail2'
+        end
+        item
+          SourceMemberName = 'CH_DATACOMPENSACAO'
+          ControlMemberName = 'Detail3'
+        end>
+      FillHeaderExpressions = <>
+      FillHeaderFieldName = 'CH_CONTACORRENTE'
+      FillBreakGroups = <>
+    end
+  end
+end

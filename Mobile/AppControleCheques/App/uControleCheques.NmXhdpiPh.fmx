@@ -1,0 +1,121 @@
+inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 0
+  inherited Layout1: TLayout
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    inherited tbTopo: TToolBar
+      Size.Width = 400.000000000000000000
+      inherited btnAdicionar: TSpeedButton
+        Position.X = 352.000000000000000000
+      end
+      inherited btnPesquisar: TSpeedButton
+        Position.X = 320.000000000000000000
+      end
+    end
+    inherited TabControl1: TTabControl
+      Size.Width = 400.000000000000000000
+      Size.Height = 567.000000000000000000
+      inherited tabConsulta: TTabItem
+        inherited ListView1: TListView
+          Size.Width = 400.000000000000000000
+          Size.Height = 567.000000000000000000
+          ItemAppearance.FooterHeight = 30
+          ItemAppearanceObjects.ItemObjects.Text.Align = Trailing
+          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.TextColor = claYellowgreen
+          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.Visible = False
+        end
+      end
+      inherited tabCadastra: TTabItem
+        inherited BarraRolagemVertical: TVertScrollBox
+          Size.Width = 400.000000000000000000
+          Size.Height = 567.000000000000000000
+          Viewport.Width = 400.000000000000000000
+          Viewport.Height = 567.000000000000000000
+          inherited Layout2: TLayout
+            Size.Width = 400.000000000000000000
+            Size.Height = 567.000000000000000000
+            inherited Label1: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited Label2: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited Label3: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited Label4: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited Label5: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited Label6: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited recBanco: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtBanco: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited recLancamento: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtDataLancamento: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited recValorCheque: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtValor: TNumberBox
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited recNumeroCheque: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtNumeroCheque: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited recContaCorrente: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtContaCorrente: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited recCompensacao: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtDataCompensacao: TDateEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+            inherited Label7: TLabel
+              Size.Width = 394.000000000000000000
+            end
+            inherited recFornecedor: TRectangle
+              Size.Width = 392.000000000000000000
+              inherited edtFornecedor: TEdit
+                Margins.Left = 3.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Size.Width = 386.000000000000000000
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

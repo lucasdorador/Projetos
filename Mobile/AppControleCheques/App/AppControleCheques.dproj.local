@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/02/07 20:55:55.000.316,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/02/07 20:56:30.000.978,F:\Projetos\trunk\Mobile\AppControleCheques\App\uControleCheques.pas=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/02/07 20:56:30.000.978,F:\Projetos\trunk\Mobile\AppControleCheques\App\uControleCheques.fmx=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>2017/02/07 20:57:17.000.151,F:\Projetos\trunk\Mobile\AppControleCheques\App\AppControleCheques.dproj=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2017/02/07 21:08:31.000.670,=F:\Projetos\trunk\Mobile\AppControleCheques\App\Unit1.pas</Transaction>
+    <Transaction>2017/02/07 21:08:50.000.160,F:\Projetos\trunk\Mobile\AppControleCheques\App\udmPrincipal.dfm=F:\Projetos\trunk\Mobile\AppControleCheques\App\Unit1.dfm</Transaction>
+    <Transaction>2017/02/07 21:08:50.000.160,F:\Projetos\trunk\Mobile\AppControleCheques\App\udmPrincipal.pas=F:\Projetos\trunk\Mobile\AppControleCheques\App\Unit1.pas</Transaction>
+    <Transaction>2017/02/07 22:30:14.000.786,=F:\Projetos\trunk\Mobile\AppControleCheques\Banco_de_Dados\ControleCheques.sdb</Transaction>
+  </Transactions>
+</BorlandProject>
