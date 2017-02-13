@@ -43,6 +43,9 @@ type
     FDChequesCH_VALOR: TFloatField;
     FDChequesCH_DATALANCAMENTO: TDateField;
     FDChequesCH_DATACOMPENSACAO: TDateField;
+    Label7: TLabel;
+    edtFornecedor: TEdit;
+    FDChequesCH_FORNECEDOR: TStringField;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
@@ -62,6 +65,7 @@ type
     procedure edtDataExit(Sender: TObject);
     procedure edtCompensacaoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1CellClick(Column: TColumn);
   private
     procedure fncCriaBanco;
     function fncUltimoCodigoCheque: Integer;
@@ -150,6 +154,13 @@ if ((Trim(edtContaCorrente.Text) = '') or (Trim(PContaCorrente.Caption) = '')) t
    Abort;
    end;
 
+if Trim(edtFornecedor.Text) = '' then
+   begin
+   ShowMessage('Digite um fornecedor válido!');
+   edtFornecedor.SetFocus;
+   Abort;
+   end;
+
 if ((Trim(edtNumeroCheque.Text) = '')) then
    begin
    ShowMessage('Digite um cheque válido!');
@@ -192,9 +203,9 @@ if QCheques.IsEmpty then
    begin
    QCheques.SQL.Clear;
    QCheques.SQL.Add('INSERT INTO CHEQUES (CH_CODIGO, CH_BANCO, CH_CONTACORRENTE, CH_NUMEROCHEQUE, '+
-                    '                     CH_VALOR, CH_DATALANCAMENTO, CH_DATACOMPENSACAO) VALUES '+
+                    '                     CH_VALOR, CH_DATALANCAMENTO, CH_DATACOMPENSACAO, CH_FORNECEDOR) VALUES '+
                     '(:CH_CODIGO, :CH_BANCO, :CH_CONTACORRENTE, :CH_NUMEROCHEQUE, :CH_VALOR, '+
-                    ' :CH_DATALANCAMENTO, :CH_DATACOMPENSACAO);');
+                    ' :CH_DATALANCAMENTO, :CH_DATACOMPENSACAO, :CH_FORNECEDOR);');
    QCheques.ParamByName('CH_CODIGO').AsInteger         := fncUltimoCodigoCheque;
    QCheques.ParamByName('CH_BANCO').AsString           := edtBanco.Text;
    QCheques.ParamByName('CH_CONTACORRENTE').AsString   := edtContaCorrente.Text;
@@ -202,6 +213,7 @@ if QCheques.IsEmpty then
    QCheques.ParamByName('CH_VALOR').AsFloat            := edtValor.Value;
    QCheques.ParamByName('CH_DATALANCAMENTO').AsString  := FormatDateTime('mm/dd/yyyy', StrToDate(edtData.Text));
    QCheques.ParamByName('CH_DATACOMPENSACAO').AsString := FormatDateTime('mm/dd/yyyy', StrToDate(edtCompensacao.Text));
+   QCheques.ParamByName('CH_FORNECEDOR').AsString      := Trim(edtFornecedor.Text);
    try
    QCheques.ExecSQL;
    except
@@ -219,6 +231,7 @@ else
                     'SET CH_VALOR = :CH_VALOR, '+
                     '    CH_DATALANCAMENTO = :CH_DATALANCAMENTO, '+
                     '    CH_DATACOMPENSACAO = :CH_DATACOMPENSACAO '+
+                    '    CH_FORNECEDOR      = :CH_FORNECEDOR '+
                     'WHERE (CH_NUMEROCHEQUE = :CH_NUMEROCHEQUE) AND (CH_BANCO = :CH_BANCO) AND'+
                     '(CH_CONTACORRENTE = :CH_CONTACORRENTE);');
    QCheques.ParamByName('CH_BANCO').AsString           := edtBanco.Text;
@@ -227,6 +240,7 @@ else
    QCheques.ParamByName('CH_VALOR').AsFloat            := edtValor.Value;
    QCheques.ParamByName('CH_DATALANCAMENTO').AsString  := FormatDateTime('mm/dd/yyyy', StrToDate(edtData.Text));
    QCheques.ParamByName('CH_DATACOMPENSACAO').AsString := FormatDateTime('mm/dd/yyyy', StrToDate(edtCompensacao.Text));
+   QCheques.ParamByName('CH_FORNECEDOR').AsString      := Trim(edtFornecedor.Text);
    try
    QCheques.ExecSQL;
    except
@@ -274,6 +288,12 @@ begin
 Close;
 end;
 
+procedure TFControleCheques.DBGrid1CellClick(Column: TColumn);
+begin
+DBGrid1.Hint     := dsCheques.DataSet.FieldByName('CH_FORNECEDOR').AsString;
+DBGrid1.ShowHint := True;
+end;
+
 procedure TFControleCheques.DBGrid1DblClick(Sender: TObject);
 begin
 edtBanco.Enabled               := False;
@@ -292,7 +312,8 @@ edtNumeroCheque.Text  := FDChequesCH_NUMEROCHEQUE.AsString;
 edtValor.Value        := FDChequesCH_VALOR.AsFloat;
 edtData.Text          := FDChequesCH_DATALANCAMENTO.AsString;
 edtCompensacao.Text   := FDChequesCH_DATACOMPENSACAO.AsString;
-edtValor.SetFocus;
+edtFornecedor.Text    := FDChequesCH_FORNECEDOR.AsString;
+edtFornecedor.SetFocus;
 
 btnGravar.Enabled  := True;
 btnExcluir.Enabled := True;
@@ -475,6 +496,7 @@ edtNumeroCheque.Clear;
 edtValor.Value := 0;
 edtData.Clear;
 edtCompensacao.Clear;
+edtFornecedor.Clear;
 
 edtBanco.SetFocus;
 end;

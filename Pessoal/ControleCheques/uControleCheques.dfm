@@ -5,7 +5,7 @@ object FControleCheques: TFControleCheques
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Controle de Cheques'
-  ClientHeight = 562
+  ClientHeight = 609
   ClientWidth = 704
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,7 +27,7 @@ object FControleCheques: TFControleCheques
     Left = 3
     Top = 3
     Width = 698
-    Height = 190
+    Height = 227
     Align = alTop
     Caption = 'Dados do Cheque'
     Font.Charset = DEFAULT_CHARSET
@@ -38,7 +38,7 @@ object FControleCheques: TFControleCheques
     ParentFont = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 8
+      Left = 9
       Top = 15
       Width = 34
       Height = 13
@@ -46,38 +46,45 @@ object FControleCheques: TFControleCheques
     end
     object Label2: TLabel
       Left = 9
-      Top = 58
+      Top = 54
       Width = 86
       Height = 13
       Caption = 'Conta Corrente'
     end
     object Label3: TLabel
-      Left = 8
-      Top = 101
+      Left = 9
+      Top = 136
       Width = 62
       Height = 13
       Caption = 'No. Cheque'
     end
     object Label4: TLabel
       Left = 104
-      Top = 101
+      Top = 136
       Width = 57
       Height = 13
       Caption = 'Valor (R$)'
     end
     object Label5: TLabel
       Left = 230
-      Top = 101
+      Top = 136
       Width = 27
       Height = 13
       Caption = 'Data'
     end
     object Label6: TLabel
       Left = 316
-      Top = 101
+      Top = 136
       Width = 79
       Height = 13
       Caption = 'Compensa'#231#227'o'
+    end
+    object Label7: TLabel
+      Left = 9
+      Top = 95
+      Width = 64
+      Height = 13
+      Caption = 'Fornecedor'
     end
     object btnCons_Bancos: TBitBtn
       Left = 65
@@ -136,7 +143,7 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F8F8C9C9C9BFBFBFCBCBCBCBCBCBBF
         BFBFC9C9C9F8F8F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
-      TabOrder = 6
+      TabOrder = 10
       TabStop = False
       OnClick = btnCons_BancosClick
     end
@@ -147,11 +154,11 @@ object FControleCheques: TFControleCheques
       Height = 25
       Alignment = taLeftJustify
       BevelWidth = 2
-      TabOrder = 7
+      TabOrder = 11
     end
     object edtContaCorrente: TEdit
       Left = 9
-      Top = 74
+      Top = 70
       Width = 81
       Height = 21
       MaxLength = 15
@@ -161,7 +168,7 @@ object FControleCheques: TFControleCheques
     end
     object btnCons_ContaCorrente: TBitBtn
       Left = 96
-      Top = 72
+      Top = 68
       Width = 33
       Height = 25
       Glyph.Data = {
@@ -216,18 +223,18 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F8F8C9C9C9BFBFBFCBCBCBCBCBCBBF
         BFBFC9C9C9F8F8F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
-      TabOrder = 8
+      TabOrder = 12
       TabStop = False
       OnClick = btnCons_ContaCorrenteClick
     end
     object PContaCorrente: TPanel
       Left = 135
-      Top = 71
+      Top = 67
       Width = 555
       Height = 25
       Alignment = taLeftJustify
       BevelWidth = 2
-      TabOrder = 9
+      TabOrder = 13
     end
     object edtBanco: TMaskEdit
       Left = 9
@@ -243,15 +250,15 @@ object FControleCheques: TFControleCheques
     end
     object edtNumeroCheque: TEdit
       Left = 9
-      Top = 116
+      Top = 152
       Width = 89
       Height = 21
       MaxLength = 8
-      TabOrder = 2
+      TabOrder = 3
     end
     object edtValor: TDPTNumberEditXE8
       Left = 104
-      Top = 116
+      Top = 152
       Width = 120
       Height = 21
       Alignment = taLeftJustify
@@ -262,35 +269,35 @@ object FControleCheques: TFControleCheques
       NegativeColor = clRed
       NumericType = ntNumber
       TabOnEnterKey = False
-      TabOrder = 3
+      TabOrder = 4
       Validate = True
     end
     object edtData: TMaskEdit
       Left = 230
-      Top = 116
-      Width = 80
-      Height = 21
-      EditMask = '!99/99/9999;1;_'
-      MaxLength = 10
-      TabOrder = 4
-      Text = '  /  /    '
-      OnEnter = edtDataEnter
-      OnExit = edtDataExit
-    end
-    object edtCompensacao: TMaskEdit
-      Left = 316
-      Top = 116
+      Top = 152
       Width = 80
       Height = 21
       EditMask = '!99/99/9999;1;_'
       MaxLength = 10
       TabOrder = 5
       Text = '  /  /    '
+      OnEnter = edtDataEnter
+      OnExit = edtDataExit
+    end
+    object edtCompensacao: TMaskEdit
+      Left = 316
+      Top = 152
+      Width = 80
+      Height = 21
+      EditMask = '!99/99/9999;1;_'
+      MaxLength = 10
+      TabOrder = 6
+      Text = '  /  /    '
       OnExit = edtCompensacaoExit
     end
     object btnGravar: TBitBtn
       Left = 7
-      Top = 143
+      Top = 179
       Width = 224
       Height = 41
       Caption = 'Gravar'
@@ -491,12 +498,12 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
-      TabOrder = 10
+      TabOrder = 7
       OnClick = btnGravarClick
     end
     object btnExcluir: TBitBtn
       Left = 237
-      Top = 143
+      Top = 179
       Width = 224
       Height = 41
       Caption = 'Excluir'
@@ -697,12 +704,12 @@ object FControleCheques: TFControleCheques
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       NumGlyphs = 2
-      TabOrder = 11
+      TabOrder = 8
       OnClick = btnExcluirClick
     end
     object btnSair: TBitBtn
       Left = 467
-      Top = 143
+      Top = 179
       Width = 224
       Height = 41
       Caption = 'Sair'
@@ -837,16 +844,26 @@ object FControleCheques: TFControleCheques
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
-      TabOrder = 12
+      TabOrder = 9
       OnClick = btnSairClick
+    end
+    object edtFornecedor: TEdit
+      Left = 9
+      Top = 111
+      Width = 680
+      Height = 21
+      MaxLength = 50
+      TabOrder = 2
+      OnExit = edtContaCorrenteExit
+      OnKeyDown = edtContaCorrenteKeyDown
     end
   end
   object DBGrid1: TDBGrid
     AlignWithMargins = True
     Left = 3
-    Top = 199
+    Top = 236
     Width = 698
-    Height = 360
+    Height = 370
     Align = alClient
     DataSource = dsCheques
     TabOrder = 1
@@ -855,6 +872,7 @@ object FControleCheques: TFControleCheques
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
     OnDblClick = DBGrid1DblClick
     Columns = <
       item
@@ -866,19 +884,19 @@ object FControleCheques: TFControleCheques
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 55
+        Width = 40
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'CH_CONTACORRENTE'
-        Title.Caption = 'Conta Corrente'
+        Title.Caption = 'C. Corrente'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 120
+        Width = 90
         Visible = True
       end
       item
@@ -890,7 +908,19 @@ object FControleCheques: TFControleCheques
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 100
+        Width = 68
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CH_FORNECEDOR'
+        Title.Caption = 'Fornecedor'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 210
         Visible = True
       end
       item
@@ -903,31 +933,31 @@ object FControleCheques: TFControleCheques
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 120
+        Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'CH_DATALANCAMENTO'
-        Title.Caption = 'Data Lan'#231'amento'
+        Title.Caption = 'Dt. Lan'#231'am.'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 130
+        Width = 75
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'CH_DATACOMPENSACAO'
-        Title.Caption = 'Data Compensa'#231#227'o'
+        Title.Caption = 'Dt. Compen.'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 130
+        Width = 75
         Visible = True
       end>
   end
@@ -972,6 +1002,10 @@ object FControleCheques: TFControleCheques
     object FDChequesCH_DATACOMPENSACAO: TDateField
       FieldName = 'CH_DATACOMPENSACAO'
       Origin = 'CH_DATACOMPENSACAO'
+    end
+    object FDChequesCH_FORNECEDOR: TStringField
+      FieldName = 'CH_FORNECEDOR'
+      Size = 50
     end
   end
   object dsCheques: TDataSource
