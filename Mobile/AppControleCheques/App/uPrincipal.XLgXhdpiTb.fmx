@@ -1,0 +1,20 @@
+inherited FPrincipal_XLgXhdpiTb: TFPrincipal_XLgXhdpiTb
+  ClientHeight = 1255
+  ClientWidth = 800
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Width = 800.000000000000000000
+    Size.Height = 1255.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 800.000000000000000000
+    end
+  end
+  inherited MultiView1: TMultiView
+    Size.Height = 1255.000000000000000000
+    inherited VertScrollBox1: TVertScrollBox
+      Size.Height = 1255.000000000000000000
+      Viewport.Width = 232.000000000000000000
+      Viewport.Height = 1255.000000000000000000
+    end
+  end
+end

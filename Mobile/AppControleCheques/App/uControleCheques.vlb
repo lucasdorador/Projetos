@@ -15,7 +15,8 @@ Coordinates=980,150,79,51
 Coordinates=10,210,53,33
 
 []
-Coordinates=430,380,86,51
+Coordinates=570,230,55,51
+ExplicitSubNodes=Text
 
 [dmPrincipal.FDConsulta]
 Coordinates=210,0,133,33
@@ -32,6 +33,7 @@ Coordinates=80,210,74,33
 
 [tabConsulta]
 Coordinates=175,210,73,33
+Visible=True
 
 [tabCadastra]
 Coordinates=0,360,73,33
@@ -108,10 +110,24 @@ Coordinates=590,80,115,51
 [Label7]
 Coordinates=14,284,46,51
 
-[edtValor]
-Coordinates=540,0,55,69
-ExplicitSubNodes=Text
-
 [BarraRolagemVertical]
 Coordinates=431,297,121,33
+
+[ClearEditButton2]
+Coordinates=136,155,98,33
+
+[Rectangle1]
+Coordinates=401,341,69,33
+
+[ClearEditButton4]
+Coordinates=115,380,98,33
+
+[ClearEditButton1]
+Coordinates=557,1,98,33
+
+[edtValor]
+Coordinates=750,90,55,51
+
+[ClearEditButton3]
+Coordinates=557,227,98,33
 

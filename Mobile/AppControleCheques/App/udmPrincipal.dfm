@@ -49,6 +49,8 @@ object dmPrincipal: TdmPrincipal
     object FDConsultaCH_VALOR: TFloatField
       FieldName = 'CH_VALOR'
       Origin = 'CH_VALOR'
+      DisplayFormat = ',0.00'
+      EditFormat = ',0.00'
     end
     object FDConsultaCH_DATALANCAMENTO: TDateField
       FieldName = 'CH_DATALANCAMENTO'

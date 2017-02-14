@@ -1,0 +1,20 @@
+inherited FPrincipal_NmXhdpiPh: TFPrincipal_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 3
+  inherited Layout1: TLayout
+    Size.Width = 400.000000000000000000
+    Size.Height = 615.000000000000000000
+    inherited ToolBar1: TToolBar
+      Size.Width = 400.000000000000000000
+    end
+  end
+  inherited MultiView1: TMultiView
+    Size.Height = 615.000000000000000000
+    inherited VertScrollBox1: TVertScrollBox
+      Size.Height = 615.000000000000000000
+      Viewport.Width = 232.000000000000000000
+      Viewport.Height = 615.000000000000000000
+    end
+  end
+end

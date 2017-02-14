@@ -7,11 +7,18 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
     Size.Height = 615.000000000000000000
     inherited tbTopo: TToolBar
       Size.Width = 400.000000000000000000
-      inherited btnAdicionar: TSpeedButton
-        Position.X = 352.000000000000000000
-      end
-      inherited btnPesquisar: TSpeedButton
-        Position.X = 320.000000000000000000
+      inherited Rectangle1: TRectangle
+        Size.Width = 400.000000000000000000
+        inherited btnAdicionar: TSpeedButton
+          Position.X = 352.000000000000000000
+        end
+        inherited btnPesquisar: TSpeedButton
+          Position.X = 320.000000000000000000
+        end
+        inherited btnVoltar: TSpeedButton
+          Position.X = 48.000000000000000000
+          Position.Y = 1.000000000000000000
+        end
       end
     end
     inherited TabControl1: TTabControl
@@ -23,8 +30,12 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
           Size.Height = 567.000000000000000000
           ItemAppearance.FooterHeight = 30
           ItemAppearanceObjects.ItemObjects.Text.Align = Trailing
+          ItemAppearanceObjects.ItemObjects.MultiDetail1.Trimming = Word
+          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Checkmark
           ItemAppearanceObjects.ItemEditObjects.MultiDetail1.TextColor = claYellowgreen
-          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.Visible = False
+          ItemAppearanceObjects.ItemEditObjects.Accessory.VertAlign = Trailing
+          ItemAppearanceObjects.ItemEditObjects.GlyphButton.ButtonType = Add
+          ItemAppearanceObjects.FooterObjects.Text.TextColor = claYellow
         end
       end
       inherited tabCadastra: TTabItem
@@ -60,6 +71,9 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
                 Margins.Left = 3.000000000000000000
                 Margins.Right = 3.000000000000000000
                 Size.Width = 386.000000000000000000
+                inherited ClearEditButton1: TClearEditButton
+                  Size.Height = 50.000000000000000000
+                end
               end
             end
             inherited recLancamento: TRectangle
@@ -72,10 +86,11 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
             end
             inherited recValorCheque: TRectangle
               Size.Width = 392.000000000000000000
-              inherited edtValor: TNumberBox
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 386.000000000000000000
+              inherited edtValor: TEdit
+                Size.Width = 392.000000000000000000
+                inherited ClearEditButton4: TClearEditButton
+                  Size.Height = 50.000000000000000000
+                end
               end
             end
             inherited recNumeroCheque: TRectangle
@@ -84,6 +99,9 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
                 Margins.Left = 3.000000000000000000
                 Margins.Right = 3.000000000000000000
                 Size.Width = 386.000000000000000000
+                inherited ClearEditButton3: TClearEditButton
+                  Size.Height = 50.000000000000000000
+                end
               end
             end
             inherited recContaCorrente: TRectangle
@@ -92,6 +110,9 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
                 Margins.Left = 3.000000000000000000
                 Margins.Right = 3.000000000000000000
                 Size.Width = 386.000000000000000000
+                inherited ClearEditButton2: TClearEditButton
+                  Size.Height = 50.000000000000000000
+                end
               end
             end
             inherited recCompensacao: TRectangle

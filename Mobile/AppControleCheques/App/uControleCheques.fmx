@@ -22,43 +22,52 @@ object FControleCheques: TFControleCheques
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      object btnDownload: TSpeedButton
-        Align = Left
-        Size.Width = 48.000000000000000000
+      object Rectangle1: TRectangle
+        Align = Client
+        Size.Width = 320.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'arrowdowntoolbutton'
-        Text = 'btnDownload'
-        OnClick = btnDownloadClick
-      end
-      object btnAdicionar: TSpeedButton
-        Align = Right
-        Position.X = 272.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'addtoolbutton'
-        OnClick = btnAdicionarClick
-      end
-      object btnPesquisar: TSpeedButton
-        Align = Right
-        Position.X = 240.000000000000000000
-        Position.Y = 8.000000000000000000
-        Size.Width = 32.000000000000000000
-        Size.Height = 32.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'searcheditbutton'
-      end
-      object btnVoltar: TSpeedButton
-        Align = Left
-        Position.X = 55.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'arrowlefttoolbutton'
-        Text = 'btnVoltar'
-        Visible = False
-        OnClick = btnVoltarClick
+        Stroke.Kind = None
+        Stroke.Cap = Round
+        object btnAdicionar: TSpeedButton
+          Align = Right
+          Position.X = 272.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'addtoolbutton'
+          OnClick = btnAdicionarClick
+        end
+        object btnDownload: TSpeedButton
+          Align = Left
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'arrowdowntoolbutton'
+          Text = 'btnDownload'
+          OnClick = btnDownloadClick
+        end
+        object btnPesquisar: TSpeedButton
+          Align = Right
+          Position.X = 240.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 32.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'searcheditbutton'
+          OnClick = btnPesquisarClick
+        end
+        object btnVoltar: TSpeedButton
+          Align = Left
+          Position.X = 2.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'btnVoltar'
+          Visible = False
+          OnClick = btnVoltarClick
+        end
       end
     end
     object TabControl1: TTabControl
@@ -87,6 +96,11 @@ object FControleCheques: TFControleCheques
           HeaderAppearanceClassName = 'TListHeaderObjects'
           FooterAppearanceClassName = 'TListHeaderObjects'
           AlternatingColors = True
+          ItemSpaces.Left = 8.000000000000000000
+          ItemSpaces.Top = 3.000000000000000000
+          ItemSpaces.Right = 8.000000000000000000
+          ItemSpaces.Bottom = 3.000000000000000000
+          SideSpace = 1
           Align = Client
           Size.Width = 320.000000000000000000
           Size.Height = 432.000000000000000000
@@ -97,8 +111,9 @@ object FControleCheques: TFControleCheques
           ItemAppearanceObjects.ItemObjects.MultiDetail1.TextColor = claBlue
           ItemAppearanceObjects.ItemObjects.MultiDetail2.Font.Style = [fsBold]
           ItemAppearanceObjects.ItemObjects.MultiDetail2.TextColor = claRed
-          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Detail
+          CanSwipeDelete = False
           OnItemClick = ListView1ItemClick
+          ShowSelection = False
         end
       end
       object tabCadastra: TTabItem
@@ -230,9 +245,19 @@ object FControleCheques: TFControleCheques
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 0
+                KeyboardType = NumberPad
+                MaxLength = 10
                 Size.Width = 312.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
+                object ClearEditButton1: TClearEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 32.000000000000000000
+                  Size.Height = 30.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
               end
             end
             object recLancamento: TRectangle
@@ -247,7 +272,7 @@ object FControleCheques: TFControleCheques
               Size.PlatformDefault = False
               Stroke.Kind = None
               object edtDataLancamento: TDateEdit
-                Date = 42774.000000000000000000
+                Date = 42779.000000000000000000
                 WeekNumbers = True
                 Format = 'dd/mm/yyyy'
                 TodayDefault = True
@@ -269,20 +294,23 @@ object FControleCheques: TFControleCheques
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
               Stroke.Kind = None
-              object edtValor: TNumberBox
+              object edtValor: TEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 0
-                Cursor = crIBeam
-                Max = 99999997952.000000000000000000
-                Value = 100.000000000000000000
-                ValueType = Float
-                TextSettings.HorzAlign = Trailing
-                HorzIncrement = 0.000000000000000000
-                VertIncrement = 0.000000000000000000
+                Text = '0,00'
                 Size.Width = 312.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
+                OnExit = edtValorExit
+                object ClearEditButton4: TClearEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 32.000000000000000000
+                  Size.Height = 30.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
               end
             end
             object recNumeroCheque: TRectangle
@@ -300,9 +328,20 @@ object FControleCheques: TFControleCheques
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 0
+                KeyboardType = NumberPad
+                MaxLength = 8
                 Size.Width = 312.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
+                OnExit = edtNumeroChequeExit
+                object ClearEditButton3: TClearEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 32.000000000000000000
+                  Size.Height = 30.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
               end
             end
             object recContaCorrente: TRectangle
@@ -320,9 +359,18 @@ object FControleCheques: TFControleCheques
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
                 Align = Client
                 TabOrder = 0
+                MaxLength = 15
                 Size.Width = 312.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
+                object ClearEditButton2: TClearEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 32.000000000000000000
+                  Size.Height = 30.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
               end
             end
             object recCompensacao: TRectangle
@@ -337,8 +385,9 @@ object FControleCheques: TFControleCheques
               Size.PlatformDefault = False
               Stroke.Kind = None
               object edtDataCompensacao: TDateEdit
-                Date = 42774.000000000000000000
+                Date = 42779.000000000000000000
                 WeekNumbers = True
+                Format = 'dd/mm/yyyy'
                 TodayDefault = True
                 Align = Client
                 Size.Width = 312.000000000000000000
@@ -440,13 +489,6 @@ object FControleCheques: TFControleCheques
       Control = edtFornecedor
       Track = False
     end
-    object LinkPropertyToFieldText: TLinkPropertyToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_VALOR'
-      Component = edtValor
-      ComponentProperty = 'Text'
-    end
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
@@ -468,6 +510,13 @@ object FControleCheques: TFControleCheques
       FillHeaderExpressions = <>
       FillHeaderFieldName = 'CH_CONTACORRENTE'
       FillBreakGroups = <>
+    end
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_VALOR'
+      Control = edtValor
+      Track = False
     end
   end
 end

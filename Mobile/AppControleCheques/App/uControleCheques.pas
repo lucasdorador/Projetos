@@ -9,7 +9,7 @@ uses
   FMX.ListView, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
   FMX.DateTimeCtrls, FMX.EditBox, FMX.NumberBox, FMX.Edit, Data.DB, FMX.Objects,
-  Androidapi.Helpers, MultiDetailAppearanceU;
+  {$IF DEFINED (ANDROID)} Androidapi.Helpers,{$ENDIF} MultiDetailAppearanceU;
 
 type
   TFControleCheques = class(TForm)
@@ -43,7 +43,6 @@ type
     edtBanco: TEdit;
     edtContaCorrente: TEdit;
     edtFornecedor: TEdit;
-    edtValor: TNumberBox;
     edtNumeroCheque: TEdit;
     edtDataLancamento: TDateEdit;
     edtDataCompensacao: TDateEdit;
@@ -54,8 +53,14 @@ type
     LinkControlToField13: TLinkControlToField;
     LinkControlToField14: TLinkControlToField;
     BarraRolagemVertical: TVertScrollBox;
-    LinkPropertyToFieldText: TLinkPropertyToField;
     LinkListControlToField1: TLinkListControlToField;
+    ClearEditButton1: TClearEditButton;
+    ClearEditButton2: TClearEditButton;
+    ClearEditButton3: TClearEditButton;
+    edtValor: TEdit;
+    ClearEditButton4: TClearEditButton;
+    Rectangle1: TRectangle;
+    LinkControlToField1: TLinkControlToField;
     procedure btnDownloadClick(Sender: TObject);
     procedure ListView1ItemClick(const Sender: TObject;
       const AItem: TListViewItem);
@@ -65,6 +70,9 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
+    procedure edtNumeroChequeExit(Sender: TObject);
+    procedure edtValorExit(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -107,7 +115,7 @@ if TabControl1.ActiveTab = tabCadastra then
       Exit;
       end;
 
-   if edtValor.Value <= 0 then
+   if edtValor.Text = '' then
       begin
       ShowMessage('O Valor do Cheque deve ser maior que 0 (Zero).');
       Exit;
@@ -147,6 +155,20 @@ begin
 ShowMessage('Download ...');
 end;
 
+procedure TFControleCheques.btnPesquisarClick(Sender: TObject);
+begin
+if btnPesquisar.StyleLookup = 'cleareditbutton' then
+   begin
+   ListView1.SearchVisible  := False;
+   btnPesquisar.StyleLookup := 'searcheditbutton';
+   end
+else
+   begin
+   ListView1.SearchVisible  := True;
+   btnPesquisar.StyleLookup := 'cleareditbutton';
+   end;
+end;
+
 procedure TFControleCheques.btnVoltarClick(Sender: TObject);
 begin
 if ((dmPrincipal.FDConsulta.State = dsEdit) or
@@ -158,6 +180,23 @@ btnVoltar.Visible        := False;
 btnAdicionar.StyleLookup := 'addtoolbutton';
 btnPesquisar.Visible     := True;
 TabControl1.ActiveTab    := tabConsulta;
+end;
+
+procedure TFControleCheques.edtNumeroChequeExit(Sender: TObject);
+begin
+if Trim(edtNumeroCheque.Text) <> '' then
+   edtNumeroCheque.Text := FormatFloat('00000000', StrToFloat(edtNumeroCheque.Text));
+end;
+
+procedure TFControleCheques.edtValorExit(Sender: TObject);
+begin
+try
+   if Trim(edtValor.Text) <> '' then
+      edtValor.Text := FormatFloat(',0.00', StrToFloat(edtValor.Text));
+Except
+   ShowMessage('Houve um erro na conversão do Valor, digite apenas número no campo.');
+   edtValor.SetFocus;
+   end;
 end;
 
 procedure TFControleCheques.FormActivate(Sender: TObject);
@@ -180,11 +219,9 @@ procedure(const BotaoPressionado: TModalResult)
    case BotaoPressionado of
    mrYes:
       begin
+      {$IF DEFINED (ANDROID)}
       SharedActivity.Finish;
-      end;
-   mrNo:
-      begin
-      ShowMessage('Você respondeu não');
+      {$ENDIF}
       end;
    end;
    end);
