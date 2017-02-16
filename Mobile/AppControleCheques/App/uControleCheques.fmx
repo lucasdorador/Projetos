@@ -8,8 +8,8 @@ object FControleCheques: TFControleCheques
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnActivate = FormActivate
-  OnCloseQuery = FormCloseQuery
   OnKeyUp = FormKeyUp
+  OnShow = FormShow
   DesignerMasterStyle = 3
   object Layout1: TLayout
     Align = Client
@@ -77,14 +77,14 @@ object FControleCheques: TFControleCheques
       Size.Height = 432.000000000000000000
       Size.PlatformDefault = False
       TabHeight = 49.000000000000000000
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 1
       TabPosition = None
       object tabConsulta: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 8.000000000000000000
         Size.Height = 8.000000000000000000
         Size.PlatformDefault = False
@@ -120,7 +120,7 @@ object FControleCheques: TFControleCheques
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 8.000000000000000000
         Size.Height = 8.000000000000000000
         Size.PlatformDefault = False
@@ -134,302 +134,298 @@ object FControleCheques: TFControleCheques
           TabOrder = 0
           Viewport.Width = 320.000000000000000000
           Viewport.Height = 432.000000000000000000
-          object Layout2: TLayout
-            Align = Client
-            Size.Width = 320.000000000000000000
-            Size.Height = 432.000000000000000000
+          object recFundoTopo: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = -1.000000000000000000
+            Margins.Right = -1.000000000000000000
+            Position.X = -1.000000000000000000
+            Size.Width = 322.000000000000000000
+            Size.Height = 60.000000000000000000
             Size.PlatformDefault = False
-            TabOrder = 0
-            object Label1: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 2.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Banco'
-            end
-            object Label2: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 61.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Conta Corrente'
-            end
-            object Label3: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 120.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'N'#250'mero do Cheque'
-            end
-            object Label4: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 179.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Valor do Cheque'
-            end
-            object Label5: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 238.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Data do Lan'#231'amento'
-            end
-            object Label6: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 297.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Data da Compensa'#231#227'o'
-            end
-            object recBanco: TRectangle
-              Align = Top
+            Stroke.Color = claNull
+            object recLeftTopo: TRectangle
+              Align = Left
               Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 27.000000000000000000
-              Size.Width = 312.000000000000000000
-              Size.Height = 32.000000000000000000
+              Margins.Left = -1.000000000000000000
+              Margins.Right = -1.000000000000000000
+              Position.X = -1.000000000000000000
+              Size.Width = 161.000000000000000000
+              Size.Height = 60.000000000000000000
               Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtBanco: TEdit
-                Touch.InteractiveGestures = [LongTap, DoubleTap]
-                Align = Client
-                TabOrder = 0
-                KeyboardType = NumberPad
-                MaxLength = 10
-                Size.Width = 312.000000000000000000
+              Stroke.Color = claNull
+              object Label1: TLabel
+                Align = Top
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 3.000000000000000000
+                Margins.Top = 1.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Margins.Bottom = 2.000000000000000000
+                Position.X = 3.000000000000000000
+                Position.Y = 1.000000000000000000
+                Size.Width = 155.000000000000000000
+                Size.Height = 23.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.Style = [fsBold]
+                Text = 'Banco'
+              end
+              object edtBanco: TComboBox
+                Align = Top
+                Items.Strings = (
+                  '001'
+                  '033'
+                  '237')
+                Margins.Left = 4.000000000000000000
+                Margins.Right = 4.000000000000000000
+                Position.X = 4.000000000000000000
+                Position.Y = 26.000000000000000000
+                Size.Width = 153.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
-                object ClearEditButton1: TClearEditButton
-                  CanFocus = False
-                  Cursor = crArrow
-                  Size.Width = 32.000000000000000000
-                  Size.Height = 30.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 0
-                end
+                TabOrder = 1
               end
             end
-            object recLancamento: TRectangle
-              Align = Top
+            object recRightTopo: TRectangle
+              Align = Right
               Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 263.000000000000000000
+              Margins.Left = -1.000000000000000000
+              Margins.Right = -1.000000000000000000
+              Position.X = 162.000000000000000000
+              Size.Width = 161.000000000000000000
+              Size.Height = 60.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claNull
+              object Label2: TLabel
+                Align = Top
+                StyledSettings = [Family, Size, FontColor]
+                Margins.Left = 3.000000000000000000
+                Margins.Top = 2.000000000000000000
+                Margins.Right = 3.000000000000000000
+                Margins.Bottom = 2.000000000000000000
+                Position.X = 3.000000000000000000
+                Position.Y = 2.000000000000000000
+                Size.Width = 155.000000000000000000
+                Size.Height = 23.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.Font.Style = [fsBold]
+                Text = 'Conta Corrente'
+              end
+              object edtContaCorrente: TComboBox
+                Align = Top
+                Items.Strings = (
+                  '0700009-0'
+                  '92002277-4'
+                  '4055-X')
+                Margins.Left = 4.000000000000000000
+                Margins.Right = 4.000000000000000000
+                Position.X = 4.000000000000000000
+                Position.Y = 27.000000000000000000
+                Size.Width = 153.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+              end
+            end
+          end
+          object Label3: TLabel
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 2.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 62.000000000000000000
+            Size.Width = 314.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Style = [fsBold]
+            Text = 'N'#250'mero do Cheque'
+          end
+          object recNumeroCheque: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.X = 4.000000000000000000
+            Position.Y = 87.000000000000000000
+            Size.Width = 312.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object edtNumeroCheque: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              KeyboardType = NumberPad
+              MaxLength = 8
               Size.Width = 312.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtDataLancamento: TDateEdit
-                Date = 42779.000000000000000000
-                WeekNumbers = True
-                Format = 'dd/mm/yyyy'
-                TodayDefault = True
-                Align = Client
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
+              object ClearEditButton3: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 32.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
               end
             end
-            object recValorCheque: TRectangle
-              Align = Top
-              Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 204.000000000000000000
+          end
+          object Label4: TLabel
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 2.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 121.000000000000000000
+            Size.Width = 314.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Style = [fsBold]
+            Text = 'Valor do Cheque'
+          end
+          object recValorCheque: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.X = 4.000000000000000000
+            Position.Y = 146.000000000000000000
+            Size.Width = 312.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object edtValor: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              KeyboardType = NumberPad
+              Text = '0,00'
               Size.Width = 312.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtValor: TEdit
-                Touch.InteractiveGestures = [LongTap, DoubleTap]
-                Align = Client
-                TabOrder = 0
-                Text = '0,00'
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
-                Size.PlatformDefault = False
-                OnExit = edtValorExit
-                object ClearEditButton4: TClearEditButton
-                  CanFocus = False
-                  Cursor = crArrow
-                  Size.Width = 32.000000000000000000
-                  Size.Height = 30.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 0
-                end
-              end
-            end
-            object recNumeroCheque: TRectangle
-              Align = Top
-              Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 145.000000000000000000
-              Size.Width = 312.000000000000000000
-              Size.Height = 32.000000000000000000
-              Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtNumeroCheque: TEdit
-                Touch.InteractiveGestures = [LongTap, DoubleTap]
-                Align = Client
-                TabOrder = 0
-                KeyboardType = NumberPad
-                MaxLength = 8
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
-                Size.PlatformDefault = False
-                OnExit = edtNumeroChequeExit
-                object ClearEditButton3: TClearEditButton
-                  CanFocus = False
-                  Cursor = crArrow
-                  Size.Width = 32.000000000000000000
-                  Size.Height = 30.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 0
-                end
-              end
-            end
-            object recContaCorrente: TRectangle
-              Align = Top
-              Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 86.000000000000000000
-              Size.Width = 312.000000000000000000
-              Size.Height = 32.000000000000000000
-              Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtContaCorrente: TEdit
-                Touch.InteractiveGestures = [LongTap, DoubleTap]
-                Align = Client
-                TabOrder = 0
-                MaxLength = 15
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
-                Size.PlatformDefault = False
-                object ClearEditButton2: TClearEditButton
-                  CanFocus = False
-                  Cursor = crArrow
-                  Size.Width = 32.000000000000000000
-                  Size.Height = 30.000000000000000000
-                  Size.PlatformDefault = False
-                  TabOrder = 0
-                end
-              end
-            end
-            object recCompensacao: TRectangle
-              Align = Top
-              Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 322.000000000000000000
-              Size.Width = 312.000000000000000000
-              Size.Height = 32.000000000000000000
-              Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtDataCompensacao: TDateEdit
-                Date = 42779.000000000000000000
-                WeekNumbers = True
-                Format = 'dd/mm/yyyy'
-                TodayDefault = True
-                Align = Client
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
+              object ClearEditButton4: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 32.000000000000000000
+                Size.Height = 30.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
               end
             end
-            object Label7: TLabel
-              Align = Top
-              StyledSettings = [Family, Size, FontColor]
-              Margins.Left = 3.000000000000000000
-              Margins.Top = 2.000000000000000000
-              Margins.Right = 3.000000000000000000
-              Margins.Bottom = 2.000000000000000000
-              Position.X = 3.000000000000000000
-              Position.Y = 356.000000000000000000
-              Size.Width = 314.000000000000000000
-              Size.Height = 23.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.Font.Style = [fsBold]
-              Text = 'Fornecedor'
-            end
-            object recFornecedor: TRectangle
-              Align = Top
-              Fill.Color = claLightgray
-              Margins.Left = 4.000000000000000000
-              Margins.Right = 4.000000000000000000
-              Position.X = 4.000000000000000000
-              Position.Y = 381.000000000000000000
+          end
+          object Label5: TLabel
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 2.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 180.000000000000000000
+            Size.Width = 314.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Style = [fsBold]
+            Text = 'Data do Lan'#231'amento'
+          end
+          object recLancamento: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.X = 4.000000000000000000
+            Position.Y = 205.000000000000000000
+            Size.Width = 312.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object edtDataLancamento: TDateEdit
+              Date = 42781.000000000000000000
+              WeekNumbers = True
+              Format = 'dd/mm/yyyy'
+              TodayDefault = True
+              Align = Client
               Size.Width = 312.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
-              Stroke.Kind = None
-              object edtFornecedor: TEdit
-                Touch.InteractiveGestures = [LongTap, DoubleTap]
-                Align = Client
-                TabOrder = 0
-                Size.Width = 312.000000000000000000
-                Size.Height = 32.000000000000000000
-                Size.PlatformDefault = False
-              end
+              TabOrder = 0
+            end
+          end
+          object Label6: TLabel
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 2.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 239.000000000000000000
+            Size.Width = 314.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Style = [fsBold]
+            Text = 'Data da Compensa'#231#227'o'
+          end
+          object recCompensacao: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.X = 4.000000000000000000
+            Position.Y = 264.000000000000000000
+            Size.Width = 312.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object edtDataCompensacao: TDateEdit
+              Date = 42781.000000000000000000
+              WeekNumbers = True
+              Format = 'dd/mm/yyyy'
+              TodayDefault = True
+              Align = Client
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+            end
+          end
+          object Label7: TLabel
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 2.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 2.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 298.000000000000000000
+            Size.Width = 314.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Style = [fsBold]
+            Text = 'Fornecedor'
+          end
+          object recFornecedor: TRectangle
+            Align = Top
+            Fill.Color = claLightgray
+            Margins.Left = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.X = 4.000000000000000000
+            Position.Y = 323.000000000000000000
+            Size.Width = 312.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            object edtFornecedor: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Size.Width = 312.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
             end
           end
         end
@@ -447,48 +443,6 @@ object FControleCheques: TFControleCheques
     OutputConverters = <>
     Left = 516
     Top = 309
-    object LinkControlToField8: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_BANCO'
-      Control = edtBanco
-      Track = False
-    end
-    object LinkControlToField9: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_CONTACORRENTE'
-      Control = edtContaCorrente
-      Track = False
-    end
-    object LinkControlToField10: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_NUMEROCHEQUE'
-      Control = edtNumeroCheque
-      Track = False
-    end
-    object LinkControlToField12: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_DATALANCAMENTO'
-      Control = edtDataLancamento
-      Track = False
-    end
-    object LinkControlToField13: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_DATACOMPENSACAO'
-      Control = edtDataCompensacao
-      Track = False
-    end
-    object LinkControlToField14: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = BindSourceDB1
-      FieldName = 'CH_FORNECEDOR'
-      Control = edtFornecedor
-      Track = False
-    end
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'
       DataSource = BindSourceDB1
@@ -517,6 +471,56 @@ object FControleCheques: TFControleCheques
       FieldName = 'CH_VALOR'
       Control = edtValor
       Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_NUMEROCHEQUE'
+      Control = edtNumeroCheque
+      Track = False
+    end
+    object LinkControlToField5: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_FORNECEDOR'
+      Control = edtFornecedor
+      Track = False
+    end
+    object LinkPropertyToFieldDate: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_DATALANCAMENTO'
+      Component = edtDataLancamento
+      ComponentProperty = 'Date'
+    end
+    object LinkPropertyToFieldDate2: TLinkPropertyToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_DATACOMPENSACAO'
+      Component = edtDataCompensacao
+      ComponentProperty = 'Date'
+    end
+    object LinkFillControlToField1: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_BANCO'
+      Control = edtBanco
+      Track = True
+      AutoFill = True
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkFillControlToField2: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'CH_CONTACORRENTE'
+      Control = edtContaCorrente
+      Track = True
+      AutoFill = True
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
     end
   end
 end

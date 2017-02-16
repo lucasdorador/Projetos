@@ -24,9 +24,7 @@ inherited FControleCheques_SmXhdpiPh: TFControleCheques_SmXhdpiPh
     inherited TabControl1: TTabControl
       Size.Width = 250.000000000000000000
       Size.Height = 327.000000000000000000
-      TabIndex = 1
       inherited tabConsulta: TTabItem
-        IsSelected = False
         inherited ListView1: TListView
           Size.Width = 250.000000000000000000
           Size.Height = 327.000000000000000000
@@ -41,91 +39,11 @@ inherited FControleCheques_SmXhdpiPh: TFControleCheques_SmXhdpiPh
         end
       end
       inherited tabCadastra: TTabItem
-        IsSelected = True
         inherited BarraRolagemVertical: TVertScrollBox
           Size.Width = 250.000000000000000000
           Size.Height = 327.000000000000000000
-          Viewport.Width = 250.000000000000000000
+          Viewport.Width = 245.000000000000000000
           Viewport.Height = 327.000000000000000000
-          inherited Layout2: TLayout
-            Size.Width = 250.000000000000000000
-            Size.Height = 327.000000000000000000
-            inherited Label1: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited Label2: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited Label3: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited Label4: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited Label5: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited Label6: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited recBanco: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtBanco: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-            inherited recLancamento: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtDataLancamento: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-            inherited recValorCheque: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtValor: TEdit
-                Size.Width = 242.000000000000000000
-              end
-            end
-            inherited recNumeroCheque: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtNumeroCheque: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-            inherited recContaCorrente: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtContaCorrente: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-            inherited recCompensacao: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtDataCompensacao: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-            inherited Label7: TLabel
-              Size.Width = 244.000000000000000000
-            end
-            inherited recFornecedor: TRectangle
-              Size.Width = 242.000000000000000000
-              inherited edtFornecedor: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 236.000000000000000000
-              end
-            end
-          end
         end
       end
     end

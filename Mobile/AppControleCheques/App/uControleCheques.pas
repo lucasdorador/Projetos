@@ -9,7 +9,7 @@ uses
   FMX.ListView, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
   FMX.DateTimeCtrls, FMX.EditBox, FMX.NumberBox, FMX.Edit, Data.DB, FMX.Objects,
-  {$IF DEFINED (ANDROID)} Androidapi.Helpers,{$ENDIF} MultiDetailAppearanceU;
+  MultiDetailAppearanceU, FMX.ListBox;
 
 type
   TFControleCheques = class(TForm)
@@ -25,54 +25,52 @@ type
     BindingsList1: TBindingsList;
     tabCadastra: TTabItem;
     btnVoltar: TSpeedButton;
-    Label1: TLabel;
-    recBanco: TRectangle;
-    Label2: TLabel;
-    recLancamento: TRectangle;
-    Label3: TLabel;
-    recValorCheque: TRectangle;
-    Label4: TLabel;
-    recNumeroCheque: TRectangle;
-    Label5: TLabel;
-    recContaCorrente: TRectangle;
-    Label6: TLabel;
-    Layout2: TLayout;
-    recCompensacao: TRectangle;
-    Label7: TLabel;
-    recFornecedor: TRectangle;
-    edtBanco: TEdit;
-    edtContaCorrente: TEdit;
-    edtFornecedor: TEdit;
-    edtNumeroCheque: TEdit;
-    edtDataLancamento: TDateEdit;
-    edtDataCompensacao: TDateEdit;
-    LinkControlToField8: TLinkControlToField;
-    LinkControlToField9: TLinkControlToField;
-    LinkControlToField10: TLinkControlToField;
-    LinkControlToField12: TLinkControlToField;
-    LinkControlToField13: TLinkControlToField;
-    LinkControlToField14: TLinkControlToField;
     BarraRolagemVertical: TVertScrollBox;
     LinkListControlToField1: TLinkListControlToField;
-    ClearEditButton1: TClearEditButton;
-    ClearEditButton2: TClearEditButton;
+    Rectangle1: TRectangle;
+    recFundoTopo: TRectangle;
+    recRightTopo: TRectangle;
+    recLeftTopo: TRectangle;
+    Label1: TLabel;
+    edtBanco: TComboBox;
+    Label2: TLabel;
+    edtContaCorrente: TComboBox;
+    Label3: TLabel;
+    recNumeroCheque: TRectangle;
+    edtNumeroCheque: TEdit;
     ClearEditButton3: TClearEditButton;
+    Label4: TLabel;
+    recValorCheque: TRectangle;
     edtValor: TEdit;
     ClearEditButton4: TClearEditButton;
-    Rectangle1: TRectangle;
+    Label5: TLabel;
+    recLancamento: TRectangle;
+    edtDataLancamento: TDateEdit;
+    Label6: TLabel;
+    recCompensacao: TRectangle;
+    edtDataCompensacao: TDateEdit;
+    Label7: TLabel;
+    recFornecedor: TRectangle;
+    edtFornecedor: TEdit;
     LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+    LinkControlToField5: TLinkControlToField;
+    LinkPropertyToFieldDate: TLinkPropertyToField;
+    LinkPropertyToFieldDate2: TLinkPropertyToField;
+    LinkFillControlToField1: TLinkFillControlToField;
+    LinkFillControlToField2: TLinkFillControlToField;
     procedure btnDownloadClick(Sender: TObject);
     procedure ListView1ItemClick(const Sender: TObject;
       const AItem: TListViewItem);
     procedure FormActivate(Sender: TObject);
     procedure btnAdicionarClick(Sender: TObject);
     procedure btnVoltarClick(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure edtNumeroChequeExit(Sender: TObject);
     procedure edtValorExit(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,19 +89,19 @@ implementation
 {$R *.LgXhdpiPh.fmx ANDROID}
 {$R *.LgXhdpiTb.fmx ANDROID}
 
-uses udmPrincipal;
+uses udmPrincipal, uPrincipal;
 
 procedure TFControleCheques.btnAdicionarClick(Sender: TObject);
 begin
 if TabControl1.ActiveTab = tabCadastra then
    begin
-   if Trim(edtBanco.Text) = '' then
+   if Trim(edtBanco.Selected.Text) = '' then
       begin
       ShowMessage('O Banco deve ser preenchido');
       Exit;
       end;
 
-   if Trim(edtContaCorrente.Text) = '' then
+   if Trim(edtContaCorrente.Selected.Text) = '' then
       begin
       ShowMessage('A Conta Corrente deve ser preenchida');
       Exit;
@@ -207,36 +205,21 @@ if not dmPrincipal.FDConsulta.Active then
 
 end;
 
-procedure TFControleCheques.FormCloseQuery(Sender: TObject;
-  var CanClose: Boolean);
-begin
-CanClose := False;
-MessageDlg('Deseja realmente fechar o Controle de Cheques?',
-            System.UITypes.TMsgDlgType.mtInformation,
-            [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo], 0,
-procedure(const BotaoPressionado: TModalResult)
-   begin
-   case BotaoPressionado of
-   mrYes:
-      begin
-      {$IF DEFINED (ANDROID)}
-      SharedActivity.Finish;
-      {$ENDIF}
-      end;
-   end;
-   end);
-end;
-
 procedure TFControleCheques.FormKeyUp(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
-var
-  Fechar : Boolean;
 begin
-  if Key = vkHardwareBack then
-      begin
-        key := 0;
-        FormCloseQuery(Sender, Fechar);
-      end;
+if Key = vkHardwareBack then
+   begin
+   if not Assigned(FPrincipal) then
+      Application.CreateForm(TFPrincipal, FPrincipal);
+   FPrincipal.Show;
+   end;
+end;
+
+procedure TFControleCheques.FormShow(Sender: TObject);
+begin
+recRightTopo.Width := Trunc(recFundoTopo.Width / 2);
+recLeftTopo.Width  := Trunc(recFundoTopo.Width / 2);
 end;
 
 procedure TFControleCheques.ListView1ItemClick(const Sender: TObject;

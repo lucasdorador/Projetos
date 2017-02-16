@@ -44,66 +44,6 @@ inherited FControleCheques_XLgXhdpiTb: TFControleCheques_XLgXhdpiTb
           Size.Height = 1207.000000000000000000
           Viewport.Width = 800.000000000000000000
           Viewport.Height = 1207.000000000000000000
-          inherited Layout2: TLayout
-            inherited recBanco: TRectangle
-              inherited edtBanco: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                inherited ClearEditButton1: TClearEditButton
-                  Size.Height = 50.000000000000000000
-                end
-              end
-            end
-            inherited recLancamento: TRectangle
-              inherited edtDataLancamento: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-              end
-            end
-            inherited recValorCheque: TRectangle
-              inherited edtValor: TEdit
-                inherited ClearEditButton4: TClearEditButton
-                  Size.Height = 50.000000000000000000
-                end
-              end
-            end
-            inherited recNumeroCheque: TRectangle
-              inherited edtNumeroCheque: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                inherited ClearEditButton3: TClearEditButton
-                  Size.Height = 50.000000000000000000
-                end
-              end
-            end
-            inherited recContaCorrente: TRectangle
-              inherited edtContaCorrente: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                inherited ClearEditButton2: TClearEditButton
-                  Size.Height = 50.000000000000000000
-                end
-              end
-            end
-            inherited recCompensacao: TRectangle
-              inherited edtDataCompensacao: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-              end
-            end
-            inherited recFornecedor: TRectangle
-              inherited edtFornecedor: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-              end
-            end
-          end
         end
       end
     end
