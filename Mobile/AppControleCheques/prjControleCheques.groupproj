@@ -6,6 +6,9 @@
         <Projects Include="App\AppControleCheques.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Servidor\Servidor.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="AppControleCheques:Make">
         <MSBuild Projects="App\AppControleCheques.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Servidor">
+        <MSBuild Projects="Servidor\Servidor.dproj"/>
+    </Target>
+    <Target Name="Servidor:Clean">
+        <MSBuild Projects="Servidor\Servidor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Servidor:Make">
+        <MSBuild Projects="Servidor\Servidor.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="AppControleCheques"/>
+        <CallTarget Targets="AppControleCheques;Servidor"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="AppControleCheques:Clean"/>
+        <CallTarget Targets="AppControleCheques:Clean;Servidor:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="AppControleCheques:Make"/>
+        <CallTarget Targets="AppControleCheques:Make;Servidor:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

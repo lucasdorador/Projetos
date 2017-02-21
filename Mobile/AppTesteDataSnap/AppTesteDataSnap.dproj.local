@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/02/18 09:13:15.000.453,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\FormUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.609,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\templates\ServerFunctionInvoker.html</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.661,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\images\expand.png</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.415,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\json2-min.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.299,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\ServerFunctionExecutor.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.082,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.522,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\css\main.css</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.586,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\templates\ReverseString.html</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.356,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\CallbackFramework.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.500,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\ServerFunctionInvoker.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.635,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\images\collapse.png</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.163,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.389,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\ServerFunctions.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.468,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\connection.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.543,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\css\ServerFunctionInvoker.css</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.003,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.260,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\base64.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.447,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\CallbackFramework-min.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.320,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\json2.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.401,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\base64-min.js</Transaction>
+    <Transaction>2017/02/18 09:13:16.000.432,=F:\Projetos\trunk\Mobile\AppTesteDataSnap\js\ServerFunctionExecutor-min.js</Transaction>
+  </Transactions>
+</BorlandProject>

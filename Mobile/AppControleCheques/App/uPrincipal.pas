@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Objects, FMX.Layouts, FMX.Controls.Presentation,
-  {$IF DEFINED (ANDROID)} Androidapi.Helpers, {$ENDIF} FMX.MultiView;
+  {$IF DEFINED (ANDROID)} Androidapi.Helpers, {$ENDIF} FMX.MultiView,
+  FMX.Effects, System.ImageList, FMX.ImgList;
 
 type
   TFPrincipal = class(TForm)
@@ -16,14 +17,28 @@ type
     SpeedButton1: TSpeedButton;
     recTop: TRectangle;
     VertScrollBox1: TVertScrollBox;
-    Rectangle2: TRectangle;
+    recSair: TRectangle;
     Image1: TImage;
     Label1: TLabel;
     recButtom: TRectangle;
+    recCheques: TRectangle;
+    Image2: TImage;
+    Label2: TLabel;
+    recConfiguracao: TRectangle;
+    Rectangle1: TRectangle;
+    Rectangle2: TRectangle;
+    ShadowEffect1: TShadowEffect;
+    ShadowEffect2: TShadowEffect;
+    ShadowEffect3: TShadowEffect;
+    Label3: TLabel;
+    Image3: TImage;
     procedure Label1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
+    procedure Label2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Label3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,14 +51,13 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.NmXhdpiPh.fmx ANDROID}
-{$R *.XLgXhdpiTb.fmx ANDROID}
 
-uses uControleCheques;
+uses uControleCheques, uConfiguracao;
 
 procedure TFPrincipal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
 CanClose := False;
+{$IF DEFINED (ANDROID)}
 MessageDlg('Deseja realmente fechar o Controle de Cheques?',
             System.UITypes.TMsgDlgType.mtInformation,
             [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo], 0,
@@ -52,16 +66,21 @@ procedure(const BotaoPressionado: TModalResult)
    case BotaoPressionado of
    mrYes:
       begin
-      {$IF DEFINED (ANDROID)}
       SharedActivity.Finish;
-      {$ENDIF}
-
-      {$IF DEFINED (MSWINDOWS)}
-      Close;
-      {$ENDIF}
       end;
-   end;
+      end;
    end);
+{$ENDIF}
+
+{$IF DEFINED (MSWINDOWS)}
+if MessageDlg('Deseja realmente fechar o Controle de Cheques?',
+              System.UITypes.TMsgDlgType.mtInformation,
+             [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo], 0) = mrYes then
+   begin
+   Close;
+   CanClose := True;
+   end;
+{$ENDIF}
 end;
 
 procedure TFPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
@@ -76,11 +95,32 @@ if Key = vkHardwareBack then
    end;
 end;
 
+procedure TFPrincipal.FormShow(Sender: TObject);
+begin
+MultiView1.HideMaster;
+MultiView1.Width := FPrincipal.Width - 50;
+end;
+
 procedure TFPrincipal.Label1Click(Sender: TObject);
+var
+  Fechar : Boolean;
+begin
+FormCloseQuery(Sender, Fechar);
+end;
+
+procedure TFPrincipal.Label2Click(Sender: TObject);
 begin
 if not Assigned(FControleCheques) then
    Application.CreateForm(TFControleCheques, FControleCheques);
 FControleCheques.Show;
+end;
+
+procedure TFPrincipal.Label3Click(Sender: TObject);
+begin
+if not Assigned(FConfiguracao) then
+   Application.CreateForm(TFConfiguracao, FConfiguracao);
+
+FConfiguracao.Show;
 end;
 
 end.

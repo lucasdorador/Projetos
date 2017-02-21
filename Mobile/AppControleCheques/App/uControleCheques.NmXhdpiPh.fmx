@@ -1,23 +1,22 @@
 inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
   ClientHeight = 615
   ClientWidth = 400
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 3
   inherited Layout1: TLayout
     Size.Width = 400.000000000000000000
     Size.Height = 615.000000000000000000
     inherited tbTopo: TToolBar
       Size.Width = 400.000000000000000000
       inherited Rectangle1: TRectangle
-        Size.Width = 400.000000000000000000
+        Size.Width = 402.000000000000000000
         inherited btnAdicionar: TSpeedButton
-          Position.X = 352.000000000000000000
+          Position.X = 354.000000000000000000
         end
         inherited btnPesquisar: TSpeedButton
-          Position.X = 320.000000000000000000
+          Position.X = 301.000000000000000000
         end
-        inherited btnVoltar: TSpeedButton
-          Position.X = 48.000000000000000000
-          Position.Y = 1.000000000000000000
+        inherited btnExcluir: TSpeedButton
+          Position.X = 248.000000000000000000
         end
       end
     end
@@ -28,14 +27,6 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
         inherited ListView1: TListView
           Size.Width = 400.000000000000000000
           Size.Height = 567.000000000000000000
-          ItemAppearance.FooterHeight = 30
-          ItemAppearanceObjects.ItemObjects.Text.Align = Trailing
-          ItemAppearanceObjects.ItemObjects.MultiDetail1.Trimming = Word
-          ItemAppearanceObjects.ItemObjects.Accessory.AccessoryType = Checkmark
-          ItemAppearanceObjects.ItemEditObjects.MultiDetail1.TextColor = claYellowgreen
-          ItemAppearanceObjects.ItemEditObjects.Accessory.VertAlign = Trailing
-          ItemAppearanceObjects.ItemEditObjects.GlyphButton.ButtonType = Add
-          ItemAppearanceObjects.FooterObjects.Text.TextColor = claYellow
         end
       end
       inherited tabCadastra: TTabItem
@@ -44,6 +35,48 @@ inherited FControleCheques_NmXhdpiPh: TFControleCheques_NmXhdpiPh
           Size.Height = 567.000000000000000000
           Viewport.Width = 400.000000000000000000
           Viewport.Height = 567.000000000000000000
+          inherited Rectangle2: TRectangle
+            inherited recFundoTopo: TRectangle
+              inherited recLeftTopo: TRectangle
+                inherited Label1: TLabel
+                  Margins.Right = 3.000000000000000000
+                  Size.Width = 152.000000000000000000
+                end
+                inherited Rectangle3: TRectangle
+                  Margins.Top = -1.000000000000000000
+                  Margins.Right = -1.000000000000000000
+                  Margins.Bottom = -1.000000000000000000
+                  Position.Y = 25.000000000000000000
+                  Size.Width = 156.000000000000000000
+                  inherited edtBanco: TComboBox
+                    Margins.Left = 4.000000000000000000
+                    Margins.Right = 4.000000000000000000
+                    Size.Width = 148.000000000000000000
+                  end
+                end
+              end
+              inherited recRightTopo: TRectangle
+                inherited Label2: TLabel
+                  Margins.Left = 3.000000000000000000
+                  Position.X = 3.000000000000000000
+                  Size.Width = 152.000000000000000000
+                end
+                inherited Rectangle4: TRectangle
+                  Margins.Left = -1.000000000000000000
+                  Margins.Top = -1.000000000000000000
+                  Margins.Bottom = -1.000000000000000000
+                  Position.X = -1.000000000000000000
+                  Position.Y = 26.000000000000000000
+                  Size.Width = 156.000000000000000000
+                  inherited edtContaCorrente: TComboBox
+                    Margins.Left = 4.000000000000000000
+                    Margins.Right = 4.000000000000000000
+                    Size.Width = 148.000000000000000000
+                  end
+                end
+              end
+            end
+          end
         end
       end
     end

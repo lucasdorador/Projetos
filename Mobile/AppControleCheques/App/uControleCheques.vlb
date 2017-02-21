@@ -8,14 +8,11 @@ Coordinates=254,210,49,33
 [btnAdicionar]
 Coordinates=960,80,77,51
 
-[btnDownload]
-Coordinates=980,150,79,51
-
 [Layout1]
 Coordinates=10,210,53,33
 
 []
-Coordinates=234,380,53,33
+Coordinates=136,1,59,51
 ExplicitSubNodes=Text
 Visible=True
 
@@ -41,9 +38,6 @@ Coordinates=0,360,73,33
 
 [btnPesquisar]
 Coordinates=950,0,79,51
-
-[btnVoltar]
-Coordinates=136,1,59,51
 
 [BarraRolagemVertical]
 Coordinates=920,240,121,33
@@ -126,4 +120,7 @@ Coordinates=650,440,101,123
 [edtDataCompensacao]
 Coordinates=550,320,122,69
 ExplicitSubNodes=Date
+
+[ClearEditButton1]
+Coordinates=136,265,98,33
 

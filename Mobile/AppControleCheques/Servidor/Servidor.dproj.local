@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/02/18 09:45:50.000.843,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\base64.js</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.688,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.607,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.976,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\CallbackFramework.js</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.774,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.941,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\json2.js</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.483,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\FormUnit1.pas</Transaction>
+    <Transaction>2017/02/18 09:45:50.000.920,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\ServerFunctionExecutor.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.065,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\base64-min.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.126,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\CallbackFramework-min.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.143,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\connection.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.320,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\images\expand.png</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.008,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\ServerFunctions.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.108,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\ServerFunctionExecutor-min.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.293,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\images\collapse.png</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.176,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\ServerFunctionInvoker.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.267,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\templates\ServerFunctionInvoker.html</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.219,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\css\ServerFunctionInvoker.css</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.198,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\css\main.css</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.092,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\js\json2-min.js</Transaction>
+    <Transaction>2017/02/18 09:45:51.000.243,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\templates\ReverseString.html</Transaction>
+    <Transaction>2017/02/18 09:46:03.000.241,F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\FormUnit1.dfm=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\uServidor.dfm</Transaction>
+    <Transaction>2017/02/18 09:46:03.000.241,F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\FormUnit1.pas=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\uServidor.pas</Transaction>
+    <Transaction>2017/02/18 13:07:43.000.141,=F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\Unit1.pas</Transaction>
+    <Transaction>2017/02/18 13:08:02.000.397,F:\Projetos\trunk\Mobile\AppControleCheques\Servidor\Unit1.pas=F:\Projetos\trunk\Mobile\AppControleCheques\App\Class\UFuncoesServer.pas</Transaction>
+  </Transactions>
+</BorlandProject>

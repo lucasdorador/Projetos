@@ -8,16 +8,17 @@ inherited FControleCheques_LgXhdpiPh: TFControleCheques_LgXhdpiPh
     inherited tbTopo: TToolBar
       Size.Width = 450.000000000000000000
       inherited Rectangle1: TRectangle
-        Size.Width = 450.000000000000000000
+        Size.Width = 452.000000000000000000
         inherited btnAdicionar: TSpeedButton
-          Position.X = 402.000000000000000000
+          Position.X = 404.000000000000000000
         end
         inherited btnPesquisar: TSpeedButton
-          Position.X = 370.000000000000000000
+          Position.X = 372.000000000000000000
         end
         inherited btnVoltar: TSpeedButton
           Position.X = 48.000000000000000000
           Position.Y = 1.000000000000000000
+          Visible = False
         end
       end
     end

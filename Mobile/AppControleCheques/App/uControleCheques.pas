@@ -9,13 +9,13 @@ uses
   FMX.ListView, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
   FMX.DateTimeCtrls, FMX.EditBox, FMX.NumberBox, FMX.Edit, Data.DB, FMX.Objects,
-  MultiDetailAppearanceU, FMX.ListBox;
+  MultiDetailAppearanceU, FMX.ListBox, {$IF DEFINED (ANDROID)} Androidapi.Helpers, {$ENDIF}
+  FMX.Ani;
 
 type
   TFControleCheques = class(TForm)
     Layout1: TLayout;
     tbTopo: TToolBar;
-    btnDownload: TSpeedButton;
     btnAdicionar: TSpeedButton;
     btnPesquisar: TSpeedButton;
     TabControl1: TTabControl;
@@ -24,7 +24,6 @@ type
     BindSourceDB1: TBindSourceDB;
     BindingsList1: TBindingsList;
     tabCadastra: TTabItem;
-    btnVoltar: TSpeedButton;
     BarraRolagemVertical: TVertScrollBox;
     LinkListControlToField1: TLinkListControlToField;
     Rectangle1: TRectangle;
@@ -59,6 +58,13 @@ type
     LinkPropertyToFieldDate2: TLinkPropertyToField;
     LinkFillControlToField1: TLinkFillControlToField;
     LinkFillControlToField2: TLinkFillControlToField;
+    ClearEditButton1: TClearEditButton;
+    btnVoltar: TSpeedButton;
+    btnDownload: TSpeedButton;
+    btnExcluir: TSpeedButton;
+    Rectangle2: TRectangle;
+    Rectangle3: TRectangle;
+    Rectangle4: TRectangle;
     procedure btnDownloadClick(Sender: TObject);
     procedure ListView1ItemClick(const Sender: TObject;
       const AItem: TListViewItem);
@@ -71,8 +77,17 @@ type
     procedure edtValorExit(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormVirtualKeyboardHidden(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormVirtualKeyboardShown(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure edtValorEnter(Sender: TObject);
+    procedure ListView1DeleteItem(Sender: TObject; AIndex: Integer);
+    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
+    FTecladoShow : Boolean;
+    procedure pcdAlternaBotoes(poTabItem: TTabItem);
   public
     { Public declarations }
   end;
@@ -84,10 +99,6 @@ implementation
 
 {$R *.fmx}
 {$R *.NmXhdpiPh.fmx ANDROID}
-{$R *.XLgXhdpiTb.fmx ANDROID}
-{$R *.SmXhdpiPh.fmx ANDROID}
-{$R *.LgXhdpiPh.fmx ANDROID}
-{$R *.LgXhdpiTb.fmx ANDROID}
 
 uses udmPrincipal, uPrincipal;
 
@@ -129,28 +140,32 @@ if TabControl1.ActiveTab = tabCadastra then
        (dmPrincipal.FDConsulta.State = dsInsert)) then
       dmPrincipal.FDConsulta.Post;
 
-   btnDownload.Visible      := True;
-   btnVoltar.Visible        := False;
-   btnAdicionar.StyleLookup := 'addtoolbutton';
-   btnPesquisar.Visible     := True;
-   TabControl1.ActiveTab    := tabConsulta;
+
+   pcdAlternaBotoes(tabConsulta);
+   TabControl1.ActiveTab := tabConsulta;
    end
 else if TabControl1.ActiveTab = tabConsulta then
    begin
    dmPrincipal.FDConsulta.Append;
-   btnDownload.Visible      := False;
-   btnVoltar.Visible        := True;
-   btnAdicionar.StyleLookup := 'additembutton';
-   btnPesquisar.Visible     := False;
-   edtDataLancamento.Date   := Date;
-   edtDataCompensacao.Date  := Date;
-   TabControl1.ActiveTab    := tabCadastra;
+   pcdAlternaBotoes(tabCadastra);
+   TabControl1.ActiveTab := tabCadastra;
    end;
 end;
 
 procedure TFControleCheques.btnDownloadClick(Sender: TObject);
 begin
 ShowMessage('Download ...');
+end;
+
+procedure TFControleCheques.btnExcluirClick(Sender: TObject);
+begin
+if ((dmPrincipal.FDConsulta.State <> dsEdit) or
+    (dmPrincipal.FDConsulta.State <> dsInsert)) then
+    dmPrincipal.FDConsulta.Edit;
+
+dmPrincipal.FDConsulta.Delete;
+if dmPrincipal.FDConsulta.ApplyUpdates > 0 then
+   dmPrincipal.FDConsulta.CancelUpdates;
 end;
 
 procedure TFControleCheques.btnPesquisarClick(Sender: TObject);
@@ -169,21 +184,36 @@ end;
 
 procedure TFControleCheques.btnVoltarClick(Sender: TObject);
 begin
-if ((dmPrincipal.FDConsulta.State = dsEdit) or
-    (dmPrincipal.FDConsulta.State = dsInsert)) then
-   dmPrincipal.FDConsulta.Cancel;
+if TabControl1.ActiveTab = tabCadastra then
+   begin
+   if ((dmPrincipal.FDConsulta.State = dsEdit) or
+       (dmPrincipal.FDConsulta.State = dsInsert)) then
+      dmPrincipal.FDConsulta.Cancel;
 
-btnDownload.Visible      := True;
-btnVoltar.Visible        := False;
-btnAdicionar.StyleLookup := 'addtoolbutton';
-btnPesquisar.Visible     := True;
-TabControl1.ActiveTab    := tabConsulta;
+   pcdAlternaBotoes(tabConsulta);
+   TabControl1.ActiveTab := tabConsulta;
+   end
+else
+   begin
+   if not Assigned(FPrincipal) then
+      Application.CreateForm(TFPrincipal, FPrincipal);
+   FPrincipal.Show;
+   end;
 end;
 
 procedure TFControleCheques.edtNumeroChequeExit(Sender: TObject);
 begin
 if Trim(edtNumeroCheque.Text) <> '' then
    edtNumeroCheque.Text := FormatFloat('00000000', StrToFloat(edtNumeroCheque.Text));
+end;
+
+procedure TFControleCheques.edtValorEnter(Sender: TObject);
+begin
+if edtDataLancamento.Date = 0then
+   edtDataLancamento.Date := Date;
+
+if edtDataCompensacao.Date = 0 then
+   edtDataCompensacao.Date := Date;
 end;
 
 procedure TFControleCheques.edtValorExit(Sender: TObject);
@@ -199,6 +229,7 @@ end;
 
 procedure TFControleCheques.FormActivate(Sender: TObject);
 begin
+pcdAlternaBotoes(tabConsulta);
 TabControl1.ActiveTab := tabConsulta;
 if not dmPrincipal.FDConsulta.Active then
    dmPrincipal.FDConsulta.Active := True;
@@ -207,30 +238,108 @@ end;
 
 procedure TFControleCheques.FormKeyUp(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
+var
+   vloRect : TRect;
 begin
-if Key = vkHardwareBack then
+if (Key = vkHardwareBack) then
    begin
-   if not Assigned(FPrincipal) then
-      Application.CreateForm(TFPrincipal, FPrincipal);
-   FPrincipal.Show;
+   if (TabControl1.ActiveTab = tabCadastra) then
+      FormVirtualKeyboardHidden(Sender, False, vloRect)
+   else
+      begin
+      if not Assigned(FPrincipal) then
+         Application.CreateForm(TFPrincipal, FPrincipal);
+      FPrincipal.Show;
+      end;
    end;
 end;
 
 procedure TFControleCheques.FormShow(Sender: TObject);
 begin
-recRightTopo.Width := Trunc(recFundoTopo.Width / 2);
-recLeftTopo.Width  := Trunc(recFundoTopo.Width / 2);
+recRightTopo.Width       := Trunc(recFundoTopo.Width / 2);
+recLeftTopo.Width        := Trunc(recFundoTopo.Width / 2);
+btnAdicionar.StyleLookup := 'addtoolbutton';
+btnVoltar.Visible        := True;
+end;
+
+procedure TFControleCheques.FormVirtualKeyboardHidden(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+FTecladoShow := false;
+if not KeyboardVisible then
+   AnimateFloat('Padding.Top', 0, 0.1);
+end;
+
+procedure TFControleCheques.FormVirtualKeyboardShown(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+var
+     O: TFMXObject;
+begin
+FTecladoShow := true;
+if Assigned(Focused) and (Focused.GetObject is TControl) then
+   if TControl(Focused).AbsoluteRect.Bottom - Padding.Top >= (Bounds.Top - tbTopo.Height) then
+      begin
+           //If switching between controls, the KeyboardHidden animation will run first
+           //and we'll see the form scroll up and then down.
+           //Calling StopPropertyAnimation jumps the first animation to it's final value - same problem
+           //Instead we need to search for the other animation and call StopAtCurrent.
+      for O in Children do
+          if (O is TFloatAnimation) and (TFloatAnimation(O).PropertyName = 'Padding.Top') then
+             TFloatAnimation(O).StopAtCurrent;
+
+      //AnimateFloat
+      AnimateFloat('Padding.Top',Bounds.Top - tbTopo.Height - TControl(Focused).AbsoluteRect.Bottom + Padding.Top, 0.1)
+      end
+   else
+else
+   AnimateFloat('Padding.Top', 0, 0.1);
+end;
+
+procedure TFControleCheques.ListView1DeleteItem(Sender: TObject;
+  AIndex: Integer);
+begin
+MessageDlg('Deseja realmente fechar o Controle de Cheques?',
+            System.UITypes.TMsgDlgType.mtInformation,
+            [System.UITypes.TMsgDlgBtn.mbYes, System.UITypes.TMsgDlgBtn.mbNo], 0,
+procedure(const BotaoPressionado: TModalResult)
+   begin
+   case BotaoPressionado of
+     mrYes:
+      begin
+      dmPrincipal.FDConsulta.Delete;
+      end;
+      end;
+   end);
 end;
 
 procedure TFControleCheques.ListView1ItemClick(const Sender: TObject;
   const AItem: TListViewItem);
 begin
 dmPrincipal.FDConsulta.Edit;
-btnDownload.Visible      := False;
-btnVoltar.Visible        := True;
-btnAdicionar.StyleLookup := 'additembutton';
-btnPesquisar.Visible     := False;
-TabControl1.ActiveTab    := tabCadastra;
+pcdAlternaBotoes(tabCadastra);
+TabControl1.ActiveTab := tabCadastra;
+end;
+
+procedure TFControleCheques.pcdAlternaBotoes(poTabItem : TTabItem);
+begin
+if poTabItem = tabConsulta then
+   begin
+   btnAdicionar.Visible     := True;
+   btnPesquisar.Visible     := True;
+   btnVoltar.Visible        := True;
+   btnDownload.Visible      := True;
+   btnExcluir.Visible       := False;
+   btnAdicionar.StyleLookup := 'addtoolbutton';
+   end
+else if poTabItem = tabCadastra then
+   begin
+   btnAdicionar.Visible     := True;
+   btnPesquisar.Visible     := False;
+   btnVoltar.Visible        := True;
+   btnDownload.Visible      := False;
+   btnExcluir.Visible       := True;
+   btnAdicionar.StyleLookup := 'donetoolbutton';
+   end;
 end;
 
 end.

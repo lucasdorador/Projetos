@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D13A3F54-0F85-4786-AEE0-C0FD0262027C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="AppTesteDataSnap.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Mobile\Project1.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AppTesteDataSnap">
+        <MSBuild Projects="AppTesteDataSnap.dproj"/>
+    </Target>
+    <Target Name="AppTesteDataSnap:Clean">
+        <MSBuild Projects="AppTesteDataSnap.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AppTesteDataSnap:Make">
+        <MSBuild Projects="AppTesteDataSnap.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="Mobile\Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Mobile\Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Mobile\Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AppTesteDataSnap;Project1"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AppTesteDataSnap:Clean;Project1:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AppTesteDataSnap:Make;Project1:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

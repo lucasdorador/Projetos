@@ -5,24 +5,28 @@ inherited FControleCheques_iPhone4in: TFControleCheques_iPhone4in
     Size.Height = 548.000000000000000000
     inherited tbTopo: TToolBar
       Size.Height = 44.000000000000000000
-      inherited btnDownload: TSpeedButton
-        Size.Width = 44.000000000000000000
+      inherited Rectangle1: TRectangle
         Size.Height = 44.000000000000000000
-      end
-      inherited btnAdicionar: TSpeedButton
-        Position.X = 276.000000000000000000
-        Size.Width = 44.000000000000000000
-        Size.Height = 44.000000000000000000
-      end
-      inherited btnPesquisar: TSpeedButton
-        Position.X = 254.000000000000000000
-        Position.Y = 9.000000000000000000
-        Size.Width = 22.000000000000000000
-        Size.Height = 26.000000000000000000
-      end
-      inherited btnVoltar: TSpeedButton
-        Size.Width = 44.000000000000000000
-        Size.Height = 44.000000000000000000
+        inherited btnAdicionar: TSpeedButton
+          Position.X = 278.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited btnDownload: TSpeedButton
+          Position.X = 44.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited btnPesquisar: TSpeedButton
+          Position.X = 256.000000000000000000
+          Position.Y = 9.000000000000000000
+          Size.Width = 22.000000000000000000
+          Size.Height = 26.000000000000000000
+        end
+        inherited btnVoltar: TSpeedButton
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
       end
     end
     inherited TabControl1: TTabControl
@@ -37,61 +41,52 @@ inherited FControleCheques_iPhone4in: TFControleCheques_iPhone4in
           Size.Height = 504.000000000000000000
           Viewport.Width = 320.000000000000000000
           Viewport.Height = 504.000000000000000000
-          inherited Layout2: TLayout
-            inherited recBanco: TRectangle
-              inherited edtBanco: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
+          inherited recFundoTopo: TRectangle
+            inherited recLeftTopo: TRectangle
+              inherited edtBanco: TComboBox
                 Size.Height = 30.000000000000000000
               end
             end
-            inherited recLancamento: TRectangle
-              inherited edtDataLancamento: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
+            inherited recRightTopo: TRectangle
+              inherited edtContaCorrente: TComboBox
                 Size.Height = 30.000000000000000000
               end
             end
-            inherited recValorCheque: TRectangle
-              inherited edtValor: TNumberBox
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                Size.Height = 30.000000000000000000
+          end
+          inherited recNumeroCheque: TRectangle
+            inherited edtNumeroCheque: TEdit
+              Size.Height = 30.000000000000000000
+              inherited ClearEditButton3: TClearEditButton
+                Size.Width = 22.000000000000000000
+                Size.Height = 27.000000000000000000
               end
             end
-            inherited recNumeroCheque: TRectangle
-              inherited edtNumeroCheque: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                Size.Height = 30.000000000000000000
+          end
+          inherited recValorCheque: TRectangle
+            inherited edtValor: TEdit
+              Size.Height = 30.000000000000000000
+              inherited ClearEditButton4: TClearEditButton
+                Size.Width = 22.000000000000000000
+                Size.Height = 27.000000000000000000
               end
             end
-            inherited recContaCorrente: TRectangle
-              inherited edtContaCorrente: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                Size.Height = 30.000000000000000000
-              end
+          end
+          inherited recLancamento: TRectangle
+            inherited edtDataLancamento: TDateEdit
+              Size.Height = 30.000000000000000000
             end
-            inherited recCompensacao: TRectangle
-              inherited edtDataCompensacao: TDateEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                Size.Height = 30.000000000000000000
-              end
+          end
+          inherited recCompensacao: TRectangle
+            inherited edtDataCompensacao: TDateEdit
+              Size.Height = 30.000000000000000000
             end
-            inherited recFornecedor: TRectangle
-              inherited edtFornecedor: TEdit
-                Margins.Left = 3.000000000000000000
-                Margins.Right = 3.000000000000000000
-                Size.Width = 306.000000000000000000
-                Size.Height = 30.000000000000000000
+          end
+          inherited recFornecedor: TRectangle
+            inherited edtFornecedor: TEdit
+              Size.Height = 30.000000000000000000
+              inherited ClearEditButton1: TClearEditButton
+                Size.Width = 22.000000000000000000
+                Size.Height = 27.000000000000000000
               end
             end
           end

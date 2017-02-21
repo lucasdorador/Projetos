@@ -25,6 +25,7 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     procedure ConexaoBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
+    procedure FDConsultaAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -63,6 +64,12 @@ end;
 procedure TdmPrincipal.DataModuleCreate(Sender: TObject);
 begin
 Conexao.Connected := True;
+end;
+
+procedure TdmPrincipal.FDConsultaAfterPost(DataSet: TDataSet);
+begin
+if FDConsulta.ApplyUpdates > 0 then;
+   FDConsulta.CancelUpdates;
 end;
 
 end.

@@ -17,6 +17,8 @@ object dmPrincipal: TdmPrincipal
     Top = 8
   end
   object FDConsulta: TFDQuery
+    AfterPost = FDConsultaAfterPost
+    CachedUpdates = True
     Connection = Conexao
     FormatOptions.AssignedValues = [fvFmtDisplayDate, fvFmtEditNumeric]
     SQL.Strings = (

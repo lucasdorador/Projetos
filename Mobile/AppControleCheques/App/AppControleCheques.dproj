@@ -283,6 +283,17 @@
             <Form>FPrincipal</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="ClientClassesUnit1.pas"/>
+        <DCCReference Include="ClientModuleUnit1.pas">
+            <Form>ClientModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Class\uComunicaServer.pas"/>
+        <DCCReference Include="uConfiguracao.pas">
+            <Form>FConfiguracao</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="..\Banco_de_Dados\ControleCheques.sdb"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -894,16 +905,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
-                <Platform value="Android" ActiveMobileDevice="0427156621">True</Platform>
+                <Platform value="Android" ActiveMobileDevice="AVD_for_Nexus_5_by_Google">True</Platform>
                 <Platform value="iOSDevice32">True</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimulator" ActiveMobileDevice="iPad">True</Platform>
@@ -912,6 +923,9 @@
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <ModelSupport>False</ModelSupport>
+            <DataSnapProxyLookup>
+                <ClientClassesUnit1>{A1AFEC51-4EB3-447D-A209-ADE2DFCA78FC}</ClientClassesUnit1>
+            </DataSnapProxyLookup>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
