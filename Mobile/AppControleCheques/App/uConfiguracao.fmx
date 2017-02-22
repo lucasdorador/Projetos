@@ -11822,6 +11822,7 @@ object FConfiguracao: TFConfiguracao
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Top
         TabOrder = 3
+        KeyboardType = NumberPad
         TextSettings.Font.Size = 18.000000000000000000
         TextSettings.Font.Style = [fsBold]
         Position.X = 6.000000000000000000
