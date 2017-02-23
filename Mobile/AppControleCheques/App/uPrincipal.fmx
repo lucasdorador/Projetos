@@ -23954,7 +23954,7 @@ object FPrincipal: TFPrincipal
             Distance = 3.000000000000000000
             Direction = 100.000000000000000000
             Softness = 0.500000000000000000
-            Opacity = 0.699999988079071000
+            Opacity = 0.699999988079071100
             ShadowColor = claBlack
           end
         end
@@ -24029,7 +24029,7 @@ object FPrincipal: TFPrincipal
             Distance = 3.000000000000000000
             Direction = 100.000000000000000000
             Softness = 0.500000000000000000
-            Opacity = 0.699999988079071000
+            Opacity = 0.699999988079071100
             ShadowColor = claBlack
           end
         end
@@ -24111,5 +24111,9 @@ object FPrincipal: TFPrincipal
         end
       end
     end
+  end
+  object fgActivityDialog: TfgActivityDialog
+    Left = 56
+    Top = 400
   end
 end

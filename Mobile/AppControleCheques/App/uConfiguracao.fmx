@@ -7,6 +7,7 @@ object FConfiguracao: TFConfiguracao
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 3
   object Layout1: TLayout
     Align = Client
@@ -11853,6 +11854,7 @@ object FConfiguracao: TFConfiguracao
         TextSettings.Font.Style = [fsBold]
         TextSettings.FontColor = claWhite
         TintColor = claBlack
+        OnClick = btnGravarClick
         object ShadowEffect1: TShadowEffect
           StyleName = 'EstiloBotao'
           Distance = 3.000000000000000000

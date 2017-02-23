@@ -12013,7 +12013,7 @@ object FControleCheques: TFControleCheques
               Size.PlatformDefault = False
               Stroke.Kind = None
               object edtDataCompensacao: TDateEdit
-                Date = 42784.000000000000000000
+                Date = 42788.000000000000000000
                 WeekNumbers = True
                 Format = 'dd/mm/yyyy'
                 TodayDefault = True
@@ -12170,7 +12170,7 @@ object FControleCheques: TFControleCheques
               Size.PlatformDefault = False
               Stroke.Kind = None
               object edtDataLancamento: TDateEdit
-                Date = 42784.000000000000000000
+                Date = 42788.000000000000000000
                 WeekNumbers = True
                 Format = 'dd/mm/yyyy'
                 TodayDefault = True
@@ -12338,5 +12338,9 @@ object FControleCheques: TFControleCheques
       FillHeaderExpressions = <>
       FillBreakGroups = <>
     end
+  end
+  object fgActivityDialog: TfgActivityDialog
+    Left = 56
+    Top = 400
   end
 end

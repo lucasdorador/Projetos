@@ -9,7 +9,14 @@ uses
   ClientClassesUnit1 in 'ClientClassesUnit1.pas',
   ClientModuleUnit1 in 'ClientModuleUnit1.pas' {ClientModule1: TDataModule},
   uComunicaServer in 'Class\uComunicaServer.pas',
-  uConfiguracao in 'uConfiguracao.pas' {FConfiguracao};
+  uConfiguracao in 'uConfiguracao.pas' {FConfiguracao},
+  uFuncoesApp in 'Class\uFuncoesApp.pas',
+  uClassPODO in 'Class\uClassPODO.pas',
+  CCR.PrefsIniFile.Android in '..\..\Classes Android\CCR.PrefsIniFile.Android.pas',
+  CCR.PrefsIniFile.Apple in '..\..\Classes Android\CCR.PrefsIniFile.Apple.pas',
+  CCR.PrefsIniFile in '..\..\Classes Android\CCR.PrefsIniFile.pas',
+  DSSupportClasses in '..\..\Classes Android\DSSupportClasses.pas',
+  uAPPDataBase in 'Class\uAPPDataBase.pas';
 
 {$R *.res}
 

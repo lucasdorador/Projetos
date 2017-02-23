@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Objects, FMX.Layouts, FMX.Controls.Presentation,
   {$IF DEFINED (ANDROID)} Androidapi.Helpers, {$ENDIF} FMX.MultiView,
-  FMX.Effects, System.ImageList, FMX.ImgList;
+  FMX.Effects, System.ImageList, FMX.ImgList, FGX.ProgressDialog;
 
 type
   TFPrincipal = class(TForm)
@@ -32,6 +32,7 @@ type
     ShadowEffect3: TShadowEffect;
     Label3: TLabel;
     Image3: TImage;
+    fgActivityDialog: TfgActivityDialog;
     procedure Label1Click(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
@@ -52,7 +53,8 @@ implementation
 
 {$R *.fmx}
 
-uses uControleCheques, uConfiguracao;
+uses uControleCheques, uConfiguracao, uClassPODO, uFuncoesApp,
+  ClientModuleUnit1, uComunicaServer;
 
 procedure TFPrincipal.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
@@ -96,9 +98,41 @@ if Key = vkHardwareBack then
 end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);
+var
+   vlConfigApp : TConfiguracaoApp;
+   vlServico : TComunicaServer;
 begin
 MultiView1.HideMaster;
 MultiView1.Width := FPrincipal.Width - 50;
+vlConfigApp := TGravaConfiguracoesINI.pcdLerConfigApp;
+try
+if (Trim(vlConfigApp.psEnderecoIP) <> '') and
+   (Trim(vlConfigApp.psPortaConexao) <> '') then
+   begin
+   TConfiguraREST.configuracaoREST(vlConfigApp, ClientModule1.DSRestConnection1);
+
+   vlServico := TComunicaServer.Create;
+   fgActivityDialog.Show;
+   fgActivityDialog.Message := 'Aguarde estabelecendo conexão ...';
+   try
+   if not vlServico.fncValidaConexaoServidorSemMsg then
+      begin
+      Showmessage('Não foi possível comunicar com o servidor por favor verifique. Erro: ' + vlServico.vlsMensagemErro);
+      end;
+
+   finally
+      FreeAndNil(vlServico);
+      fgActivityDialog.Hide;
+      end;
+   end
+else
+   begin
+   FConfiguracao.Show;
+   end;
+
+finally
+   FreeAndNil(vlConfigApp);
+   end;
 end;
 
 procedure TFPrincipal.Label1Click(Sender: TObject);

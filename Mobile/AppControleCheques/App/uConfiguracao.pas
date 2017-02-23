@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit, FMX.Effects,
-  FGX.ProgressDialog;
+  FGX.ProgressDialog, uClassPODO, uFuncoesApp;
 
 type
   TFConfiguracao = class(TForm)
@@ -28,6 +28,8 @@ type
     SpeedButton1: TSpeedButton;
     procedure btnTestarClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,8 +43,55 @@ implementation
 
 {$R *.fmx}
 
-uses uComunicaServer, uPrincipal;
+uses uComunicaServer, uPrincipal, ClientModuleUnit1;
 {$R *.NmXhdpiPh.fmx ANDROID}
+
+procedure TFConfiguracao.btnGravarClick(Sender: TObject);
+var
+   vloConfig : TConfiguracaoApp;
+   vlbErro   : Boolean;
+begin
+vlbErro := False;
+if Trim(edtIPServidor.Text) = '' then
+   begin
+   ShowMessage('Por favor informe o IP ou DNS do Servidor!');
+   if edtIPServidor.CanFocus then
+      edtIPServidor.SetFocus;
+   vlbErro := True;
+   end
+else if Trim(edtPortaServidor.Text) = '' then
+   begin
+   ShowMessage('Por favor informe a porta do Servidor!');
+   if edtPortaServidor.CanFocus then
+      edtPortaServidor.SetFocus;
+   vlbErro := True;
+   end;
+
+if not vlbErro then
+   begin
+   try
+   vloConfig := TConfiguracaoApp.Create;
+   try
+   vloConfig.psEnderecoIP   := edtIPServidor.Text;
+   vloConfig.psPortaConexao := edtPortaServidor.Text;
+
+   TGravaConfiguracoesINI.pcdGravaConfigApp(vloConfig);
+   TConfiguraREST.configuracaoREST(vloConfig, ClientModule1.DSRestConnection1);
+
+   ShowMessage('Parâmetros gravados com sucesso!');
+
+   finally
+      FreeAndNil(vloConfig);
+      end;
+
+   except
+      on e : exception do
+         begin
+         ShowMessage(E.message);
+         end;
+      end;
+   end;
+end;
 
 procedure TFConfiguracao.btnTestarClick(Sender: TObject);
 var
@@ -74,6 +123,24 @@ if not vlbErro then
       if Assigned(vloComunica) then
          FreeAndNil(vloComunica);
       end;
+   end;
+end;
+
+procedure TFConfiguracao.FormShow(Sender: TObject);
+var
+  vloConfig : TConfiguracaoApp;
+begin
+vloConfig := TGravaConfiguracoesINI.pcdLerConfigApp;
+try
+if ((Trim(vloConfig.psEnderecoIP) <> '') or
+    (Trim(vloConfig.psPortaConexao) <> '')) then
+   begin
+   edtIPServidor.Text    := vloConfig.psEnderecoIP;
+   edtPortaServidor.Text := vloConfig.psPortaConexao;
+   end;
+
+finally
+   FreeAndNil(vloConfig);
    end;
 end;
 

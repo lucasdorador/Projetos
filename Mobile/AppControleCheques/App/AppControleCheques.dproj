@@ -294,6 +294,13 @@
             <Form>FConfiguracao</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Class\uFuncoesApp.pas"/>
+        <DCCReference Include="Class\uClassPODO.pas"/>
+        <DCCReference Include="..\..\Classes Android\CCR.PrefsIniFile.Android.pas"/>
+        <DCCReference Include="..\..\Classes Android\CCR.PrefsIniFile.Apple.pas"/>
+        <DCCReference Include="..\..\Classes Android\CCR.PrefsIniFile.pas"/>
+        <DCCReference Include="..\..\Classes Android\DSSupportClasses.pas"/>
+        <DCCReference Include="Class\uAPPDataBase.pas"/>
         <None Include="..\Banco_de_Dados\ControleCheques.sdb"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -328,14 +335,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\redist\osx32\libmidas.dylib" Configuration="Debug" Class="File">
-                    <Platform Name="iOSSimulator">
+                <DeployFile LocalName="$(BDS)\bin64\midas.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Debug\libAppControleCheques.so" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Android">
-                        <RemoteName>libAppControleCheques.so</RemoteName>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libmidas.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -345,8 +351,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin64\midas.dll" Configuration="Release" Class="File">
-                    <Platform Name="Win64">
+                <DeployFile LocalName="Android\Debug\libAppControleCheques.so" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Android">
+                        <RemoteName>libAppControleCheques.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -909,12 +916,12 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
-                <Platform value="Android" ActiveMobileDevice="H1AXB601T689PV7">True</Platform>
+                <Platform value="Android" ActiveMobileDevice="0427156621">True</Platform>
                 <Platform value="iOSDevice32">True</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimulator" ActiveMobileDevice="iPad">True</Platform>

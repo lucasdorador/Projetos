@@ -73,4 +73,56 @@ object dmPrincipal: TdmPrincipal
     Left = 168
     Top = 8
   end
+  object FDMCheques: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    Left = 200
+    Top = 128
+    object FDMChequesCH_CODIGO: TFDAutoIncField
+      FieldName = 'CH_CODIGO'
+      Origin = 'CH_CODIGO'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object FDMChequesCH_BANCO: TStringField
+      FieldName = 'CH_BANCO'
+      Origin = 'CH_BANCO'
+      Required = True
+      Size = 10
+    end
+    object FDMChequesCH_CONTACORRENTE: TStringField
+      FieldName = 'CH_CONTACORRENTE'
+      Origin = 'CH_CONTACORRENTE'
+      Required = True
+      Size = 15
+    end
+    object FDMChequesCH_NUMEROCHEQUE: TStringField
+      FieldName = 'CH_NUMEROCHEQUE'
+      Origin = 'CH_NUMEROCHEQUE'
+      Size = 8
+    end
+    object FDMChequesCH_VALOR: TFloatField
+      FieldName = 'CH_VALOR'
+      Origin = 'CH_VALOR'
+      DisplayFormat = ',0.00'
+      EditFormat = ',0.00'
+    end
+    object FDMChequesCH_DATALANCAMENTO: TDateField
+      FieldName = 'CH_DATALANCAMENTO'
+      Origin = 'CH_DATALANCAMENTO'
+    end
+    object FDMChequesCH_DATACOMPENSACAO: TDateField
+      FieldName = 'CH_DATACOMPENSACAO'
+      Origin = 'CH_DATACOMPENSACAO'
+    end
+    object FDMChequesCH_FORNECEDOR: TStringField
+      FieldName = 'CH_FORNECEDOR'
+      Origin = 'CH_FORNECEDOR'
+      Size = 50
+    end
+  end
 end

@@ -10,7 +10,7 @@ uses
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope,
   FMX.DateTimeCtrls, FMX.EditBox, FMX.NumberBox, FMX.Edit, Data.DB, FMX.Objects,
   MultiDetailAppearanceU, FMX.ListBox, {$IF DEFINED (ANDROID)} Androidapi.Helpers, {$ENDIF}
-  FMX.Ani;
+  FMX.Ani, FGX.ProgressDialog;
 
 type
   TFControleCheques = class(TForm)
@@ -65,6 +65,7 @@ type
     Rectangle2: TRectangle;
     Rectangle3: TRectangle;
     Rectangle4: TRectangle;
+    fgActivityDialog: TfgActivityDialog;
     procedure btnDownloadClick(Sender: TObject);
     procedure ListView1ItemClick(const Sender: TObject;
       const AItem: TListViewItem);
@@ -100,7 +101,7 @@ implementation
 {$R *.fmx}
 {$R *.NmXhdpiPh.fmx ANDROID}
 
-uses udmPrincipal, uPrincipal;
+uses udmPrincipal, uPrincipal, uComunicaServer;
 
 procedure TFControleCheques.btnAdicionarClick(Sender: TObject);
 begin
@@ -153,8 +154,25 @@ else if TabControl1.ActiveTab = tabConsulta then
 end;
 
 procedure TFControleCheques.btnDownloadClick(Sender: TObject);
+var
+   vlServico : TComunicaServer;
 begin
-ShowMessage('Download ...');
+vlServico := TComunicaServer.Create;
+try
+if vlServico.fncValidaConexaoServidorSemMsg then
+   begin
+   vlServico.vloProgresso := fgActivityDialog;
+   vlServico.getListaCheques;
+   end
+else
+   begin
+   Showmessage('Não foi possível comunicar com o servidor por favor verifique. Erro: ' + vlServico.vlsMensagemErro);
+   end;
+
+finally
+   FreeAndNil(vlServico);
+   fgActivityDialog.Hide;
+   end;
 end;
 
 procedure TFControleCheques.btnExcluirClick(Sender: TObject);

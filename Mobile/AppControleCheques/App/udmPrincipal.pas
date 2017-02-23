@@ -23,6 +23,15 @@ type
     FDConsultaCH_DATACOMPENSACAO: TDateField;
     FDConsultaCH_FORNECEDOR: TStringField;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDMCheques: TFDMemTable;
+    FDMChequesCH_CODIGO: TFDAutoIncField;
+    FDMChequesCH_BANCO: TStringField;
+    FDMChequesCH_CONTACORRENTE: TStringField;
+    FDMChequesCH_NUMEROCHEQUE: TStringField;
+    FDMChequesCH_VALOR: TFloatField;
+    FDMChequesCH_DATALANCAMENTO: TDateField;
+    FDMChequesCH_DATACOMPENSACAO: TDateField;
+    FDMChequesCH_FORNECEDOR: TStringField;
     procedure ConexaoBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure FDConsultaAfterPost(DataSet: TDataSet);
