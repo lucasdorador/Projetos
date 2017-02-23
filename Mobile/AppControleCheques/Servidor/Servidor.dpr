@@ -13,7 +13,14 @@ uses
   WebModuleUnit1 in 'WebModuleUnit1.pas' {WebModule1: TWebModule},
   Vcl.Themes,
   Vcl.Styles,
-  UFuncoesServer in '..\App\Class\UFuncoesServer.pas';
+  UFuncoesServer in '..\App\Class\UFuncoesServer.pas',
+  CCR.PrefsIniFile.Android in '..\..\Classes Android\CCR.PrefsIniFile.Android.pas',
+  CCR.PrefsIniFile.Apple in '..\..\Classes Android\CCR.PrefsIniFile.Apple.pas',
+  CCR.PrefsIniFile in '..\..\Classes Android\CCR.PrefsIniFile.pas',
+  DSSupportClasses in '..\..\Classes Android\DSSupportClasses.pas',
+  UManipulacaoINI in '..\..\Classes Android\UManipulacaoINI.pas',
+  uClassBancoDados in 'Class\uClassBancoDados.pas',
+  uCriacaoComponentes in 'Class\uCriacaoComponentes.pas';
 
 {$R *.res}
 
