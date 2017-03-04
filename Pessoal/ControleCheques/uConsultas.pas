@@ -12,6 +12,7 @@ uses
 
 type
    TTabelaConsulta = (ttcBanco, ttcConta);
+   TFormConsulta   = (tfcControle, tfcCadastro);
 
 type
   TFConsultas = class(TForm)
@@ -34,6 +35,8 @@ type
   public
     { Public declarations }
     vgsTabelaConsulta : TTabelaConsulta;
+    vgsFormConsulta   : TFormConsulta;
+    vgBanco : string;
   end;
 
 var
@@ -43,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses uControleCheques;
+uses uControleCheques, uCadastros, uPrincipal, uVariaveis;
 
 procedure TFConsultas.BitBtn1Click(Sender: TObject);
 begin
@@ -75,7 +78,10 @@ procedure TFConsultas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 if vgsTabelaConsulta = ttcBanco then
    begin
-   FControleCheques.edtBanco.Text := DBGrid1.DataSource.DataSet.FieldByName('BC_CODIGO').AsString;
+   if vgsFormConsulta = tfcControle then
+      FControleCheques.edtBanco.Text := DBGrid1.DataSource.DataSet.FieldByName('BC_CODIGO').AsString
+   else if vgsFormConsulta = tfcCadastro then
+      FCadastros.edtBancoContaCorrente.Text := DBGrid1.DataSource.DataSet.FieldByName('BC_CODIGO').AsString;
    end
 else if vgsTabelaConsulta = ttcConta then
    begin
@@ -102,7 +108,7 @@ if vgsTabelaConsulta = ttcBanco then
    begin
    DBGrid1.DataSource := dsBanco;
    FDBanco.Close;
-   FDBanco.Connection := FControleCheques.vgConexao;
+   FDBanco.Connection := vgConexao;
    FDBanco.SQL.Clear;
    FDBanco.SQL.Add('SELECT * FROM BANCOS');
    FDBanco.Open();
@@ -114,9 +120,10 @@ else if vgsTabelaConsulta = ttcConta then
    begin
    DBGrid1.DataSource := dsConta;
    FDConta.Close;
-   FDConta.Connection := FControleCheques.vgConexao;
+   FDConta.Connection := vgConexao;
    FDConta.SQL.Clear;
-   FDConta.SQL.Add('SELECT * FROM CONTAS');
+   FDConta.SQL.Add('SELECT * FROM CONTAS WHERE CC_BANCO = :BANCO');
+   FDConta.ParamByName('BANCO').AsString := vgBanco;
    FDConta.Open();
 
    DBGrid1.Columns[0].FieldName := 'CC_NUMERO';

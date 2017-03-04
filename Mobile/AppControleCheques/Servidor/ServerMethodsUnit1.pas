@@ -7,13 +7,16 @@ uses System.SysUtils, System.Classes, System.Json,
      FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
      FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
      FireDAC.Phys, Data.DB, FireDAC.Comp.Client, Forms, Data.FireDACJSONReflect,
-  FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB;
+     FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB, FireDAC.VCLUI.Wait,
+     FireDAC.Comp.UI, FireDAC.Stan.StorageJSON;
 
 type
 {$METHODINFO ON}
   TServerMethods1 = class(TDataModule)
     Conexao: TFDConnection;
-    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    FDStanStorageJSONLink1: TFDStanStorageJSONLink;
+    FDGUIxWaitCursor2: TFDGUIxWaitCursor;
+    FDPhysFBDriverLink2: TFDPhysFBDriverLink;
     procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private

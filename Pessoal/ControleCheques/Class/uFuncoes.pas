@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
-  Vcl.ExtDlgs, IniFiles, Data.SqlExpr, FireDAc.Comp.Client;
+  Vcl.ExtDlgs, IniFiles, Data.SqlExpr, FireDAc.Comp.Client, uVariaveis;
 
   procedure GravaINIBanco(Caminho:String;Usuario:String;Senha:String);
   procedure GravaFireDAcConection(Caminho:String;Usuario:String;Senha:String);
@@ -19,10 +19,9 @@ uses
   procedure pcdCriaParametrosConexaoFireDAc(vgsDataBase, vgUsuario, vgSenha: String; var poConnection: TFDConnection);
   function fncPesquisaBanco(poConexao : TFDConnection; psBanco : String): String;
   function fncPesquisaContaCorrente(poConexao : TFDConnection; psContaCorrente, psBanco : String): String;
+  procedure pcdCarregaDadosCadastro(var poQuery: TFDQuery; psTipoTabela: TTipoTabelaCadastro);
 
 implementation
-
-uses uVariaveis;
 
 function MensagemSistema(Tipo:String;Mensagem:String) : string;
 begin
@@ -34,7 +33,7 @@ procedure GravaINIBanco(Caminho:String;Usuario:String;Senha:String);
 var
    ArqINI : TIniFile;
 begin
-   ArqINI := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ConfigBanco.ini');
+   ArqINI := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'dbxconnections.ini');
 try
    ArqINI.WriteString('DFSISTEMAS','CaminhoBanco', ExtractFilePath(Application.ExeName) + 'DFSISTEMAS.FDB');
    ArqINI.WriteString('DFSISTEMAS','User_Name',    'SYSDBA');
@@ -48,15 +47,15 @@ procedure LerINIBanco;
 var
    ArqINI : TIniFile;
 begin
-if not FileExists(ExtractFilePath(Application.ExeName) + 'ConfigBanco.ini') then
+if not FileExists(ExtractFilePath(Application.ExeName) + 'dbxconnections.ini') then
    begin
    MensagemSistema('Informação', 'Não encontrei o arquivo ConfigBanco, se for a primeira vez que acessa grave as configurações.');
    Abort;
    end;
 
-ArqINI := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ConfigBanco.ini');
+ArqINI := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'dbxconnections.ini');
 try
-   vgCaminhoBanco := ArqINI.ReadString('DFSISTEMAS', 'CaminhoBanco', '');
+   vgCaminhoBanco := ArqINI.ReadString('DFSISTEMAS', 'Database', '');
    vgUsuarioBanco := ArqINI.ReadString('DFSISTEMAS', 'User_Name', '');
    vgSenhaBanco   := ArqINI.ReadString('DFSISTEMAS', 'Password', '');
 finally
@@ -245,6 +244,16 @@ Result := QConsultas.FieldByName('CC_DESCRICAO').AsString;
 finally
    FreeAndNil(QConsultas);
    end;
+end;
+
+procedure pcdCarregaDadosCadastro(var poQuery: TFDQuery; psTipoTabela: TTipoTabelaCadastro);
+begin
+poQuery.SQL.Clear;
+if psTipoTabela = tt_Banco then
+   poQuery.SQL.Add('SELECT * FROM BANCOS')
+else if psTipoTabela = tt_Conta then
+   poQuery.SQL.Add('SELECT * FROM CONTAS');
+poQuery.Open;
 end;
 
 end.

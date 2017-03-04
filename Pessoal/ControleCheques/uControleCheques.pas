@@ -50,7 +50,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
     procedure edtDataEnter(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure edtBancoExit(Sender: TObject);
     procedure edtContaCorrenteExit(Sender: TObject);
     procedure btnCons_BancosClick(Sender: TObject);
@@ -64,16 +63,13 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure edtDataExit(Sender: TObject);
     procedure edtCompensacaoExit(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGrid1CellClick(Column: TColumn);
   private
-    procedure fncCriaBanco;
     function fncUltimoCodigoCheque: Integer;
     procedure pcdAtualizaTabela;
     procedure pcdLimpaDados;
     { Private declarations }
   public
-    vgConexao : TFDConnection;
     { Public declarations }
   end;
 
@@ -90,6 +86,7 @@ procedure TFControleCheques.btnCons_BancosClick(Sender: TObject);
 begin
 Application.CreateForm(TFConsultas, FConsultas);
 FConsultas.vgsTabelaConsulta := ttcBanco;
+FConsultas.vgsFormConsulta   := tfcControle;
 FConsultas.ShowModal;
 edtBanco.SetFocus;
 FreeAndNil(FConsultas);
@@ -99,6 +96,13 @@ procedure TFControleCheques.btnCons_ContaCorrenteClick(Sender: TObject);
 begin
 Application.CreateForm(TFConsultas, FConsultas);
 FConsultas.vgsTabelaConsulta := ttcConta;
+FConsultas.vgBanco           := edtBanco.Text;
+if Trim(edtBanco.Text) = '' then
+   begin
+   ShowMessage('Escolha um banco válido antes de pesquisar uma conta!');
+   edtBanco.SetFocus;
+   Abort;
+   end;
 FConsultas.ShowModal;
 edtContaCorrente.SetFocus;
 FreeAndNil(FConsultas);
@@ -110,22 +114,26 @@ var
 begin
 QCheques :=  TFDQuery.Create(nil);
 try
-QCheques.Close;
-QCheques.Connection := vgConexao;
-QCheques.SQL.Clear;
-QCheques.SQL.Add('DELETE FROM CHEQUES WHERE CH_BANCO = :BAN AND CH_CONTACORRENTE = :CON AND CH_NUMEROCHEQUE = :NUM');
-QCheques.ParamByName('BAN').AsString := edtBanco.Text;
-QCheques.ParamByName('CON').AsString := edtContaCorrente.Text;
-QCheques.ParamByName('NUM').AsString := edtNumeroCheque.Text;
-try
-QCheques.ExecSQL;
-except
-   on E:Exception do
-      begin
-      ShowMessage('Houve um erro na exclusão com a mensagem: ' + e.Message);
-      Abort;
+if MessageDlg('Deseja realmente excluir esse lançamento?', MtConfirmation, [mbYes, mbNo], 0) = MrYes then
+   begin
+   QCheques.Close;
+   QCheques.Connection := vgConexao;
+   QCheques.SQL.Clear;
+   QCheques.SQL.Add('DELETE FROM CHEQUES WHERE CH_BANCO = :BAN AND CH_CONTACORRENTE = :CON AND CH_NUMEROCHEQUE = :NUM');
+   QCheques.ParamByName('BAN').AsString := edtBanco.Text;
+   QCheques.ParamByName('CON').AsString := edtContaCorrente.Text;
+   QCheques.ParamByName('NUM').AsString := edtNumeroCheque.Text;
+   try
+   QCheques.ExecSQL;
+   except
+      on E:Exception do
+         begin
+         ShowMessage('Houve um erro na exclusão com a mensagem: ' + e.Message);
+         Abort;
+         end;
       end;
    end;
+
 finally
    pcdAtualizaTabela;
    FreeAndNil(QCheques);
@@ -182,13 +190,6 @@ if (edtData.Text = '  /  /    ') then
    Abort;
    end;
 
-if (edtCompensacao.Text = '  /  /    ') then
-   begin
-   ShowMessage('Digite uma data de compensação válida!');
-   edtCompensacao.SetFocus;
-   Abort;
-   end;
-
 try
 QCheques.Close;
 QCheques.Connection := vgConexao;
@@ -212,7 +213,8 @@ if QCheques.IsEmpty then
    QCheques.ParamByName('CH_NUMEROCHEQUE').AsString    := edtNumeroCheque.Text;
    QCheques.ParamByName('CH_VALOR').AsFloat            := edtValor.Value;
    QCheques.ParamByName('CH_DATALANCAMENTO').AsString  := FormatDateTime('mm/dd/yyyy', StrToDate(edtData.Text));
-   QCheques.ParamByName('CH_DATACOMPENSACAO').AsString := FormatDateTime('mm/dd/yyyy', StrToDate(edtCompensacao.Text));
+   if edtCompensacao.Text <> '  /  /    ' then
+      QCheques.ParamByName('CH_DATACOMPENSACAO').AsString := FormatDateTime('mm/dd/yyyy', StrToDate(edtCompensacao.Text));
    QCheques.ParamByName('CH_FORNECEDOR').AsString      := Trim(edtFornecedor.Text);
    try
    QCheques.ExecSQL;
@@ -230,7 +232,7 @@ else
    QCheques.SQL.Add('UPDATE CHEQUES '+
                     'SET CH_VALOR = :CH_VALOR, '+
                     '    CH_DATALANCAMENTO = :CH_DATALANCAMENTO, '+
-                    '    CH_DATACOMPENSACAO = :CH_DATACOMPENSACAO '+
+                    '    CH_DATACOMPENSACAO = :CH_DATACOMPENSACAO, '+
                     '    CH_FORNECEDOR      = :CH_FORNECEDOR '+
                     'WHERE (CH_NUMEROCHEQUE = :CH_NUMEROCHEQUE) AND (CH_BANCO = :CH_BANCO) AND'+
                     '(CH_CONTACORRENTE = :CH_CONTACORRENTE);');
@@ -313,7 +315,9 @@ edtValor.Value        := FDChequesCH_VALOR.AsFloat;
 edtData.Text          := FDChequesCH_DATALANCAMENTO.AsString;
 edtCompensacao.Text   := FDChequesCH_DATACOMPENSACAO.AsString;
 edtFornecedor.Text    := FDChequesCH_FORNECEDOR.AsString;
-edtFornecedor.SetFocus;
+
+if edtCompensacao.CanFocus then
+   edtCompensacao.SetFocus;
 
 btnGravar.Enabled  := True;
 btnExcluir.Enabled := True;
@@ -382,52 +386,6 @@ if edtData.Text <> '  /  /    ' then
    end;
 end;
 
-procedure TFControleCheques.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-if Assigned(vgConexao) then
-   FreeAndNil(vgConexao);
-end;
-
-procedure TFControleCheques.FormCreate(Sender: TObject);
-begin
-vgConexao := TFDConnection.Create(Application);
-
-if not FileExists(ExtractFilePath(Application.ExeName) + '\DFSISTEMAS.FDB') then
-   begin
-   fncCriaBanco;
-   //Gravar INI
-   GravaINIBanco(ExtractFilePath(Application.ExeName) + '\DFSISTEMAS.FDB', 'SYSDBA', 'masterkey');
-   GravaFireDAcConection(ExtractFilePath(Application.ExeName) + '\DFSISTEMAS.FDB', 'SYSDBA', 'masterkey');
-   pcdCriaParametrosConexaoFireDAc(ExtractFilePath(Application.ExeName) + '\DFSISTEMAS.FDB', 'SYSDBA', 'masterkey', vgConexao);
-   try
-   vgConexao.Connected := True;
-   Except
-      on E:Exception do
-         begin
-         MensagemSistema('Informação', 'Houve um erro para criar a conexão com a seguinte mensagem: ' + E.Message);
-         Abort;
-         end;
-      end;
-//   TTabelas.TabelasFirebird(vgConexao);
-   end
-else
-   begin
-   LerINIBanco;
-   pcdCriaParametrosConexaoFireDAc(vgCaminhoBanco, vgUsuarioBanco, vgSenhaBanco, vgConexao);
-   try
-   vgConexao.Connected := True;
-   Except
-      on E:Exception do
-         begin
-         MensagemSistema('Informação', 'Houve um erro para criar a conexão com a seguinte mensagem: ' + E.Message);
-         Abort;
-         end;
-      end;
-   end;
-
-end;
-
 procedure TFControleCheques.FormKeyPress(Sender: TObject; var Key: Char);
 begin
 if Key = #13 then
@@ -445,28 +403,6 @@ procedure TFControleCheques.FormShow(Sender: TObject);
 begin
 pcdAtualizaTabela;
 edtBanco.SetFocus;
-end;
-
-procedure TFControleCheques.fncCriaBanco;
-begin
-//Cria o componente "IBScript"
-try
-//Insere comandos sql para criação do Banco de Dados
-Application.CreateForm(TDMPrincipal, DMPrincipal);
-
-DMPrincipal.FBScript.Script.Add('SET SQL DIALECT 3;');
-DMPrincipal.FBScript.Script.Add('SET NAMES WIN1252;');
-DMPrincipal.FBScript.Script.Add('CREATE DATABASE "'+ExtractFilePath(Application.ExeName)+'\DFSISTEMAS.FDB"');
-DMPrincipal.FBScript.Script.Add('USER ''SYSDBA'' PASSWORD ''masterkey''');
-DMPrincipal.FBScript.Script.Add('PAGE_SIZE 16384');
-DMPrincipal.FBScript.Script.add('DEFAULT CHARACTER SET WIN1252;');
-//Executa o Script
-DMPrincipal.FBScript.ExecuteScript;
-
-finally
-  //Ao Finalizar processo, libera componente da memória
-  FreeAndNil(DMPrincipal.FBScript);
-end;
 end;
 
 procedure TFControleCheques.pcdAtualizaTabela;

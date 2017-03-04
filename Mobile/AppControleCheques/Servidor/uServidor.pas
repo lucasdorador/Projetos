@@ -6,7 +6,10 @@ uses
   Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, Web.HTTPApp, Vcl.Buttons,
-  Vcl.ExtCtrls, Vcl.Imaging.pngimage;
+  Vcl.ExtCtrls, Vcl.Imaging.pngimage, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef, Data.DB, FireDAC.Comp.Client, FireDAc.Dapt;
 
 type
   TFServidor = class(TForm)
@@ -41,7 +44,8 @@ implementation
 {$R *.dfm}
 
 uses
-  WinApi.Windows, Winapi.ShellApi, Datasnap.DSSession, UFuncoesServer;
+  WinApi.Windows, Winapi.ShellApi, Datasnap.DSSession, UFuncoesServer,
+  uClassBancoDados;
 
 procedure TFServidor.ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
 begin

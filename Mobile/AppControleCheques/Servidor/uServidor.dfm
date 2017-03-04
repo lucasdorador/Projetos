@@ -26,8 +26,6 @@ object FServidor: TFServidor
     Height = 331
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 548
-    ExplicitHeight = 321
     object Label1: TLabel
       Left = 20
       Top = 171

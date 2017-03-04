@@ -7,15 +7,17 @@ uses
   uFuncoes in 'Class\uFuncoes.pas',
   uVariaveis in 'Class\uVariaveis.pas',
   udmPrincipal in 'udmPrincipal.pas' {DMPrincipal: TDataModule},
-  uConsultas in 'uConsultas.pas' {FConsultas};
+  uConsultas in 'uConsultas.pas' {FConsultas},
+  uPrincipal in 'uPrincipal.pas' {FPrincipal},
+  uCadastros in 'uCadastros.pas' {FCadastros};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFControleCheques, FControleCheques);
   Application.CreateForm(TDMPrincipal, DMPrincipal);
-  Application.CreateForm(TFConsultas, FConsultas);
+  Application.CreateForm(TFPrincipal, FPrincipal);
+  Application.CreateForm(TFCadastros, FCadastros);
   Application.Run;
 end.
