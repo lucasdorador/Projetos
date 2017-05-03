@@ -14,10 +14,8 @@ type
     OpenTextFileDialog1: TOpenTextFileDialog;
     Edit1: TEdit;
     BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
   private
     function fnclocalizaparametro(s: String): String;
@@ -39,13 +37,14 @@ begin
 if OpenTextFileDialog1.Execute() then
    begin
    Edit1.Text := OpenTextFileDialog1.FileName;
-   end;
-end;
 
-procedure TForm1.BitBtn2Click(Sender: TObject);
-begin
-Memo1.Lines.Clear;
-Memo1.Lines.LoadFromFile(Edit1.Text);
+   if FileExists(Edit1.Text) then
+      begin
+      Memo1.Lines.Clear;
+      Memo1.Lines.LoadFromFile(Edit1.Text);
+      end;
+
+   end;
 end;
 
 procedure TForm1.BitBtn3Click(Sender: TObject);
