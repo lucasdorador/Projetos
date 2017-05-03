@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2017/05/02 22:09:34.000.559,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2017/05/02 22:15:00.000.622,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\Projetos\trunk\TDP\Testes\uFindParametros.pas</Transaction>
-    <Transaction>2017/05/02 22:15:00.000.622,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.dfm=F:\Projetos\trunk\TDP\Testes\uFindParametros.dfm</Transaction>
-    <Transaction>2017/05/02 22:15:06.000.838,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\Projetos\trunk\TDP\Testes\FindParametros.dproj</Transaction>
+    <Transaction>2017/05/02 22:15:00.000.622,F:\Projetos\trunk\TDP\Testes\uFindParametros.dfm=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/05/02 22:15:00.000.622,F:\Projetos\trunk\TDP\Testes\uFindParametros.pas=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/05/02 22:15:06.000.838,F:\Projetos\trunk\TDP\Testes\FindParametros.dproj=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
   </Transactions>
 </BorlandProject>
