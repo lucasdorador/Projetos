@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/05/02 22:15:00.000.622,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.dfm=F:\Projetos\trunk\TDP\Testes\uFindParametros.dfm</Transaction>
+    <Transaction>2017/05/02 22:15:00.000.622,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\Projetos\trunk\TDP\Testes\uFindParametros.pas</Transaction>
+    <Transaction>2017/05/02 22:15:06.000.838,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\Projetos\trunk\TDP\Testes\FindParametros.dproj</Transaction>
+    <Transaction>2017/05/04 14:15:24.000.208,F:\Lucas\Projetos\trunk\TDP\Testes\Unit2.dfm=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Forms\uProcessa.dfm</Transaction>
+    <Transaction>2017/05/04 14:15:39.000.273,F:\Lucas\Projetos\trunk\TDP\Testes\FindParametros.dproj=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\FindParametros.dproj</Transaction>
+    <Transaction>2017/05/04 14:15:49.000.029,F:\Lucas\Projetos\trunk\TDP\Testes\uFindParametros.dfm=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Forms\uFindParametros.dfm</Transaction>
+    <Transaction>2017/05/04 15:00:37.000.526,=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Unit1.pas</Transaction>
+    <Transaction>2017/05/04 15:00:55.000.400,F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Unit1.pas=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Forms\uMemoParametros.pas</Transaction>
+    <Transaction>2017/05/04 15:00:55.000.400,F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Unit1.dfm=F:\Lucas\Projetos\trunk\TDP\Testes\FindParamentros\Forms\uMemoParametros.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
