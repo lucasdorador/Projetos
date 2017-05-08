@@ -12,6 +12,7 @@ object FProcessa: TFProcessa
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -28,7 +29,6 @@ object FProcessa: TFProcessa
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 730
     object Gauge1: TGauge
       Left = 2
       Top = 18
