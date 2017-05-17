@@ -23,8 +23,7 @@ type
 implementation
 
 
-uses System.StrUtils, uDmPrincipal, Vcl.Dialogs, DataSetConverter4D.Helper,
-  uDashBoard;
+uses System.StrUtils, uDmPrincipal, Vcl.Dialogs,  uDashBoard;
 
 function Service.EchoString(Value: string): string;
 begin

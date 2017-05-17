@@ -1,4 +1,4 @@
-program Servidor;
+program Servidor_TesteJSON;
 {$APPTYPE GUI}
 
 {$R *.dres}
@@ -11,10 +11,6 @@ uses
   uService in 'uService.pas',
   uWebModule in 'uWebModule.pas' {WebMod: TWebModule},
   uDmPrincipal in 'uDmPrincipal.pas' {DMPrincipal: TDataModule},
-  DataSetConverter4D.Helper in '..\..\DataSetConverter4Delphi-master\src\DataSetConverter4D.Helper.pas',
-  DataSetConverter4D.Impl in '..\..\DataSetConverter4Delphi-master\src\DataSetConverter4D.Impl.pas',
-  DataSetConverter4D in '..\..\DataSetConverter4Delphi-master\src\DataSetConverter4D.pas',
-  DataSetConverter4D.Util in '..\..\DataSetConverter4Delphi-master\src\DataSetConverter4D.Util.pas',
   Vcl.Themes,
   Vcl.Styles;
 
