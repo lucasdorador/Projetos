@@ -15,7 +15,7 @@ type
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
     function Ping: String;
-    function fncRetornaDadosPedido(id_pedido: String): TJSONObject;
+    function fncRetornaDadosPedido(poChavePedive: String): TJsonArray;
 
   end;
 {$METHODINFO OFF}
@@ -30,23 +30,32 @@ begin
   Result := Value;
 end;
 
-function Service.fncRetornaDadosPedido(id_pedido: String): TJSONObject;
+function Service.fncRetornaDadosPedido(poChavePedive: String): TJsonArray;
 var
    vlJsonObject : TJSONObject;
+   vlsEmpresa, vlsPedido : TJSONString;
+   ja:TJsonArray;
 begin
-Form1.pcdMensagemMemo('Requisição Enviada com parâmetro: ' + id_pedido + ' na função fncRetornaDadosPedido');
+vlJsonObject := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(poChavePedive), 0) as TJSONObject;
+
+vlsEmpresa := vlJsonObject.GetValue('Pedv_Empresa') as TJSONString;
+vlsPedido  := vlJsonObject.GetValue('Pedv_Numero') as TJSONString;
+
+Form1.pcdMensagemMemo('Requisição Enviada com parâmetro: Empresa: ' + vlsEmpresa.Value + ' Pedido: ' + vlsPedido.Value + ' na função fncRetornaDadosPedido');
 DMPrincipal.FDQuery1.Close;
-DMPrincipal.FDQuery1.ParamByName('EMPRESA').AsString := '01';
-DMPrincipal.FDQuery1.ParamByName('NUMERO').AsString  := id_pedido;
+DMPrincipal.FDQuery1.ParamByName('EMPRESA').AsString := vlsEmpresa.Value;
+DMPrincipal.FDQuery1.ParamByName('NUMERO').AsString  := vlsPedido.Value;
 DMPrincipal.FDQuery1.Open();
 
+ja := TJsonArray.Create;
 vlJsonObject := TJSONObject.Create;
 
 vlJsonObject.AddPair('Cliente', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString));
 vlJsonObject.AddPair('Razao', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString));
+ja.AddElement(vlJsonObject);
 
 Form1.pcdMensagemMemo('Requisição Entregue com o parâmetro: ' + vlJsonObject.ToString + ' da função fncRetornaDadosPedido');
-Result := vlJsonObject;
+Result := ja;
 end;
 
 function Service.Ping: String;
