@@ -282,18 +282,7 @@ object FFindParametros: TFFindParametros
     Left = 440
     Top = 264
   end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'Database=E:\Bases\Comercio\Vincenzo\FACILITE.FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'DriverID=FB')
-    LoginPrompt = False
-    Left = 480
-    Top = 352
-  end
   object FDQuery1: TFDQuery
-    Connection = FDConnection1
     SQL.Strings = (
       
         'SELECT * FROM PARAMGMODULOS WHERE PARGM_PARAMETRO = :PARAMETRO A' +

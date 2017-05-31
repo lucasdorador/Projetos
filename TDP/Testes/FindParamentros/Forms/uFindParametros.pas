@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.UI;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.UI, uConexaoXE8;
 
 type
   TFFindParametros = class(TForm)
@@ -24,7 +24,6 @@ type
     chkUtilizaCodigoForm: TCheckBox;
     edtCodigoForm: TDPTNumberEditXE8;
     BitBtn1: TBitBtn;
-    FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     procedure btnBuscaPASClick(Sender: TObject);
@@ -35,6 +34,8 @@ type
       Shift: TShiftState);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
+    vloConexao : TConexaoXE8;
+    vgConexao  : TFDConnection;
     function fnclocalizaparametro(s: String): String;
     function pcdValidaParametrosnaPARAMGMODULOS(poStringList: TStringList; psCodigoForm: String): TStringList;
     { Private declarations }
@@ -160,6 +161,9 @@ end;
 
 procedure TFFindParametros.FormShow(Sender: TObject);
 begin
+vloConexao := TConexaoXE8.Create('FACILITE');
+vgConexao  := vloConexao.getConnection;
+
 chkUtilizaCodigoFormClick(Sender);
 if edtCaminho.CanFocus then
    edtCaminho.SetFocus;
@@ -172,8 +176,7 @@ var
 begin
 vlStringList := TStringList.Create;
 
-if not FDConnection1.Connected then
-   FDConnection1.Connected := True;
+FDQuery1.Connection := vgConexao;
 
 if not FDQuery1.Active then
    FDQuery1.Active := True;

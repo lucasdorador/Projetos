@@ -50,8 +50,10 @@ DMPrincipal.FDQuery1.Open();
 ja := TJsonArray.Create;
 vlJsonObject := TJSONObject.Create;
 
-vlJsonObject.AddPair('Cliente', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString));
-vlJsonObject.AddPair('Razao', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString));
+//vlJsonObject.AddPair('Cliente', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString));
+//vlJsonObject.AddPair('Razao', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString));
+vlJsonObject.AddPair('Cliente', DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString);
+vlJsonObject.AddPair('Razao', DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString);
 ja.AddElement(vlJsonObject);
 
 Form1.pcdMensagemMemo('Requisição Entregue com o parâmetro: ' + vlJsonObject.ToString + ' da função fncRetornaDadosPedido');

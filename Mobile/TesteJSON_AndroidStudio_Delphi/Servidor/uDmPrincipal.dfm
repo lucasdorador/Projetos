@@ -3,21 +3,7 @@ object DMPrincipal: TDMPrincipal
   OnCreate = DataModuleCreate
   Height = 172
   Width = 382
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      
-        'Database=C:\Sinco\Atualizacoes\Fonte Padrao - Comercio\FACILITE.' +
-        'FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'DriverID=FB')
-    Connected = True
-    LoginPrompt = False
-    Left = 63
-    Top = 16
-  end
   object FDQuery1: TFDQuery
-    Connection = FDConnection1
     SQL.Strings = (
       'SELECT PEDV_CLIENTE, CLI_RAZAO, PEDV_DATA '
       'FROM PEDIVE '
@@ -42,7 +28,6 @@ object DMPrincipal: TDMPrincipal
       end>
   end
   object FDTable1: TFDTable
-    Connection = FDConnection1
     Left = 152
     Top = 48
   end
@@ -50,5 +35,18 @@ object DMPrincipal: TDMPrincipal
     Provider = 'Forms'
     Left = 152
     Top = 104
+  end
+  object FDQuery2: TFDQuery
+    SQL.Strings = (
+      'SELECT EMP_DESCRICAO FROM EMPRESA WHERE EMP_CODIGO = :EMPRESA')
+    Left = 271
+    Top = 64
+    ParamData = <
+      item
+        Name = 'EMPRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = '01'
+      end>
   end
 end

@@ -1,11 +1,11 @@
 object Form1: TForm1
   Left = 271
   Top = 114
-  BorderIcons = [biSystemMenu]
-  BorderStyle = bsNone
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'DashBoard '
-  ClientHeight = 364
-  ClientWidth = 663
+  ClientHeight = 361
+  ClientWidth = 657
   Color = clWindowText
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -28,7 +28,7 @@ object Form1: TForm1
     AlignWithMargins = True
     Left = 3
     Top = 207
-    Width = 657
+    Width = 651
     Height = 74
     Align = alTop
     Caption = 'IP e Porta de Conex'#227'o'
@@ -42,7 +42,7 @@ object Form1: TForm1
     ParentColor = False
     ParentFont = False
     TabOrder = 3
-    ExplicitWidth = 641
+    ExplicitWidth = 657
     object EditPort: TEdit
       Left = 183
       Top = 16
@@ -66,7 +66,7 @@ object Form1: TForm1
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 657
+    Width = 651
     Height = 198
     Align = alTop
     Color = clBackground
@@ -81,7 +81,7 @@ object Form1: TForm1
     ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 2
-    ExplicitWidth = 641
+    ExplicitWidth = 657
   end
   object ButtonStart: TButton
     Left = 102
@@ -130,7 +130,13 @@ object Form1: TForm1
   end
   object ApplicationEvents1: TApplicationEvents
     OnIdle = ApplicationEvents1Idle
+    OnMinimize = ApplicationEvents1Minimize
     Left = 528
-    Top = 224
+    Top = 216
+  end
+  object TrayIcon1: TTrayIcon
+    OnDblClick = TrayIcon1DblClick
+    Left = 419
+    Top = 215
   end
 end

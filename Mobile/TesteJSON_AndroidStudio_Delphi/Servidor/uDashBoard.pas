@@ -6,7 +6,7 @@ uses
   Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.AppEvnts, Vcl.StdCtrls, IdHTTPWebBrokerBridge, Web.HTTPApp,
-  IdStackWindows;
+  IdStackWindows, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -19,16 +19,21 @@ type
     EditPort: TEdit;
     MemoIP: TMemo;
     Button1: TButton;
+    TrayIcon1: TTrayIcon;
     procedure FormCreate(Sender: TObject);
     procedure ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
     procedure ButtonStartClick(Sender: TObject);
     procedure ButtonStopClick(Sender: TObject);
     procedure ButtonOpenBrowserClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure ApplicationEvents1Minimize(Sender: TObject);
+    procedure TrayIcon1DblClick(Sender: TObject);
   private
     FServer: TIdHTTPWebBrokerBridge;
     procedure StartServer;
     function getIP: String;
+    procedure abrirTela;
+    procedure minimizaTela;
     { Private declarations }
   public
      procedure pcdMensagemMemo(psMensagem: String);
@@ -50,6 +55,11 @@ begin
   ButtonStart.Enabled := not FServer.Active;
   ButtonStop.Enabled := FServer.Active;
   EditPort.Enabled := not FServer.Active;
+end;
+
+procedure TForm1.ApplicationEvents1Minimize(Sender: TObject);
+begin
+minimizaTela;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -110,6 +120,11 @@ begin
   end;
 end;
 
+procedure TForm1.TrayIcon1DblClick(Sender: TObject);
+begin
+abrirTela;
+end;
+
 procedure TForm1.pcdMensagemMemo(psMensagem: String);
 begin
 Memo1.Lines.Add(FormatDateTime('cc', Now) + ' - ' + psMensagem);
@@ -118,14 +133,11 @@ end;
 function TForm1.getIP: String;
 var
   IdStackWin: TIdStackWindows;
-  //vlResult : TStrings;
 begin
 try
 IdStackWin := TIdStackWindows.Create;
-//vlResult := TStrings.Create;
 try
 Result := IdStackWin.LocalAddresses.Text;
-//Result := vlResult.Text;
 finally
    IdStackWin.Free;
    end;
@@ -133,6 +145,22 @@ Except
   on e :exception do
      result := e.Message;
    end;
+end;
+
+procedure TForm1.abrirTela;
+begin
+TrayIcon1.Visible := False;
+Self.Show();
+WindowState := wsNormal;
+Application.BringToFront();
+end;
+
+procedure TForm1.minimizaTela;
+begin
+Self.Hide();
+TrayIcon1.Visible := True;
+TrayIcon1.Animate := True;
+TrayIcon1.ShowBalloonHint;
 end;
 
 end.
