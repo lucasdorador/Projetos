@@ -52,8 +52,13 @@ vlJsonObject := TJSONObject.Create;
 
 //vlJsonObject.AddPair('Cliente', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString));
 //vlJsonObject.AddPair('Razao', TJSONString.Create(DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString));
-vlJsonObject.AddPair('Cliente', DMPrincipal.FDQuery1.FieldByName('PEDV_CLIENTE').AsString);
-vlJsonObject.AddPair('Razao', DMPrincipal.FDQuery1.FieldByName('CLI_RAZAO').AsString);
+vlJsonObject.AddPair('Empresa', DMPrincipal.FDQuery1.FieldByName('Empresa').AsString);
+vlJsonObject.AddPair('Pedido', DMPrincipal.FDQuery1.FieldByName('Pedido').AsString);
+vlJsonObject.AddPair('Cliente', DMPrincipal.FDQuery1.FieldByName('Cliente').AsString);
+vlJsonObject.AddPair('DataPedido', DMPrincipal.FDQuery1.FieldByName('DataPedido').AsString);
+vlJsonObject.AddPair('Negociacao', DMPrincipal.FDQuery1.FieldByName('Negociacao').AsString);
+vlJsonObject.AddPair('Status', DMPrincipal.FDQuery1.FieldByName('Status').AsString);
+
 ja.AddElement(vlJsonObject);
 
 Form1.pcdMensagemMemo('Requisição Entregue com o parâmetro: ' + vlJsonObject.ToString + ' da função fncRetornaDadosPedido');

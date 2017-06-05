@@ -5,8 +5,16 @@ object DMPrincipal: TDMPrincipal
   Width = 382
   object FDQuery1: TFDQuery
     SQL.Strings = (
-      'SELECT PEDV_CLIENTE, CLI_RAZAO, PEDV_DATA '
+      
+        'SELECT EMP_RAZAO AS EMPRESA, PEDV_NUMERO AS PEDIDO, CLI_RAZAO AS' +
+        ' CLIENTE,'
+      '       PEDV_DATA AS DATAPEDIDO, PEDV_NEGOCIACAO AS NEGOCIACAO,'
+      '       CASE PEDV_STATUS'
+      '          WHEN '#39'F'#39' THEN '#39'FINALIZADO'#39
+      '          WHEN '#39'C'#39' THEN '#39'CANCELADO'#39
+      '          ELSE PEDV_STATUS END AS STATUS'
       'FROM PEDIVE '
+      'INNER JOIN EMPRESA ON (EMP_CODIGO = PEDV_EMPRESA)'
       
         'INNER JOIN CLIENTE ON (PEDV_EMPRESA = :EMPRESA AND PEDV_CLIENTE ' +
         '= CLI_CODIGO)'
