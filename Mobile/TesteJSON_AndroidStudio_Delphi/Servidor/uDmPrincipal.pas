@@ -12,10 +12,12 @@ uses
 
 type
   TDMPrincipal = class(TDataModule)
-    FDQuery1: TFDQuery;
+    FDCabecalhoPedido: TFDQuery;
     FDTable1: TFDTable;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     FDQuery2: TFDQuery;
+    FDItensPedido: TFDQuery;
+    FDVencimentosPedido: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -39,7 +41,9 @@ begin
 vgoConexao := TConexaoXE8.Create;
 vloConexao := vgoConexao.getConnection;
 
-FDQuery1.Connection := vloConexao;
+FDCabecalhoPedido.Connection   := vloConexao;
+FDItensPedido.Connection       := vloConexao;
+FDVencimentosPedido.Connection := vloConexao;
 FDQuery2.Connection := vloConexao;
 end;
 
