@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/06/06 18:38:42.000.137,=C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 18:46:10.000.196,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCadastroCardapio.pas</Transaction>
+    <Transaction>2017/06/06 18:46:10.000.196,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Unit1.dfm=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCadastroCardapio.dfm</Transaction>
+    <Transaction>2017/06/06 18:46:11.000.842,C:\Users\Lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\CardapioPetiscaria.dproj</Transaction>
+    <Transaction>2017/06/06 20:53:48.000.938,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 21:00:45.000.891,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCardapio.pas</Transaction>
+    <Transaction>2017/06/06 21:00:56.000.870,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 21:03:38.000.705,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uGrupos.pas</Transaction>
+    <Transaction>2017/06/06 21:03:50.000.030,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 21:20:32.000.958,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uDAOCardapio.pas</Transaction>
+    <Transaction>2017/06/06 21:26:26.000.173,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 21:27:34.000.003,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.dfm=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\DMPrincipal.dfm</Transaction>
+    <Transaction>2017/06/06 21:27:34.000.003,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\DMPrincipal.pas</Transaction>
+    <Transaction>2017/06/06 21:53:36.000.651,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 21:54:20.000.096,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCons_Grupos.pas</Transaction>
+    <Transaction>2017/06/06 21:54:20.000.096,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.dfm=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCons_Grupos.dfm</Transaction>
+    <Transaction>2017/06/06 22:14:22.000.166,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 22:17:27.000.664,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uDAOGrupo.pas</Transaction>
+    <Transaction>2017/06/06 22:27:04.000.177,=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas</Transaction>
+    <Transaction>2017/06/06 22:29:31.000.703,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.dfm=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCons_Produtos.dfm</Transaction>
+    <Transaction>2017/06/06 22:29:31.000.703,F:\Projetos\trunk\Pessoal\CardapioPetiscaria\Unit1.pas=F:\Projetos\trunk\Pessoal\CardapioPetiscaria\uCons_Produtos.pas</Transaction>
+  </Transactions>
+</BorlandProject>
