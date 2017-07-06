@@ -38,7 +38,7 @@ implementation
 
 procedure TDMPrincipal.DataModuleCreate(Sender: TObject);
 begin
-vgoConexao := TConexaoXE8.Create('FACILITE');
+vgoConexao := TConexaoXE8.Create;
 vloConexao := vgoConexao.getConnection;
 
 FDCabecalhoPedido.Connection   := vloConexao;
