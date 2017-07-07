@@ -1,0 +1,7 @@
+#Wed Jul 05 21:04:35 BRT 2017
+base.0=E\:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_1128f1e7ae7a30e84264a87b656524ca0d9c3532
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=E\:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_db61b1784ea23025694f2e8b390872148c535d36\\classes.dex
+base.1=E\:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_db61b1784ea23025694f2e8b390872148c535d36
+file.0=E\:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_1128f1e7ae7a30e84264a87b656524ca0d9c3532\\classes.dex

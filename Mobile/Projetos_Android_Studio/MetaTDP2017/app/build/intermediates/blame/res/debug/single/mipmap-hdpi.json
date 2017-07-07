@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\exit.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\exit.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\home.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\home.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\back.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\back.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\icones.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\icones.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\logotdp.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\logotdp.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\info64.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-hdpi\\info64.png"
+    }
+]

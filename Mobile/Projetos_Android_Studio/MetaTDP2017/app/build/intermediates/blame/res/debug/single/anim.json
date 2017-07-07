@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_out.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_fab_out.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\dc3153a4f08a2e48966f2e815540836a4519d18c\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\anim\\design_fab_in.xml",
+        "source": "C:\\Users\\Lucas\\.android\\build-cache\\0e5d9a22366dfe1aa6f51ef122ab3a673091c3b2\\output\\res\\anim\\design_fab_in.xml"
+    }
+]

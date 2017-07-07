@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_main_drawer.xml",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_teste.xml",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\menu\\menu_teste.xml"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\menu\\main.xml"
+    }
+]

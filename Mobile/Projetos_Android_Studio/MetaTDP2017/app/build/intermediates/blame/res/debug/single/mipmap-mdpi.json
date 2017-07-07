@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher_round.png",
+        "source": "E:\\Projetos\\Projetos_Android_Studio\\MetaTDP2017\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    }
+]
