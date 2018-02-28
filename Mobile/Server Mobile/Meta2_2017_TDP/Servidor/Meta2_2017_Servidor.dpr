@@ -12,7 +12,10 @@ uses
   uServerContainer in 'uServerContainer.pas' {ServerContainer1: TDataModule},
   uWebModule in 'uWebModule.pas' {WebModule1: TWebModule},
   uFuncoes in 'uFuncoes.pas',
-  uDMServer in 'uDMServer.pas' {DMServer: TDataModule};
+  uDMServer in 'uDMServer.pas' {DMServer: TDataModule},
+  uCliente in 'uCliente.pas',
+  uClienteCRUD in 'uClienteCRUD.pas',
+  uCidades in 'uCidades.pas';
 
 {$R *.res}
 

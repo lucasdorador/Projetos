@@ -17,13 +17,13 @@ Type TFuncoes = class(TObject)
      class var FPorta, FConexaoBD: String;
      class function fncRecuperaNomeComputador: String;
      class function fncRecuperaNomedoUsuario: String;
-     class function getIP: String; static;
 
   public
      class procedure pcdCarregaInformacoes;
      class procedure GravaIni(psCaminhoBD, psPorta: string);
      class function LerConfigIni: TConfigINI;
      class procedure AutoSizeDBGrid(const xDBGrid: TDBGrid);
+     class function getIP: String;
 end;
 
 
@@ -102,11 +102,6 @@ DMServer.FDInformacoes.Post;
 DMServer.FDInformacoes.Append;
 DMServer.FDInformacoesInformacao.AsString := 'Nome do Usuário: ';
 DMServer.FDInformacoesValor.AsString      := fncRecuperaNomedoUsuario;
-DMServer.FDInformacoes.Post;
-
-DMServer.FDInformacoes.Append;
-DMServer.FDInformacoesInformacao.AsString := 'IP Configurado: ';
-DMServer.FDInformacoesValor.AsString      := getIP;
 DMServer.FDInformacoes.Post;
 
 DMServer.FDInformacoes.Append;

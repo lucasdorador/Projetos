@@ -8,7 +8,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.UI.Intf, FireDAC.VCLUI.Wait, Data.DB,
   FireDAC.Comp.UI, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FBDef,
-  FireDAC.Phys.IBBase, FireDAC.Phys.FB;
+  FireDAC.Phys.IBBase, FireDAC.Phys.FB, FireDAc.Dapt;
 
 type
   TDMServer = class(TDataModule)

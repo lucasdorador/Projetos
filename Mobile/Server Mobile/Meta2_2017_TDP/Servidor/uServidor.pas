@@ -40,6 +40,7 @@ type
     btnGravarConfig: TBitBtn;
     btnTestarConexao: TBitBtn;
     btnTestarBanco: TBitBtn;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure ApplicationEvents1Idle(Sender: TObject; var Done: Boolean);
     procedure btnIniciarClick(Sender: TObject);
@@ -132,9 +133,13 @@ if (edtPorta.Text = '') then
 
 TFuncoes.GravaIni(edtCaminho.Text, edtPorta.Text);
 voConfigINI := TFuncoes.LerConfigIni;
+DMServer.DataModuleCreate(Sender);
 TFuncoes.pcdCarregaInformacoes;
 
-DMServer.DataModuleCreate(Sender);
+Memo1.Lines.Clear;
+Memo1.Lines.Add('IP(s)');
+Memo1.Lines.Add(TFuncoes.getIP);
+
 pcdMensagemLOG('Configurações Alteradas com sucesso!');
 HabilitaPaletas(tbInformacoes);
 end;
@@ -143,6 +148,10 @@ procedure TFServidor.btnIniciarClick(Sender: TObject);
 begin
   StartServer;
   TFuncoes.pcdCarregaInformacoes;
+
+  Memo1.Lines.Clear;
+  Memo1.Lines.Add('IP(s)');
+  Memo1.Lines.Add(TFuncoes.getIP);
   pcdMensagemLOG('Serviço Iniciado');
 end;
 

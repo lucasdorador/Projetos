@@ -35,11 +35,8 @@ object FServidor: TFServidor
     ParentFont = False
     Style = tsFlatButtons
     TabOrder = 0
-    ExplicitHeight = 471
     object tbInformacoes: TTabSheet
       Caption = 'Informa'#231#245'es do Servidor'
-      ExplicitLeft = 0
-      ExplicitHeight = 485
       object btnIniciar: TBitBtn
         Left = 407
         Top = 3
@@ -124,7 +121,6 @@ object FServidor: TFServidor
         Align = alLeft
         Caption = 'Informa'#231#245'es'
         TabOrder = 5
-        ExplicitHeight = 433
         object Panel1: TPanel
           AlignWithMargins = True
           Left = 5
@@ -135,13 +131,12 @@ object FServidor: TFServidor
           BevelKind = bkSoft
           BevelWidth = 2
           TabOrder = 0
-          ExplicitHeight = 409
           object DBGrid1: TDBGrid
             AlignWithMargins = True
             Left = 5
             Top = 5
             Width = 374
-            Height = 430
+            Height = 335
             Align = alClient
             DataSource = DMServer.DSInformacoes
             Options = [dgColLines, dgRowLines, dgTabs, dgRowSelect]
@@ -168,6 +163,20 @@ object FServidor: TFServidor
                 Visible = True
               end>
           end
+          object Memo1: TMemo
+            AlignWithMargins = True
+            Left = 5
+            Top = 346
+            Width = 374
+            Height = 89
+            Align = alBottom
+            Lines.Strings = (
+              'Memo1')
+            TabOrder = 1
+            ExplicitLeft = 136
+            ExplicitTop = 368
+            ExplicitWidth = 185
+          end
         end
       end
       object btnTestarConexao: TBitBtn
@@ -189,7 +198,6 @@ object FServidor: TFServidor
     object tbVisualizaLog: TTabSheet
       Caption = 'Visualiza'#231#227'o dos Log'#39's'
       ImageIndex = 1
-      ExplicitHeight = 439
       object mLog: TMemo
         AlignWithMargins = True
         Left = 3
@@ -209,7 +217,6 @@ object FServidor: TFServidor
         ReadOnly = True
         ScrollBars = ssVertical
         TabOrder = 0
-        ExplicitHeight = 364
       end
       object Panel2: TPanel
         AlignWithMargins = True
@@ -221,7 +228,6 @@ object FServidor: TFServidor
         BevelKind = bkSoft
         BorderWidth = 2
         TabOrder = 1
-        ExplicitTop = 373
         object btnVoltarLog: TBitBtn
           Left = 402
           Top = 3
@@ -237,7 +243,6 @@ object FServidor: TFServidor
     object tbConfig: TTabSheet
       Caption = 'Configura'#231#245'es do Server'
       ImageIndex = 2
-      ExplicitHeight = 439
       object Panel3: TPanel
         AlignWithMargins = True
         Left = 3
@@ -248,7 +253,6 @@ object FServidor: TFServidor
         BevelKind = bkSoft
         BorderWidth = 2
         TabOrder = 0
-        ExplicitTop = 373
         object btnVoltarConfig: TBitBtn
           Left = 185
           Top = 3
@@ -258,8 +262,6 @@ object FServidor: TFServidor
           Caption = 'Voltar [ESC]'
           TabOrder = 0
           OnClick = btnVoltarConfigClick
-          ExplicitLeft = 121
-          ExplicitTop = 11
         end
         object btnGravarConfig: TBitBtn
           Left = 402
@@ -270,7 +272,6 @@ object FServidor: TFServidor
           Caption = 'Gravar Configura'#231#227'o'
           TabOrder = 1
           OnClick = btnGravarConfigClick
-          ExplicitLeft = 327
         end
       end
       object GroupBox2: TGroupBox
@@ -286,7 +287,7 @@ object FServidor: TFServidor
           AlignWithMargins = True
           Left = 7
           Top = 22
-          Width = 186
+          Width = 175
           Height = 14
           Caption = 'Caminho do Banco de Dados'
         end

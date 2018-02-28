@@ -1,39 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2017/07/15 13:31:32.000.091,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\FormUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.533,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\ServerFunctionInvoker.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.347,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\base64.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.208,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerContainerUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.490,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\CallbackFramework-min.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.626,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\images\collapse.png</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.452,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\base64-min.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.444,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\ServerFunctions.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.567,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\css\ServerFunctionInvoker.css</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.463,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\json2-min.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.384,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\json2.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.475,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\ServerFunctionExecutor-min.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.159,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.416,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\CallbackFramework.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.282,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\WebModuleUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.646,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\images\expand.png</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.604,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\templates\ServerFunctionInvoker.html</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.504,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\connection.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.369,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\js\ServerFunctionExecutor.js</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.585,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\templates\ReverseString.html</Transaction>
-    <Transaction>2017/07/15 13:31:32.000.550,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\css\main.css</Transaction>
-    <Transaction>2017/07/15 13:36:08.000.765,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Meta2_2017_Servidor.dproj=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Servidor.dproj</Transaction>
-    <Transaction>2017/07/15 13:36:19.000.394,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServidor.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\FormUnit1.dfm</Transaction>
-    <Transaction>2017/07/15 13:36:19.000.394,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServidor.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\FormUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:36:26.000.968,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uWebModule.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\WebModuleUnit1.dfm</Transaction>
-    <Transaction>2017/07/15 13:36:26.000.968,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uWebModule.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\WebModuleUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:36:34.000.850,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerContainer.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerContainerUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:36:34.000.850,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerContainer.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerContainerUnit1.dfm</Transaction>
-    <Transaction>2017/07/15 13:36:49.000.774,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerMethods.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2017/07/15 13:51:29.000.384,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas</Transaction>
-    <Transaction>2017/07/15 13:54:42.000.731,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uFuncoes.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas</Transaction>
-    <Transaction>2017/07/15 14:10:39.000.758,=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas</Transaction>
-    <Transaction>2017/07/15 14:11:12.000.855,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uDMServer.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas</Transaction>
-    <Transaction>2017/07/15 14:11:12.000.855,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uDMServer.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.dfm</Transaction>
+    <Transaction>2017/07/15 13:36:08.000.765,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Servidor.dproj=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Meta2_2017_Servidor.dproj</Transaction>
+    <Transaction>2017/07/15 13:36:19.000.394,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\FormUnit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServidor.pas</Transaction>
+    <Transaction>2017/07/15 13:36:19.000.394,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\FormUnit1.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServidor.dfm</Transaction>
+    <Transaction>2017/07/15 13:36:26.000.968,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\WebModuleUnit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uWebModule.pas</Transaction>
+    <Transaction>2017/07/15 13:36:26.000.968,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\WebModuleUnit1.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uWebModule.dfm</Transaction>
+    <Transaction>2017/07/15 13:36:34.000.850,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerContainerUnit1.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerContainer.dfm</Transaction>
+    <Transaction>2017/07/15 13:36:34.000.850,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerContainerUnit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerContainer.pas</Transaction>
+    <Transaction>2017/07/15 13:36:49.000.774,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\ServerMethodsUnit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uServerMethods.pas</Transaction>
+    <Transaction>2017/07/15 13:54:42.000.731,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uFuncoes.pas</Transaction>
+    <Transaction>2017/07/15 14:11:12.000.855,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.pas=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uDMServer.pas</Transaction>
+    <Transaction>2017/07/15 14:11:12.000.855,E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\Unit1.dfm=E:\Projetos\trunk\Mobile\Meta2_2017_TDP\Servidor\uDMServer.dfm</Transaction>
   </Transactions>
 </BorlandProject>
