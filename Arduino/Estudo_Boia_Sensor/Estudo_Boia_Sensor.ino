@@ -29,7 +29,7 @@ void loop() {
   //Serial.println(vliRespBoia);
   //Serial.print("Resposta Sensor: ");
   //Serial.println(vliRespSensorPIR);
-  delay(1000);
+  delay(100);
 
   if ((vliRespSensorPIR == 1) && (vliRespBoia == 1)) {
     //Serial.println("Ligou Motor");
