@@ -7,7 +7,10 @@ uses
   uCRUDDespesas in 'uCRUDDespesas.pas',
   uPrincipal in 'uPrincipal.pas' {Fprincipal},
   uFaturamento in 'uFaturamento.pas' {FFaturamento},
-  uCRUDFaturamento in 'uCRUDFaturamento.pas';
+  uCRUDFaturamento in 'uCRUDFaturamento.pas',
+  uApuracao in 'uApuracao.pas' {FApuracao},
+  uGeraApuracao in 'uGeraApuracao.pas',
+  uCRUDConfiguracao in 'uCRUDConfiguracao.pas';
 
 {$R *.res}
 
@@ -18,5 +21,6 @@ begin
   Application.CreateForm(TDMPrincipal, DMPrincipal);
   Application.CreateForm(TFprincipal, Fprincipal);
   Application.CreateForm(TFFaturamento, FFaturamento);
+  Application.CreateForm(TFApuracao, FApuracao);
   Application.Run;
 end.

@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2018/04/05 22:39:54.030,E:\Projetos\trunk\Pessoal\CalculaDespesas\uPrincipal.dfm=E:\Projetos\trunk\Pessoal\CalculaDespesas\Unit1.dfm</Transaction>
-    <Transaction>2018/04/05 22:46:00.206,E:\Projetos\trunk\Pessoal\CalculaDespesas\uFaturamento.dfm=E:\Projetos\trunk\Pessoal\CalculaDespesas\Unit1.dfm</Transaction>
+	<Transactions>
+    <Transaction>2018/04/05 14:03:56.000.796,F:\Projetos\XE8\CalculaDespesas\uCalculaDespesa.dfm=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/04/05 14:03:56.000.796,F:\Projetos\XE8\CalculaDespesas\uCalculaDespesa.pas=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/04/05 14:04:08.000.466,F:\Projetos\XE8\CalculaDespesas\Calcula_Despesa_IR.dproj=C:\Users\Programacao\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/04/05 15:22:11.000.830,F:\Projetos\XE8\CalculaDespesas\uDMPrincipal.dfm=F:\Projetos\XE8\CalculaDespesas\Unit1.dfm</Transaction>
+    <Transaction>2018/04/05 15:22:11.000.830,F:\Projetos\XE8\CalculaDespesas\uDMPrincipal.pas=F:\Projetos\XE8\CalculaDespesas\Unit1.pas</Transaction>
+    <Transaction>2018/04/06 10:25:13.000.866,F:\Lucas\Projetos\trunk\Pessoal\CalculaDespesas\uApuracao.dfm=F:\Lucas\Projetos\trunk\Pessoal\CalculaDespesas\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

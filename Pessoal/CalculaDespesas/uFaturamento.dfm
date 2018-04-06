@@ -12,6 +12,7 @@ object FFaturamento: TFFaturamento
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
@@ -34,8 +35,6 @@ object FFaturamento: TFFaturamento
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = -46
-    ExplicitWidth = 691
     object Label1: TLabel
       Left = 7
       Top = 32

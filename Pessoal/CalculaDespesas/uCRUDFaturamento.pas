@@ -20,6 +20,7 @@ type
     destructor Destroy; override;
     procedure pcdGravaFaturamento;
     procedure pcdExcluiFaturamento;
+    function fncRetornaValorFaturadoANO(pdAno:String): Double;
 
    published
     property Fat_Ano   : String read FFat_Ano write SetFat_Ano;
@@ -47,6 +48,19 @@ if Assigned(FQuery) then
    FreeAndNil(FQuery);
 
   inherited;
+end;
+
+function TCRUDFaturamento.fncRetornaValorFaturadoANO(pdAno: String): Double;
+begin
+Result := 0;
+
+FQuery.Close;
+FQuery.SQL.Clear;
+FQuery.SQL.Add('SELECT FAT_VALOR FROM FATURAMENTO WHERE FAT_ANO = :FAT_ANO');
+FQuery.ParamByName('FAT_ANO').AsString := pdAno;
+FQuery.Open;
+
+Result := FQuery.FieldByName('FAT_VALOR').AsFloat;
 end;
 
 procedure TCRUDFaturamento.pcdExcluiFaturamento;
