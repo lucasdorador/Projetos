@@ -1,6 +1,7 @@
 object FCalculaDespesa: TFCalculaDespesa
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'C'#225'lculo de Despesas para DIRPF para MEI'
   ClientHeight = 569
@@ -14,7 +15,9 @@ object FCalculaDespesa: TFCalculaDespesa
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnKeyPress = FormKeyPress
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object gbAnoBase: TGroupBox
@@ -48,6 +51,9 @@ object FCalculaDespesa: TFCalculaDespesa
       MaxLength = 4
       TabOrder = 0
       Text = '    '
+      OnChange = edtAnoChange
+      OnEnter = edtAnoEnter
+      OnExit = edtAnoExit
     end
   end
   object gbDespesas: TGroupBox
@@ -107,7 +113,6 @@ object FCalculaDespesa: TFCalculaDespesa
       NumericType = ntNumber
       TabOnEnterKey = False
       TabOrder = 1
-      Value = 1.000000000000000000
       Validate = True
     end
     object dbgDespesas: TDBGrid
@@ -116,7 +121,7 @@ object FCalculaDespesa: TFCalculaDespesa
       Width = 674
       Height = 339
       TabStop = False
-      DataSource = DMPrincipal.DSPrincipal
+      DataSource = DMPrincipal.DSDespesas
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ReadOnly = True
       TabOrder = 2
@@ -125,17 +130,20 @@ object FCalculaDespesa: TFCalculaDespesa
       TitleFont.Height = -16
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
+      OnDblClick = dbgDespesasDblClick
       Columns = <
         item
           Expanded = False
-          FieldName = 'Despesa'
+          FieldName = 'DESP_DESCRICAO'
+          Title.Caption = 'Descri'#231#227'o'
           Width = 480
           Visible = True
         end
         item
           Expanded = False
-          FieldName = 'Valor'
+          FieldName = 'DESP_VALOR'
           Title.Alignment = taRightJustify
+          Title.Caption = 'Valor R$'
           Width = 154
           Visible = True
         end>
@@ -165,14 +173,22 @@ object FCalculaDespesa: TFCalculaDespesa
       Height = 52
       Caption = 'Excluir'
       TabOrder = 5
+      OnClick = btnExcluirClick
     end
-    object btnFechar: TBitBtn
-      Left = 247
-      Top = 432
-      Width = 114
-      Height = 52
-      Caption = 'Fechar'
-      TabOrder = 6
-    end
+  end
+  object btnFechar: TBitBtn
+    Left = 250
+    Top = 511
+    Width = 114
+    Height = 52
+    Caption = 'Fechar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnFecharClick
   end
 end
