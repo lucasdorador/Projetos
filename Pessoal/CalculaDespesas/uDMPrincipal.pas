@@ -9,7 +9,8 @@ uses
   Vcl.Forms, FireDAC.Phys.IBWrapper, FireDAc.Stan.Def, FireDAC.Dapt,
   FireDAC.Phys.FBDef, FireDAC.Phys, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
   FireDAC.Stan.Async, FireDAC.UI.Intf, FireDAC.Stan.Pool, FireDAC.VCLUI.Wait,
-  FireDAC.Comp.UI;
+  FireDAC.Comp.UI, frxClass, frxExportCSV, frxExportText, frxExportImage,
+  frxExportRTF, frxExportHTML, frxExportPDF;
 
 type
   TDMPrincipal = class(TDataModule)
@@ -26,6 +27,16 @@ type
     DSFaturamento: TDataSource;
     FDFaturamentoFAT_ANO: TStringField;
     FDFaturamentoFAT_VALOR: TFloatField;
+    frxReport1: TfrxReport;
+    frxPDFExport1: TfrxPDFExport;
+    frxHTMLExport1: TfrxHTMLExport;
+    frxRTFExport1: TfrxRTFExport;
+    frxBMPExport1: TfrxBMPExport;
+    frxJPEGExport1: TfrxJPEGExport;
+    frxTIFFExport1: TfrxTIFFExport;
+    frxGIFExport1: TfrxGIFExport;
+    frxSimpleTextExport1: TfrxSimpleTextExport;
+    frxCSVExport1: TfrxCSVExport;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

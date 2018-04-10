@@ -25,7 +25,7 @@ object FApuracao: TFApuracao
     Top = 3
     Width = 288
     Height = 147
-    ActivePage = ts_ApuracaoAnual
+    ActivePage = ts_ApuracaoFechadas
     Align = alClient
     MultiLine = True
     TabOrder = 0
@@ -33,6 +33,10 @@ object FApuracao: TFApuracao
     TabStop = False
     object ts_ApuracaoAnual: TTabSheet
       Caption = 'Apura'#231#227'o Anual'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         AlignWithMargins = True
         Left = 3
@@ -117,6 +121,7 @@ object FApuracao: TFApuracao
           Height = 53
           Caption = 'Imprimir Apura'#231#227'o'
           TabOrder = 0
+          OnClick = btnImprimirClick
         end
         object cbAno: TComboBox
           Left = 45
@@ -125,6 +130,9 @@ object FApuracao: TFApuracao
           Height = 27
           Style = csDropDownList
           TabOrder = 1
+          Items.Strings = (
+            ''
+            '2017')
         end
         object btnFechar2: TBitBtn
           Left = 196

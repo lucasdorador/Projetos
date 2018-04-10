@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Mask, uGeraApuracao, uCRUDDespesas, uCRUDFaturamento, uCRUDConfiguracao;
+  Vcl.Mask, uGeraApuracao, uCRUDDespesas, uCRUDFaturamento, uCRUDConfiguracao,
+  uImpressao, FireDAC.Comp.Client;
 
 type
   TFApuracao = class(TForm)
@@ -27,12 +28,15 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnApuracaoClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     vloGeraApuracao  : TGeraApuracao;
     vloFaturamento   : TCrudFaturamento;
     vloDespesas      : TCrudDespesas;
     vloConfiguracoes : TCRUDConfiguracao;
+    vloRelatorio     : TImpressao;
     procedure HabilitaPaletas(vPaleta: TTabSheet);
+    procedure pcdImpressaoApuracao(psAno: String);
     { Private declarations }
   public
      vPaleta: String;
@@ -119,6 +123,11 @@ begin
 Close;
 end;
 
+procedure TFApuracao.btnImprimirClick(Sender: TObject);
+begin
+pcdImpressaoApuracao(cbAno.Text);
+end;
+
 procedure TFApuracao.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 if Assigned(vloGeraApuracao) then
@@ -132,6 +141,9 @@ if Assigned(vloFaturamento) then
 
 if Assigned(vloConfiguracoes) then
    FreeAndNil(vloConfiguracoes);
+
+if Assigned(vloRelatorio) then
+   FreeAndNil(vloRelatorio);
 end;
 
 procedure TFApuracao.FormKeyPress(Sender: TObject; var Key: Char);
@@ -144,7 +156,15 @@ if Key = #13 then
 end;
 
 procedure TFApuracao.FormShow(Sender: TObject);
+var
+   poQuery : TFDQuery;
 begin
+vloGeraApuracao  := TGeraApuracao.Create(DMPrincipal.poConexao);
+vloDespesas      := TCrudDespesas.Create(DMPrincipal.poConexao);
+vloFaturamento   := TCRUDFaturamento.Create(DMPrincipal.poConexao);
+vloConfiguracoes := TCRUDConfiguracao.Create(DMPrincipal.poConexao);
+vloRelatorio     := TImpressao.Create(DMPrincipal.poConexao);
+
 if Trim(vPaleta) = 'Apuração' then
    begin
    HabilitaPaletas(ts_ApuracaoAnual);
@@ -154,20 +174,30 @@ if Trim(vPaleta) = 'Apuração' then
 else if Trim(vPaleta) = 'Fechadas' then
    begin
    HabilitaPaletas(ts_ApuracaoFechadas);
+   poQuery := vloGeraApuracao.fncRetornaQtdeAnosApurados;
+   poQuery.First;
+   cbAno.Items.Clear;
+   while not poQuery.Eof do
+      begin
+      cbAno.Items.Add(poQuery.FieldByName('APUR_ANO').AsString);
+      poQuery.Next;
+      end;
+
    if cbAno.CanFocus then
       cbAno.SetFocus;
    end;
-
-vloGeraApuracao  := TGeraApuracao.Create(DMPrincipal.poConexao);
-vloDespesas      := TCrudDespesas.Create(DMPrincipal.poConexao);
-vloFaturamento   := TCRUDFaturamento.Create(DMPrincipal.poConexao);
-vloConfiguracoes := TCRUDConfiguracao.Create(DMPrincipal.poConexao);
 end;
 
 procedure TFApuracao.HabilitaPaletas(vPaleta: TTabSheet);
 begin
 ts_ApuracaoAnual.TabVisible    := vPaleta = ts_ApuracaoAnual;
 ts_ApuracaoFechadas.TabVisible := vPaleta = ts_ApuracaoFechadas;
+end;
+
+procedure TFApuracao.pcdImpressaoApuracao(psAno: String);
+begin
+vloRelatorio.Imp_Ano := psAno;
+vloRelatorio.pcdImpressaoApuracao;
 end;
 
 end.

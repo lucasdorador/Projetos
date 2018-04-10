@@ -36,6 +36,7 @@ type
     procedure ApuraesFinalizadas1Click(Sender: TObject);
     procedure act_ApuraAnualExecute(Sender: TObject);
     procedure act_ApurFechadasExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -110,6 +111,12 @@ Application.CreateForm(TFApuracao, FApuracao);
 FApuracao.vPaleta := 'Apuração';
 FApuracao.ShowModal;
 FreeAndNil(FApuracao);
+end;
+
+procedure TFprincipal.FormShow(Sender: TObject);
+begin
+Height := Screen.WorkAreaHeight;
+Width  := Screen.WorkAreaWidth;
 end;
 
 procedure TFprincipal.pcdMensagem(psMensagem: String);

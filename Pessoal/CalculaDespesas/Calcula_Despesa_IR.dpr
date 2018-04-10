@@ -10,7 +10,8 @@ uses
   uCRUDFaturamento in 'uCRUDFaturamento.pas',
   uApuracao in 'uApuracao.pas' {FApuracao},
   uGeraApuracao in 'uGeraApuracao.pas',
-  uCRUDConfiguracao in 'uCRUDConfiguracao.pas';
+  uCRUDConfiguracao in 'uCRUDConfiguracao.pas',
+  uImpressao in 'uImpressao.pas';
 
 {$R *.res}
 
