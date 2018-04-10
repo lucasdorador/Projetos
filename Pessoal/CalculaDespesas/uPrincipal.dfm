@@ -67,6 +67,10 @@ object Fprincipal: TFprincipal
         OnClick = ApuraesFinalizadas1Click
       end
     end
+    object Configuraes1: TMenuItem
+      Caption = 'Configura'#231#245'es'
+      OnClick = Configuraes1Click
+    end
     object Sair1: TMenuItem
       Caption = 'Sair'
       OnClick = Sair1Click
@@ -141,7 +145,7 @@ object Fprincipal: TFprincipal
     Left = 432
     Top = 168
     Bitmap = {
-      494C010105000800240040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010105000800280040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
       0200000000000000000000000000000000000000000002050238183B16B02B6C
       27EE2D7029F32D7029F32D7029F32D7029F32D7029F32D7029F32D7029F32D70

@@ -26,6 +26,7 @@ type
     ApuraesFinalizadas1: TMenuItem;
     act_ApurFechadas: TAction;
     ImageList1: TImageList;
+    Configuraes1: TMenuItem;
     procedure Despesas1Click(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
     procedure Faturamento1Click(Sender: TObject);
@@ -37,10 +38,12 @@ type
     procedure act_ApuraAnualExecute(Sender: TObject);
     procedure act_ApurFechadasExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Configuraes1Click(Sender: TObject);
   private
     { Private declarations }
   public
     procedure pcdMensagem(psMensagem: String);
+    function  fncValidaAno(psAno: String): Boolean;
     { Public declarations }
   end;
 
@@ -51,7 +54,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCalculaDespesa, uFaturamento, uApuracao;
+uses uCalculaDespesa, uFaturamento, uApuracao, uConfiguracao;
 
 procedure TFprincipal.act_ApuraAnualExecute(Sender: TObject);
 begin
@@ -84,6 +87,13 @@ Application.CreateForm(TFApuracao, FApuracao);
 FApuracao.vPaleta := 'Fechadas';
 FApuracao.ShowModal;
 FreeAndNil(FApuracao);
+end;
+
+procedure TFprincipal.Configuraes1Click(Sender: TObject);
+begin
+Application.CreateForm(TFConfiguracao, FConfiguracao);
+FConfiguracao.ShowModal;
+FreeAndNil(FConfiguracao);
 end;
 
 procedure TFprincipal.Despesas1Click(Sender: TObject);
@@ -122,6 +132,28 @@ end;
 procedure TFprincipal.pcdMensagem(psMensagem: String);
 begin
 Application.MessageBox(PChar(psMensagem), 'Despesas', 0);
+end;
+
+function TFprincipal.fncValidaAno(psAno : String): Boolean;
+var
+   psData : String;
+begin
+Result := True;
+psData := Trim('01/01/'+psAno);
+
+if Length(Trim(psAno)) < 4 then
+   begin
+   pcdMensagem('Ano inválido, verifique por favor!');
+   Result := False;
+   Exit;
+   end;
+
+try
+StrToDate(psData);
+except
+   pcdMensagem('Ano inválido, verifique por favor!');
+   Result := False;
+   end;
 end;
 
 end.

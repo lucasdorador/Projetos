@@ -58,6 +58,7 @@ object FFaturamento: TFFaturamento
       MaxLength = 4
       TabOrder = 0
       Text = '    '
+      OnExit = edtAnoExit
     end
     object edtValor: TDPTNumberEditXE8
       Left = 176
@@ -116,7 +117,7 @@ object FFaturamento: TFFaturamento
     Font.Color = clWindowText
     Font.Height = -16
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     ReadOnly = True

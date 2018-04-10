@@ -37,6 +37,11 @@ type
     frxGIFExport1: TfrxGIFExport;
     frxSimpleTextExport1: TfrxSimpleTextExport;
     frxCSVExport1: TfrxCSVExport;
+    FDConfiguracao: TFDQuery;
+    DSConfiguracao: TDataSource;
+    FDConfiguracaoCONFIG_ANO: TStringField;
+    FDConfiguracaoCONFIG_PORCENTAGEMISENTO: TFloatField;
+    FDConfiguracaoCONFIG_VALORDECLARARIR: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -71,6 +76,19 @@ if FileExists(ExtractFilePath(Application.ExeName) + 'Despesas.fdb') then
 
    try
    poConexao.Open;
+
+   FDDespesas.Close;
+   FDFaturamento.Close;
+   FDConfiguracao.Close;
+
+   FDDespesas.Connection     := poConexao;
+   FDFaturamento.Connection  := poConexao;
+   FDConfiguracao.Connection := poConexao;
+
+   FDDespesas.Open;
+   FDFaturamento.Open;
+   FDConfiguracao.Open;
+
    except
       on e : EIBNativeException  do
          begin

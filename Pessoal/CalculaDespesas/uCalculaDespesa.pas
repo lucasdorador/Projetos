@@ -89,6 +89,14 @@ if Trim(edtAno.Text) = '' then
    Fprincipal.pcdMensagem('Ano obrigatório');
    edtAno.SetFocus;
    Abort;
+   end
+else
+   begin
+   if not Fprincipal.fncValidaAno(edtAno.Text) then
+      begin
+      edtAno.SetFocus;
+      Abort;
+      end;
    end;
 
 if Trim(edtDescricao.Text) = '' then
@@ -142,7 +150,17 @@ end;
 
 procedure TFCalculaDespesa.edtAnoExit(Sender: TObject);
 begin
-pcdAtualizaGRid;
+if Trim(edtAno.Text) <> '' then
+   begin
+   if Fprincipal.fncValidaAno(edtAno.Text) then
+      begin
+      pcdAtualizaGRid;
+      end
+   else
+      begin
+      edtAno.SetFocus;
+      end;
+   end;
 end;
 
 procedure TFCalculaDespesa.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -11,7 +11,8 @@ uses
   uApuracao in 'uApuracao.pas' {FApuracao},
   uGeraApuracao in 'uGeraApuracao.pas',
   uCRUDConfiguracao in 'uCRUDConfiguracao.pas',
-  uImpressao in 'uImpressao.pas';
+  uImpressao in 'uImpressao.pas',
+  uConfiguracao in 'uConfiguracao.pas' {FConfiguracao};
 
 {$R *.res}
 
@@ -23,5 +24,6 @@ begin
   Application.CreateForm(TFprincipal, Fprincipal);
   Application.CreateForm(TFFaturamento, FFaturamento);
   Application.CreateForm(TFApuracao, FApuracao);
+  Application.CreateForm(TFConfiguracao, FConfiguracao);
   Application.Run;
 end.

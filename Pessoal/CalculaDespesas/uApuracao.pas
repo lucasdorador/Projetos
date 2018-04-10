@@ -29,6 +29,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnApuracaoClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure cbAnoExit(Sender: TObject);
   private
     vloGeraApuracao  : TGeraApuracao;
     vloFaturamento   : TCrudFaturamento;
@@ -55,7 +56,7 @@ uses uDMPrincipal, uPrincipal;
 
 procedure TFApuracao.btnApuracaoClick(Sender: TObject);
 var
-   vlsAPUR_ANO                : String;
+   vlsAPUR_ANO, vlsMensagem   : String;
    vldAPUR_RECEITABRUTA, vldAPUR_DESPESAS, vldAPUR_LUCROEVIDENCIADO,
    vldAPUR_PORCENTAGEMISENTA, vldAPUR_VALORISENTO, vldAPUR_VALORTRIBUTADO,
    vldAPUR_VALORDECLARARIR    : Double;
@@ -70,30 +71,57 @@ vldAPUR_VALORTRIBUTADO    := 0;
 vldAPUR_VALORDECLARARIR   := 0;
 vlsAPUR_ANO               := '';
 vlbAPUR_DECLARA           := False;
+vlsMensagem               := '';
 
 if Trim(edtAno.Text) = '' then
    begin
    Fprincipal.pcdMensagem('Ano obrigatório');
    edtAno.SetFocus;
    Abort;
+   end
+else
+   begin
+   if not Fprincipal.fncValidaAno(edtAno.Text) then
+      begin
+      edtAno.SetFocus;
+      Abort;
+      end;
    end;
-
-{ TODO -oLUCAS -cTESTES :
-Fazer todas as validações:
- - Faturamento do Ano
- - Despesas do Ano
- - Alíquota de Isenção
- - Valor do IR a Declarar }
 
 if MessageDlg('Deseja gerar a apuração do ano ' + edtAno.Text + '?', mtInformation, [mbYes, mbNo], 0) = mrYes then
    begin
    vlsAPUR_ANO               := edtAno.Text;
    vldAPUR_DESPESAS          := vloDespesas.fncRetornaValorTotalANO(edtAno.Text);
+
+   if vldAPUR_DESPESAS = 0 then
+      vlsMensagem := '- Valor das despesas do ano: '+edtAno.Text+
+                     ' não foram lançadas, acessar o menu: Lançamentos\Despesas e realizar os lançamentos.' + sLineBreak;
+
    vldAPUR_RECEITABRUTA      := vloFaturamento.fncRetornaValorFaturadoANO(edtAno.Text);
+
+   if vldAPUR_RECEITABRUTA = 0 then
+      vlsMensagem := vlsMensagem + '- Valor das receitas do ano: '+edtAno.Text+
+                                   ' não foram lançadas, acessar o menu: Lançamentos\Faturamento e realizar os lançamentos.' + sLineBreak;
 
    vloConfiguracoes.pcdRetornaValorFaturadoANO(edtAno.Text);
    vldAPUR_PORCENTAGEMISENTA := vloConfiguracoes.poRetornoConfig.CONFIG_PORCENTAGEMISENTO;
+
+   if vldAPUR_PORCENTAGEMISENTA = 0 then
+      vlsMensagem := vlsMensagem + '- Valor da porcentagem de isenção do ano: '+edtAno.Text+
+                                   ' não foi lançada, acessar o menu: Configurações e realizar o lançamento.' + sLineBreak;
+
    vldAPUR_VALORDECLARARIR   := vloConfiguracoes.poRetornoConfig.CONFIG_VALORDECLARARIR;
+
+   if vldAPUR_VALORDECLARARIR = 0 then
+      vlsMensagem := vlsMensagem + '- Valor limite para Imposto de Renda do ano: '+edtAno.Text+
+                                   ' não foi lançado, acessar o menu: Configurações e realizar o lançamento.';
+
+   if Trim(vlsMensagem) <> '' then
+      begin
+      Fprincipal.pcdMensagem('Existem inconsistências na apuração, corrija para continuar: ' + sLineBreak + vlsMensagem);
+      edtAno.SetFocus;
+      Abort;
+      end;
 
    vldAPUR_LUCROEVIDENCIADO  := (vldAPUR_RECEITABRUTA - vldAPUR_DESPESAS);
    vldAPUR_VALORISENTO       := (vldAPUR_RECEITABRUTA * (vldAPUR_PORCENTAGEMISENTA / 100));
@@ -126,6 +154,15 @@ end;
 procedure TFApuracao.btnImprimirClick(Sender: TObject);
 begin
 pcdImpressaoApuracao(cbAno.Text);
+end;
+
+procedure TFApuracao.cbAnoExit(Sender: TObject);
+begin
+if not Fprincipal.fncValidaAno(cbAno.Text) then
+   begin
+   cbAno.SetFocus;
+   Abort;
+   end;
 end;
 
 procedure TFApuracao.FormClose(Sender: TObject; var Action: TCloseAction);

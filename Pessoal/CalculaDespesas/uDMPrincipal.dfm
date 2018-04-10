@@ -58,6 +58,7 @@ object DMPrincipal: TDMPrincipal
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 184
@@ -102,7 +103,7 @@ object DMPrincipal: TDMPrincipal
     Top = 72
   end
   object frxReport1: TfrxReport
-    Version = '5.1.5'
+    Version = '5.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -271,5 +272,44 @@ object DMPrincipal: TDMPrincipal
     ForcedQuotes = False
     Left = 520
     Top = 64
+  end
+  object FDConfiguracao: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT CONFIG_ANO, CONFIG_PORCENTAGEMISENTO, CONFIG_VALORDECLARA' +
+        'RIR FROM CONFIGURACAO WHERE CONFIG_ANO = :ANO')
+    Left = 24
+    Top = 240
+    ParamData = <
+      item
+        Name = 'ANO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 4
+        Value = Null
+      end>
+    object FDConfiguracaoCONFIG_ANO: TStringField
+      FieldName = 'CONFIG_ANO'
+      Origin = 'CONFIG_ANO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 4
+    end
+    object FDConfiguracaoCONFIG_PORCENTAGEMISENTO: TFloatField
+      FieldName = 'CONFIG_PORCENTAGEMISENTO'
+      Origin = 'CONFIG_PORCENTAGEMISENTO'
+      DisplayFormat = ',0.00'
+    end
+    object FDConfiguracaoCONFIG_VALORDECLARARIR: TFloatField
+      FieldName = 'CONFIG_VALORDECLARARIR'
+      Origin = 'CONFIG_VALORDECLARARIR'
+      DisplayFormat = ',0.00'
+    end
+  end
+  object DSConfiguracao: TDataSource
+    DataSet = FDConfiguracao
+    Left = 104
+    Top = 240
   end
 end

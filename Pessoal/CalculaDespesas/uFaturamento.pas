@@ -26,6 +26,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure dbgFaturamentoDblClick(Sender: TObject);
+    procedure edtAnoExit(Sender: TObject);
   private
     vloFaturamento : TCrudFaturamento;
     procedure pcdAtualizaGRid;
@@ -72,6 +73,14 @@ if Trim(edtAno.Text) = '' then
    Fprincipal.pcdMensagem('Ano obrigatório');
    edtAno.SetFocus;
    Abort;
+   end
+else
+   begin
+   if not Fprincipal.fncValidaAno(edtAno.Text) then
+      begin
+      edtAno.SetFocus;
+      Abort;
+      end;
    end;
 
 if edtValor.Value = 0 then
@@ -100,6 +109,21 @@ procedure TFFaturamento.dbgFaturamentoDblClick(Sender: TObject);
 begin
 edtAno.Text    := DMPrincipal.FDFaturamentoFAT_ANO.AsString;
 edtValor.Value := DMPrincipal.FDFaturamentoFAT_VALOR.AsFloat;
+end;
+
+procedure TFFaturamento.edtAnoExit(Sender: TObject);
+begin
+if Trim(edtAno.Text) <> '' then
+   begin
+   if Fprincipal.fncValidaAno(edtAno.Text) then
+      begin
+      edtValor.Value := vloFaturamento.fncRetornaValorFaturadoANO(edtAno.Text);
+      end
+   else
+      begin
+      edtAno.SetFocus;
+      end;
+   end;
 end;
 
 procedure TFFaturamento.pcdAtualizaGRid;
