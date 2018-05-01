@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/15 11:41:45.000.169,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:45.000.254,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:50.000.279,=D:\Documentos\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.853,=D:\Documentos\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.937,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:02.000.054,=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2018/04/30 22:44:43.000.805,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/04/30 22:45:24.000.419,E:\Projetos\trunk\TDP\CarregaBPL\uCarregaBPL.dfm=D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/04/30 22:45:24.000.419,E:\Projetos\trunk\TDP\CarregaBPL\uCarregaBPL.pas=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/04/30 22:45:29.000.694,E:\Projetos\trunk\TDP\CarregaBPL\CarregaBPL.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
