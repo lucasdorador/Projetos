@@ -35,7 +35,7 @@ type
     function XlsToStringGrid(XStringGrid: TStringGrid; xFileXLS: string): Boolean;
     function NomeTabela(Campo: String): String;
     procedure ConfiguraColunas(vloStringGrid: TStringGrid);
-    function CampoBooleano(Campo: String): Boolean;
+    function fncRetornaTipoCampo(Campo: String): String;
 
   public
     { Public declarations }
@@ -181,7 +181,7 @@ end;
 procedure TFImportaExcel.btnImportarExcelClick(Sender: TObject);
 begin
 OpenDialog1.Title  := 'Carregando arquivo de Excel';
-OpenDialog1.Filter := 'Arquivos de Excel 97-2003|*.xls|Arquivos de Excel|*.xlsx';
+OpenDialog1.Filter := 'Arquivos de Excel|*.xlsx|Arquivos de Excel 97-2003|*.xls';
 
 try
 OpenDialog1.InitialDir := ExtractFilePath(Application.ExeName);
@@ -207,6 +207,7 @@ FLeScript.vlsTabela  := '';
 FLeScript.vlsTabela  := NomeTabela(vlsPrimeiroCampo);
 StringGrid1.Hint     := OpenDialog1.FileName;
 StringGrid1.ShowHint := True;
+ConfiguraColunas(StringGrid1);
 end;
 
 procedure TFImportaExcel.FormShow(Sender: TObject);
@@ -315,7 +316,7 @@ end;
 procedure TFImportaExcel.ConfiguraColunas(vloStringGrid : TStringGrid);
 var
   I, vlI: Integer;
-  vlsString : String;
+  vlsTipoCampos, vlsString : String;
 begin
 try
 gbProgressBar.Visible := True;
@@ -330,18 +331,37 @@ for I := 1 to vloStringGrid.RowCount do //Qtde Linhas
       begin
       if Trim(vloStringGrid.Cells[1, I]) <> '' then
          begin
+         vlsTipoCampos := fncRetornaTipoCampo(vloStringGrid.Cells[vlI, 0]);
+
          if vloStringGrid.Cells[vlI, I] = '30/12/1899' then //Corrigi a data para 01/01/1900
             begin
             vloStringGrid.Cells[vlI, I] := '01/01/1900';
             end;
 
-         if CampoBooleano(vloStringGrid.Cells[vlI, 0]) then  //Corrigi campos booleanos
+         if vlsTipoCampos = 'BOOLEAN' then  //Corrigi campos booleanos
             begin
             vlsString := vloStringGrid.Cells[vlI, 0];
             vlsString := vloStringGrid.Cells[vlI, I];
 
             if Trim(vloStringGrid.Cells[vlI, I]) = '' then
                vloStringGrid.Cells[vlI, I] := 'False';
+            end;
+
+         if vlsTipoCampos = 'DOUBLE' then  //Corrigi campos booleanos
+            begin
+            vlsString := vloStringGrid.Cells[vlI, 0];
+            vlsString := vloStringGrid.Cells[vlI, I];
+
+            if vlsString = '' then
+               ShowMessage('Fodeo');
+
+            vloStringGrid.Cells[vlI, I] := StringReplace(vloStringGrid.Cells[vlI, I], ',','.',[rfReplaceAll, rfIgnoreCase])
+            end;
+
+         if (vlsTipoCampos = 'DATE') and (Trim(vloStringGrid.Cells[vlI, I]) = '') then  //Corrigi campos booleanos
+            begin
+            vlsString := vloStringGrid.Cells[vlI, I];
+            vloStringGrid.Cells[vlI, I] := '01/01/1900';
             end;
          end
       else
@@ -358,7 +378,7 @@ finally
    end;
 end;
 
-function TFImportaExcel.CampoBooleano(Campo : String) : Boolean;
+function TFImportaExcel.fncRetornaTipoCampo(Campo : String) : String;
 var
    QTabela : TFDQuery;
 begin
@@ -367,16 +387,40 @@ try
 QTabela.Close;
 QTabela.Connection := FLeScript.vgConexao;
 QTabela.SQL.Clear;
-QTabela.SQL.Add('SELECT RDB$FIELD_SOURCE AS TIPO FROM RDB$RELATION_FIELDS');
-QTabela.SQL.Add('WHERE RDB$FIELD_NAME =:CAMPO');
-QTabela.SQL.Add('ORDER BY RDB$FIELD_POSITION');
-QTabela.ParamByName('CAMPO').AsString := Campo;
+QTabela.SQL.Add('SELECT');
+QTabela.SQL.Add('R.RDB$FIELD_SOURCE AS "DOMÍNIO",');
+QTabela.SQL.Add('F.RDB$FIELD_LENGTH AS TAMANHO,');
+QTabela.SQL.Add('CASE F.RDB$FIELD_TYPE');
+QTabela.SQL.Add('    WHEN 261 THEN ''BLOB''');
+QTabela.SQL.Add('    WHEN 14 THEN  ''CHAR''');
+QTabela.SQL.Add('    WHEN 40 THEN  ''CSTRING''');
+QTabela.SQL.Add('    WHEN 11 THEN  ''D_FLOAT''');
+QTabela.SQL.Add('    WHEN 27 THEN  ''DOUBLE''');
+QTabela.SQL.Add('    WHEN 10 THEN  ''FLOAT''');
+QTabela.SQL.Add('    WHEN 16 THEN  ''INT64''');
+QTabela.SQL.Add('    WHEN 8 THEN   ''INTEGER''');
+QTabela.SQL.Add('    WHEN 9 THEN   ''QUAD''');
+QTabela.SQL.Add('    WHEN 7 THEN   ''SMALLINT''');
+QTabela.SQL.Add('    WHEN 12 THEN  ''DATE''');
+QTabela.SQL.Add('    WHEN 13 THEN  ''TIME''');
+QTabela.SQL.Add('    WHEN 35 THEN  ''TIMESTAMP''');
+QTabela.SQL.Add('    WHEN 37 THEN  ''VARCHAR''');
+QTabela.SQL.Add('    ELSE ''UNKNOWN''');
+QTabela.SQL.Add('END AS TIPO');
+QTabela.SQL.Add('FROM RDB$RELATION_FIELDS R');
+QTabela.SQL.Add('LEFT JOIN RDB$FIELDS F ON R.RDB$FIELD_SOURCE = F.RDB$FIELD_NAME');
+QTabela.SQL.Add('WHERE R.RDB$RELATION_NAME= :TABELA AND R.RDB$FIELD_NAME =:CAMPO');
+QTabela.SQL.Add('ORDER BY R.RDB$FIELD_POSITION;');
+QTabela.ParamByName('TABELA').AsString := vlsNomeTabela;
+QTabela.ParamByName('CAMPO').AsString  := Campo;
 QTabela.Open;
 
-if QTabela.FieldByName('TIPO').AsString = 'BOLEANO' then
-   Result := True
+if ((QTabela.FieldByName('TIPO').AsString = 'VARCHAR') AND
+    (QTabela.FieldByName('TAMANHO').AsInteger = 5) AND
+    (QTabela.FieldByName('DOMÍNIO').AsString = 'BOLEANO')) then
+   Result := 'BOOLEAN'
 else
-   Result := False;
+   Result := QTabela.FieldByName('TIPO').AsString;
 
 finally
    FreeAndNil(QTabela);

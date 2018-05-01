@@ -144,6 +144,9 @@ FLeScript.vgConexao.StartTransaction;
 FDScript.Connection := FLeScript.vgConexao;
 vldTempoInicial := Now;
 vlsScript := '';
+Gauge1.Progress       := 0;
+gbProgressBar.Caption := 'Imprimindo linha ... de ' + FormatFloat('000',MScript.Lines.Count);
+Gauge1.MaxValue       := MScript.Lines.Count;
 
 for I := 0 to MScript.Lines.Count - 1 do
    begin
@@ -163,13 +166,15 @@ for I := 0 to MScript.Lines.Count - 1 do
       else
          vlsStringListScript.Add(MScript.Lines.Strings[I]);
       end;
+
+   Gauge1.Progress := Gauge1.Progress + 1;
    end;
 
-//AssignFile(arq, 'C:\Script.txt');
-//Rewrite(arq);
-//Writeln(arq, vlsStringListScript.Text);
-//CloseFile(arq);
-//
+AssignFile(arq, 'C:\Script.txt');
+Rewrite(arq);
+Writeln(arq, vlsStringListScript.Text);
+CloseFile(arq);
+
 
 FDScript.ExecuteScript(vlsStringListScript);
 vldTempoFinal := Now;
