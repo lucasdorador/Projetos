@@ -4,8 +4,8 @@ object FLeScript: TFLeScript
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Leitor de Script'
-  ClientHeight = 471
-  ClientWidth = 846
+  ClientHeight = 626
+  ClientWidth = 1018
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,15 +21,15 @@ object FLeScript: TFLeScript
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 673
-    Top = 423
+    Left = 822
+    Top = 578
     Width = 108
     Height = 13
     Caption = 'Quantidade de Linhas:'
   end
   object lblQtdeLinhas: TLabel
-    Left = 775
-    Top = 435
+    Left = 924
+    Top = 594
     Width = 6
     Height = 13
     Alignment = taRightJustify
@@ -38,8 +38,8 @@ object FLeScript: TFLeScript
   object MScript: TMemo
     Left = 8
     Top = 8
-    Width = 773
-    Height = 409
+    Width = 913
+    Height = 564
     DoubleBuffered = False
     ParentDoubleBuffered = False
     PopupMenu = PopupMenu1
@@ -48,17 +48,18 @@ object FLeScript: TFLeScript
     OnChange = MScriptChange
   end
   object ScrollBox1: TScrollBox
-    Left = 791
+    Left = 936
     Top = 0
-    Width = 55
-    Height = 471
+    Width = 82
+    Height = 626
     Align = alRight
     TabOrder = 1
+    ExplicitLeft = 856
     object btnCarrega: TBitBtn
-      Left = 5
-      Top = 102
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 162
+      Width = 70
+      Height = 70
       Hint = 'Carregar o Script (F2)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -262,10 +263,10 @@ object FLeScript: TFLeScript
       OnClick = btnCarregaClick
     end
     object btnSalva: TBitBtn
-      Left = 5
-      Top = 194
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 314
+      Width = 70
+      Height = 70
       Hint = 'Salvar o Script (F3)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -469,10 +470,10 @@ object FLeScript: TFLeScript
       OnClick = btnSalvaClick
     end
     object btnLocaliza: TBitBtn
-      Left = 5
-      Top = 240
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 390
+      Width = 70
+      Height = 70
       Hint = 'Localizar no Script (F5)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -676,10 +677,10 @@ object FLeScript: TFLeScript
       OnClick = btnLocalizaClick
     end
     object btnImprime: TBitBtn
-      Left = 5
-      Top = 286
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 466
+      Width = 70
+      Height = 70
       Hint = 'Imprimir o Script (F6)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -883,10 +884,10 @@ object FLeScript: TFLeScript
       OnClick = btnImprimeClick
     end
     object btnExecuta: TBitBtn
-      Left = 5
-      Top = 148
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 238
+      Width = 70
+      Height = 70
       Hint = 'Executar o Script (F9)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -1090,10 +1091,10 @@ object FLeScript: TFLeScript
       OnClick = btnExecutaClick
     end
     object BitBtn1: TBitBtn
-      Left = 5
-      Top = 332
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 542
+      Width = 70
+      Height = 70
       Hint = 'Clique para Sair (Esc)'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
@@ -1232,10 +1233,10 @@ object FLeScript: TFLeScript
       OnClick = BitBtn1Click
     end
     object btnNovo: TBitBtn
-      Left = 5
+      Left = 6
       Top = 10
-      Width = 45
-      Height = 40
+      Width = 70
+      Height = 70
       Hint = 'Novo Script (F4)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -1439,10 +1440,10 @@ object FLeScript: TFLeScript
       OnClick = btnNovoClick
     end
     object btnImportar: TBitBtn
-      Left = 5
-      Top = 56
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 86
+      Width = 70
+      Height = 70
       Hint = 'Gerar Script Excel(.xls) (F7)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -1648,7 +1649,7 @@ object FLeScript: TFLeScript
   end
   object btnEditar: TBitBtn
     Left = 8
-    Top = 423
+    Top = 578
     Width = 45
     Height = 40
     Hint = 'Editar (F8)'
@@ -1853,7 +1854,7 @@ object FLeScript: TFLeScript
   end
   object btnGravarAlt: TBitBtn
     Left = 59
-    Top = 423
+    Top = 578
     Width = 45
     Height = 40
     Hint = 'Gravar Altera'#231#227'o (F10)'
@@ -2057,15 +2058,15 @@ object FLeScript: TFLeScript
     OnClick = btnGravarAltClick
   end
   object gbProgressBar: TGroupBox
-    Left = 200
-    Top = 150
-    Width = 353
-    Height = 40
+    Left = 256
+    Top = 200
+    Width = 512
+    Height = 62
     Caption = 'Imprimindo linha: 01 .. 200'
     Color = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentBackground = False
@@ -2074,17 +2075,18 @@ object FLeScript: TFLeScript
     TabOrder = 4
     Visible = False
     object Gauge1: TGauge
-      Left = 2
-      Top = 15
-      Width = 349
-      Height = 23
+      AlignWithMargins = True
+      Left = 5
+      Top = 24
+      Width = 502
+      Height = 33
       Align = alClient
       ForeColor = clBlue
       Progress = 50
-      ExplicitLeft = 112
-      ExplicitTop = 16
-      ExplicitWidth = 100
-      ExplicitHeight = 100
+      ExplicitLeft = 1
+      ExplicitTop = 21
+      ExplicitWidth = 508
+      ExplicitHeight = 39
     end
   end
   object OpenDialog1: TOpenDialog
@@ -2122,7 +2124,7 @@ object FLeScript: TFLeScript
   end
   object PopupMenu1: TPopupMenu
     Left = 472
-    Top = 424
+    Top = 579
     object Editar1: TMenuItem
       Caption = 'Editar'
       Hint = 'Editar o Script'

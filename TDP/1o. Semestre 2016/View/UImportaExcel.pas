@@ -34,7 +34,7 @@ type
     { Private declarations }
     function XlsToStringGrid(XStringGrid: TStringGrid; xFileXLS: string): Boolean;
     function NomeTabela(Campo: String): String;
-    procedure ConfiguraColunas(vloStringGrid: TStringGrid);
+    function fncConfiguraColunas(vloStringGrid : TStringGrid):Boolean;
     function fncRetornaTipoCampo(Campo: String): String;
 
   public
@@ -61,9 +61,11 @@ end;
 
 procedure TFImportaExcel.BitBtn2Click(Sender: TObject);
 begin
-ConfiguraColunas(StringGrid1);
-StringGrid1.Refresh;
-ShowMessage('Tabela Configurada com sucesso!');
+if fncConfiguraColunas(StringGrid1) then
+   begin
+   StringGrid1.Refresh;
+   ShowMessage('Tabela Configurada com sucesso!');
+   end;
 end;
 
 procedure TFImportaExcel.btnExportarTabelaClick(Sender: TObject);
@@ -76,105 +78,113 @@ end;
 procedure TFImportaExcel.btnGerarScriptClick(Sender: TObject);
 var
    vlsDadosComando, vlsStringComando : String;
-   I: Integer;
    vlLinhas: Integer;
    vlColunas: Integer;
    vlsStringListComando : TStringList;
 begin
-try
-vlsStringListComando := TStringList.Create;
-ExcluirDadosTabela(vlsNomeTabela);
-
-for vlLinhas := 0 to StringGrid1.RowCount -1 do
+if StringGrid1.RowCount > 1 then
    begin
-   vlsDadosComando := '';
-   for vlColunas := 0 to StringGrid1.Rows[vlLinhas].Count - 1 do
+   try
+   vlsStringListComando := TStringList.Create;
+   ExcluirDadosTabela(vlsNomeTabela);
+
+   for vlLinhas := 0 to StringGrid1.RowCount -1 do
       begin
+      vlsDadosComando := '';
+      for vlColunas := 0 to StringGrid1.Rows[vlLinhas].Count - 1 do
+         begin
+         if vlLinhas = 0 then
+            begin
+            if Trim(vlsDadosComando) = '' then
+               vlsDadosComando := Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas])
+            else
+               vlsDadosComando := vlsDadosComando + ', ' + Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]);
+            end
+         else
+            begin
+            if Trim(vlsDadosComando) = '' then
+               vlsDadosComando := QuotedStr(Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]))
+            else
+               vlsDadosComando := vlsDadosComando + ',' + QuotedStr(Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]));
+            end;
+         end;
+
       if vlLinhas = 0 then
          begin
-         if Trim(vlsDadosComando) = '' then
-            vlsDadosComando := Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas])
-         else
-            vlsDadosComando := vlsDadosComando + ', ' + Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]);
+         if rgTipos.ItemIndex = 0 then
+            begin
+            vlsStringComando := 'INSERT INTO '+FLeScript.vlsTabela+' ('+vlsDadosComando+') VALUES';
+            end
+         else if rgTipos.ItemIndex = 1 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
+            end
+         else if rgTipos.ItemIndex = 2 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
+            end
+         else if rgTipos.ItemIndex = 3 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
+            end;
          end
       else
          begin
-         if Trim(vlsDadosComando) = '' then
-            vlsDadosComando := QuotedStr(Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]))
-         else
-            vlsDadosComando := vlsDadosComando + ',' + QuotedStr(Trim(StringGrid1.Rows[vlLinhas].Strings[vlColunas]));
-         end;
-      end;
-
-   if vlLinhas = 0 then
-      begin
-      if rgTipos.ItemIndex = 0 then
-         begin
-         vlsStringComando := 'INSERT INTO '+FLeScript.vlsTabela+' ('+vlsDadosComando+') VALUES';
-         end
-      else if rgTipos.ItemIndex = 1 then
-         begin
-         ShowMessage('Delete');
-         end
-      else if rgTipos.ItemIndex = 2 then
-         begin
-         ShowMessage('Update');
-         end
-      else if rgTipos.ItemIndex = 3 then
-         begin
-         ShowMessage('Create');
-         end;
-      end
-   else
-      begin
-      if rgTipos.ItemIndex = 0 then
-         begin
-         if Trim(vlsDadosComando) <> '' then
+         if rgTipos.ItemIndex = 0 then
             begin
-            vlsStringListComando.Add(vlsStringComando + ' ('+vlsDadosComando+');');
+            if Trim(vlsDadosComando) <> '' then
+               begin
+               vlsStringListComando.Add(vlsStringComando + ' ('+vlsDadosComando+');');
+               end;
+            end
+         else if rgTipos.ItemIndex = 1 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
+            end
+         else if rgTipos.ItemIndex = 2 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
+            end
+         else if rgTipos.ItemIndex = 3 then
+            begin
+            ShowMessage('Não implementado nessa versão!');
+            Abort;
             end;
-         end
-      else if rgTipos.ItemIndex = 1 then
-         begin
-         ShowMessage('Delete');
-         end
-      else if rgTipos.ItemIndex = 2 then
-         begin
-         ShowMessage('Update');
-         end
-      else if rgTipos.ItemIndex = 3 then
-         begin
-         ShowMessage('Create');
          end;
       end;
-   end;
 
-FLeScript.MScript.Lines.Clear;
-FLeScript.MScript.Lines.AddStrings(vlsStringListComando);
-FLeScript.MScript.Hint     := 'Importado pelo Excel!';
-FLeScript.MScript.ShowHint := True;
-FLeScript.MScript.ReadOnly := True;
-FLeScript.MScript.Enabled      := True;
-FLeScript.MScript.SetFocus;
-FLeScript.btnSalva.Enabled     := True;
-FLeScript.btnLocaliza.Enabled  := True;
-FLeScript.btnImprime.Enabled   := True;
-FLeScript.btnExecuta.Enabled   := True;
-if FLeScript.MScript.Lines.Count > 0 then
-   begin
-   FLeScript.MScript.Height        := 409;
-   FLeScript.btnEditar.Visible     := True;
-   FLeScript.btnGravarAlt.Visible  := True;
-   FLeScript.btnEditar.Enabled     := True;
-   FLeScript.btnGravarAlt.Enabled  := False;
-   FLeScript.lblQtdeLinhas.Caption := '';
-   FLeScript.lblQtdeLinhas.Caption := IntToStr(FLeScript.MScript.Lines.Count);
-   end;
-Close;
-Application.ProcessMessages;
+   FLeScript.MScript.Lines.Clear;
+   FLeScript.MScript.Lines.AddStrings(vlsStringListComando);
+   FLeScript.MScript.Hint         := 'Importado pelo Excel!';
+   FLeScript.MScript.ShowHint     := True;
+   FLeScript.MScript.ReadOnly     := True;
+   FLeScript.MScript.Enabled      := True;
+   FLeScript.MScript.SetFocus;
+   FLeScript.btnSalva.Enabled     := True;
+   FLeScript.btnLocaliza.Enabled  := True;
+   FLeScript.btnImprime.Enabled   := True;
+   FLeScript.btnExecuta.Enabled   := True;
+   if FLeScript.MScript.Lines.Count > 0 then
+      begin
+      FLeScript.MScript.Height        := 564;
+      FLeScript.btnEditar.Visible     := True;
+      FLeScript.btnGravarAlt.Visible  := True;
+      FLeScript.btnEditar.Enabled     := True;
+      FLeScript.btnGravarAlt.Enabled  := False;
+      FLeScript.lblQtdeLinhas.Caption := '';
+      FLeScript.lblQtdeLinhas.Caption := IntToStr(FLeScript.MScript.Lines.Count);
+      end;
+   Close;
+   Application.ProcessMessages;
 
-finally
-   FreeAndNil(vlsStringListComando);
+   finally
+      FreeAndNil(vlsStringListComando);
+      end;
    end;
 end;
 
@@ -201,13 +211,14 @@ if OpenDialog1.Execute then
       StringGrid1.RowCount := 0;
       XlsToStringGrid(StringGrid1,OpenDialog1.FileName)
       end;
-   end;
 
-FLeScript.vlsTabela  := '';
-FLeScript.vlsTabela  := NomeTabela(vlsPrimeiroCampo);
-StringGrid1.Hint     := OpenDialog1.FileName;
-StringGrid1.ShowHint := True;
-ConfiguraColunas(StringGrid1);
+
+   FLeScript.vlsTabela  := '';
+   FLeScript.vlsTabela  := NomeTabela(vlsPrimeiroCampo);
+   StringGrid1.Hint     := OpenDialog1.FileName;
+   StringGrid1.ShowHint := True;
+   fncConfiguraColunas(StringGrid1);
+   end;
 end;
 
 procedure TFImportaExcel.FormShow(Sender: TObject);
@@ -257,7 +268,12 @@ begin
       // Cria o loop para listar os registros no TStringGrid
       k := 1;
       vlsPrimeiroCampo := '';
+      try
       vlsPrimeiroCampo := RangeMatrix[1, 2];
+      except
+         vlsPrimeiroCampo := RangeMatrix[1, 1];
+         end;
+
       repeat
          for r := 1 to y do
             XStringGrid.Cells[(r - 1), (k - 1)] := RangeMatrix[k, r];
@@ -313,68 +329,73 @@ finally
    end;
 end;
 
-procedure TFImportaExcel.ConfiguraColunas(vloStringGrid : TStringGrid);
+function TFImportaExcel.fncConfiguraColunas(vloStringGrid : TStringGrid):Boolean;
 var
   I, vlI: Integer;
   vlsTipoCampos, vlsString : String;
 begin
-try
-gbProgressBar.Visible := True;
-Gauge1.Progress       := 0;
-gbProgressBar.Caption := 'Corrigindo linha 1 de ' + IntToStr(vloStringGrid.RowCount - 1);
-Gauge1.MaxValue       := vloStringGrid.RowCount - 1;
-Application.ProcessMessages;
-
-for I := 1 to vloStringGrid.RowCount do //Qtde Linhas
+Result := False;
+if vloStringGrid.RowCount > 1 then
    begin
-   for vlI := 0 to vloStringGrid.ColCount do //Qtde Colunas
-      begin
-      if Trim(vloStringGrid.Cells[1, I]) <> '' then
-         begin
-         vlsTipoCampos := fncRetornaTipoCampo(vloStringGrid.Cells[vlI, 0]);
-
-         if vloStringGrid.Cells[vlI, I] = '30/12/1899' then //Corrigi a data para 01/01/1900
-            begin
-            vloStringGrid.Cells[vlI, I] := '01/01/1900';
-            end;
-
-         if vlsTipoCampos = 'BOOLEAN' then  //Corrigi campos booleanos
-            begin
-            vlsString := vloStringGrid.Cells[vlI, 0];
-            vlsString := vloStringGrid.Cells[vlI, I];
-
-            if Trim(vloStringGrid.Cells[vlI, I]) = '' then
-               vloStringGrid.Cells[vlI, I] := 'False';
-            end;
-
-         if vlsTipoCampos = 'DOUBLE' then  //Corrigi campos booleanos
-            begin
-            vlsString := vloStringGrid.Cells[vlI, 0];
-            vlsString := vloStringGrid.Cells[vlI, I];
-
-            if vlsString = '' then
-               ShowMessage('Fodeo');
-
-            vloStringGrid.Cells[vlI, I] := StringReplace(vloStringGrid.Cells[vlI, I], ',','.',[rfReplaceAll, rfIgnoreCase])
-            end;
-
-         if (vlsTipoCampos = 'DATE') and (Trim(vloStringGrid.Cells[vlI, I]) = '') then  //Corrigi campos booleanos
-            begin
-            vlsString := vloStringGrid.Cells[vlI, I];
-            vloStringGrid.Cells[vlI, I] := '01/01/1900';
-            end;
-         end
-      else
-         begin
-         Exit;
-         end;
-      end;
-   Gauge1.Progress       := Gauge1.Progress + 1;
-   gbProgressBar.Caption := 'Corrigindo linha '+IntToStr(I)+' de ' + IntToStr(vloStringGrid.RowCount - 1);
+   Result := True;
+   try
+   gbProgressBar.Visible := True;
+   Gauge1.Progress       := 0;
+   gbProgressBar.Caption := 'Corrigindo linha 1 de ' + IntToStr(vloStringGrid.RowCount - 1);
+   Gauge1.MaxValue       := vloStringGrid.RowCount - 1;
    Application.ProcessMessages;
-   end;
-finally
-   gbProgressBar.Visible := False;
+
+   for I := 1 to vloStringGrid.RowCount do //Qtde Linhas
+      begin
+      for vlI := 0 to vloStringGrid.ColCount do //Qtde Colunas
+         begin
+         if Trim(vloStringGrid.Cells[1, I]) <> '' then
+            begin
+            vlsTipoCampos := fncRetornaTipoCampo(vloStringGrid.Cells[vlI, 0]);
+
+            if vloStringGrid.Cells[vlI, I] = '30/12/1899' then //Corrigi a data para 01/01/1900
+               begin
+               vloStringGrid.Cells[vlI, I] := '01/01/1900';
+               end;
+
+            if vlsTipoCampos = 'BOOLEAN' then  //Corrigi campos booleanos
+               begin
+               vlsString := vloStringGrid.Cells[vlI, 0];
+               vlsString := vloStringGrid.Cells[vlI, I];
+
+               if Trim(vloStringGrid.Cells[vlI, I]) = '' then
+                  vloStringGrid.Cells[vlI, I] := 'False';
+               end;
+
+            if vlsTipoCampos = 'DOUBLE' then  //Corrigi campos booleanos
+               begin
+               vlsString := vloStringGrid.Cells[vlI, 0];
+               vlsString := vloStringGrid.Cells[vlI, I];
+
+               if vlsString = '' then
+                  ShowMessage('Fodeo');
+
+               vloStringGrid.Cells[vlI, I] := StringReplace(vloStringGrid.Cells[vlI, I], ',','.',[rfReplaceAll, rfIgnoreCase])
+               end;
+
+            if (vlsTipoCampos = 'DATE') and (Trim(vloStringGrid.Cells[vlI, I]) = '') then  //Corrigi campos booleanos
+               begin
+               vlsString := vloStringGrid.Cells[vlI, I];
+               vloStringGrid.Cells[vlI, I] := '01/01/1900';
+               end;
+            end
+         else
+            begin
+            Exit;
+            end;
+         end;
+      Gauge1.Progress       := Gauge1.Progress + 1;
+      gbProgressBar.Caption := 'Corrigindo linha '+IntToStr(I)+' de ' + IntToStr(vloStringGrid.RowCount - 1);
+      Application.ProcessMessages;
+      end;
+   finally
+      gbProgressBar.Visible := False;
+      end;
    end;
 end;
 

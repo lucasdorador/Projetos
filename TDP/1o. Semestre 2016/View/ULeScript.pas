@@ -105,13 +105,13 @@ MScript.Lines.Clear;
 CarregaScript;
 MScript.Enabled      := True;
 MScript.SetFocus;
-btnSalva.Enabled     := True;
-btnLocaliza.Enabled  := True;
-btnImprime.Enabled   := True;
-btnExecuta.Enabled   := True;
 if MScript.Lines.Count > 0 then
    begin
-   MScript.Height        := 409;
+   btnSalva.Enabled     := True;
+   btnLocaliza.Enabled  := True;
+   btnImprime.Enabled   := True;
+   btnExecuta.Enabled   := True;
+   MScript.Height        := 564;
    btnEditar.Visible     := True;
    btnGravarAlt.Visible  := True;
    btnEditar.Enabled     := True;
@@ -138,85 +138,87 @@ var
    arq: TextFile;
    vlsMensagemErro : String;
 begin
-Try
-vlsStringListScript := TStringList.Create;
-FLeScript.vgConexao.StartTransaction;
-FDScript.Connection := FLeScript.vgConexao;
-vldTempoInicial := Now;
-vlsScript := '';
-Gauge1.Progress       := 0;
-gbProgressBar.Caption := 'Imprimindo linha ... de ' + FormatFloat('000',MScript.Lines.Count);
-Gauge1.MaxValue       := MScript.Lines.Count;
-
-for I := 0 to MScript.Lines.Count - 1 do
+if MScript.Lines.Count > 0 then
    begin
-   Vls := Copy(MScript.Lines.Strings[I], Length(MScript.Lines.Strings[I]), 1);
-   if Copy(MScript.Lines.Strings[I], Length(MScript.Lines.Strings[I]), 1) <> ';'  then
+   Try
+   vlsStringListScript := TStringList.Create;
+   FLeScript.vgConexao.StartTransaction;
+   FDScript.Connection := FLeScript.vgConexao;
+   vldTempoInicial := Now;
+   vlsScript := '';
+   Gauge1.Progress       := 0;
+   gbProgressBar.Caption := 'Imprimindo linha ... de ' + FormatFloat('000',MScript.Lines.Count);
+   Gauge1.MaxValue       := MScript.Lines.Count;
+
+   for I := 0 to MScript.Lines.Count - 1 do
       begin
-      vlsScript := vlsScript + MScript.Lines.Strings[I];
-      end
-   else
-      begin
-      if Trim(vlsScript) <> '' then
+      Vls := Copy(MScript.Lines.Strings[I], Length(MScript.Lines.Strings[I]), 1);
+      if Copy(MScript.Lines.Strings[I], Length(MScript.Lines.Strings[I]), 1) <> ';'  then
          begin
          vlsScript := vlsScript + MScript.Lines.Strings[I];
-         vlsStringListScript.Add(vlsScript);
-         vlsScript := '';
          end
       else
-         vlsStringListScript.Add(MScript.Lines.Strings[I]);
+         begin
+         if Trim(vlsScript) <> '' then
+            begin
+            vlsScript := vlsScript + MScript.Lines.Strings[I];
+            vlsStringListScript.Add(vlsScript);
+            vlsScript := '';
+            end
+         else
+            vlsStringListScript.Add(MScript.Lines.Strings[I]);
+         end;
+
+      Gauge1.Progress := Gauge1.Progress + 1;
       end;
 
-   Gauge1.Progress := Gauge1.Progress + 1;
-   end;
+//   AssignFile(arq, 'C:\Script.txt');
+//   Rewrite(arq);
+//   Writeln(arq, vlsStringListScript.Text);
+//   CloseFile(arq);
 
-AssignFile(arq, 'C:\Script.txt');
-Rewrite(arq);
-Writeln(arq, vlsStringListScript.Text);
-CloseFile(arq);
-
-
-FDScript.ExecuteScript(vlsStringListScript);
-vldTempoFinal := Now;
-if FDScript.Finished then
-   begin
-   if FDScript.TotalErrors > 0 then
-      ShowMessage('Houve Erros na execução do Script!')
-   else
+   FDScript.ExecuteScript(vlsStringListScript);
+   vldTempoFinal := Now;
+   if FDScript.Finished then
       begin
-      ShowMessage('Script executado com sucesso.'#13'Total de Linhas executadas: '+IntToStr(vlsStringListScript.Count)+#13'Total de Tempo: ' +FormatDateTime('tt', vldTempoFinal - vldTempoInicial));
+      if FDScript.TotalErrors > 0 then
+         ShowMessage('Houve Erros na execução do Script!')
+      else
+         begin
+         ShowMessage('Script executado com sucesso.'#13'Total de Linhas executadas: '+IntToStr(vlsStringListScript.Count)+#13'Total de Tempo: ' +FormatDateTime('tt', vldTempoFinal - vldTempoInicial));
 
-      if MessageDlg('Deseja salvar o Script?',
-                        MtConfirmation, [mbYes, mbNo], 0) = MrYes then
-            begin
-            btnSalvaClick(Sender);
-            end;
-      MScript.Lines.Clear;
-      MScript.Height := 455;
+         if MessageDlg('Deseja salvar o Script?',
+                           MtConfirmation, [mbYes, mbNo], 0) = MrYes then
+               begin
+               btnSalvaClick(Sender);
+               end;
+         MScript.Lines.Clear;
+         MScript.Height := 564;
+         btnEditar.Visible    := False;
+         btnGravarAlt.Visible := False;
+         btnNovo.SetFocus;
+         end;
+      end;
+
+   finally
+      gbProgressBar.Visible := False;
+
+      FreeAndNil(vlsStringListScript);
+      if FDScript.TotalErrors > 0 then
+         FLeScript.vgConexao.Rollback
+      else
+         FLeScript.vgConexao.Commit;
+
+      btnNovo.SetFocus;
+      btnSalva.Enabled     := False;
+      btnLocaliza.Enabled  := False;
+      btnImprime.Enabled   := False;
+      btnExecuta.Enabled   := False;
+      MScript.Enabled      := False;
+      MScript.Height       := 564;
       btnEditar.Visible    := False;
       btnGravarAlt.Visible := False;
-      btnNovo.SetFocus;
       end;
-   end;
-
-finally
-   gbProgressBar.Visible := False;
-
-   FreeAndNil(vlsStringListScript);
-   if FDScript.TotalErrors > 0 then
-      FLeScript.vgConexao.Rollback
-   else
-      FLeScript.vgConexao.Commit;
-
-   btnNovo.SetFocus;
-   btnSalva.Enabled     := False;
-   btnLocaliza.Enabled  := False;
-   btnImprime.Enabled   := False;
-   btnExecuta.Enabled   := False;
-   MScript.Enabled      := False;
-   MScript.Height       := 455;
-   btnEditar.Visible    := False;
-   btnGravarAlt.Visible := False;
    end;
 end;
 
@@ -237,7 +239,10 @@ end;
 
 procedure TFLeScript.btnImprimeClick(Sender: TObject);
 begin
-ImpressaoTexto;
+if MScript.Lines.Count > 0 then
+   begin
+   ImpressaoTexto;
+   end;
 end;
 
 procedure TFLeScript.FindDialog1Find(Sender: TObject);
@@ -321,7 +326,7 @@ btnImprime.Enabled   := False;
 btnExecuta.Enabled   := False;
 MScript.Enabled      := False;
 vlStringList         := TStringList.Create;
-MScript.Height       := 455;
+MScript.Height       := 564;
 btnEditar.Visible    := False;
 btnGravarAlt.Visible := False;
 end;
@@ -385,8 +390,11 @@ end;
 
 procedure TFLeScript.btnLocalizaClick(Sender: TObject);
 begin
-FSelPos := 0;
-FindDialog1.Execute();
+if MScript.Lines.Count > 0 then
+   begin
+   FSelPos := 0;
+   FindDialog1.Execute();
+   end;
 end;
 
 procedure TFLeScript.btnNovoClick(Sender: TObject);
@@ -403,17 +411,20 @@ end;
 
 procedure TFLeScript.btnSalvaClick(Sender: TObject);
 begin
-SaveDialog1.Title       := 'Carregando Script';
-SaveDialog1.Filter      := 'Arquivo SQL (.sql)|*.sql|Arquivo Texto (.txt)|*.txt';
-SaveDialog1.DefaultExt  := 'sql';
-SaveDialog1.FilterIndex := 0;
-SaveDialog1.InitialDir  := ExtractFilePath(Application.ExeName);
-SaveDialog1.FileName    := ExtractFileName(OpenDialog1.FileName);
-
-if SaveDialog1.Execute then
+if MScript.Lines.Count > 0 then
    begin
-   MScript.Lines.SaveToFile(SaveDialog1.FileName);
-   ShowMessage('Arquivo grava com sucesso em: '+SaveDialog1.FileName);
+   SaveDialog1.Title       := 'Carregando Script';
+   SaveDialog1.Filter      := 'Arquivo SQL (.sql)|*.sql|Arquivo Texto (.txt)|*.txt';
+   SaveDialog1.DefaultExt  := 'sql';
+   SaveDialog1.FilterIndex := 0;
+   SaveDialog1.InitialDir  := ExtractFilePath(Application.ExeName);
+   SaveDialog1.FileName    := ExtractFileName(OpenDialog1.FileName);
+
+   if SaveDialog1.Execute then
+      begin
+      MScript.Lines.SaveToFile(SaveDialog1.FileName);
+      ShowMessage('Arquivo grava com sucesso em: '+SaveDialog1.FileName);
+      end;
    end;
 end;
 

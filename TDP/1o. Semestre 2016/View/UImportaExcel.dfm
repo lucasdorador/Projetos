@@ -4,8 +4,8 @@ object FImportaExcel: TFImportaExcel
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Importa'#231#227'o de Planilha Excel'
-  ClientHeight = 471
-  ClientWidth = 991
+  ClientHeight = 671
+  ClientWidth = 1018
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,10 +19,12 @@ object FImportaExcel: TFImportaExcel
   PixelsPerInch = 96
   TextHeight = 13
   object StringGrid1: TStringGrid
-    Left = 8
-    Top = 80
-    Width = 922
-    Height = 383
+    AlignWithMargins = True
+    Left = 3
+    Top = 75
+    Width = 930
+    Height = 593
+    Align = alClient
     BevelWidth = 2
     ColCount = 1
     DrawingStyle = gdsGradient
@@ -33,19 +35,23 @@ object FImportaExcel: TFImportaExcel
     TabOrder = 0
     OnDblClick = StringGrid1DblClick
     OnExit = StringGrid1Exit
+    ExplicitLeft = 8
+    ExplicitTop = 80
+    ExplicitWidth = 922
+    ExplicitHeight = 383
   end
   object ScrollBox1: TScrollBox
     Left = 936
-    Top = 0
-    Width = 55
-    Height = 471
+    Top = 72
+    Width = 82
+    Height = 599
     Align = alRight
     TabOrder = 1
     object btnImportarExcel: TBitBtn
-      Left = 5
+      Left = 6
       Top = 10
-      Width = 45
-      Height = 40
+      Width = 70
+      Height = 70
       Hint = 'Importar Excel (F7)'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
@@ -184,10 +190,10 @@ object FImportaExcel: TFImportaExcel
       OnClick = btnImportarExcelClick
     end
     object BitBtn1: TBitBtn
-      Left = 5
-      Top = 194
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 314
+      Width = 70
+      Height = 70
       Hint = 'Clique para Sair (Esc)'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
@@ -326,10 +332,10 @@ object FImportaExcel: TFImportaExcel
       OnClick = BitBtn1Click
     end
     object btnGerarScript: TBitBtn
-      Left = 5
-      Top = 102
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 162
+      Width = 70
+      Height = 70
       Hint = 'Gerar Script (F9)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -533,10 +539,10 @@ object FImportaExcel: TFImportaExcel
       OnClick = btnGerarScriptClick
     end
     object btnExportarTabela: TBitBtn
-      Left = 5
-      Top = 56
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 86
+      Width = 70
+      Height = 70
       Hint = 'Clique para Exportar Modelo Excel (F3)'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -740,10 +746,10 @@ object FImportaExcel: TFImportaExcel
       OnClick = btnExportarTabelaClick
     end
     object BitBtn2: TBitBtn
-      Left = 5
-      Top = 148
-      Width = 45
-      Height = 40
+      Left = 6
+      Top = 238
+      Width = 70
+      Height = 70
       Hint = 'Clique para Configurar a Tabela'
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
@@ -948,10 +954,12 @@ object FImportaExcel: TFImportaExcel
     end
   end
   object GroupBox1: TGroupBox
-    Left = 8
-    Top = 8
-    Width = 922
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 1012
     Height = 66
+    Align = alTop
     Caption = 'Par'#226'metros'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -960,6 +968,9 @@ object FImportaExcel: TFImportaExcel
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 922
     object rgTipos: TRadioGroup
       Left = 8
       Top = 17
@@ -989,15 +1000,15 @@ object FImportaExcel: TFImportaExcel
     end
   end
   object gbProgressBar: TGroupBox
-    Left = 313
-    Top = 196
-    Width = 353
-    Height = 40
+    Left = 256
+    Top = 290
+    Width = 512
+    Height = 62
     Caption = 'Imprimindo linha: 01 .. 200'
     Color = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentBackground = False
@@ -1006,10 +1017,11 @@ object FImportaExcel: TFImportaExcel
     TabOrder = 3
     Visible = False
     object Gauge1: TGauge
-      Left = 2
-      Top = 15
-      Width = 349
-      Height = 23
+      AlignWithMargins = True
+      Left = 5
+      Top = 24
+      Width = 502
+      Height = 33
       Align = alClient
       ForeColor = clBlue
       Progress = 50
