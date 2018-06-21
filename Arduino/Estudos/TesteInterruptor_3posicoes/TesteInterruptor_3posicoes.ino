@@ -4,8 +4,9 @@ int vliInterruptorII = 0;
 
 int const LED_I  = 8;
 int const LED_II = 7;
-int const Interruptor_I  = 3;
-int const Interruptor_II = 4;
+int const Interruptor_I  = 4;
+int const Interruptor_II = 2
+;
 
 void setup() {  
   Serial.begin(9600);
