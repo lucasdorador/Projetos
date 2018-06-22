@@ -50,6 +50,8 @@ int const Botao_I_ModoAutomatico = 12; //Fio Azul
 int const Botao_II_ModoManual = 13; //Fio Cinza
 int vliRespBoia = 0;
 int vliRespSensorPIR = 0;
+int vliRespBotaoI = 0;
+int vliRespBotaoII = 0;
 
 void AcionaMotor();
 
@@ -70,7 +72,7 @@ void setup() {
   pinMode(LEDAmarelo_Funcionamento, OUTPUT);
   pinMode(LEDVermelho_FaltaAgua, OUTPUT);
 
-  attachInterrupt(digitalPinToInterrupt(pinoSensorPIR), AcionaMotor, RISING);
+  attachInterrupt(digitalPinToInterrupt(pinoSensorPIR), AcionaMotor, CHANGE);
 
   Sensor(DESLIGA);
 }
@@ -78,17 +80,40 @@ void setup() {
 void loop() {
   delay(20);
   vliRespBoia      = digitalRead(pinoBoia);
+  vliRespBotaoI    = digitalRead(Botao_I_ModoAutomatico);
+  vliRespBotaoII   = digitalRead(Botao_II_ModoManual);
   delay(20);
 
   #if habilitaDebugSerial == true
   debug(1, "vliRespBoia", String(vliRespBoia), 1000);
   debug(1, "vliRespSensorPIR", String(digitalRead(pinoSensorPIR)), 1000);
+  debug(1, "Botao_I_ModoAutomatico", String(digitalRead(Botao_I_ModoAutomatico)), 1000);
+  debug(1, "Botao_II_ModoManual", String(digitalRead(Botao_II_ModoManual)), 1000);
   #endif
 
-  if (vliRespBoia == 0) {
-    digitalWrite(LEDVermelho_FaltaAgua, HIGH);
+  if (vliRespBotaoII == 1) {
+    detachInterrupt(digitalPinToInterrupt(pinoSensorPIR));
+    AcionaMotor_Manual();
+    #if habilitaDebugSerial == true
+      debug(6, "Modo Manual", "", 1000);
+    #endif
+  } else if (vliRespBotaoI == 1) {
+    attachInterrupt(digitalPinToInterrupt(pinoSensorPIR), AcionaMotor, CHANGE);
+    #if habilitaDebugSerial == true
+      debug(7, "Modo Automatico", "", 1000);
+    #endif
   } else {
-    digitalWrite(LEDVermelho_FaltaAgua, LOW);
+    Sensor(DESLIGA);
+    detachInterrupt(digitalPinToInterrupt(pinoSensorPIR));
+    #if habilitaDebugSerial == true
+      debug(8, "Modo Desligado", "", 1000);
+    #endif
+  }
+
+  if (vliRespBoia == 0) {
+    digitalWrite(LEDVermelho_FaltaAgua, LIGA);
+  } else {
+    digitalWrite(LEDVermelho_FaltaAgua, DESLIGA);
   }
 }
 
@@ -129,6 +154,36 @@ void AcionaMotor() {
   }
 }
 
+void AcionaMotor_Manual() {
+  static unsigned long delayEstado;
+  
+  delay(20);
+  vliRespBoia      = digitalRead(pinoBoia);
+  delay(20);
+
+  if ((millis() - delayEstado) > 100) {
+    if (vliRespBoia == 1) {
+      Sensor(LIGA);
+      digitalWrite(LEDAmarelo_Funcionamento, HIGH);
+      delay(5);
+    #if habilitaDebugSerial == true
+      debug(8, "Sensor Ligado", "", 1000);
+    #endif
+    } else {
+      Sensor(DESLIGA);
+      digitalWrite(LEDAmarelo_Funcionamento, LOW);
+      delay(5);
+    #if habilitaDebugSerial == true
+      debug(8, "Sensor Desligado", "", 1000);
+    #endif
+    }
+    delayEstado = millis();
+  }
+}
+
 void Sensor (int ligadesliga) {
+  #if habilitaDebugSerial == true
+   debug(5, "Rele", String(ligadesliga), 1000);
+  #endif
   digitalWrite(pinoRele, ligadesliga);
 }
