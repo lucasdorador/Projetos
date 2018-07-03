@@ -1,0 +1,16 @@
+package apresentacao;
+
+public class Contacorrente {
+	    int numero;
+	    double saldo;
+	    double limite;  
+	 
+	    void depositar(double valor){
+	        this.saldo += valor;
+	    }   
+	 
+	    void sacar(double valor){
+	        this.saldo -= valor;
+	    }
+}
+
