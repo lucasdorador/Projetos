@@ -1,0 +1,757 @@
+object Fprincipal: TFprincipal
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'AppEstoque - DFSistemas'
+  ClientHeight = 768
+  ClientWidth = 1024
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object TabPrincipal: TTabControl
+    Align = Client
+    Size.Width = 1024.000000000000000000
+    Size.Height = 768.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 1
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    OnChange = TabPrincipalChange
+    Sizes = (
+      1024s
+      742s
+      1024s
+      742s
+      1024s
+      742s)
+    object TabCadProduto: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 259.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = '[0001] - DFSISTEMAS - Cadastro de Produtos'
+      ExplicitSize.cx = 259.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object recButoesProduto: TRectangle
+        Align = MostBottom
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 648.000000000000000000
+        Size.Width = 1014.000000000000000000
+        Size.Height = 89.000000000000000000
+        Size.PlatformDefault = False
+        object btnCadProduto_Sair: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 627.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Fechar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnCadProduto_SairClick
+        end
+        object btnCadProduto_Excluir: TButton
+          Align = Left
+          Enabled = False
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 421.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Excluir'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnCadProduto_ExcluirClick
+        end
+        object btnCadProduto_Gravar: TButton
+          Align = Left
+          Enabled = False
+          StyledSettings = [FontColor]
+          Margins.Left = 215.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 215.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Gravar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnCadProduto_GravarClick
+        end
+      end
+      object GroupBox1: TGroupBox
+        Align = Client
+        StyledSettings = [FontColor, Other]
+        Margins.Left = 50.000000000000000000
+        Margins.Top = 50.000000000000000000
+        Margins.Right = 50.000000000000000000
+        Margins.Bottom = 50.000000000000000000
+        Size.Width = 924.000000000000000000
+        Size.Height = 543.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Dados do Produto'
+        TextSettings.Font.Family = 'Tahoma'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TabOrder = 0
+        TabStop = False
+        object edtDescricaoProduto: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 33.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 849.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          object Label3: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Descri'#231#227'o'
+            TabOrder = 0
+          end
+        end
+        object edtProEstoque: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          ValueType = Float
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 33.000000000000000000
+          Position.Y = 195.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          object Label4: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Estoque Atual'
+            TabOrder = 0
+          end
+        end
+        object edtCodProduto: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 32.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          OnEnter = edtCodProdutoEnter
+          OnExit = edtCodProdutoExit
+          object Label1: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'C'#243'digo'
+            TabOrder = 0
+          end
+        end
+        object edtCodIntProduto: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 1
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 176.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          object Label2: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'C'#243'digo Interno'
+            TabOrder = 0
+          end
+        end
+      end
+    end
+    object TabCompras: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 275.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = '[0002] DFSISTEMAS - Movimenta'#231#227'o de Entrada'
+      ExplicitSize.cx = 275.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object recBotoesMovEntrada: TRectangle
+        Align = MostBottom
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 648.000000000000000000
+        Size.Width = 1014.000000000000000000
+        Size.Height = 89.000000000000000000
+        Size.PlatformDefault = False
+        object btnMovEntrada_Sair: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 627.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Fechar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnCadProduto_SairClick
+        end
+        object btnMovEntrada_Excluir: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 421.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Excluir'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnMovEntrada_Gravar: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 215.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 215.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Gravar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnMovEntrada_GravarClick
+        end
+      end
+      object GroupBox2: TGroupBox
+        Align = Client
+        StyledSettings = [FontColor, Other]
+        Margins.Left = 50.000000000000000000
+        Margins.Top = 50.000000000000000000
+        Margins.Right = 50.000000000000000000
+        Margins.Bottom = 50.000000000000000000
+        Size.Width = 924.000000000000000000
+        Size.Height = 543.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Dados da Entrada'
+        TextSettings.Font.Family = 'Tahoma'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TabOrder = 0
+        TabStop = False
+        object edtCPProduto: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 33.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 88.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          OnExit = edtCPProdutoExit
+          object Label5: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 89.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Produto'
+            TabOrder = 0
+          end
+        end
+        object edtCPQtde: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          ValueType = Float
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 33.000000000000000000
+          Position.Y = 195.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          object Label6: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Quantidade'
+            TabOrder = 0
+          end
+        end
+        object edtCPNumero: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 32.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          OnExit = edtCodProdutoExit
+          object Label7: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 137.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'C'#243'digo'
+            TabOrder = 0
+          end
+        end
+        object edtCPData: TDateEdit
+          Date = 42985.000000000000000000
+          TodayDefault = True
+          Position.X = 179.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          TabOrder = 1
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          OnKeyDown = FormKeyDown
+          object Label8: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Data Compra'
+            TabOrder = 0
+          end
+        end
+        object btnConsProdutoEntrada: TButton
+          StyledSettings = [Style, FontColor]
+          Position.X = 128.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 41.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          TabStop = False
+          Text = '...'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.WordWrap = True
+        end
+        object edtDescProdutoEntrada: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          TabStop = False
+          ReadOnly = True
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 177.000000000000000000
+          Position.Y = 130.000000000000000000
+          Enabled = False
+          Size.Width = 728.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          CharCase = ecUpperCase
+          OnKeyDown = FormKeyDown
+          OnExit = edtCPProdutoExit
+        end
+      end
+    end
+    object TabVendas: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 263.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = '[0003] DFSISTEMAS - Movimenta'#231#227'o de Sa'#237'da'
+      ExplicitSize.cx = 263.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object recBotoesMovSaida: TRectangle
+        Align = MostBottom
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 648.000000000000000000
+        Size.Width = 1014.000000000000000000
+        Size.Height = 89.000000000000000000
+        Size.PlatformDefault = False
+        object btnMovSaida_Sair: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 627.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Fechar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = btnCadProduto_SairClick
+        end
+        object btnMovSaida_Excluir: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 421.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Excluir'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnMovSaida_Gravar: TButton
+          Align = Left
+          StyledSettings = [FontColor]
+          ModalResult = 1
+          Margins.Left = 215.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 215.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 196.000000000000000000
+          Size.Height = 79.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Gravar'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+      object GroupBox3: TGroupBox
+        Align = Client
+        StyledSettings = [FontColor, Other]
+        Margins.Left = 50.000000000000000000
+        Margins.Top = 50.000000000000000000
+        Margins.Right = 50.000000000000000000
+        Margins.Bottom = 50.000000000000000000
+        Size.Width = 924.000000000000000000
+        Size.Height = 543.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Dados da Sa'#237'da'
+        TextSettings.Font.Family = 'Tahoma'
+        TextSettings.Font.Size = 13.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TabOrder = 0
+        TabStop = False
+        object edtVDProduto: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 33.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 88.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          OnExit = edtVDProdutoExit
+          object Label9: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 89.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Produto'
+            TabOrder = 0
+          end
+        end
+        object edtVDQtde: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          ValueType = Float
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 33.000000000000000000
+          Position.Y = 195.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          object Label10: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Quantidade'
+            TabOrder = 0
+          end
+        end
+        object edtVDNumero: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Cursor = crIBeam
+          Max = 9999999.000000000000000000
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.HorzAlign = Trailing
+          Position.X = 32.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          OnKeyDown = FormKeyDown
+          OnExit = edtCodProdutoExit
+          object Label11: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 137.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'C'#243'digo'
+            TabOrder = 0
+          end
+        end
+        object edtVDData: TDateEdit
+          Date = 42985.000000000000000000
+          TodayDefault = True
+          Position.X = 179.000000000000000000
+          Position.Y = 67.000000000000000000
+          Size.Width = 137.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          TabOrder = 1
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          OnKeyDown = FormKeyDown
+          object Label12: TLabel
+            StyledSettings = [FontColor]
+            Position.Y = -27.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Family = 'Tahoma'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Text = 'Data Venda'
+            TabOrder = 0
+          end
+        end
+        object btnConsProdutoSaida: TButton
+          StyledSettings = [Style, FontColor]
+          Position.X = 128.000000000000000000
+          Position.Y = 130.000000000000000000
+          Size.Width = 41.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          TabStop = False
+          Text = '...'
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+        end
+        object edtDescProdutoSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          TabStop = False
+          ReadOnly = True
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          Position.X = 177.000000000000000000
+          Position.Y = 130.000000000000000000
+          Enabled = False
+          Size.Width = 728.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Style, FontColor]
+          CharCase = ecUpperCase
+          OnKeyDown = FormKeyDown
+          OnExit = edtCPProdutoExit
+        end
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 984
+    Top = 16
+    object Cadastro: TMenuItem
+      Text = 'Cadastrar'
+      object Produto: TMenuItem
+        Locked = True
+        Text = 'Produto'
+        OnClick = ProdutoClick
+      end
+    end
+    object Movimentacao: TMenuItem
+      Text = 'Movimenta'#231'ao'
+      object Compras: TMenuItem
+        Locked = True
+        Text = 'Compras'
+        OnClick = ComprasClick
+      end
+      object Vendas: TMenuItem
+        Locked = True
+        Text = 'Vendas'
+        OnClick = VendasClick
+      end
+    end
+    object Sair: TMenuItem
+      Text = 'Sair'
+      OnClick = SairClick
+    end
+  end
+end

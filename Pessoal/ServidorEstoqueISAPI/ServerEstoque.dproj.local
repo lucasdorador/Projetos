@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/15 11:41:45.000.254,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:45.000.169,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:50.000.279,=D:\Documentos\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.937,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.853,=D:\Documentos\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:02.000.054,=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/09/02 09:36:14.000.777,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/09/02 09:36:59.000.455,=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/09/02 09:39:52.000.357,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\WebModuleUnit1.dfm=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.dfm</Transaction>
+    <Transaction>2017/09/02 09:39:52.000.357,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\WebModuleUnit1.pas=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2017/09/02 09:39:53.000.991,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\Project1.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2017/09/02 09:39:53.000.215,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\ServerMethodsUnit1.pas=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/09/02 09:40:09.000.269,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\ServerEstoque.dproj=E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\Project1.dproj</Transaction>
+    <Transaction>2017/09/02 11:25:39.356,=E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\Unit1.pas</Transaction>
+    <Transaction>2017/09/02 11:27:08.413,E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\Lib\uProduto.pas=E:\Projetos\trunk\Pessoal\ServidorEstoqueISAPI\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

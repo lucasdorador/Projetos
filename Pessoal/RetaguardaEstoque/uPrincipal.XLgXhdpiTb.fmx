@@ -1,0 +1,58 @@
+inherited Fprincipal_XLgXhdpiTb: TFprincipal_XLgXhdpiTb
+  ClientHeight = 1255
+  ClientWidth = 800
+  DesignerMasterStyle = 0
+  inherited MainMenu1: TMainMenu [0]
+  end
+  inherited TabPrincipal: TTabControl [1]
+    Size.Width = 800.000000000000000000
+    Size.Height = 1255.000000000000000000
+    TabHeight = 49.000000000000000000
+    Sizes = (
+      800s
+      1206s
+      800s
+      1206s
+      800s
+      1206s)
+    inherited TabCadProduto: TTabItem
+      Size.Width = 266.000000000000000000
+      Size.Height = 49.000000000000000000
+      ExplicitSize.cx = 200.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited recButoesProduto: TRectangle
+        Position.Y = 1112.000000000000000000
+        Size.Width = 790.000000000000000000
+        inherited btnCadProduto_Sair: TButton
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+    end
+    inherited TabCompras: TTabItem
+      Size.Width = 266.000000000000000000
+      Size.Height = 49.000000000000000000
+      ExplicitSize.cx = 400.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited recButoesEntrada: TRectangle
+        Position.Y = 1112.000000000000000000
+        Size.Width = 790.000000000000000000
+        inherited btnMovEntrada_Sair: TButton
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+    end
+    inherited TabVendas: TTabItem
+      Size.Width = 268.000000000000000000
+      Size.Height = 49.000000000000000000
+      ExplicitSize.cx = 268.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited recButoesSaida: TRectangle
+        Position.Y = 1112.000000000000000000
+        Size.Width = 790.000000000000000000
+        inherited btnMovSaida_Sair: TButton
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+    end
+  end
+end
