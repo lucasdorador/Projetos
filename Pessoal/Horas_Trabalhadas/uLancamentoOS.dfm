@@ -15,10 +15,12 @@ object FLancamentoOS: TFLancamentoOS
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBox1: TGroupBox
+  object gbOS: TGroupBox
     Left = 8
     Top = 8
     Width = 796
@@ -150,6 +152,7 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
       TabOrder = 0
       Text = '      '
+      OnEnter = edtOSEnter
       OnExit = edtOSExit
     end
     object edtSprint: TMaskEdit
@@ -183,6 +186,7 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
       TabOrder = 2
       Text = ''
+      OnKeyDown = edtClienteKeyDown
     end
     object edtDataInicial: TMaskEdit
       Left = 10
@@ -253,7 +257,6 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
       TabOrder = 7
       Text = '  :  '
-      OnExit = edtHoraPropostaExit
     end
     object edtHoraFinal: TMaskEdit
       Left = 316
@@ -289,9 +292,10 @@ object FLancamentoOS: TFLancamentoOS
       Height = 40
       Caption = 'Excluir'
       TabOrder = 9
+      OnClick = btnExcluirOSClick
     end
   end
-  object GroupBox2: TGroupBox
+  object gbDiario: TGroupBox
     Left = 8
     Top = 135
     Width = 796
@@ -389,7 +393,6 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
       TabOrder = 1
       Text = '  :  '
-      OnExit = edtHoraDisponivelExit
     end
     object edtHoraPerdida: TMaskEdit
       Left = 240
@@ -439,18 +442,21 @@ object FLancamentoOS: TFLancamentoOS
       Height = 40
       Caption = 'Excluir'
       TabOrder = 5
+      OnClick = btnExcluirDadosDiariosClick
     end
   end
-  object DBGrid1: TDBGrid
+  object dbDiario: TDBGrid
     Left = 8
     Top = 231
     Width = 796
     Height = 322
+    DataSource = DMPrincipal.dsLancamento_Diario
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     ReadOnly = True
     TabOrder = 2
@@ -459,10 +465,14 @@ object FLancamentoOS: TFLancamentoOS
     TitleFont.Height = -13
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
-    OnCellClick = DBGrid1CellClick
+    OnCellClick = dbDiarioCellClick
+    OnDblClick = dbDiarioDblClick
     Columns = <
       item
+        Alignment = taCenter
         Expanded = False
+        FieldName = 'DATATRABALHADA'
+        Title.Alignment = taCenter
         Title.Caption = 'Data Trabalhada'
         Width = 120
         Visible = True
@@ -470,6 +480,7 @@ object FLancamentoOS: TFLancamentoOS
       item
         Alignment = taRightJustify
         Expanded = False
+        FieldName = 'HORADISPONIVEL'
         Title.Alignment = taRightJustify
         Title.Caption = 'Horas Dispon'#237'vel'
         Width = 150
@@ -478,6 +489,7 @@ object FLancamentoOS: TFLancamentoOS
       item
         Alignment = taRightJustify
         Expanded = False
+        FieldName = 'HORAPERDIDA'
         Title.Alignment = taRightJustify
         Title.Caption = 'Horas Perdidas'
         Width = 150
@@ -486,13 +498,14 @@ object FLancamentoOS: TFLancamentoOS
       item
         Alignment = taRightJustify
         Expanded = False
+        FieldName = 'HORATRABALHADA'
         Title.Alignment = taRightJustify
         Title.Caption = 'Horas Trabalhadas'
         Width = 150
         Visible = True
       end>
   end
-  object GroupBox3: TGroupBox
+  object gbTotalizador: TGroupBox
     Left = 8
     Top = 559
     Width = 796
@@ -506,7 +519,7 @@ object FLancamentoOS: TFLancamentoOS
     ParentFont = False
     TabOrder = 3
     object Label13: TLabel
-      Left = 10
+      Left = 58
       Top = 23
       Width = 59
       Height = 16
@@ -519,7 +532,7 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
     end
     object Label14: TLabel
-      Left = 123
+      Left = 158
       Top = 23
       Width = 72
       Height = 16
@@ -532,7 +545,7 @@ object FLancamentoOS: TFLancamentoOS
       ParentFont = False
     end
     object Label15: TLabel
-      Left = 236
+      Left = 308
       Top = 23
       Width = 35
       Height = 16
@@ -544,7 +557,7 @@ object FLancamentoOS: TFLancamentoOS
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Panel2: TPanel
+    object pTotal_Proposta: TPanel
       Left = 10
       Top = 39
       Width = 107
@@ -553,13 +566,13 @@ object FLancamentoOS: TFLancamentoOS
       Caption = '0:00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 0
     end
-    object Panel3: TPanel
+    object pTotal_Trabalhada: TPanel
       Left = 123
       Top = 39
       Width = 107
@@ -568,13 +581,13 @@ object FLancamentoOS: TFLancamentoOS
       Caption = '0:00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
     end
-    object Panel4: TPanel
+    object pTotal_Saldo: TPanel
       Left = 236
       Top = 39
       Width = 107
@@ -583,19 +596,20 @@ object FLancamentoOS: TFLancamentoOS
       Caption = '0:00'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -16
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
     end
-    object BitBtn3: TBitBtn
+    object btnRecalcular: TBitBtn
       Left = 349
       Top = 23
       Width = 100
       Height = 40
       Caption = 'Recalcular'
       TabOrder = 3
+      OnClick = btnRecalcularClick
     end
   end
 end

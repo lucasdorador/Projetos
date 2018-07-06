@@ -1,21 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2017/07/15 11:41:45.000.169,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2017/07/15 11:41:45.000.254,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2017/07/15 11:41:50.000.279,=D:\Documentos\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
-    <Transaction>2017/07/15 11:43:01.000.853,=D:\Documentos\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
-    <Transaction>2017/07/15 11:43:01.000.937,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
-    <Transaction>2017/07/15 11:43:02.000.054,=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
-    <Transaction>2018/07/03 21:18:41.000.279,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/07/03 21:20:59.000.820,D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.pas</Transaction>
-    <Transaction>2018/07/03 21:20:59.000.820,D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm</Transaction>
-    <Transaction>2018/07/03 21:21:05.000.690,D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Horas_Trabalhadas.dproj</Transaction>
-    <Transaction>2018/07/03 21:39:26.000.732,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.dfm</Transaction>
-    <Transaction>2018/07/03 21:39:26.000.732,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.pas=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.pas</Transaction>
-    <Transaction>2018/07/03 21:39:32.000.909,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.pas=</Transaction>
-    <Transaction>2018/07/03 21:39:39.000.622,=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.pas</Transaction>
-    <Transaction>2018/07/04 01:01:48.797,=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.pas</Transaction>
-    <Transaction>2018/07/04 01:02:15.578,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Lib\uClass_LancamentoOS.pas=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.pas</Transaction>
+    <Transaction>2018/07/03 21:20:59.000.820,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.pas=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/03 21:20:59.000.820,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm=D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/07/03 21:21:05.000.690,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Horas_Trabalhadas.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/07/03 21:39:26.000.732,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm</Transaction>
+    <Transaction>2018/07/04 01:38:53.265,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uDMPrincipal.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm</Transaction>
+    <Transaction>2018/07/04 04:52:44.218,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uConsultaCliente.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
