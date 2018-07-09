@@ -33,7 +33,7 @@ type
     FQueryLancamento_Diario: TFDQuery;
     FHoraTrabalhada: String;
     function fncCopiaAte(psTexto, psCaracter: String): string;
-    function fncRetornaSubtracaoHora(psHora01, psHora02: String) : String;
+    function fncRetornaSubtracaoHora(psHora01, psHora02: String; var HoraNegativa : Boolean) : String;
     procedure SetCliente(const Value: String);
     procedure SetDataFinal(const Value: TDate);
     procedure SetDataInicial(const Value: TDate);
@@ -149,6 +149,7 @@ function TClass_LancamentoOS.fncCopiaAte(psTexto, psCaracter: String): string;
 var
    I: Integer;
 begin
+Result := '';
 for I := 1 to Length(psTexto) do
    begin
    if Copy(psTexto, I, 1) <> psCaracter then
@@ -164,6 +165,7 @@ var
    vlbAchouCaracter : Boolean;
 begin
 vlbAchouCaracter := False;
+Result := '';
 for I := 1 to Length(psTexto) do
    begin
    if vlbAchouCaracter then
@@ -351,7 +353,7 @@ except
    end;
 end;
 
-function TClass_LancamentoOS.fncRetornaSubtracaoHora(psHora01, psHora02: String): String;
+function TClass_LancamentoOS.fncRetornaSubtracaoHora(psHora01, psHora02: String; var HoraNegativa : Boolean): String;
 var
    vliHora01, vliMinuto01, vliHora02, vliMinuto02 : Integer;
 begin
@@ -359,21 +361,23 @@ vliHora01    := StrToInt(fncCopiaAte(psHora01, ':'));
 vliMinuto01  := StrToInt(fncRetornaMinuto(psHora01));
 vliHora02    := StrToInt(fncCopiaAte(psHora02, ':'));
 vliMinuto02  := StrToInt(fncRetornaMinuto(psHora02));
+HoraNegativa := vliHora02 > vliHora01;
 
 Result       := FormatFloat('00', (vliHora01 - vliHora02)) + ':' + FormatFloat('00', (vliMinuto01 - vliMinuto02));
 end;
 
 function TClass_LancamentoOS.fncTotalizador: TTotalizador;
 var
-   TotalHorasTrabalhadas : TTime;
    HorasPropostas : String;
+   vliHoras, vliMinutos : Integer;
 begin
 Result.HProposta      := '';
 Result.HTrabalhada    := '';
 Result.HSaldo         := '';
 Result.HSaldoNegativo := False;
-TotalHorasTrabalhadas := 0;
 HorasPropostas        := '';
+vliHoras              := 0;
+vliMinutos            := 0;
 
 FQLancamentoOS.Close;
 FQLancamentoOS.SQL.Clear;
@@ -395,15 +399,14 @@ FQLancamentoOS.First;
 
 while not FQLancamentoOS.Eof do
    begin
-   TotalHorasTrabalhadas := TotalHorasTrabalhadas + FQLancamentoOS.FieldByName('HORATRABALHADA').AsDateTime;
+   vliHoras   := vliHoras + StrToInt(fncCopiaAte(FormatDateTime('hh:mm', FQLancamentoOS.FieldByName('HORATRABALHADA').AsDateTime), ':'));
+   vliMinutos := vliMinutos + StrToInt(fncRetornaMinuto(FormatDateTime('hh:mm', FQLancamentoOS.FieldByName('HORATRABALHADA').AsDateTime)));
    FQLancamentoOS.Next;
    end;
 
-Result.HTrabalhada := FormatDateTime('hh:mm', TotalHorasTrabalhadas);
+Result.HTrabalhada    := FormatFloat('00', vliHoras) + ':' + FormatFloat('00', vliMinutos);
 
-Result.HSaldo         := fncRetornaSubtracaoHora(HoraProposta, FormatDateTime('hh:mm', TotalHorasTrabalhadas));
-Result.HSaldoNegativo := (FormatDateTime('hh:mm', TotalHorasTrabalhadas) > HorasPropostas);
-
+Result.HSaldo         := fncRetornaSubtracaoHora(HoraProposta, Result.HTrabalhada, Result.HSaldoNegativo);
 end;
 
 procedure TClass_LancamentoOS.SetCliente(const Value: String);

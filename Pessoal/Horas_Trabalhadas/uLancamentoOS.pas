@@ -81,8 +81,6 @@ type
       Shift: TShiftState);
   private
     poLancamentoOS : TClass_LancamentoOS;
-    procedure pcdValidaHora(psHora: string);
-    procedure pcdValidaData(psData: string);
     { Private declarations }
   public
     { Public declarations }
@@ -94,14 +92,14 @@ var
 implementation
 
 uses
- uDMPrincipal, uConsultaCliente;
+ uDMPrincipal, uConsultaCliente, uFuncoes;
 
 {$R *.dfm}
 
 procedure TFLancamentoOS.edtHoraFinalExit(Sender: TObject);
 begin
 if Trim(edtHoraFinal.Text) <> ':' then
-   pcdValidaHora(edtHoraFinal.Text);
+   TFuncoesHora.pcdValidaHora(edtHoraFinal.Text);
 end;
 
 procedure TFLancamentoOS.edtHoraFinalKeyDown(Sender: TObject; var Key: Word;
@@ -117,7 +115,7 @@ end;
 procedure TFLancamentoOS.edtHoraInicialExit(Sender: TObject);
 begin
 if Trim(edtHoraInicial.Text) <> ':' then
-   pcdValidaHora(edtHoraInicial.Text);
+   TFuncoesHora.pcdValidaHora(edtHoraInicial.Text);
 end;
 
 procedure TFLancamentoOS.edtHoraInicialKeyDown(Sender: TObject; var Key: Word;
@@ -137,6 +135,10 @@ if edtHoraPerdida.Text > edtHoraDisponivel.Text then
    ShowMessage('Horas perdidas maior do que as disponíveis, verifique!');
    Abort;
    end;
+
+if (Trim(edtHoraPerdida.Text) = ':') then
+   edtHoraPerdida.Text := '00:00';
+
 
 if (Trim(edtHoraDisponivel.Text) <> ':') and (Trim(edtHoraPerdida.Text) <> ':') then
    pHorasTrabalhadas.Caption := FormatDateTime('hh:mm', StrToTime(edtHoraDisponivel.Text) - StrToTime(edtHoraPerdida.Text));
@@ -359,7 +361,7 @@ if Trim(edtSprint.Text) = '' then
    Abort;
    end;
 
-if Trim(edtDataTrabalhada.Text) = '' then
+if edtDataTrabalhada.Text = '  /  /    ' then
    begin
    ShowMessage('Data trabalhada está em branco, verifique!');
    edtDataTrabalhada.SetFocus;
@@ -521,7 +523,7 @@ end;
 procedure TFLancamentoOS.edtDataFinalExit(Sender: TObject);
 begin
 if edtDataFinal.Text <> '  /  /    ' then
-   pcdValidaData(edtDataFinal.Text);
+   TFuncoesData.pcdValidaData(edtDataFinal.Text);
 end;
 
 procedure TFLancamentoOS.edtDataFinalKeyDown(Sender: TObject; var Key: Word;
@@ -537,7 +539,7 @@ end;
 procedure TFLancamentoOS.edtDataInicialExit(Sender: TObject);
 begin
 if edtDataInicial.Text <> '  /  /    ' then
-   pcdValidaData(edtDataInicial.Text);
+   TFuncoesData.pcdValidaData(edtDataInicial.Text);
 end;
 
 procedure TFLancamentoOS.edtDataInicialKeyDown(Sender: TObject; var Key: Word;
@@ -553,7 +555,7 @@ end;
 procedure TFLancamentoOS.edtDataTrabalhadaExit(Sender: TObject);
 begin
 if edtDataTrabalhada.Text <> '  /  /    ' then
-   pcdValidaData(edtDataTrabalhada.Text);
+   TFuncoesData.pcdValidaData(edtDataTrabalhada.Text);
 end;
 
 procedure TFLancamentoOS.edtDataTrabalhadaKeyDown(Sender: TObject;
@@ -564,26 +566,6 @@ If ((Shift = [ssCtrl]) And (Key = Ord('D'))) Then
    edtDataTrabalhada.Text := FormatDateTime('dd/mm/yyyy', Now);
    edtHoraDisponivel.SetFocus;
    End;
-end;
-
-procedure TFLancamentoOS.pcdValidaHora(psHora: string);
-begin
-try
-StrToTime(psHora);
-except
-   ShowMessage('Hora inválida, verifique!');
-   Abort;
-   end;
-end;
-
-procedure TFLancamentoOS.pcdValidaData(psData: string);
-begin
-try
-StrToDate(psData);
-except
-   ShowMessage('Data inválida, verifique!');
-   Abort;
-   end;
 end;
 
 end.

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/07/03 21:20:59.000.820,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.pas=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/07/03 21:20:59.000.820,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm=D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2018/07/03 21:21:05.000.690,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Horas_Trabalhadas.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2018/07/03 21:39:26.000.732,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm</Transaction>
-    <Transaction>2018/07/04 01:38:53.265,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uDMPrincipal.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm</Transaction>
-    <Transaction>2018/07/04 04:52:44.218,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uConsultaCliente.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm</Transaction>
+    <Transaction>2018/07/03 21:20:59.000.820,D:\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm</Transaction>
+    <Transaction>2018/07/03 21:21:05.000.690,D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Horas_Trabalhadas.dproj</Transaction>
+    <Transaction>2018/07/03 21:39:26.000.732,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentoOS.dfm</Transaction>
+    <Transaction>2018/07/04 01:38:53.000.265,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uDMPrincipal.dfm</Transaction>
+    <Transaction>2018/07/04 01:49:54.000.062,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uLancamentodiario.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm</Transaction>
+    <Transaction>2018/07/04 02:41:02.000.437,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uPrincipal.dfm</Transaction>
+    <Transaction>2018/07/04 04:52:44.000.218,E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Unit1.dfm=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\uConsultaCliente.dfm</Transaction>
   </Transactions>
 </BorlandProject>

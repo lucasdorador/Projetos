@@ -83,4 +83,9 @@ object DMPrincipal: TDMPrincipal
     Left = 152
     Top = 152
   end
+  object FDInsert: TFDQuery
+    Connection = FDConnection1
+    Left = 272
+    Top = 96
+  end
 end

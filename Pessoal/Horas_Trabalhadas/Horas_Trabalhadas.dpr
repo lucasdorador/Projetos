@@ -6,15 +6,17 @@ uses
   uClass_LancamentoOS in 'Lib\uClass_LancamentoOS.pas',
   UConexao in 'Lib\UConexao.pas',
   uDMPrincipal in 'uDMPrincipal.pas' {DMPrincipal: TDataModule},
-  uConsultaCliente in 'uConsultaCliente.pas' {FConsultaCliente};
+  uConsultaCliente in 'uConsultaCliente.pas' {FConsultaCliente},
+  uLancamentodiario in 'uLancamentodiario.pas' {FLancamentodiario},
+  uFuncoes in 'Lib\uFuncoes.pas',
+  uPrincipal in 'uPrincipal.pas' {FPrincipal};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFLancamentoOS, FLancamentoOS);
   Application.CreateForm(TDMPrincipal, DMPrincipal);
-  Application.CreateForm(TFConsultaCliente, FConsultaCliente);
+  Application.CreateForm(TFPrincipal, FPrincipal);
   Application.Run;
 end.

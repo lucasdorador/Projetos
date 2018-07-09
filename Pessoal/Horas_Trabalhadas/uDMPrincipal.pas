@@ -25,6 +25,7 @@ type
     FDConsultaClientes: TFDQuery;
     dsConsultaClientes: TDataSource;
     FDConsultaClientesCLIENTE: TStringField;
+    FDInsert: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
