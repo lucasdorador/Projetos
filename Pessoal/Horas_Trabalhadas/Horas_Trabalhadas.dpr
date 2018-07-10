@@ -9,7 +9,8 @@ uses
   uConsultaCliente in 'uConsultaCliente.pas' {FConsultaCliente},
   uLancamentodiario in 'uLancamentodiario.pas' {FLancamentodiario},
   uFuncoes in 'Lib\uFuncoes.pas',
-  uPrincipal in 'uPrincipal.pas' {FPrincipal};
+  uPrincipal in 'uPrincipal.pas' {FPrincipal},
+  uBackup_restore in 'Lib\uBackup_restore.pas';
 
 {$R *.res}
 

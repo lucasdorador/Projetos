@@ -88,4 +88,16 @@ object DMPrincipal: TDMPrincipal
     Left = 272
     Top = 96
   end
+  object BackupFB: TFDFBNBackup
+    DriverLink = FDPhysFBDriverLink1
+    UserName = 'SYSDBA'
+    Password = 'masterkey'
+    Left = 368
+    Top = 112
+  end
+  object RestoreFB: TFDFBNRestore
+    DriverLink = FDPhysFBDriverLink1
+    Left = 440
+    Top = 112
+  end
 end

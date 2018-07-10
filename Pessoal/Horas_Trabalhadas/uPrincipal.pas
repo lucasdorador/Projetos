@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList, uBackup_restore,
   Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls;
 
@@ -29,7 +29,9 @@ type
     procedure LanamentosdeOS1Click(Sender: TObject);
     procedure Lancamento_DiarioExecute(Sender: TObject);
     procedure Lancamento_OSExecute(Sender: TObject);
+    procedure Backup1Click(Sender: TObject);
   private
+    poBackupRestore : TBackup_restore;
     { Private declarations }
   public
     { Public declarations }
@@ -41,9 +43,20 @@ var
 implementation
 
 uses
- uLancamentodiario, uLancamentoOS;
+ uLancamentodiario, uLancamentoOS, uDMPrincipal, uFuncoes;
 
 {$R *.dfm}
+
+procedure TFPrincipal.Backup1Click(Sender: TObject);
+begin
+if not Assigned(poBackupRestore) then
+   poBackupRestore := TBackup_restore.Create(DMPrincipal.FDConnection1);
+
+poBackupRestore.BackupFB := DMPrincipal.BackupFB;
+if not DirectoryExists(ExtractFilePath(Application.ExeName) + 'Backup\') then
+   ForceDirectories(ExtractFilePath(Application.ExeName) + 'Backup\');
+poBackupRestore.Backup(ExtractFilePath(Application.ExeName) + 'Backup\' + TFuncoesData.fncDiaSemana(Now) + '_' + FormatDateTime('ddmmyyyy', Now) + FormatDateTime('hhmmzzzz', Now)+ '.fbk');
+end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);
 begin

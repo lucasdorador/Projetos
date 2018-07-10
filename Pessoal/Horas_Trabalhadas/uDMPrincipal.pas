@@ -8,7 +8,8 @@ uses
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, Vcl.Dialogs, FireDAC.DApt,
   FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.Stan.Param, FireDAC.DatS,
-  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Phys.IBBase;
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Phys.IBBase,
+  FireDAC.Phys.IBWrapper;
 
 type
   TDMPrincipal = class(TDataModule)
@@ -26,6 +27,8 @@ type
     dsConsultaClientes: TDataSource;
     FDConsultaClientesCLIENTE: TStringField;
     FDInsert: TFDQuery;
+    BackupFB: TFDFBNBackup;
+    RestoreFB: TFDFBNRestore;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

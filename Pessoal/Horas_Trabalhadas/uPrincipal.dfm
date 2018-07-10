@@ -63,6 +63,7 @@ object FPrincipal: TFPrincipal
       Caption = 'Op'#231#245'es'
       object Backup1: TMenuItem
         Caption = 'Backup'
+        OnClick = Backup1Click
       end
       object Restaurao1: TMenuItem
         Caption = 'Restaura'#231#227'o'
@@ -79,11 +80,13 @@ object FPrincipal: TFPrincipal
         Items = <
           item
             Action = Lancamento_Diario
+            Caption = '&Lan'#231'amentos D'#237'arios'
             ImageIndex = 0
             ShortCut = 16507
           end
           item
             Action = Lancamento_OS
+            Caption = 'L&an'#231'amentos de O.S'
             ImageIndex = 1
             ShortCut = 16506
           end>
@@ -111,7 +114,7 @@ object FPrincipal: TFPrincipal
     Left = 56
     Top = 112
     Bitmap = {
-      494C0101020008000C0040004000FFFFFFFF2100FFFFFFFFFFFFFFFF424D3600
+      494C010102000800100040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100004000000001002000000000000000
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2227,6 +2230,7 @@ object FPrincipal: TFPrincipal
       000000000000000000000000000000000000000000000000FFFFF00007FFFFFF
       000000000000000000000000000000000000000000000000FFFFF8001FFFFFFF
       000000000000000000000000000000000000000000000000FFFFFF81FFFFFFFF
-      00000000000000000000000000000000}
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000}
   end
 end
