@@ -10,7 +10,8 @@ uses
   uLancamentodiario in 'uLancamentodiario.pas' {FLancamentodiario},
   uFuncoes in 'Lib\uFuncoes.pas',
   uPrincipal in 'uPrincipal.pas' {FPrincipal},
-  uBackup_restore in 'Lib\uBackup_restore.pas';
+  uBackup_restore in 'Lib\uBackup_restore.pas',
+  uBackupRestore in 'uBackupRestore.pas' {FBackupRestore};
 
 {$R *.res}
 
@@ -19,5 +20,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDMPrincipal, DMPrincipal);
   Application.CreateForm(TFPrincipal, FPrincipal);
+  Application.CreateForm(TFBackupRestore, FBackupRestore);
   Application.Run;
 end.

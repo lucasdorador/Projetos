@@ -10,10 +10,9 @@ object DMPrincipal: TDMPrincipal
       'Password=masterkey'
       'User_Name=SYSDBA'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
-    Left = 32
-    Top = 8
+    Left = 40
+    Top = 32
   end
   object FDLancamento_Diario: TFDQuery
     Connection = FDConnection1
@@ -88,16 +87,24 @@ object DMPrincipal: TDMPrincipal
     Left = 272
     Top = 96
   end
-  object BackupFB: TFDFBNBackup
-    DriverLink = FDPhysFBDriverLink1
-    UserName = 'SYSDBA'
-    Password = 'masterkey'
-    Left = 368
+  object BackupFB: TIBBackupService
+    LoginPrompt = False
+    TraceFlags = []
+    ServerType = 'IBServer'
+    BlockingFactor = 0
+    Options = []
+    PreAllocate = 0
+    Left = 432
     Top = 112
   end
-  object RestoreFB: TFDFBNRestore
-    DriverLink = FDPhysFBDriverLink1
-    Left = 440
+  object RestoreFB: TIBRestoreService
+    LoginPrompt = False
+    TraceFlags = []
+    ServerType = 'IBServer'
+    PageBuffers = 0
+    PreAllocate = 0
+    ReadOnly = False
+    Left = 368
     Top = 112
   end
 end

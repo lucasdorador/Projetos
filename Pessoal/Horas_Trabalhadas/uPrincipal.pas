@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList, uBackup_restore,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
   Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls;
 
@@ -22,7 +22,6 @@ type
     Sair1: TMenuItem;
     Opes1: TMenuItem;
     Backup1: TMenuItem;
-    Restaurao1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
     procedure LanamentosDirios1Click(Sender: TObject);
@@ -31,7 +30,6 @@ type
     procedure Lancamento_OSExecute(Sender: TObject);
     procedure Backup1Click(Sender: TObject);
   private
-    poBackupRestore : TBackup_restore;
     { Private declarations }
   public
     { Public declarations }
@@ -43,19 +41,15 @@ var
 implementation
 
 uses
- uLancamentodiario, uLancamentoOS, uDMPrincipal, uFuncoes;
+ uLancamentodiario, uLancamentoOS, uDMPrincipal, uFuncoes, uBackupRestore;
 
 {$R *.dfm}
 
 procedure TFPrincipal.Backup1Click(Sender: TObject);
 begin
-if not Assigned(poBackupRestore) then
-   poBackupRestore := TBackup_restore.Create(DMPrincipal.FDConnection1);
-
-poBackupRestore.BackupFB := DMPrincipal.BackupFB;
-if not DirectoryExists(ExtractFilePath(Application.ExeName) + 'Backup\') then
-   ForceDirectories(ExtractFilePath(Application.ExeName) + 'Backup\');
-poBackupRestore.Backup(ExtractFilePath(Application.ExeName) + 'Backup\' + TFuncoesData.fncDiaSemana(Now) + '_' + FormatDateTime('ddmmyyyy', Now) + FormatDateTime('hhmmzzzz', Now)+ '.fbk');
+Application.CreateForm(TFBackupRestore, FBackupRestore);
+FBackupRestore.ShowModal;
+FreeAndNil(FBackupRestore);
 end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);

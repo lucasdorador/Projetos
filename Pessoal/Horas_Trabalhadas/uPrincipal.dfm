@@ -62,11 +62,8 @@ object FPrincipal: TFPrincipal
     object Opes1: TMenuItem
       Caption = 'Op'#231#245'es'
       object Backup1: TMenuItem
-        Caption = 'Backup'
+        Caption = 'Backup / Restore'
         OnClick = Backup1Click
-      end
-      object Restaurao1: TMenuItem
-        Caption = 'Restaura'#231#227'o'
       end
     end
     object Sair1: TMenuItem
@@ -114,7 +111,7 @@ object FPrincipal: TFPrincipal
     Left = 56
     Top = 112
     Bitmap = {
-      494C010102000800100040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800180040004000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100004000000001002000000000000000
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

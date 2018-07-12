@@ -9,7 +9,7 @@ uses
   FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, Vcl.Dialogs, FireDAC.DApt,
   FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Phys.IBBase,
-  FireDAC.Phys.IBWrapper;
+  FireDAC.Phys.IBWrapper, IBX.IBServices;
 
 type
   TDMPrincipal = class(TDataModule)
@@ -27,8 +27,8 @@ type
     dsConsultaClientes: TDataSource;
     FDConsultaClientesCLIENTE: TStringField;
     FDInsert: TFDQuery;
-    BackupFB: TFDFBNBackup;
-    RestoreFB: TFDFBNRestore;
+    BackupFB: TIBBackupService;
+    RestoreFB: TIBRestoreService;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
