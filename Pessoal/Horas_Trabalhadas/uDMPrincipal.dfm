@@ -87,24 +87,4 @@ object DMPrincipal: TDMPrincipal
     Left = 272
     Top = 96
   end
-  object BackupFB: TIBBackupService
-    LoginPrompt = False
-    TraceFlags = []
-    ServerType = 'IBServer'
-    BlockingFactor = 0
-    Options = []
-    PreAllocate = 0
-    Left = 432
-    Top = 112
-  end
-  object RestoreFB: TIBRestoreService
-    LoginPrompt = False
-    TraceFlags = []
-    ServerType = 'IBServer'
-    PageBuffers = 0
-    PreAllocate = 0
-    ReadOnly = False
-    Left = 368
-    Top = 112
-  end
 end

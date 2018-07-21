@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, uDMPrincipal,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, uDMBackupRestore,
   uBackup_restore, uFuncoes, Vcl.ComCtrls;
 
 type
@@ -43,9 +43,9 @@ implementation
 procedure TFBackupRestore.btnBackupClick(Sender: TObject);
 begin
 if not Assigned(poBackupRestore) then
-   poBackupRestore := TBackup_restore.Create(DMPrincipal.FDConnection1);
+   poBackupRestore := TBackup_restore.Create(DMBackupRestore.FDConnection1);
 
-poBackupRestore.BackupFB := DMPrincipal.BackupFB;
+poBackupRestore.BackupFB := DMBackupRestore.BackupFB;
 if not DirectoryExists(ExtractFilePath(Application.ExeName) + 'Backup\') then
    ForceDirectories(ExtractFilePath(Application.ExeName) + 'Backup\');
 
@@ -65,9 +65,9 @@ begin
 if Trim(edtCaminhoFBK.Text) <> '' then
    begin
    if not Assigned(poBackupRestore) then
-      poBackupRestore := TBackup_restore.Create(DMPrincipal.FDConnection1);
+      poBackupRestore := TBackup_restore.Create(DMBackupRestore.FDConnection1);
 
-   poBackupRestore.RestoreFB := DMPrincipal.RestoreFB;
+   poBackupRestore.RestoreFB := DMBackupRestore.RestoreFB;
    poBackupRestore.MemoBackup := MemoRestore;
    poBackupRestore.Restore(edtCaminhoFBK.Text);
    end
@@ -80,13 +80,13 @@ end;
 
 procedure TFBackupRestore.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-DMPrincipal.FDConnection1.Connected := True;
+DMBackupRestore.FDConnection1.Connected := True;
 end;
 
 procedure TFBackupRestore.FormShow(Sender: TObject);
 begin
-DMPrincipal.FDConnection1.Connected := False;
-pcBackup_Restore.ActivePage         := tsBackup;
+DMBackupRestore.FDConnection1.Connected := False;
+pcBackup_Restore.ActivePage             := tsBackup;
 end;
 
 end.

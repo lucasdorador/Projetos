@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
   Vcl.ImgList, System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
-  Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls;
+  Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls, Winapi.ShellAPI;
 
 type
   TFPrincipal = class(TForm)
@@ -41,21 +41,21 @@ var
 implementation
 
 uses
- uLancamentodiario, uLancamentoOS, uDMPrincipal, uFuncoes, uBackupRestore;
+ uLancamentodiario, uLancamentoOS, uDMPrincipal, uFuncoes;
 
 {$R *.dfm}
 
 procedure TFPrincipal.Backup1Click(Sender: TObject);
 begin
-Application.CreateForm(TFBackupRestore, FBackupRestore);
-FBackupRestore.ShowModal;
-FreeAndNil(FBackupRestore);
+if FileExists(ExtractFilePath(Application.ExeName) + 'BackupRestore.exe') then
+   ShellExecute(Handle,'open',pchar(ExtractFilePath(Application.ExeName) + 'BackupRestore.exe'),nil,nil,sw_show)
 end;
 
 procedure TFPrincipal.FormShow(Sender: TObject);
 begin
-Height := Screen.WorkAreaHeight;
-Width  := Screen.WorkAreaWidth;
+Height          := Screen.WorkAreaHeight;
+Width           := Screen.WorkAreaWidth;
+Backup1.Enabled := FileExists(ExtractFilePath(Application.ExeName) + 'BackupRestore.exe');
 end;
 
 procedure TFPrincipal.LanamentosdeOS1Click(Sender: TObject);

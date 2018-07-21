@@ -27,8 +27,6 @@ type
     dsConsultaClientes: TDataSource;
     FDConsultaClientesCLIENTE: TStringField;
     FDInsert: TFDQuery;
-    BackupFB: TIBBackupService;
-    RestoreFB: TIBRestoreService;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

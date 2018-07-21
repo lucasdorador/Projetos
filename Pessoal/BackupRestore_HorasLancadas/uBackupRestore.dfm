@@ -34,12 +34,12 @@ object FBackupRestore: TFBackupRestore
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
-    ExplicitHeight = 553
     object tsBackup: TTabSheet
       Caption = 'Backup'
-      ExplicitTop = 24
-      ExplicitWidth = 281
-      ExplicitHeight = 165
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object MemoBackup: TMemo
         AlignWithMargins = True
         Left = 3
@@ -69,8 +69,10 @@ object FBackupRestore: TFBackupRestore
     object tsRestore: TTabSheet
       Caption = 'Restore'
       ImageIndex = 1
-      ExplicitTop = 24
-      ExplicitHeight = 525
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object MemoRestore: TMemo
         AlignWithMargins = True
         Left = 3

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/07/15 11:41:45.000.254,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:45.000.169,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/07/15 11:41:50.000.279,=D:\Documentos\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.853,=D:\Documentos\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:01.000.937,=D:\Documentos\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2017/07/15 11:43:02.000.054,=D:\Documentos\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2018/07/21 16:35:20.001,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/21 16:36:48.864,E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\BackupRestore_HorasLancadas.dproj=D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/07/21 16:38:53.096,=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\uBackupRestore.pas</Transaction>
+    <Transaction>2018/07/21 16:38:58.429,=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\Lib\uBackup_restore.pas</Transaction>
+    <Transaction>2018/07/21 16:39:22.558,=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\Unit1.pas</Transaction>
+    <Transaction>2018/07/21 16:39:37.295,E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\uDMBackupRestore.dfm=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\Unit1.dfm</Transaction>
+    <Transaction>2018/07/21 16:39:37.295,E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\uDMBackupRestore.pas=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\Unit1.pas</Transaction>
+    <Transaction>2018/07/21 16:40:29.297,=E:\Projetos\trunk\Pessoal\Horas_Trabalhadas\Lib\uFuncoes.pas</Transaction>
+    <Transaction>2018/07/21 17:06:33.183,E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\BackupRestore.dproj=E:\Projetos\trunk\Pessoal\BackupRestore_HorasLancadas\BackupRestore_HorasLancadas.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
