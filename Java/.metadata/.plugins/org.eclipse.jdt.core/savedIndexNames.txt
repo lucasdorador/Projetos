@@ -1,20 +1,3 @@
 INDEX VERSION 1.130+E:\Projetos\trunk\Java\.metadata\.plugins\org.eclipse.jdt.core
-3335751325.index
-368682434.index
-2748733375.index
-3125725795.index
-1857371720.index
-1312951780.index
-3823437678.index
-3988866523.index
+1577739349.index
 2677480215.index
-2147801284.index
-2051884769.index
-1642650959.index
-142444270.index
-1594905321.index
-2494401593.index
-1069399176.index
-4167802264.index
-865741978.index
-3966524131.index
