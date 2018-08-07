@@ -1,0 +1,54 @@
+lucas@desenvolvimento:~$ su
+Senha: 
+root@desenvolvimento:/home/lucas# sudo add-apt-repository ppa:rabbitvcs/ppa
+ 
+ Mais informações: https://launchpad.net/~rabbitvcs/+archive/ubuntu/ppa
+Prima [ENTER] para continuar ou Ctrl+C para cancelar a sua adição.
+
+Ign:1 http://dl.google.com/linux/chrome/deb stable InRelease                   
+Atingido:2 http://br.archive.ubuntu.com/ubuntu bionic InRelease                
+Atingido:3 http://br.archive.ubuntu.com/ubuntu bionic-updates InRelease        
+Obter:4 http://br.archive.ubuntu.com/ubuntu bionic-backports InRelease [74,6 kB]
+Obter:5 http://security.ubuntu.com/ubuntu bionic-security InRelease [83,2 kB]  
+Atingido:6 http://dl.google.com/linux/chrome/deb stable Release                
+Ign:7 http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic InRelease           
+Err:9 http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic Release             
+  404  Not Found [IP: 91.189.95.83 80]
+Lendo listas de pacotes... Pronto
+E: The repository 'http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic Release' does not have a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+root@desenvolvimento:/home/lucas# sudo apt-get update
+Atingido:1 http://br.archive.ubuntu.com/ubuntu bionic InRelease                
+Atingido:2 http://br.archive.ubuntu.com/ubuntu bionic-updates InRelease        
+Obter:3 http://br.archive.ubuntu.com/ubuntu bionic-backports InRelease [74,6 kB]
+Ign:4 http://dl.google.com/linux/chrome/deb stable InRelease                   
+Obter:5 http://security.ubuntu.com/ubuntu bionic-security InRelease [83,2 kB]  
+Atingido:6 http://dl.google.com/linux/chrome/deb stable Release                
+Ign:7 http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic InRelease           
+Err:9 http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic Release             
+  404  Not Found [IP: 91.189.95.83 80]
+Lendo listas de pacotes... Pronto                                              
+E: The repository 'http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu bionic Release' does not have a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+root@desenvolvimento:/home/lucas# sudo apt-get install rabbitvcs-nautilus3
+Lendo listas de pacotes... Pronto
+Construindo árvore de dependências       
+Lendo informação de estado... Pronto
+O pacote rabbitvcs-nautilus3 não está disponível, mas é referenciado por outro pacote.
+Isto pode significar que o pacote está faltando, ficou obsoleto ou
+está disponível somente a partir de outra fonte
+No entanto, os pacotes a seguir o substituem:
+  rabbitvcs-nautilus
+
+E: O pacote 'rabbitvcs-nautilus3' não tem candidato para instalação
+root@desenvolvimento:/home/lucas# sudo apt-get install rabbitvcs-nautilus
+Lendo listas de pacotes... Pronto
+Construindo árvore de dependências       
+Lendo informação de estado... Pronto
+rabbitvcs-nautilus is already the newest version (0.16-1.1).
+0 pacotes atualizados, 0 pacotes novos instalados, 0 a serem removidos e 8 não atualizados.
+root@desenvolvimento:/home/lucas# killall nautilus
+nautilus: nenhum processo localizado
+root@desenvolvimento:/home/lucas# 
