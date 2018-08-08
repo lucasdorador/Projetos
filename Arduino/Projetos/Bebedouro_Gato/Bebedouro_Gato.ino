@@ -38,13 +38,13 @@ void debug(int pontoParada, String nomeVariavel, String valorVariavel, int tempo
 #endif
 
 
-#define LIGA  LOW
-#define DESLIGA HIGH
+#define LIGA  HIGH
+#define DESLIGA LOW
 
 int const pinoSensorPIR = 3; //Fio Marrom
 int const pinoRele = 5; //Fio Verde
 int const LEDAmarelo_Funcionamento = 7; // Fio Laranja
-int const pinoBoia = 9; //Fio Amarelo
+int const pinoBoia = 2; //Fio Azul
 int const LEDVermelho_FaltaAgua = 11; //Fio Branco
 int const Botao_I_ModoAutomatico = 12; //Fio Azul
 int const Botao_II_ModoManual = 13; //Fio Cinza
@@ -54,6 +54,7 @@ int vliRespBotaoI = 0;
 int vliRespBotaoII = 0;
 
 void AcionaMotor();
+void ValidaStatusBoia();
 
 void setup() {
 
@@ -73,22 +74,23 @@ void setup() {
   pinMode(LEDVermelho_FaltaAgua, OUTPUT);
 
   attachInterrupt(digitalPinToInterrupt(pinoSensorPIR), AcionaMotor, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(pinoBoia), ValidaStatusBoia, CHANGE);
 
   Sensor(DESLIGA);
 }
 
 void loop() {
-  delay(20);
+  delay(500);
   vliRespBoia      = digitalRead(pinoBoia);
   vliRespBotaoI    = digitalRead(Botao_I_ModoAutomatico);
   vliRespBotaoII   = digitalRead(Botao_II_ModoManual);
-  delay(20);
 
   #if habilitaDebugSerial == true
+  debug(1, "vliRespSensorPIR", String(digitalRead(pinoSensorPIR)), 1000);   
   debug(1, "vliRespBoia", String(vliRespBoia), 1000);
-  debug(1, "vliRespSensorPIR", String(digitalRead(pinoSensorPIR)), 1000);
   debug(1, "Botao_I_ModoAutomatico", String(digitalRead(Botao_I_ModoAutomatico)), 1000);
   debug(1, "Botao_II_ModoManual", String(digitalRead(Botao_II_ModoManual)), 1000);
+  debug(1, "Pino Relê", String(digitalRead(pinoRele)), 1000);
   #endif
 
   if (vliRespBotaoII == 1) {
@@ -109,12 +111,6 @@ void loop() {
       debug(8, "Modo Desligado", "", 1000);
     #endif
   }
-
-  if (vliRespBoia == 0) {
-    digitalWrite(LEDVermelho_FaltaAgua, LIGA);
-  } else {
-    digitalWrite(LEDVermelho_FaltaAgua, DESLIGA);
-  }
 }
 
 void AcionaMotor() {
@@ -129,10 +125,8 @@ void AcionaMotor() {
   debug(3, "vliRespSensorPIR", String(vliRespSensorPIR), 1000);
   #endif
 
-  delay(20);
-  vliRespBoia      = digitalRead(pinoBoia);
+  delay(500);
   vliRespSensorPIR = digitalRead(pinoSensorPIR);
-  delay(20);
 
   if ((millis() - delayEstado) > 100) {
     if ((vliRespSensorPIR == 1) && (vliRespBoia == 1)) {
@@ -157,9 +151,8 @@ void AcionaMotor() {
 void AcionaMotor_Manual() {
   static unsigned long delayEstado;
   
-  delay(20);
-  vliRespBoia      = digitalRead(pinoBoia);
-  delay(20);
+  delay(500);
+  vliRespBoia = digitalRead(pinoBoia);
 
   if ((millis() - delayEstado) > 100) {
     if (vliRespBoia == 1) {
@@ -179,6 +172,28 @@ void AcionaMotor_Manual() {
     }
     delayEstado = millis();
   }
+}
+
+void ValidaStatusBoia(){    
+  vliRespBoia = digitalRead(pinoBoia);  
+  
+ #if habilitaDebugSerial == true
+   debug(9, "Entrou na Interrupção da Boia", "", 1000);
+   debug(9, "vliRespBoia", String(vliRespBoia), 1000);
+ #endif
+
+ delay(500);
+
+  if (vliRespBoia == 0) {
+    digitalWrite(LEDVermelho_FaltaAgua, LIGA);
+    Sensor(DESLIGA);
+  } else {
+    digitalWrite(LEDVermelho_FaltaAgua, DESLIGA);
+    if (vliRespBotaoII == 1) {
+      Sensor(LIGA);
+    }
+  }
+  
 }
 
 void Sensor (int ligadesliga) {
