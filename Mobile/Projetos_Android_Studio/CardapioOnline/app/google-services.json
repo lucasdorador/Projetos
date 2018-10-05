@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "949336351746",
+    "firebase_url": "https://cardapioonline-ce794.firebaseio.com",
+    "project_id": "cardapioonline-ce794",
+    "storage_bucket": "cardapioonline-ce794.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949336351746:android:f837d05cb1a7433e",
+        "android_client_info": {
+          "package_name": "lucas.cardapioonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949336351746-gt5vjhq7g96p3l36h7cgs4ah1rlf55l2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lucas.cardapioonline",
+            "certificate_hash": "c96a9dd9a33bbcdc50810a140030194e1b6bb47c"
+          }
+        },
+        {
+          "client_id": "949336351746-vb6uusid83qm3uos19fc7neovqf2a722.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu14Y6qGlJBKm2L2168tkQIzHrC-wVQfw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949336351746-vb6uusid83qm3uos19fc7neovqf2a722.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
