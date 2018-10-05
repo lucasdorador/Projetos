@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cardápio Online</string>
+    <string name="titulo01">Cardápio Online</string>
+    <string name="titulo02">Escolha e faça seu pedido</string>
+    <string name="termo_uso">Ao clicar em \'Conectar-se\',
+        você aceita os Termos e condições de uso.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="navigation_drawer_open">Abrir Navegação</string>
+    <string name="navigation_drawer_close">Fechar Navegação</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

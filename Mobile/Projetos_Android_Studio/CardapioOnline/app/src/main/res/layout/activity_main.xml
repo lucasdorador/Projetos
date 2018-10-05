@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    android:orientation="vertical"
+    tools:context=".Activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/contentframe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logotipo2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/titulo01"
+            android:textColor="@color/Preto"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/titulo02"
+        android:textColor="@color/Preto"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:typeface="monospace" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:bootstrapBrand="secondary"
+            app:bootstrapSize="lg"
+            app:buttonMode="regular"
+            app:roundedCorners="true">
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btnConectar"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Conectar"
+                app:showOutline="false" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btnCadastrar"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Cadastrar-se"
+                app:showOutline="false" />
+
+        </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+    </LinearLayout>
+
+</LinearLayout>
