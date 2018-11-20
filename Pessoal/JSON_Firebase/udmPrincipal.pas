@@ -16,6 +16,14 @@ type
     FDConnection: TFDConnection;
     FDInsert: TFDQuery;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDConsultaProduto: TFDQuery;
+    FDConsultaProdutoKEY_EMPRESA: TStringField;
+    FDConsultaProdutoKEY_PRODUTO: TStringField;
+    FDConsultaProdutoDESCRICAO: TStringField;
+    FDConsultaProdutoCOMPLEMENTOS: TStringField;
+    FDConsultaProdutoGRUPO: TStringField;
+    FDConsultaProdutoVALOR_INTEIRA: TFloatField;
+    FDConsultaProdutoVALOR_MEIA: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

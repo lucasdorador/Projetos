@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.EditBox, FMX.NumberBox,
-  udmPrincipal;
+  udmPrincipal, uMenuInicial, uConstantes;
 
 type
   TFPrincipal = class(TForm)
@@ -29,9 +29,16 @@ type
     btnSair: TButton;
     procedure btnSairClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
+    vlBEdicao : Boolean;
+    vlSKeyEmpresa, vlsKeyProduto: String;
+    function fncGeraKeyProduto(max: Integer): String;
     { Private declarations }
   public
+    procedure setTelaInicial(pbEdicao: Boolean; psKeyEmpresa, psKeyProduto: String);
     { Public declarations }
   end;
 
@@ -81,12 +88,62 @@ dmPrincipal.FDInsert.ParamByName('VALOR_INTEIRA').AsFloat := valor_inteira.Value
 dmPrincipal.FDInsert.ParamByName('VALOR_MEIA').AsFloat    := valor_meia.Value;
 dmPrincipal.FDInsert.ParamByName('GRUPO').AsString        := grupo.Text;
 dmPrincipal.FDInsert.ExecSQL;
-
 end;
 
 procedure TFPrincipal.btnSairClick(Sender: TObject);
 begin
+FMenuInicial.setAtualizarLista;
 Close;
+end;
+
+procedure TFPrincipal.FormKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+if Key = vkReturn then
+    begin
+    Key := vkTab;
+    KeyDown(Key, KeyChar, Shift);
+    end;
+
+if Key = vkF5 then
+   begin
+   key_empresa.Text := constkey_empresa;//'-LNIt3Xv5j-bLDcr6p4E';
+   end;
+
+if ((Key = vkF6) and (Trim(descricao.Text) = '')) then
+   begin
+   key_produto.Text := fncGeraKeyProduto(19);
+   end;
+end;
+
+procedure TFPrincipal.FormShow(Sender: TObject);
+begin
+key_empresa.Text := constkey_empresa;
+
+if not vlBEdicao then
+   key_produto.Text := fncGeraKeyProduto(19);
+
+key_produto.SetFocus;
+end;
+
+procedure TFPrincipal.setTelaInicial(pbEdicao: Boolean; psKeyEmpresa, psKeyProduto: String);
+begin
+vlBEdicao     := pbEdicao;
+vlSKeyEmpresa := psKeyEmpresa;
+vlsKeyProduto := psKeyProduto;
+end;
+
+Function TFPrincipal.fncGeraKeyProduto(max: Integer):String;
+var
+   i:Integer;
+   r:String;
+const
+   str='1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+begin
+for i:=1 to max do
+   r := r + str[random(length(str))+1];
+
+Result := '-' + r;
 end;
 
 end.

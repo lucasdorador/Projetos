@@ -7,6 +7,8 @@ object FPrincipal: TFPrincipal
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object gbCampos: TGroupBox
     Align = Client
@@ -28,6 +30,7 @@ object FPrincipal: TFPrincipal
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
       TabOrder = 0
+      ReadOnly = True
       Position.X = 10.000000000000000000
       Position.Y = 40.000000000000000000
       Margins.Top = 40.000000000000000000
@@ -41,7 +44,7 @@ object FPrincipal: TFPrincipal
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Style = [fsBold]
-        Text = 'Key Empresa'
+        Text = 'Key Empresa (F5 - Gera novamente)'
       end
     end
     object key_produto: TEdit
@@ -61,7 +64,9 @@ object FPrincipal: TFPrincipal
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
         TextSettings.Font.Style = [fsBold]
-        Text = 'Key Produto'
+        Text = 
+          'Key Produto (F6 - Gera uma nova Key, se o campo Descri'#231#227'o estive' +
+          'r vazio)'
       end
     end
     object descricao: TEdit

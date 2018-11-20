@@ -1,0 +1,89 @@
+{
+  "cardapio_itens" : {
+    "-LNIt3Xv5j-bLDcr6p4E" : {
+      "-LNIt3Xv5j-bAPcr6p6D" : {
+        "complemento" : "(Acompanha pão)",
+        "descricao" : "Contra-Filé acebolado",
+        "grupo" : "Porções Chapeadas",
+        "key_empresa" : "-LNIt3Xv5j-bLDcr6p4E",
+        "key_produto" : "-LNIt3Xv5j-bAPcr6p6D",
+        "valor_inteira" : "52",
+        "valor_meia" : "0"
+      },
+      "-LNIt3Xv5j-bAPpd6p6D" : {
+        "complemento" : "(Acompanha arroz e salada)",
+        "descricao" : "Picanha",
+        "grupo" : "Porções Chapeadas",
+        "key_empresa" : "-LNIt3Xv5j-bLDcr6p4E",
+        "key_produto" : "-LNIt3Xv5j-bAPpd6p6D",
+        "valor_inteira" : "62",
+        "valor_meia" : "30"
+      },
+      "-LNOl3Xv5j-bAPcr6p6D" : {
+        "complemento" : "(Acompanha pão)",
+        "descricao" : "Calabresa acebolada",
+        "grupo" : "Porções Chapeadas",
+        "key_empresa" : "-LNIt3Xv5j-bLDcr6p4E",
+        "key_produto" : "-LNOl3Xv5j-bAPcr6p6D",
+        "valor_inteira" : "35",
+        "valor_meia" : "0"
+      }
+    }
+  },
+  "empresa" : {
+    "-LNIt3Xv5j-bLDcr6p4E" : {
+      "bairro" : "Vila Rica II",
+      "cep" : "17300-000",
+      "cidade" : "Dois Córregos",
+      "horario_funcionamento" : "Quinta a Domingo a partir das 18:30",
+      "key_empresa" : "-LNIt3Xv5j-bLDcr6p4E",
+      "logradouro" : "Rua João Francisco Pizzato",
+      "nome" : "Petiscaria Supremo Sabor",
+      "numero" : "40",
+      "resumo" : "Sucos, lanches e porções em geral",
+      "telefone" : "(14) 3652-3955",
+      "url_logo" : "https://firebasestorage.googleapis.com/v0/b/cardapioonline-ce794.appspot.com/o/fotoLogoEmpresas%2F-LNIt3Xv5j-bLDcr6p4E.png?alt=media&token=2c4cc94d-2b04-4f4c-af47-f2ab9d9262d3"
+    },
+    "-LNIt3Xv5j-bLDcr6p8U" : {
+      "bairro" : "Centro",
+      "cep" : "17300-000",
+      "cidade" : "Dois Córregos",
+      "horario_funcionamento" : "Todos os dias a partir das 17:00",
+      "key_empresa" : "-LNIt3Xv5j-bLDcr6p8U",
+      "logradouro" : "Rua Atillio Meneghetti",
+      "nome" : "Pizzaria Massa Fina",
+      "numero" : "190",
+      "resumo" : "Pizzaria e rodízio de massas",
+      "telefone" : "(14) 3652-0000",
+      "url_logo" : "https://firebasestorage.googleapis.com/v0/b/cardapioonline-ce794.appspot.com/o/fotoLogoEmpresas%2F-LNIt3Xv5j-bLDcr6p8U.png?alt=media&token=e24db8a2-d811-452a-993b-9f7e44cb7a0c"
+    }
+  },
+  "usuarios" : {
+    "-LNIt3Xv5j-bAPcr6p4E" : {
+      "bairro" : "Vila RICA II",
+      "celular" : "(14)98106-0162",
+      "email" : "lucas@tdp.com.br",
+      "endereco" : "Rua Atílio Meneghetti",
+      "genero" : "Masculino",
+      "idade" : "28",
+      "keyUsuario" : "-LNIt3Xv5j-bAPcr6p4E",
+      "nome" : "Lucas Dorador Fornaciari",
+      "numero" : "190",
+      "tipoUsuario" : "Comum",
+      "uriFotoPerfil" : ""
+    },
+    "-LNmVYyMNJvOXWEG-ibc" : {
+      "bairro" : "Parque Aparício ",
+      "celular" : "",
+      "email" : "amanda@amanda.com",
+      "endereco" : "Avenida João Lunardelli",
+      "genero" : "Feminino",
+      "idade" : "27",
+      "keyUsuario" : "-LNmVYyMNJvOXWEG-ibc",
+      "nome" : "Amanda Alves de Campos",
+      "numero" : "233",
+      "tipoUsuario" : "Comum",
+      "uriFotoPerfil" : ""
+    }
+  }
+}
