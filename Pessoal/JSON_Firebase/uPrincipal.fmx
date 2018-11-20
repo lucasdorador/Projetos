@@ -27,7 +27,7 @@ object FPrincipal: TFPrincipal
     object key_empresa: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 4
+      TabOrder = 0
       Position.X = 10.000000000000000000
       Position.Y = 40.000000000000000000
       Margins.Top = 40.000000000000000000
@@ -47,7 +47,7 @@ object FPrincipal: TFPrincipal
     object key_produto: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 3
+      TabOrder = 1
       Position.X = 10.000000000000000000
       Position.Y = 82.000000000000000000
       Margins.Top = 20.000000000000000000
@@ -87,7 +87,7 @@ object FPrincipal: TFPrincipal
     object complemento: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 1
+      TabOrder = 3
       Position.X = 10.000000000000000000
       Position.Y = 166.000000000000000000
       Margins.Top = 20.000000000000000000
@@ -107,7 +107,7 @@ object FPrincipal: TFPrincipal
     object grupo: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 0
+      TabOrder = 4
       Position.X = 10.000000000000000000
       Position.Y = 208.000000000000000000
       Margins.Top = 20.000000000000000000
@@ -127,7 +127,7 @@ object FPrincipal: TFPrincipal
     object valor_meia: TNumberBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 6
+      TabOrder = 5
       Cursor = crIBeam
       Max = 999999.000000000000000000
       ValueType = Float
@@ -148,7 +148,7 @@ object FPrincipal: TFPrincipal
     object valor_inteira: TNumberBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Top
-      TabOrder = 5
+      TabOrder = 6
       Cursor = crIBeam
       Max = 999999.000000000000000000
       ValueType = Float
@@ -175,9 +175,10 @@ object FPrincipal: TFPrincipal
       Size.Width = 632.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 8
+      TabOrder = 7
       Text = 'Gravar'
       TextSettings.Font.Style = [fsBold]
+      OnClick = btnGravarClick
     end
     object btnSair: TButton
       Align = Top
@@ -188,9 +189,10 @@ object FPrincipal: TFPrincipal
       Size.Width = 632.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 7
+      TabOrder = 8
       Text = 'Sair'
       TextSettings.Font.Style = [fsBold]
+      OnClick = btnSairClick
     end
   end
 end
