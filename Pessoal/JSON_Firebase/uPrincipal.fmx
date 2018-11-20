@@ -1,0 +1,196 @@
+object FPrincipal: TFPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Produtos'
+  ClientHeight = 480
+  ClientWidth = 672
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object gbCampos: TGroupBox
+    Align = Client
+    StyledSettings = [Family, Size, FontColor, Other]
+    Padding.Left = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 652.000000000000000000
+    Size.Height = 460.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'CARD'#193'PIO ONLINE - Cadastro de Produtos'
+    TextSettings.Font.Style = [fsBold]
+    TabOrder = 0
+    object key_empresa: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 4
+      Position.X = 10.000000000000000000
+      Position.Y = 40.000000000000000000
+      Margins.Top = 40.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label1: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Key Empresa'
+      end
+    end
+    object key_produto: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 3
+      Position.X = 10.000000000000000000
+      Position.Y = 82.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label2: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Key Produto'
+      end
+    end
+    object descricao: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 2
+      Position.X = 10.000000000000000000
+      Position.Y = 124.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label3: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Descri'#231#227'o'
+      end
+    end
+    object complemento: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 1
+      Position.X = 10.000000000000000000
+      Position.Y = 166.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label4: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Complemento'
+      end
+    end
+    object grupo: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 0
+      Position.X = 10.000000000000000000
+      Position.Y = 208.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label5: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        Size.Width = 600.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Grupo'
+      end
+    end
+    object valor_meia: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 6
+      Cursor = crIBeam
+      Max = 999999.000000000000000000
+      ValueType = Float
+      Position.X = 10.000000000000000000
+      Position.Y = 250.000000000000000000
+      VertIncrement = 1.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label6: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Valor_Meia'
+      end
+    end
+    object valor_inteira: TNumberBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 5
+      Cursor = crIBeam
+      Max = 999999.000000000000000000
+      ValueType = Float
+      Position.X = 10.000000000000000000
+      Position.Y = 292.000000000000000000
+      VertIncrement = 1.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object Label7: TLabel
+        StyledSettings = [Family, Size, FontColor]
+        Position.Y = -18.000000000000000000
+        TextSettings.Font.Style = [fsBold]
+        Text = 'Valor_Inteira'
+      end
+    end
+    object btnGravar: TButton
+      Align = Top
+      StyledSettings = [Family, Size, FontColor]
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 324.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      Text = 'Gravar'
+      TextSettings.Font.Style = [fsBold]
+    end
+    object btnSair: TButton
+      Align = Top
+      StyledSettings = [Family, Size, FontColor]
+      Margins.Top = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 384.000000000000000000
+      Size.Width = 632.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Sair'
+      TextSettings.Font.Style = [fsBold]
+    end
+  end
+end
