@@ -21,9 +21,9 @@ Coordinates=118,62,82,33
 [dmPrincipal.FDInsert]
 Coordinates=118,114,117,51
 
-[btnDeletar]
-Coordinates=99,170,65,51
-
 [btnInserir]
 Coordinates=118,62,61,51
+
+[btnExecutar]
+Coordinates=99,170,65,51
 

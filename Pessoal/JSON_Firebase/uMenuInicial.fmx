@@ -4,6 +4,7 @@ object FMenuInicial: TFMenuInicial
   Caption = 'Cardapio Online 1.0'
   ClientHeight = 480
   ClientWidth = 640
+  WindowState = wsMaximized
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -20,9 +21,20 @@ object FMenuInicial: TFMenuInicial
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'additembutton'
-      TabOrder = 1
+      TabOrder = 3
       Text = 'btnInserir'
       OnClick = btnInserirClick
+    end
+    object btnExecutar: TButton
+      Align = Left
+      Position.X = 160.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'playtoolbutton'
+      TabOrder = 2
+      Text = 'Button1'
+      OnClick = btnExecutarClick
     end
     object btnDeletar: TButton
       Align = Right
@@ -32,7 +44,19 @@ object FMenuInicial: TFMenuInicial
       Size.PlatformDefault = False
       StyleLookup = 'trashtoolbutton'
       TabOrder = 0
-      Text = 'Button1'
+      Text = 'btnDeletar'
+      OnClick = btnDeletarClick
+    end
+    object btnEditar: TButton
+      Align = Left
+      Position.X = 80.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbutton'
+      TabOrder = 1
+      Text = 'btnEditar'
+      OnClick = btnEditarClick
     end
   end
   object ListView1: TListView
@@ -56,7 +80,7 @@ object FMenuInicial: TFMenuInicial
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 76
+    Left = 204
     Top = 221
     object LinkListControlToField1: TLinkListControlToField
       Category = 'Quick Bindings'

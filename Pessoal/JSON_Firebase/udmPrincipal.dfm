@@ -10,7 +10,6 @@ object dmPrincipal: TdmPrincipal
       'Password=masterkey'
       'CharacterSet=WIN1252'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 16
@@ -26,7 +25,6 @@ object dmPrincipal: TdmPrincipal
     Top = 128
   end
   object FDConsultaProduto: TFDQuery
-    Active = True
     Connection = FDConnection
     SQL.Strings = (
       'SELECT * FROM PRODUTOS')
@@ -69,5 +67,10 @@ object dmPrincipal: TdmPrincipal
       FieldName = 'VALOR_MEIA'
       Origin = 'VALOR_MEIA'
     end
+  end
+  object FDConsultas: TFDQuery
+    Connection = FDConnection
+    Left = 128
+    Top = 72
   end
 end

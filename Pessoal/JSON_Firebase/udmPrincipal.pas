@@ -24,6 +24,7 @@ type
     FDConsultaProdutoGRUPO: TStringField;
     FDConsultaProdutoVALOR_INTEIRA: TFloatField;
     FDConsultaProdutoVALOR_MEIA: TFloatField;
+    FDConsultas: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

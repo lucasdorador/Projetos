@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Edit, FMX.EditBox, FMX.NumberBox,
-  udmPrincipal, uMenuInicial, uConstantes;
+  udmPrincipal, uMenuInicial, uConstantes, FireDAC.Stan.Param, Data.DB;
 
 type
   TFPrincipal = class(TForm)
@@ -29,13 +29,14 @@ type
     btnSair: TButton;
     procedure btnSairClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
   private
     vlBEdicao : Boolean;
     vlSKeyEmpresa, vlsKeyProduto: String;
     function fncGeraKeyProduto(max: Integer): String;
+    procedure pcdLimparCampos;
+    procedure carregarProduto;
     { Private declarations }
   public
     procedure setTelaInicial(pbEdicao: Boolean; psKeyEmpresa, psKeyProduto: String);
@@ -88,6 +89,8 @@ dmPrincipal.FDInsert.ParamByName('VALOR_INTEIRA').AsFloat := valor_inteira.Value
 dmPrincipal.FDInsert.ParamByName('VALOR_MEIA').AsFloat    := valor_meia.Value;
 dmPrincipal.FDInsert.ParamByName('GRUPO').AsString        := grupo.Text;
 dmPrincipal.FDInsert.ExecSQL;
+
+pcdLimparCampos;
 end;
 
 procedure TFPrincipal.btnSairClick(Sender: TObject);
@@ -116,21 +119,55 @@ if ((Key = vkF6) and (Trim(descricao.Text) = '')) then
    end;
 end;
 
-procedure TFPrincipal.FormShow(Sender: TObject);
-begin
-key_empresa.Text := constkey_empresa;
-
-if not vlBEdicao then
-   key_produto.Text := fncGeraKeyProduto(19);
-
-key_produto.SetFocus;
-end;
-
 procedure TFPrincipal.setTelaInicial(pbEdicao: Boolean; psKeyEmpresa, psKeyProduto: String);
 begin
-vlBEdicao     := pbEdicao;
-vlSKeyEmpresa := psKeyEmpresa;
-vlsKeyProduto := psKeyProduto;
+vlBEdicao        := pbEdicao;
+vlSKeyEmpresa    := psKeyEmpresa;
+vlsKeyProduto    := psKeyProduto;
+key_empresa.Text := vlSKeyEmpresa;
+
+if not vlBEdicao then
+   begin
+   pcdLimparCampos;
+   end
+else
+   begin
+   carregarProduto();
+   key_empresa.Text    := dmPrincipal.FDConsultas.FieldByName('KEY_EMPRESA').AsString;
+   key_produto.Text    := dmPrincipal.FDConsultas.FieldByName('KEY_PRODUTO').AsString;
+   descricao.Text      := dmPrincipal.FDConsultas.FieldByName('DESCRICAO').AsString;
+   complemento.Text    := dmPrincipal.FDConsultas.FieldByName('COMPLEMENTOS').AsString;
+   grupo.Text          := dmPrincipal.FDConsultas.FieldByName('GRUPO').AsString;
+   valor_meia.Value    := dmPrincipal.FDConsultas.FieldByName('VALOR_MEIA').AsFloat;
+   valor_inteira.Value := dmPrincipal.FDConsultas.FieldByName('VALOR_INTEIRA').AsFloat;
+   end;
+
+descricao.SetFocus;
+end;
+
+procedure TFPrincipal.carregarProduto();
+begin
+dmPrincipal.FDConsultas.Close;
+dmPrincipal.FDConsultas.SQL.Clear;
+dmPrincipal.FDConsultas.SQL.Add('SELECT KEY_EMPRESA, KEY_PRODUTO, DESCRICAO,');
+dmPrincipal.FDConsultas.SQL.Add('       COMPLEMENTOS, GRUPO, VALOR_INTEIRA, VALOR_MEIA');
+dmPrincipal.FDConsultas.SQL.Add('FROM PRODUTOS WHERE (KEY_EMPRESA = :KEY_EMPRESA) AND (KEY_PRODUTO = :KEY_PRODUTO)');
+dmPrincipal.FDConsultas.ParamByName('KEY_EMPRESA').AsString := vlSKeyEmpresa;
+dmPrincipal.FDConsultas.ParamByName('KEY_PRODUTO').AsString := vlsKeyProduto;
+dmPrincipal.FDConsultas.Open();
+end;
+
+procedure TFPrincipal.pcdLimparCampos();
+begin
+key_empresa.Text    := constkey_empresa;
+key_produto.Text    := fncGeraKeyProduto(19);
+descricao.Text      := '';
+complemento.Text    := '';
+grupo.Text          := '';
+valor_meia.Value    := 0;
+valor_inteira.Value := 0;
+
+descricao.SetFocus;
 end;
 
 Function TFPrincipal.fncGeraKeyProduto(max: Integer):String;

@@ -51,6 +51,7 @@ Coordinates=119,258,76,51
 
 [dmPrincipal.FDConsultaProduto]
 Coordinates=10,10,173,177
+Visible=False
 
 [dmPrincipal.FDInsert]
 Coordinates=420,10,117,51
